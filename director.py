@@ -8,7 +8,7 @@ def app():
     st.header('Directors Ranked')
     st.caption('Here are your favorite directors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, and the difference in the average rating you have for the director compared to Letterboxd')
 
-    dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\DeltekMap\\DeltekMapScirpts\\LBCode"
+    dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
     # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
     # user = "goldfishbrain"
     # user = "zacierka"

@@ -9,7 +9,7 @@ def app():
     st.header('Your Favorite Movies by Length in Minutes')
     st.caption('Here are ...')
 
-    dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\DeltekMap\\DeltekMapScirpts\\LBCode"
+    dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
     # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
     # user = "goldfishbrain"
     # user = "zacierka"
