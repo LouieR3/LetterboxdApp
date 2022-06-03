@@ -87,7 +87,6 @@ def app():
         "Normal Weighted",
         "# of Movies Watched",
         "Difference",
-        "Billing Score",
         "Ranking",
     ])
     df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
