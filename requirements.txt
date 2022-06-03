@@ -1,6 +1,5 @@
 matplotlib
 bs4
 numpy
-operator
 pydeck
 pandas
