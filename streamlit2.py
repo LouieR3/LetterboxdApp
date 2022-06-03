@@ -13,7 +13,7 @@ from operator import itemgetter
 from urllib.error import URLError
 # from streamlit_observable import observable
 import time
-import pandas_profiling
+# import pandas_profiling
 from streamlit_pandas_profiling import st_profile_report
 import numpy as np
 from ratings import ratings
