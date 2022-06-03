@@ -79,7 +79,7 @@ def app():
     df = pd.DataFrame(sortList)
     df['index'] = range(1, len(df) + 1)
     sortList = df.values.tolist()
-    sortList = sorted(sortList, key=itemgetter(3))
+    sortList = sorted(sortList, key=itemgetter(3), reverse=True)
     df2 = pd.DataFrame(sortList, columns=[
         "Year",
         "Weighted",
