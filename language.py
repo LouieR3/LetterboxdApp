@@ -90,7 +90,7 @@ def app():
     df['index'] = range(1, len(df) + 1)
     sortList = df.values.tolist()
     sortList = sorted(sortList, key=itemgetter(3))
-    df = pd.DataFrame(sortList, columns=[
+    df2 = pd.DataFrame(sortList, columns=[
         "Language",
         "Weighted",
         "Average",
@@ -99,5 +99,5 @@ def app():
         "Difference",
         "Ranking",
     ])
-    df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
+    df2 = df2.style.background_gradient(subset=['Ranking', 'Billing Score'])
     st.dataframe(df2, height=700, width=2000)
