@@ -8,14 +8,14 @@ def app():
     st.header('Genre Ranked')
     st.caption('Here are your favorite genres ranked by the average rating of the movies you have watched, accounting for the number of their films you have seen, and the difference in the average rating you have for the director compared to Letterboxd')
 
-    dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
+    # dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
     # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
     # user = "goldfishbrain"
     # user = "zacierka"
     # user = "bluegrace11"
     user = "cloakenswagger"
     file = "AllFilms" + user + ".csv"
-    fullCSV = os.path.join(dataPath, file)
+    # fullCSV = os.path.join(dataPath, file)
     df = pd.read_csv(file)
 
     lenDF = df[df["Genre"].notna()]
