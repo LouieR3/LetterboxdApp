@@ -99,4 +99,4 @@ def app():
         "Ranking",
     ])
     # df2 = df2.style.background_gradient(subset=['Ranking', 'Billing Score'])
-    st.dataframe(df2, height=100, width=2000)
+    st.dataframe(df2, height=500, width=2000)
