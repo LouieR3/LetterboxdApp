@@ -5,6 +5,8 @@ def app():
     from ratings import ratings
     import streamlit as st
     import numpy as np
+    import matplotlib
+
     st.header('Actors Ranked')
     st.caption('Here are your favorite actors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, the difference in the average rating you have for the actor compared to Letterboxd, and the actors billing score. Billing score, being the number of movies you have seen of that actor over the totalality of all that actors placings in the movies billing lists')
     dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
