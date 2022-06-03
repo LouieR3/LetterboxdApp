@@ -94,7 +94,7 @@ def app():
         "Language",
         "Weighted",
         "Average",
-        "Normal Weighted",
+        "Final Weighted",
         "# of Movies Watched",
         "Difference",
         "Ranking",

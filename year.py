@@ -84,7 +84,7 @@ def app():
         "Year",
         "Weighted",
         "Average",
-        "Normal Weighted",
+        "Final Weighted",
         "# of Movies Watched",
         "Difference",
         "Ranking",

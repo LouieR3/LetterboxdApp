@@ -93,7 +93,7 @@ def app():
         "Decade",
         "Weighted",
         "Average",
-        "Normal Weighted",
+        "Final Weighted",
         "# of Movies Watched",
         "Difference",
         "Ranking",

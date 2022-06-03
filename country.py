@@ -82,7 +82,7 @@ def app():
         "Country",
         "Weighted",
         "Average",
-        "Normal Weighted",
+        "Final Weighted",
         "# of Movies Watched",
         "Difference",
         'Ranking'

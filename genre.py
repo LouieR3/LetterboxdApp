@@ -75,7 +75,7 @@ def app():
         "Genre",
         "Weighted",
         "Average",
-        "Normal Weighted",
+        "Final Weighted",
         "# of Movies Watched",
         "Difference",
         'Ranking'

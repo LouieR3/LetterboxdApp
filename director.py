@@ -73,7 +73,7 @@ def app():
         "Director",
         "Weighted",
         "Average",
-        "Normal Weighted",
+        "Final Weighted",
         "# of Movies Watched",
         "Difference",
         'Ranking'
