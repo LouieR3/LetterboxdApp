@@ -1,0 +1,51 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+Call Me by Your Name,4.5,3.98,0.52,,132,2:12,"English,French,Italian",Luca Guadagnino,2017,"Drama,Romance",Brazil,74955,560135
+Wind River,4.0,3.78,0.22,,107,1:47,English,Taylor Sheridan,2017,"Drama,Crime,Thriller,Mystery",USA,15523,130342
+Silver Linings Playbook,4.0,3.62,0.38,,122,2:02,English,David O. Russell,2012,"Drama,Comedy,Romance",USA,20009,315478
+Minding the Gap,4.5,4.25,0.25,11/16/2019,93,1:33,English,Bing Liu,2018,Documentary,USA,7637,30512
+Dazed and Confused,4.0,3.93,0.07,03/06/2020,102,1:42,English,Richard Linklater,1993,"Drama,Comedy",USA,23991,155246
+Avengers: Infinity War,4.0,3.98,0.02,,149,2:29,"English,Xhosa",Anthony Russo,2018,"Adventure,Action,Science Fiction",USA,72574,795716
+Rounders,3.5,3.47,0.03,,121,2:01,"English,Russian,Hebrew (modern)",John Dahl,1998,"Crime,Drama",USA,3404,33024
+Tinker Tailor Soldier Spy,4.0,3.56,0.44,,127,2:07,"English,French,Russian,Hungarian",Tomas Alfredson,2011,"Mystery,Thriller,Drama",France,6826,69022
+mid90s,4.0,3.72,0.28,,86,1:26,English,Jonah Hill,2018,"Drama,Comedy",USA,33445,202377
+12 Angry Men,4.0,4.52,-0.52,,97,1:37,English,Sidney Lumet,1957,Drama,USA,27148,260274
+Step Brothers,4.0,3.44,0.56,08/13/2021,98,1:38,"English,Spanish",Adam McKay,2008,Comedy,USA,12375,142637
+Raiders of the Lost Ark,3.5,4.17,-0.67,,115,1:55,"English,Spanish,German,Hebrew (modern),Arabic,Nepali",Steven Spielberg,1981,"Adventure,Action",USA,23947,342434
+"Don't Worry, He Won't Get Far on Foot",3.5,3.38,0.12,,113,1:53,English,Gus Van Sant,2018,"Drama,Comedy",USA,4683,27895
+A Ghost Story,4.0,3.75,0.25,,93,1:33,English,David Lowery,2017,"Drama,Fantasy",USA,30550,156966
+Black Panther,3.5,3.73,-0.23,,134,2:14,"English,Korean,Swahili,Xhosa",Ryan Coogler,2018,"Action,Adventure,Science Fiction",USA,56845,773132
+Mission: Impossible,3.5,3.53,-0.03,,110,1:50,"English,French,Czech",Brian De Palma,1996,"Adventure,Thriller,Action",USA,13838,158737
+Annihilation,3.5,3.59,-0.09,,115,1:55,English,Alex Garland,2018,"Science Fiction,Horror",UK,45602,343814
+Spider-Man: Into the Spider-Verse,4.0,4.44,-0.44,,117,1:57,"English,Spanish",Rodney Rothman,2018,"Action,Adventure,Animation,Science Fiction",USA,108712,858018
+First Reformed,3.5,3.98,-0.48,,113,1:53,English,Paul Schrader,2017,Drama,USA,30916,136388
+The Florida Project,3.5,4.11,-0.61,,112,1:52,"English,Portuguese,Spanish",Sean Baker,2017,Drama,USA,47481,286815
+Phantom Thread,4.5,4.06,0.44,12/02/2021,130,2:10,"English,French",Paul Thomas Anderson,2017,"Drama,Romance",USA,48486,224662
+Your Name.,3.5,4.19,-0.69,,106,1:46,Japanese,Makoto Shinkai,2016,"Drama,Animation,Romance",Japan,33379,283089
+Eighth Grade,3.5,3.86,-0.36,,94,1:34,English,Bo Burnham,2018,"Drama,Comedy",USA,45248,233579
+"Oh, Hello on Broadway",4.5,3.97,0.53,01/08/2020,102,1:42,English,Michael John Warren,2017,Comedy,USA,3457,11915
+Miami Vice,3.0,3.24,-0.24,,132,2:12,"English,Spanish",Michael Mann,2006,"Action,Thriller,Crime",Uruguay,8951,40693
+Thoroughbreds,3.5,3.56,-0.06,,92,1:32,English,Cory Finley,2017,"Drama,Thriller",USA,20781,91128
+Unforgiven,3.5,4.09,-0.59,,130,2:10,English,Clint Eastwood,1992,Western,USA,9405,98681
+Sorry to Bother You,3.0,3.75,-0.75,,112,1:52,English,Boots Riley,2018,"Comedy,Fantasy,Science Fiction",USA,43197,218017
+Incredibles 2,3.0,3.53,-0.53,,118,1:58,English,Brad Bird,2018,"Animation,Family,Action,Adventure",USA,31995,417141
+Full Metal Jacket,4.0,4.12,-0.12,11/22/2020,117,1:57,"English,Vietnamese",Stanley Kubrick,1987,"Drama,War",UK,16651,262882
+Thor: Ragnarok,3.5,3.88,-0.38,,131,2:11,English,Taika Waititi,2017,"Adventure,Action,Science Fiction,Fantasy",USA,56113,645673
+The Witch,3.5,3.86,-0.36,,92,1:32,English,Robert Eggers,2015,"Drama,Mystery,Horror,Fantasy",Canada,49798,377189
+The Killing of a Sacred Deer,3.5,3.75,-0.25,,121,2:01,"English,French",Yorgos Lanthimos,2017,"Mystery,Thriller,Drama",UK,41002,232861
+Deadpool 2,3.0,3.49,-0.49,,119,1:59,"English,Cantonese,Russian,Spanish",David Leitch,2018,"Action,Comedy,Adventure",Canada,30118,413129
+A Quiet Place,2.5,3.71,-1.21,,91,1:31,English,John Krasinski,2018,"Science Fiction,Drama,Horror",USA,55372,576385
+The Shape of Water,3.0,3.69,-0.69,,123,2:03,"English,Russian",Guillermo del Toro,2017,"Drama,Romance,Fantasy",USA,41831,436147
+John Wick: Chapter 2,3.0,3.69,-0.69,,122,2:02,"English,Italian,Russian",Chad Stahelski,2017,"Thriller,Action,Crime",USA,26231,282234
+Wedding Crashers,3.0,3.08,-0.08,,119,1:59,English,David Dobkin,2005,"Romance,Comedy",USA,4710,86573
+Brigsby Bear,3.0,3.79,-0.79,,97,1:37,English,Dave McCary,2017,"Comedy,Drama",USA,6551,29103
+"I, Tonya",2.5,3.86,-1.36,,120,2:00,English,Craig Gillespie,2017,Drama,USA,38529,341853
+The Ritual,2.5,3.2,-0.70,,94,1:34,"English,Swedish",David Bruckner,2017,"Mystery,Thriller,Horror",Canada,13699,92704
+The Thirteenth Year,3.0,2.64,0.36,,95,1:35,English,Duwayne Dunham,1999,"Adventure,Comedy,Family,TV Movie",N/A,488,5073
+Jarhead,2.5,3.45,-0.95,,123,2:03,"English,Spanish,Arabic,Latin",Sam Mendes,2005,"Drama,War",UK,4234,58002
+The Luck of the Irish,3.0,2.53,0.47,,86,1:26,English,Paul Hoen,2001,"TV Movie,Family,Comedy,Adventure",N/A,888,7788
+Girls Trip,2.5,3.21,-0.71,,122,2:02,English,Malcolm D. Lee,2017,Comedy,USA,5221,34885
+Sky High,2.5,3.05,-0.55,,100,1:40,English,Mike Mitchell,2005,"Adventure,Family,Comedy",USA,7620,73170
+Deliverance,3.0,3.77,-0.77,,109,1:49,English,John Boorman,1972,"Thriller,Drama,Adventure",USA,4465,41066
+Gerald's Game,2.0,3.21,-1.21,,104,1:44,English,Mike Flanagan,2017,"Thriller,Horror",USA,12722,103629
+Death Note,2.0,1.59,0.41,,101,1:41,"English,Japanese",Adam Wingard,2017,"Thriller,Fantasy,Horror,Crime,Drama",USA,11203,83191
+The Kissing Booth,1.5,1.73,-0.23,,105,1:45,English,Vince Marcello,2018,"Comedy,Romance",UK,14360,98316

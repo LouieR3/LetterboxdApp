@@ -1,0 +1,51 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+La La Land,4.5,3.94,0.56,12/11/2019,129,2:09,English,Damien Chazelle,2016,"Music,Drama,Romance,Comedy",USA,90112,753486
+Blade Runner 2049,4.5,4.09,0.41,01/27/2020,164,2:44,"English,Finnish,Hungarian,Japanese,Russian,Somali,Spanish",Denis Villeneuve,2017,"Science Fiction,Drama",Canada,58880,489354
+Lady Bird,4.5,3.9,0.60,12/27/2019,94,1:34,English,Greta Gerwig,2017,"Drama,Comedy",USA,94734,744635
+Arrival,4.0,4.07,-0.07,,116,1:56,"English,Chinese,Russian",Denis Villeneuve,2016,"Drama,Science Fiction,Mystery",USA,57631,646864
+Good Time,4.5,3.98,0.52,12/15/2019,102,1:42,English,Josh Safdie,2017,"Crime,Drama,Thriller",USA,54032,276540
+Get Out,4.0,4.17,-0.17,,104,1:44,English,Jordan Peele,2017,"Thriller,Horror,Mystery",USA,57182,851969
+Manchester by the Sea,4.0,4,0.00,,138,2:18,English,Kenneth Lonergan,2016,Drama,USA,24935,240299
+Moonlight,4.0,4.2,-0.20,,111,1:51,English,Barry Jenkins,2016,Drama,UK,46449,479765
+The Disaster Artist,3.5,3.55,-0.05,,104,1:44,English,James Franco,2017,"Comedy,Drama",USA,23926,227705
+"Three Billboards Outside Ebbing, Missouri",4.0,3.98,0.02,,115,1:55,English,Martin McDonagh,2017,"Drama,Crime",UK,31777,371111
+Eternal Sunshine of the Spotless Mind,4.5,4.21,0.29,07/25/2020,108,1:48,English,Michel Gondry,2004,"Drama,Romance,Science Fiction",USA,51962,586839
+The Silence of the Lambs,4.0,4.31,-0.31,,119,1:59,English,Jonathan Demme,1991,"Thriller,Drama,Crime",USA,39848,596223
+Dunkirk,4.5,3.81,0.69,01/01/2020,107,1:47,"English,French,German",Christopher Nolan,2017,"War,Drama,Action",France,45490,570109
+Baby Driver,3.5,3.78,-0.28,,113,1:53,English,Edgar Wright,2017,"Crime,Action",UK,63963,737611
+Logan,4.0,4.05,-0.05,,137,2:17,"English,Spanish",James Mangold,2017,"Action,Science Fiction,Drama",USA,32327,460749
+Blade Runner,4.0,4.1,-0.10,,118,1:58,"English,German,Cantonese,Japanese,Hungarian",Ridley Scott,1982,"Drama,Science Fiction,Thriller",USA,41982,432894
+Tombstone,4.0,3.81,0.19,,130,2:10,"English,Latin",George P. Cosmatos,1993,"Action,Western",USA,5998,42127
+Silence,4.0,3.83,0.17,,161,2:41,"English,Japanese",Martin Scorsese,2016,"History,Drama",Mexico,14034,102774
+Split,3.5,3.5,0.00,,117,1:57,English,M. Night Shyamalan,2016,"Horror,Thriller",USA,27568,427302
+Nocturnal Animals,4.0,3.76,0.24,,117,1:57,English,Tom Ford,2016,"Drama,Thriller",USA,26095,223191
+The Damned United,3.5,3.64,-0.14,,97,1:37,"English,Hungarian",Tom Hooper,2009,Drama,UK,1047,11142
+Superbad,4.5,3.85,0.65,08/13/2021,113,1:53,English,Greg Mottola,2007,Comedy,USA,36642,377039
+Lion,3.0,3.83,-0.83,,118,1:58,"English,Bengali, Bangla,Hindi",Garth Davis,2016,Drama,Australia,12005,147513
+The Edge of Seventeen,4.0,3.61,0.39,,105,1:45,English,Kelly Fremon Craig,2016,"Comedy,Drama",USA,30142,221051
+Nathan for You: Finding Frances,4.0,4.43,-0.43,11/26/2020,85,1:25,English,Nathan Fielder,2017,"Comedy,Romance,Drama,Documentary,Mystery",USA,5680,22345
+Hell or High Water,3.5,3.87,-0.37,,102,1:42,English,David Mackenzie,2016,"Crime,Western",USA,15744,160264
+Point Break,3.5,3.68,-0.18,,122,2:02,English,Kathryn Bigelow,1991,"Action,Crime,Thriller",USA,16594,98487
+The Fugitive,3.5,3.81,-0.31,,131,2:11,English,Andrew Davis,1993,"Drama,Thriller,Action",USA,7409,81315
+Scream,3.5,4,-0.50,,112,1:52,English,Wes Craven,1996,"Crime,Mystery,Horror",USA,62685,324208
+Clueless,4.0,3.79,0.21,,97,1:37,"English,Spanish",Amy Heckerling,1995,"Comedy,Romance",USA,32582,292798
+Psych: The Movie,3.5,3.48,0.02,,80,1:20,English,Steve Franks,2017,"Comedy,Crime,TV Movie,Mystery",USA,840,4907
+Star Wars: The Last Jedi,3.0,3.19,-0.19,12/22/2019,152,2:32,English,Rian Johnson,2017,"Science Fiction,Adventure,Action",USA,62062,535797
+Troy,2.5,3.18,-0.68,,163,2:43,English,Wolfgang Petersen,2004,"History,War,Adventure",USA,5824,110572
+The Big Sick,3.5,3.77,-0.27,,120,2:00,"English,Urdu",Michael Showalter,2017,"Comedy,Drama,Romance",USA,17681,158338
+It,3.5,3.51,-0.01,,135,2:15,English,Andy Muschietti,2017,"Horror,Fantasy",USA,42859,565832
+Paterson,2.5,3.86,-1.36,,118,1:58,English,Jim Jarmusch,2016,"Drama,Romance,Comedy",France,18746,104259
+Platoon,3.5,3.85,-0.35,,120,2:00,"English,Vietnamese",Oliver Stone,1986,"Action,War,Drama",USA,7064,94160
+It Follows,3.0,3.56,-0.56,,101,1:41,English,David Robert Mitchell,2014,"Horror,Mystery",USA,28820,258247
+He Got Game,3.0,3.55,-0.55,,136,2:16,English,Spike Lee,1998,Drama,USA,2420,17307
+Sleepers,2.5,3.59,-1.09,,147,2:27,English,Barry Levinson,1996,"Thriller,Crime,Drama",USA,3264,42935
+Bowling for Columbine,2.5,3.71,-1.21,,120,2:00,English,Michael Moore,2002,Documentary,USA,2790,44166
+Semi-Pro,2.5,2.65,-0.15,,91,1:31,English,Kent Alterman,2008,Comedy,USA,1869,26085
+An Open Secret,2.5,3.38,-0.88,,99,1:39,English,Amy J. Berg,2014,"Crime,Documentary",USA,298,1608
+V/H/S,2.0,2.87,-0.87,,116,1:56,English,Joe Swanberg,2012,"Horror,Thriller",USA,5016,43302
+The Jungle Book,2.5,3.25,-0.75,,106,1:46,English,Jon Favreau,2016,"Drama,Adventure,Fantasy,Family",UK,8263,158010
+Harry Potter and the Philosopher's Stone,3.0,3.77,-0.77,,152,2:32,English,Chris Columbus,2001,"Fantasy,Adventure",UK,37441,484008
+Hunt for the Wilderpeople,2.5,4.04,-1.54,,101,1:41,English,Taika Waititi,2016,"Adventure,Drama,Comedy",New Zealand,23710,153594
+The Pink Panther,1.5,2.56,-1.06,,93,1:33,English,Shawn Levy,2006,"Adventure,Family,Action,Comedy,Mystery,Crime",Czechia,1725,40826
+Lake Placid,1.0,2.7,-1.70,,82,1:22,English,Steve Miner,1999,"Action,Thriller,Science Fiction,Horror,Comedy",USA,2279,19616
+V/H/S/2,0.5,2.96,-2.46,,95,1:35,"English,Spanish,Indonesian",Eduardo Sánchez,2013,"Thriller,Horror",USA,3410,27570

@@ -1,0 +1,106 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+Apocalypse Now,5.0,4.36,0.64,03/28/2020,147,2:27,"English,Khmer,French,Vietnamese",Francis Ford Coppola,1979,"War,Drama",USA,26289,260877
+Before Sunrise,5.0,4.32,0.68,,101,1:41,"English,German,French",Richard Linklater,1995,"Romance,Drama",Austria,49317,252150
+Her,5.0,4.05,0.95,,126,2:06,English,Spike Jonze,2013,"Romance,Science Fiction,Drama",USA,53551,601911
+Do the Right Thing,5.0,4.34,0.66,10/02/2019,120,2:00,"English,Spanish,Italian,Korean",Spike Lee,1989,Drama,USA,25367,153577
+The Shining,4.5,4.28,0.22,,144,2:24,English,Stanley Kubrick,1980,"Horror,Thriller",USA,55416,695951
+Parasite,4.5,4.59,-0.09,01/31/2020,133,2:13,"Korean,English,German",Bong Joon-ho,2019,"Comedy,Drama,Thriller",South Korea,160187,1151060
+Once Upon a Time… in Hollywood,4.5,3.79,0.71,12/02/2019,162,2:42,"English,Italian,Spanish",Quentin Tarantino,2019,"Thriller,Comedy,Drama",China,103247,761973
+Marriage Story,4.5,3.99,0.51,12/09/2019,137,2:17,English,Noah Baumbach,2019,Drama,UK,76336,523437
+Annie Hall,4.5,3.98,0.52,,93,1:33,"English,German",Woody Allen,1977,"Comedy,Drama,Romance",USA,11935,132826
+La Haine,4.5,4.38,0.12,,98,1:38,French,Mathieu Kassovitz,1995,Drama,France,21673,138728
+The 400 Blows,4.5,4.26,0.24,,99,1:39,"French,English",François Truffaut,1959,Drama,France,11945,94254
+The Grand Budapest Hotel,5.0,4.21,0.79,05/20/2020,100,1:40,"English,French",Wes Anderson,2014,"Comedy,Drama",Germany,63136,694976
+Punch-Drunk Love,4.5,3.97,0.53,,96,1:36,English,Paul Thomas Anderson,2002,"Drama,Comedy,Romance",USA,37185,186420
+About Time,4.5,3.9,0.60,,123,2:03,English,Richard Curtis,2013,"Fantasy,Romance,Drama",UK,30088,231578
+Booksmart,4.0,3.85,0.15,12/01/2019,102,1:42,"English,Spanish,Chinese,Japanese",Olivia Wilde,2019,Comedy,USA,75296,380760
+Mommy,4.0,4.24,-0.24,,138,2:18,"French,English",Xavier Dolan,2014,Drama,Canada,18309,98014
+Transit,4.0,3.77,0.23,10/15/2019,101,1:41,"German,French",Christian Petzold,2018,"War,Romance,Drama",France,3750,19425
+2001: A Space Odyssey,4.5,4.31,0.19,09/26/2020,149,2:29,"English,Russian",Stanley Kubrick,1968,"Science Fiction,Adventure,Mystery",UK,43332,378950
+Rear Window,4.5,4.32,0.18,03/29/2020,112,1:52,English,Alfred Hitchcock,1954,"Thriller,Mystery",USA,25388,242227
+The Act of Killing,4.0,4.23,-0.23,,115,1:55,"Indonesian,English",Joshua Oppenheimer,2012,Documentary,Denmark,5648,44181
+Burning,4.0,4,0.00,,148,2:28,"Korean,English",Lee Chang-dong,2018,"Mystery,Thriller,Drama",South Korea,26761,137488
+The Irishman,4.0,3.88,0.12,12/05/2019,209,3:29,"English,Italian,Latin,Spanish",Martin Scorsese,2019,"Drama,Crime,History",USA,53099,351172
+Frances Ha,4.0,3.95,0.05,12/11/2019,86,1:26,English,Noah Baumbach,2012,"Comedy,Drama",Brazil,38237,184231
+The Seventh Seal,4.0,4.28,-0.28,,96,1:36,Swedish,Ingmar Bergman,1957,"Drama,Fantasy",Sweden,15553,116875
+Ferris Bueller's Day Off,4.0,3.94,0.06,,103,1:43,English,John Hughes,1986,Comedy,USA,27854,361618
+The Souvenir,4.0,3.44,0.56,12/08/2019,120,2:00,English,Joanna Hogg,2019,Drama,UK,10394,35781
+Mistress America,3.5,3.62,-0.12,12/12/2019,84,1:24,English,Noah Baumbach,2015,Comedy,Brazil,9251,40885
+The Truman Show,4.0,4.14,-0.14,,103,1:43,English,Peter Weir,1998,"Comedy,Drama",USA,43836,646370
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,4.0,4.24,-0.24,,95,1:35,English,Stanley Kubrick,1964,"Drama,Comedy,War",UK,21508,206167
+The Farewell,4.0,4.05,-0.05,,100,1:40,"English,Chinese,Japanese",Lulu Wang,2019,"Drama,Comedy",China,37349,183705
+Citizen Kane,4.0,4.19,-0.19,11/10/2019,119,1:59,English,Orson Welles,1941,"Drama,Mystery",USA,31154,219899
+The Lion King,4.0,4.2,-0.20,,89,1:29,English,Roger Allers,1994,"Drama,Family,Animation",USA,14661,447539
+Thelma & Louise,4.0,3.99,0.01,12/10/2019,130,2:10,English,Ridley Scott,1991,"Adventure,Crime,Thriller,Drama",USA,15581,109607
+Joker,3.5,3.85,-0.35,08/08/2020,122,2:02,English,Todd Phillips,2019,"Crime,Drama,Thriller",Canada,120951,1047461
+Vertigo,4.0,4.2,-0.20,12/13/2019,128,2:08,English,Alfred Hitchcock,1958,"Thriller,Mystery,Romance",USA,25805,235399
+After Hours,4.0,4.01,-0.01,11/30/2019,97,1:37,English,Martin Scorsese,1985,"Drama,Thriller,Comedy",USA,20190,84207
+You Were Never Really Here,4.0,3.68,0.32,,89,1:29,English,Lynne Ramsay,2017,"Thriller,Crime,Drama",UK,25838,159163
+Avengers: Endgame,4.5,3.93,0.57,,181,3:01,"English,Japanese,Xhosa",Anthony Russo,2019,"Adventure,Science Fiction,Action",USA,89667,757874
+Lost in Translation,4.5,3.88,0.62,10/25/2020,102,1:42,"English,Japanese",Sofia Coppola,2003,"Comedy,Romance,Drama",Japan,33531,341846
+This Is Not a Film,3.5,3.81,-0.31,,75,1:15,Persian (Farsi),Jafar Panahi,2011,Documentary,Iran,1310,6890
+Eyes Wide Shut,3.5,3.95,-0.45,,159,2:39,English,Stanley Kubrick,1999,"Thriller,Drama,Mystery",UK,29879,225111
+Barry Lyndon,3.5,4.29,-0.79,,185,3:05,"English,German,French",Stanley Kubrick,1975,"Romance,Drama,War",UK,14638,97051
+El Camino: A Breaking Bad Movie,3.5,3.51,-0.01,,123,2:03,English,Vince Gilligan,2019,"Drama,Action,Thriller,Crime",USA,25938,190051
+When Harry Met Sally...,3.5,3.98,-0.48,,96,1:36,English,Rob Reiner,1989,"Comedy,Romance,Drama",USA,29694,167959
+Chinatown,3.5,4.21,-0.71,,130,2:10,"English,Spanish,Cantonese",Roman Polanski,1974,"Crime,Drama,Mystery,Thriller",USA,16711,151890
+Mission: Impossible - Fallout,3.5,3.86,-0.36,,147,2:27,"English,French",Christopher McQuarrie,2018,"Action,Adventure",China,34790,228160
+Field of Dreams,3.5,3.55,-0.05,,107,1:47,English,Phil Alden Robinson,1989,"Drama,Fantasy",USA,3709,40800
+Us,3.5,3.71,-0.21,,116,1:56,English,Jordan Peele,2019,"Horror,Mystery,Thriller",USA,66970,541681
+Breathless,3.5,3.9,-0.40,,90,1:30,"French,English",Jean-Luc Godard,1960,"Drama,Crime",France,13953,92677
+Taxi Driver,4.0,4.23,-0.23,11/18/2021,114,1:54,"English,Spanish",Martin Scorsese,1976,"Drama,Crime",USA,43588,468371
+First Man,3.0,3.64,-0.64,,141,2:21,English,Damien Chazelle,2018,"Drama,History",USA,23962,157739
+Hereditary,3.5,4,-0.50,,127,2:07,English,Ari Aster,2018,"Thriller,Horror,Mystery",USA,84886,559321
+Inside Llewyn Davis,3.5,3.99,-0.49,,104,1:44,English,Joel Coen,2013,"Music,Drama",USA,27613,180928
+Home Alone 2: Lost in New York,3.5,3.33,0.17,11/29/2019,120,2:00,"English,French",Chris Columbus,1992,"Comedy,Adventure,Family",USA,15823,204717
+The Killing,3.5,3.93,-0.43,12/18/2019,85,1:25,English,Stanley Kubrick,1956,"Thriller,Drama,Crime",USA,7836,51816
+Thunder Road,3.5,3.81,-0.31,,91,1:31,English,Jim Cummings,2018,"Comedy,Drama",USA,9042,33649
+Akira,4.0,4.2,-0.20,11/15/2019,124,2:04,Japanese,Katsuhiro Otomo,1988,"Science Fiction,Action,Animation",Japan,25537,200736
+Paths of Glory,3.5,4.34,-0.84,,88,1:28,"English,Italian,Latin,German",Stanley Kubrick,1957,"Drama,War",USA,12001,92366
+Die Hard,3.5,4.07,-0.57,,131,2:11,"English,German,Italian",John McTiernan,1988,"Action,Thriller",USA,35235,302596
+Everybody's Everything,3.5,3.75,-0.25,12/07/2019,116,1:56,English,Sebastian Jones,2019,Documentary,USA,1929,8296
+Tangerine,3.5,3.8,-0.30,,87,1:27,"English,Armenian",Sean Baker,2015,"Comedy,Drama",USA,14024,73713
+Exit Through the Gift Shop,3.5,3.8,-0.30,,87,1:27,"English,French",Banksy,2010,Documentary,UK,2349,36472
+A Separation,3.5,4.24,-0.74,,123,2:03,Persian (Farsi),Asghar Farhadi,2011,Drama,Iran,6621,67960
+Lolita,3.5,3.55,-0.05,12/16/2019,154,2:34,English,Stanley Kubrick,1962,"Drama,Romance,Crime",UK,7501,74482
+All the President's Men,3.0,4.08,-1.08,,138,2:18,"English,Spanish",Alan J. Pakula,1976,"History,Drama,Mystery,Thriller",USA,9074,67169
+Free Solo,3.5,3.97,-0.47,,100,1:40,English,Elizabeth Chai Vasarhelyi,2018,"Adventure,Documentary",USA,14712,87471
+The Wind Rises,3.5,3.98,-0.48,,126,2:06,"Japanese,French,German,Italian",Hayao Miyazaki,2013,"Family,Animation,History,Drama,Romance,War",Japan,13315,100287
+The Work,3.5,4.05,-0.55,,90,1:30,English,Jairus McLeary,2017,Documentary,USA,689,2715
+The Conversation,3.0,4.1,-1.10,,113,1:53,English,Francis Ford Coppola,1974,"Mystery,Drama,Crime",USA,10632,75814
+Diamantino,3.0,3.35,-0.35,12/13/2019,96,1:36,Portuguese,Gabriel Abrantes,2018,"Drama,Comedy,Science Fiction,Fantasy",Brazil,2103,7608
+Life Is Beautiful,3.0,4.21,-1.21,,116,1:56,"Italian,German,English,Czech",Roberto Benigni,1997,"Comedy,Drama",Italy,7426,148839
+Fyre,3.0,3.3,-0.30,,98,1:38,English,Chris Smith,2019,"TV Movie,Documentary",USA,13109,88103
+Star Wars: The Rise of Skywalker,3.0,2.61,0.39,12/22/2019,142,2:22,English,J.J. Abrams,2019,"Science Fiction,Adventure,Action",USA,84118,433517
+Weiner,3.0,3.78,-0.78,,96,1:36,English,Josh Kriegman,2016,Documentary,USA,2214,13491
+Hearts of Darkness: A Filmmaker's Apocalypse,3.0,4.09,-1.09,,96,1:36,English,Fax Bahr,1991,Documentary,USA,3238,24136
+The Look of Silence,3.0,4.21,-1.21,,103,1:43,"English,Indonesian",Joshua Oppenheimer,2014,"Documentary,History",Denmark,1937,14495
+Harold and Maude,3.0,4.05,-1.05,,91,1:31,English,Hal Ashby,1971,"Romance,Drama,Comedy",USA,10139,59403
+Computer Chess,3.0,3.36,-0.36,11/28/2019,91,1:31,English,Andrew Bujalski,2013,Comedy,USA,1650,7933
+Forgetting Sarah Marshall,3.0,3.33,-0.33,,111,1:51,"English,Japanese,German",Nicholas Stoller,2008,"Drama,Romance,Comedy",USA,8925,100450
+Diego Maradona,3.0,3.88,-0.88,,130,2:10,"Spanish,Catalan,French,English,Italian,Portuguese",Asif Kapadia,2019,Documentary,UK,2744,15770
+The Favourite,3.0,4.03,-1.03,,119,1:59,English,Yorgos Lanthimos,2018,"Comedy,Drama",Ireland,47744,332948
+The Town,3.0,3.59,-0.59,,125,2:05,English,Ben Affleck,2010,"Crime,Drama,Thriller",UK,9171,108381
+Snowpiercer,3.0,3.68,-0.68,,127,2:07,"Korean,English,French,Japanese",Bong Joon-ho,2013,"Action,Drama,Science Fiction",Czechia,34356,329209
+Kicking and Screaming,3.0,3.34,-0.34,12/16/2019,96,1:36,English,Noah Baumbach,1995,"Comedy,Drama,Romance",USA,6396,24561
+Filmworker,3.0,3.58,-0.58,,94,1:34,English,Tony Zierra,2017,Documentary,USA,1200,5937
+Rocketman,3.0,3.69,-0.69,,121,2:01,English,Dexter Fletcher,2019,"Drama,Music,History",UK,40093,227723
+Spider-Man: Homecoming,3.0,3.62,-0.62,,133,2:13,English,Jon Watts,2017,"Science Fiction,Action,Adventure,Drama",USA,55176,656010
+American Animals,3.0,3.64,-0.64,,117,1:57,"English,Dutch",Bart Layton,2018,"Crime,Documentary,Drama",USA,9896,49751
+Star Wars: Episode I - The Phantom Menace,3.0,2.7,0.30,,136,2:16,English,George Lucas,1999,"Action,Science Fiction,Adventure",USA,36113,387707
+Remember the Titans,3.0,3.65,-0.65,,113,1:53,English,Boaz Yakin,2000,Drama,USA,3939,64127
+Mean Girls,3.0,3.8,-0.80,,97,1:37,"English,Swahili,German,Vietnamese",Mark Waters,2004,Comedy,Canada,27673,377654
+John Wick: Chapter 2,3.0,3.69,-0.69,,122,2:02,"English,Italian,Russian",Chad Stahelski,2017,"Thriller,Action,Crime",USA,26231,282234
+Interstella 5555: The 5tory of the 5ecret 5tar 5ystem,3.0,3.99,-0.99,,68,1:08,"Japanese,English",Kazuhisa Takenouchi,2003,"Music,Animation,Adventure,Science Fiction",France,2502,12713
+Philadelphia,3.0,3.81,-0.81,12/12/2019,126,2:06,English,Jonathan Demme,1993,Drama,USA,5201,67351
+Glass,2.5,2.96,-0.46,,129,2:09,"English,Spanish",M. Night Shyamalan,2019,"Drama,Science Fiction,Thriller",USA,22405,180113
+Dogtooth,3.0,3.79,-0.79,,98,1:38,Greek (modern),Yorgos Lanthimos,2009,Drama,Greece,17372,106491
+Hunger,2.5,3.91,-1.41,,96,1:36,English,Steve McQueen,2008,"Drama,History",Ireland,5129,41477
+Molly's Game,2.5,3.52,-1.02,,140,2:20,English,Aaron Sorkin,2017,"Crime,Drama",USA,16407,112264
+Fyre Fraud,2.5,3.13,-0.63,,96,1:36,English,Julia Willoughby Nason,2019,Documentary,USA,3305,15460
+Searching,2.0,3.74,-1.74,,102,1:42,English,Aneesh Chaganty,2018,"Thriller,Drama,Mystery",Russian Federation,23235,146725
+Departures,2.0,3.94,-1.94,,130,2:10,Japanese,Yojiro Takita,2008,Drama,Japan,1208,13421
+Pokémon Detective Pikachu,2.0,3.09,-1.09,,105,1:45,English,Rob Letterman,2019,"Fantasy,Action,Adventure",Japan,33141,210307
+Full-Court Miracle,2.0,2.54,-0.54,,90,1:30,English,Stuart Gillard,2003,"TV Movie,Family",N/A,205,1049
+Bohemian Rhapsody,1.5,3.39,-1.89,,135,2:15,English,Bryan Singer,2018,"Music,History,Drama",UK,43002,487711
+Cats,1.0,1.39,-0.39,12/17/2019,110,1:50,English,Tom Hooper,2019,"Fantasy,Comedy,Drama",UK,40386,86164

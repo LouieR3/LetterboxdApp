@@ -1,0 +1,61 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+The Godfather,5.0,4.54,0.46,06/08/2020,175,2:55,"English,Italian,Latin",Francis Ford Coppola,1972,"Crime,Drama",USA,41773,515016
+The Godfather: Part II,5.0,4.53,0.47,12/14/2019,202,3:22,"English,Italian,Latin,Spanish",Francis Ford Coppola,1974,"Drama,Crime",USA,20722,297520
+Before Sunset,5.0,4.3,0.70,01/09/2020,80,1:20,"English,French",Richard Linklater,2004,"Romance,Drama",USA,31754,183398
+Before Midnight,4.5,4.08,0.42,03/27/2020,109,1:49,"English,Greek (modern),French",Richard Linklater,2013,"Romance,Drama",Greece,24132,143901
+Before Sunrise,5.0,4.32,0.68,,101,1:41,"English,German,French",Richard Linklater,1995,"Romance,Drama",Austria,49313,252142
+The Big Short,4.5,3.76,0.74,,131,2:11,English,Adam McKay,2015,"Comedy,Drama",USA,26371,289665
+The End of the Tour,4.0,3.67,0.33,,106,1:46,English,James Ponsoldt,2015,Drama,USA,4768,31509
+Fight Club,4.0,4.26,-0.26,,139,2:19,English,David Fincher,1999,Drama,Germany,63520,824790
+The Nice Guys,4.5,3.77,0.73,,116,1:56,English,Shane Black,2016,"Action,Crime,Comedy",UK,36797,301621
+About Time,4.5,3.9,0.60,,123,2:03,English,Richard Curtis,2013,"Fantasy,Romance,Drama",UK,30084,231571
+Citizenfour,4.0,3.87,0.13,08/22/2021,114,1:54,"English,German,Portuguese",Laura Poitras,2014,Documentary,Germany,3267,30525
+The Revenant,4.0,3.82,0.18,,157,2:37,"English,French",Alejandro González Iñárritu,2015,"Drama,Western,Adventure",Canada,22641,438795
+Dope,4.0,3.51,0.49,,103,1:43,English,Rick Famuyiwa,2015,"Crime,Drama,Comedy",USA,5214,68067
+Training Day,4.0,3.81,0.19,,122,2:02,"English,Russian,Spanish,Korean",Antoine Fuqua,2001,"Thriller,Crime,Action,Drama",Australia,10354,120106
+Swiss Army Man,4.0,3.61,0.39,,97,1:37,English,Daniel Scheinert,2016,"Fantasy,Romance,Adventure,Comedy,Drama",Sweden,22037,154604
+Boyhood,3.5,3.77,-0.27,,166,2:46,"English,Spanish",Richard Linklater,2014,Drama,USA,20741,255663
+Waking Life,4.5,3.81,0.69,,99,1:39,English,Richard Linklater,2001,Animation,USA,3804,33436
+Hacksaw Ridge,2.5,3.78,-1.28,,139,2:19,"English,Japanese",Mel Gibson,2016,"History,Drama,War",Australia,16027,216263
+The Deer Hunter,4.0,4.08,-0.08,,184,3:04,"English,French,Russian,Vietnamese",Michael Cimino,1978,"Drama,War",UK,7680,85383
+Rogue One: A Star Wars Story,2.5,3.63,-1.13,,133,2:13,English,Gareth Edwards,2016,"Action,Adventure,Science Fiction",USA,38278,476193
+Flight,3.5,3.34,0.16,,138,2:18,English,Robert Zemeckis,2012,Drama,USA,4799,75033
+The Lobster,4.0,3.78,0.22,,118,1:58,"English,French,Greek (modern)",Yorgos Lanthimos,2015,"Drama,Romance,Comedy",France,36365,329981
+Deadpool,3.5,3.67,-0.17,,108,1:48,English,Tim Miller,2016,"Comedy,Action,Adventure",USA,27809,647188
+Mystic River,3.5,3.77,-0.27,,138,2:18,English,Clint Eastwood,2003,"Drama,Mystery,Crime,Thriller",USA,9425,115948
+Spotlight,3.5,3.99,-0.49,,129,2:09,English,Tom McCarthy,2015,"Drama,History",Canada,19095,255739
+Princess Mononoke,3.5,4.33,-0.83,,134,2:14,Japanese,Hayao Miyazaki,1997,"Fantasy,Adventure,Animation",Japan,29377,291508
+Room,3.5,4.01,-0.51,,118,1:58,English,Lenny Abrahamson,2015,"Drama,Thriller",Canada,22810,331287
+The Internet's Own Boy: The Story of Aaron Swartz,3.0,3.77,-0.77,,105,1:45,English,Brian Knappenberger,2014,"Documentary,Crime",USA,505,5046
+Finding Dory,2.5,3.32,-0.82,,97,1:37,English,Andrew Stanton,2016,"Animation,Adventure,Comedy,Family",USA,12848,288783
+My Scientology Movie,3.0,3.27,-0.27,,99,1:39,English,John Dower,2015,Documentary,UK,1761,13399
+End of Watch,3.5,3.62,-0.12,,109,1:49,"English,Spanish",David Ayer,2012,"Crime,Drama,Thriller",USA,6327,74060
+Casino Royale,3.5,3.93,-0.43,,144,2:24,"English,French",Martin Campbell,2006,"Action,Adventure,Thriller",Bahamas,27346,267519
+The Conjuring,3.5,3.57,-0.07,,112,1:52,English,James Wan,2013,"Horror,Thriller",USA,27403,308081
+Old School,3.5,3.18,0.32,,88,1:28,English,Todd Phillips,2003,Comedy,USA,2771,43769
+The Fugitive,3.5,3.81,-0.31,,131,2:11,English,Andrew Davis,1993,"Drama,Thriller,Action",USA,7409,81315
+Step Brothers,4.0,3.44,0.56,08/13/2021,98,1:38,"English,Spanish",Adam McKay,2008,Comedy,USA,12375,142637
+American History X,3.5,4.04,-0.54,11/19/2021,119,1:59,English,Tony Kaye,1998,Drama,USA,10003,206785
+Michael Moore in TrumpLand,2.5,2.72,-0.22,,73,1:13,English,Michael Moore,2016,Documentary,USA,202,1355
+Shame,3.0,3.76,-0.76,,102,1:42,English,Steve McQueen,2011,Drama,Canada,10410,100128
+Captain America: Civil War,3.0,3.63,-0.63,,147,2:27,"English,Romanian,German,Russian",Anthony Russo,2016,"Action,Science Fiction,Adventure",USA,39665,558360
+Tim's Vermeer,2.5,3.76,-1.26,,80,1:20,English,Teller,2013,Documentary,USA,763,5045
+More than a Game,3.0,3.53,-0.53,,105,1:45,English,Kristopher Belman,2008,Documentary,USA,129,1353
+Napoleon Dynamite,2.5,3.6,-1.10,,95,1:35,English,Jared Hess,2004,Comedy,USA,12739,145929
+Sausage Party,2.0,2.38,-0.38,,89,1:29,English,Conrad Vernon,2016,"Fantasy,Animation,Adventure,Comedy",Canada,12605,173321
+Louis Theroux: Law and Disorder in Philadelphia,2.5,3.56,-1.06,,60,1:00,English,Emma Cooper,2008,Documentary,N/A,38,629
+The Perks of Being a Wallflower,2.5,3.89,-1.39,,103,1:43,English,Stephen Chbosky,2012,Drama,USA,44017,454061
+Captain America: The First Avenger,2.0,3.33,-1.33,,124,2:04,"English,French,Norwegian",Joe Johnston,2011,"Science Fiction,Action,Adventure",USA,31743,453049
+Keeping the Faith,2.0,2.87,-0.87,,127,2:07,"English,Hebrew (modern),Spanish",Edward Norton,2000,"Comedy,Romance",USA,589,8577
+Neighbors 2: Sorority Rising,2.0,2.57,-0.57,,92,1:32,English,Nicholas Stoller,2016,Comedy,USA,4484,68683
+Airplane!,3.0,3.82,-0.82,,88,1:28,English,Jerry Zucker,1980,Comedy,USA,15281,163546
+X-Men: Apocalypse,2.5,2.64,-0.14,,144,2:24,English,Bryan Singer,2016,"Fantasy,Science Fiction,Adventure,Action",USA,15857,219981
+True Romance,3.5,3.88,-0.38,,120,2:00,"English,Italian",Tony Scott,1993,"Romance,Thriller,Crime,Action",USA,12082,90817
+The Day After Tomorrow,2.5,2.81,-0.31,,124,2:04,"English,Japanese,French,Arabic,Spanish",Roland Emmerich,2004,"Science Fiction,Adventure,Action,Thriller",USA,5447,120146
+Suicide Squad,2.0,2.08,-0.08,,123,2:03,"English,Japanese,Spanish",David Ayer,2016,"Adventure,Action,Fantasy",USA,33953,457141
+Assassin's Creed,1.5,2.1,-0.60,,115,1:55,"English,Portuguese,Spanish",Justin Kurzel,2016,"Action,Science Fiction,Adventure",France,6613,67651
+Hip-Hop: Beyond Beats & Rhymes,2.0,3.4,-1.40,,61,1:01,English,Byron Hurt,2006,"Music,Documentary",N/A,24,109
+We're the Millers,2.0,3.15,-1.15,,110,1:50,English,Rawson Marshall Thurber,2013,"Crime,Comedy",USA,11374,168868
+American Hardcore,2.0,3.56,-1.56,,100,1:40,English,Paul Rachman,2006,"Music,Documentary",USA,140,1566
+Somewhere in Time,2.0,3.47,-1.47,,103,1:43,English,Jeannot Szwarc,1980,"Fantasy,Romance,Drama",USA,977,6595
+Soul Surfer,1.5,2.88,-1.38,,112,1:52,English,Sean McNamara,2011,"Family,Drama",USA,1347,16246

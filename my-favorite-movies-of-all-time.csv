@@ -1,0 +1,51 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+The Godfather,5.0,4.54,0.46,06/08/2020,175,2:55,"English,Italian,Latin",Francis Ford Coppola,1972,"Crime,Drama",USA,41773,515016
+Pulp Fiction,5.0,4.31,0.69,06/22/2020,154,2:34,"English,Spanish,French",Quentin Tarantino,1994,"Crime,Thriller",USA,49099,879286
+Before Sunrise,5.0,4.32,0.68,,101,1:41,"English,German,French",Richard Linklater,1995,"Romance,Drama",Austria,49317,252154
+The Godfather: Part II,5.0,4.53,0.47,12/14/2019,202,3:22,"English,Italian,Latin,Spanish",Francis Ford Coppola,1974,"Drama,Crime",USA,20722,297523
+Apocalypse Now,5.0,4.36,0.64,03/28/2020,147,2:27,"English,Khmer,French,Vietnamese",Francis Ford Coppola,1979,"War,Drama",USA,26289,260877
+Her,5.0,4.05,0.95,,126,2:06,English,Spike Jonze,2013,"Romance,Science Fiction,Drama",USA,53551,601914
+Do the Right Thing,5.0,4.34,0.66,10/02/2019,120,2:00,"English,Spanish,Italian,Korean",Spike Lee,1989,Drama,USA,25367,153577
+Before Sunset,5.0,4.3,0.70,01/09/2020,80,1:20,"English,French",Richard Linklater,2004,"Romance,Drama",USA,31754,183398
+The Social Network,5.0,3.95,1.05,06/20/2020,121,2:01,English,David Fincher,2010,Drama,USA,80175,664294
+High and Low,5.0,4.46,0.54,04/14/2020,142,2:22,Japanese,Akira Kurosawa,1963,"Crime,Mystery,Drama,Thriller",Japan,7898,39449
+GoodFellas,5.0,4.42,0.58,08/29/2021,145,2:25,"English,Italian",Martin Scorsese,1990,"Drama,Crime",USA,40031,435184
+Jaws,5.0,4.01,0.99,06/13/2020,124,2:04,English,Steven Spielberg,1975,"Thriller,Horror,Adventure",USA,31729,363690
+There Will Be Blood,5.0,4.39,0.61,03/01/2021,158,2:38,English,Paul Thomas Anderson,2007,Drama,USA,41877,330401
+Boogie Nights,5.0,4.17,0.83,12/03/2021,156,2:36,English,Paul Thomas Anderson,1997,Drama,USA,29959,192563
+No Country for Old Men,5.0,4.27,0.73,06/11/2020,122,2:02,"English,Spanish",Joel Coen,2007,"Drama,Thriller,Crime",USA,34940,467318
+Chungking Express,5.0,4.26,0.74,04/11/2021,103,1:43,"Cantonese,English,Japanese,Hindi,Chinese,Eastern Punjabi, Eastern Panjabi",Wong Kar-wai,1994,"Romance,Comedy,Drama",Hong Kong,34140,154357
+"Synecdoche, New York",4.5,4.12,0.38,07/24/2020,124,2:04,"English,German",Charlie Kaufman,2008,Drama,USA,22338,107234
+Drive,5.0,3.97,1.03,,100,1:40,English,Nicolas Winding Refn,2011,"Thriller,Drama,Crime",USA,46464,471759
+Seven Samurai,5.0,4.52,0.48,04/04/2020,207,3:27,Japanese,Akira Kurosawa,1954,"Action,Drama",Japan,15693,124920
+The Grand Budapest Hotel,5.0,4.21,0.79,05/20/2020,100,1:40,"English,French",Wes Anderson,2014,"Comedy,Drama",Germany,63137,694979
+His Girl Friday,5.0,3.99,1.01,05/21/2020,92,1:32,English,Howard Hawks,1940,"Comedy,Drama,Romance",USA,8117,41710
+Inglourious Basterds,4.5,4.28,0.22,,153,2:33,"English,German,French,Italian",Quentin Tarantino,2009,"Thriller,Drama,Action,War",Germany,47647,742323
+La La Land,4.5,3.94,0.56,12/11/2019,129,2:09,English,Damien Chazelle,2016,"Music,Drama,Romance,Comedy",USA,90115,753489
+La Haine,4.5,4.38,0.12,,98,1:38,French,Mathieu Kassovitz,1995,Drama,France,21673,138734
+Before Midnight,4.5,4.08,0.42,03/27/2020,109,1:49,"English,Greek (modern),French",Richard Linklater,2013,"Romance,Drama",Greece,24132,143900
+Blade Runner 2049,4.5,4.09,0.41,01/27/2020,164,2:44,"English,Finnish,Hungarian,Japanese,Russian,Somali,Spanish",Denis Villeneuve,2017,"Science Fiction,Drama",Canada,58880,489357
+The Wolf of Wall Street,4.5,4,0.50,07/20/2020,180,3:00,"English,French",Martin Scorsese,2013,"Comedy,Drama,Crime",USA,47148,751997
+Rocky,4.5,4,0.50,,120,2:00,English,John G. Avildsen,1976,Drama,USA,12342,191856
+Heat,4.5,4.16,0.34,01/26/2020,170,2:50,"English,Spanish",Michael Mann,1995,"Drama,Thriller,Crime,Action",USA,26626,196996
+The Shining,4.5,4.28,0.22,,144,2:24,English,Stanley Kubrick,1980,"Horror,Thriller",USA,55414,695944
+About Time,4.5,3.9,0.60,,123,2:03,English,Richard Curtis,2013,"Fantasy,Romance,Drama",UK,30084,231571
+The 400 Blows,4.5,4.26,0.24,,99,1:39,"French,English",François Truffaut,1959,Drama,France,11945,94252
+Zodiac,4.5,3.98,0.52,07/01/2020,157,2:37,English,David Fincher,2007,"Mystery,Thriller,Drama,Crime",USA,43369,446370
+The Master,4.5,3.98,0.52,02/28/2021,137,2:17,English,Paul Thomas Anderson,2012,Drama,USA,28965,187677
+Y Tu Mamá También,4.5,4.1,0.40,05/08/2020,106,1:46,Spanish,Alfonso Cuarón,2001,"Drama,Romance",Mexico,14509,89978
+A Few Good Men,4.5,3.84,0.66,06/28/2020,138,2:18,"English,French",Rob Reiner,1992,Drama,USA,6727,71685
+Neon Genesis Evangelion: The End of Evangelion,4.5,4.41,0.09,08/07/2021,87,1:27,Japanese,Hideaki Anno,1997,"Animation,Science Fiction,Drama,Action",Japan,20630,102043
+Harakiri,5.0,4.55,0.45,02/22/2022,135,2:15,Japanese,Masaki Kobayashi,1962,"History,Drama,Action",Japan,7981,43863
+Lost in Translation,4.5,3.88,0.62,10/25/2020,102,1:42,"English,Japanese",Sofia Coppola,2003,"Comedy,Romance,Drama",Japan,33531,341844
+2001: A Space Odyssey,4.5,4.31,0.19,09/26/2020,149,2:29,"English,Russian",Stanley Kubrick,1968,"Science Fiction,Adventure,Mystery",UK,43332,378950
+Reservoir Dogs,4.5,4.12,0.38,,99,1:39,English,Quentin Tarantino,1992,"Crime,Thriller",USA,29788,442281
+Being John Malkovich,4.5,4,0.50,06/24/2020,113,1:53,"English,French",Spike Jonze,1999,"Drama,Fantasy,Comedy",USA,22277,184519
+The Nice Guys,4.5,3.77,0.73,,116,1:56,English,Shane Black,2016,"Action,Crime,Comedy",UK,36797,301621
+Schindler's List,4.5,4.42,0.08,07/16/2021,195,3:15,"English,German,Polish,Hebrew (modern)",Steven Spielberg,1993,"War,Drama,History",USA,14614,314009
+Home Alone,4.5,3.75,0.75,11/25/2020,103,1:43,"English,French",Chris Columbus,1990,"Comedy,Family",USA,29799,401501
+The Big Short,4.5,3.76,0.74,,131,2:11,English,Adam McKay,2015,"Comedy,Drama",USA,26371,289670
+Me and Earl and the Dying Girl,4.5,3.78,0.72,,105,1:45,English,Alfonso Gomez-Rejon,2015,"Comedy,Drama",USA,13565,116784
+Parasite,4.5,4.59,-0.09,01/31/2020,133,2:13,"Korean,English,German",Bong Joon-ho,2019,"Comedy,Drama,Thriller",South Korea,160187,1151061
+The Dark Knight,4.5,4.43,0.07,03/07/2021,152,2:32,"English,Chinese",Christopher Nolan,2008,"Action,Thriller,Drama,Crime",UK,53402,874226
+Rope,4.5,4.05,0.45,02/12/2020,81,1:21,English,Alfred Hitchcock,1948,"Drama,Crime,Thriller",USA,14844,95440

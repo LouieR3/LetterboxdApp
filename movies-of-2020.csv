@@ -1,0 +1,201 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+Before Sunset,5.0,4.3,0.70,01/09/2020,80,1:20,"English,French",Richard Linklater,2004,"Romance,Drama",USA,31753,183395
+High and Low,5.0,4.46,0.54,04/14/2020,142,2:22,Japanese,Akira Kurosawa,1963,"Crime,Mystery,Drama,Thriller",Japan,7896,39447
+"Synecdoche, New York",4.5,4.12,0.38,07/24/2020,124,2:04,"English,German",Charlie Kaufman,2008,Drama,USA,22339,107230
+His Girl Friday,5.0,3.99,1.01,05/21/2020,92,1:32,English,Howard Hawks,1940,"Comedy,Drama,Romance",USA,8116,41709
+Adaptation.,4.5,4.03,0.47,06/25/2020,115,1:55,"English,Latin",Spike Jonze,2002,"Crime,Drama,Comedy",USA,15835,119072
+Being John Malkovich,4.5,4,0.50,06/24/2020,113,1:53,"English,French",Spike Jonze,1999,"Drama,Fantasy,Comedy",USA,22276,184515
+Portrait of a Lady on Fire,4.5,4.43,0.07,02/22/2020,120,2:00,"French,Italian",Céline Sciamma,2019,"Drama,History,Romance",France,80452,320459
+Y Tu Mamá También,4.5,4.1,0.40,05/08/2020,106,1:46,Spanish,Alfonso Cuarón,2001,"Drama,Romance",Mexico,14505,89968
+Seven Samurai,5.0,4.52,0.48,04/04/2020,207,3:27,Japanese,Akira Kurosawa,1954,"Action,Drama",Japan,15693,124912
+Rope,4.5,4.05,0.45,02/12/2020,81,1:21,English,Alfred Hitchcock,1948,"Drama,Crime,Thriller",USA,14843,95432
+Boys State,4.5,3.95,0.55,08/24/2020,109,1:49,English,Jesse Moss,2020,Documentary,USA,9266,24767
+Casablanca,4.5,4.24,0.26,05/31/2020,102,1:42,"English,German,French,Italian",Michael Curtiz,1942,"Romance,Drama",USA,23414,204104
+The Lighthouse,4.5,4.05,0.45,01/05/2020,109,1:49,English,Robert Eggers,2019,"Thriller,Fantasy,Drama,Horror",Canada,98857,461692
+Blue Valentine,4.5,3.76,0.74,02/15/2020,112,1:52,English,Derek Cianfrance,2010,"Drama,Romance",USA,15705,124124
+Cameraperson,4.5,4.1,0.40,05/17/2020,102,1:42,"English,Bosnian,Arabic,Persian (Farsi),Hausa",Kirsten Johnson,2016,Documentary,USA,2517,9741
+The Place Beyond the Pines,4.5,3.73,0.77,01/14/2020,140,2:20,"English,Spanish",Derek Cianfrance,2012,"Drama,Crime",USA,12886,127283
+Dick Johnson Is Dead,4.5,3.87,0.63,10/02/2020,89,1:29,English,Kirsten Johnson,2020,Documentary,USA,8109,27188
+Soul,4.5,4.05,0.45,12/25/2020,101,1:41,English,Pete Docter,2020,"Family,Comedy,Animation,Fantasy",USA,93752,547798
+Mangrove,4.5,4.04,0.46,11/23/2020,127,2:07,English,Steve McQueen,2020,Drama,UK,6368,23854
+Moonrise Kingdom,4.5,3.99,0.51,02/28/2020,94,1:34,English,Wes Anderson,2012,"Comedy,Drama,Romance",USA,36297,370112
+Mank,4.0,3.32,0.68,12/04/2020,132,2:12,English,David Fincher,2020,"History,Drama",USA,37690,138421
+Symbiopsychotaxiplasm: Take One,4.0,3.93,0.07,06/08/2020,75,1:15,English,William Greaves,1968,Documentary,USA,2163,6573
+The Life Aquatic with Steve Zissou,4.0,3.77,0.23,02/29/2020,119,1:59,"English,Icelandic,Portuguese,French,Tagalog,German,Italian",Wes Anderson,2004,"Drama,Adventure,Comedy",USA,22873,166700
+High Fidelity,4.0,3.63,0.37,10/11/2020,113,1:53,"English,Danish",Stephen Frears,2000,"Music,Comedy,Romance,Drama",UK,9833,74271
+I'm Thinking of Ending Things,4.0,3.49,0.51,09/05/2020,135,2:15,English,Charlie Kaufman,2020,"Mystery,Drama,Thriller",USA,71190,238912
+Ace in the Hole,4.5,4.16,0.34,10/14/2020,111,1:51,"English,Latin,Spanish",Billy Wilder,1951,Drama,USA,4417,25780
+Uncut Gems,4.0,3.94,0.06,01/03/2020,136,2:16,English,Josh Safdie,2019,"Drama,Crime,Thriller",USA,104999,535048
+Jackie Brown,4.0,3.81,0.19,05/15/2020,154,2:34,English,Quentin Tarantino,1997,"Thriller,Crime,Drama",USA,17030,190193
+Burn After Reading,4.0,3.54,0.46,12/11/2020,96,1:36,English,Ethan Coen,2008,"Drama,Comedy",USA,17188,164959
+Twin Peaks,4.5,4.51,-0.01,10/24/2020,116,1:56,"English,Norwegian",David Lynch,1989,"Drama,TV Movie,Mystery,Crime",USA,11143,63670
+Mulholland Drive,4.0,4.2,-0.20,01/22/2020,147,2:27,"English,Spanish",David Lynch,2001,"Thriller,Mystery,Drama",France,44530,267152
+Isle of Dogs,4.0,3.9,0.10,02/27/2020,101,1:41,"English,Japanese",Wes Anderson,2018,"Adventure,Comedy,Animation",Germany,36127,306035
+The Queen's Gambit,4.5,4.27,0.23,11/04/2020,393,6:33,English,Scott Frank,2020,Drama,USA,37745,277220
+Jurassic Park,4.0,4.1,-0.10,06/23/2020,127,2:07,"English,Spanish",Steven Spielberg,1993,"Science Fiction,Adventure",USA,30824,489364
+Little Women,4.0,4.16,-0.16,01/04/2020,135,2:15,"English,French",Greta Gerwig,2019,"Drama,Romance",USA,104525,522615
+The Royal Tenenbaums,4.0,4.06,-0.06,03/01/2020,110,1:50,"English,Italian",Wes Anderson,2001,"Drama,Comedy",USA,34860,259983
+Children of Men,4.0,4.21,-0.21,02/03/2020,109,1:49,English,Alfonso Cuarón,2006,"Action,Thriller,Science Fiction,Drama",UK,22935,249378
+Crumb,4.0,4.09,-0.09,02/08/2020,119,1:59,English,Terry Zwigoff,1994,Documentary,USA,2304,16372
+Twin Peaks: Fire Walk with Me,4.0,4.03,-0.03,11/24/2020,135,2:15,"English,French",David Lynch,1992,"Drama,Mystery,Horror",USA,18602,94910
+Modern Romance,4.0,3.76,0.24,11/04/2020,93,1:33,English,Albert Brooks,1981,"Comedy,Romance,Drama",USA,2674,8968
+Persona,4.0,4.37,-0.37,08/16/2020,83,1:23,Swedish,Ingmar Bergman,1966,Drama,Sweden,22701,124292
+Alien,4.0,4.29,-0.29,07/10/2020,117,1:57,"English,Spanish",Ridley Scott,1979,"Science Fiction,Horror",USA,38973,420080
+Close-Up,4.0,4.33,-0.33,09/19/2020,98,1:38,"Persian (Farsi),Azerbaijani",Abbas Kiarostami,1990,"Drama,Crime,Documentary",Iran,7933,40429
+American Graffiti,4.0,3.69,0.31,09/24/2020,110,1:50,English,George Lucas,1973,"Drama,Comedy",USA,7765,53084
+Palm Springs,4.0,3.78,0.22,07/12/2020,90,1:30,"English,Spanish",Max Barbakow,2020,"Romance,Science Fiction,Comedy",USA,63936,277866
+Fantastic Mr. Fox,4.0,4.19,-0.19,02/27/2020,87,1:27,English,Wes Anderson,2009,"Comedy,Family,Animation,Adventure",USA,53497,403212
+The King of Comedy,4.0,4.15,-0.15,01/18/2020,109,1:49,English,Martin Scorsese,1982,"Comedy,Drama",USA,18986,118521
+Blue Velvet,4.0,4.07,-0.07,04/03/2020,120,2:00,English,David Lynch,1986,"Thriller,Drama,Crime,Mystery",USA,25267,174268
+Perfect Blue,4.0,4.35,-0.35,09/10/2020,81,1:21,Japanese,Satoshi Kon,1997,"Animation,Thriller",Japan,32964,185499
+World of Tomorrow Episode Three: The Absent Destinations of David Prime,4.0,4.37,-0.37,10/11/2020,34,0:34,English,Don Hertzfeldt,2020,"Science Fiction,Animation,Drama",USA,1336,3406
+The Assassination of Jesse James by the Coward Robert Ford,4.0,3.93,0.07,12/13/2020,160,2:40,English,Andrew Dominik,2007,"Drama,Western,Action",Canada,7966,72561
+Faces Places,4.0,4.08,-0.08,12/02/2020,94,1:34,French,Agnès Varda,2017,Documentary,France,5628,25769
+Doubt,4.0,3.81,0.19,12/16/2020,104,1:44,English,John Patrick Shanley,2008,Drama,USA,4928,45376
+North by Northwest,4.0,4.13,-0.13,05/03/2020,136,2:16,English,Alfred Hitchcock,1959,"Thriller,Mystery",USA,13137,115560
+Network,4.0,4.17,-0.17,05/19/2020,122,2:02,English,Sidney Lumet,1976,Drama,USA,10206,67818
+Back to the Future,4.0,4.2,-0.20,05/19/2020,116,1:56,English,Robert Zemeckis,1985,"Family,Adventure,Comedy,Science Fiction",USA,30300,541639
+Coffee and Cigarettes,4.0,3.61,0.39,08/04/2020,96,1:36,English,Jim Jarmusch,2003,"Comedy,Drama",USA,3066,29662
+The Darjeeling Limited,4.0,3.72,0.28,03/02/2020,92,1:32,"English,Hindi,German,Tibetan Standard, Tibetan, Central",Wes Anderson,2007,"Drama,Comedy,Adventure",USA,20285,153908
+The Exorcist,4.0,4.01,-0.01,10/15/2020,122,2:02,"English,German,French,Latin,Arabic,Greek (modern)",William Friedkin,1973,Horror,USA,21961,228843
+World of Tomorrow,4.0,4.22,-0.22,3/23/20,17,0:17,English,Don Hertzfeldt,2015,"Drama,Animation,Science Fiction",USA,6161,29762
+It's Such a Beautiful Day,4.0,4.3,-0.30,03/19/2020,62,1:02,English,Don Hertzfeldt,2012,"Animation,Comedy,Drama",USA,11117,45346
+Swingers,4.0,3.58,0.42,12/01/2020,96,1:36,English,Doug Liman,1996,Comedy,USA,4379,29757
+Tickled,4.0,3.72,0.28,12/22/2020,92,1:32,English,David Farrier,2016,Documentary,New Zealand,5255,29752
+Sunset Boulevard,4.0,4.36,-0.36,05/14/2020,110,1:50,English,Billy Wilder,1950,Drama,USA,15810,111142
+Sound of Metal,4.0,4.13,-0.13,11/17/2020,121,2:01,"English,French",Darius Marder,2019,"Drama,Music",UK,58572,273110
+Grizzly Man,4.0,4,0.00,12/24/2020,103,1:43,English,Werner Herzog,2005,Documentary,USA,5275,42808
+Old Joy,4.0,3.7,0.30,10/01/2020,73,1:13,English,Kelly Reichardt,2006,Drama,USA,4050,14642
+Wildlife,4.0,3.58,0.42,09/08/2020,105,1:45,English,Paul Dano,2018,Drama,USA,11493,48652
+Stalker,4.0,4.39,-0.39,08/19/2020,162,2:42,Russian,Andrei Tarkovsky,1979,"Science Fiction,Drama",USSR,19136,108966
+On the Waterfront,4.0,4.1,-0.10,09/30/2020,108,1:48,English,Elia Kazan,1954,"Crime,Drama",USA,6436,54559
+Election,4.0,3.76,0.24,10/04/2020,103,1:43,English,Alexander Payne,1999,Comedy,USA,14147,69352
+Boyz n the Hood,4.0,3.96,0.04,10/05/2020,112,1:52,English,John Singleton,1991,"Crime,Drama",USA,7323,72755
+Hannah and Her Sisters,4.0,3.95,0.05,11/10/2020,107,1:47,English,Woody Allen,1986,"Drama,Comedy",USA,3105,34317
+Yojimbo,4.0,4.23,-0.23,09/01/2020,110,1:50,Japanese,Akira Kurosawa,1961,"Drama,Thriller",Japan,9224,60349
+Bicycle Thieves,4.0,4.26,-0.26,12/09/2020,89,1:29,Italian,Vittorio De Sica,1948,Drama,Italy,11274,87675
+Bait,4.0,3.9,0.10,04/02/2020,89,1:29,English,Mark Jenkin,2019,Drama,UK,2269,9203
+The Trial of the Chicago 7,4.0,3.71,0.29,10/17/2020,130,2:10,English,Aaron Sorkin,2020,"Drama,History",USA,43764,219129
+Lovers Rock,4.0,3.97,0.03,11/30/2020,70,1:10,English,Steve McQueen,2020,"Drama,Romance",UK,8873,26865
+Psycho,4.0,4.31,-0.31,06/06/2020,109,1:49,English,Alfred Hitchcock,1960,"Drama,Thriller,Horror",USA,29494,356251
+The Last Dance,4.0,4.33,-0.33,04/21/2020,491,8:11,English,Jason Hehir,2020,Documentary,USA,8694,51678
+Blow Out,4.0,4.01,-0.01,08/01/2020,108,1:48,English,Brian De Palma,1981,"Thriller,Mystery,Crime",USA,13314,62953
+"O Brother, Where Art Thou?",4.0,3.89,0.11,12/14/2020,107,1:47,English,Joel Coen,2000,"Adventure,Comedy,Crime",France,12839,162613
+Dog Day Afternoon,4.0,4.21,-0.21,12/28/2020,125,2:05,English,Sidney Lumet,1975,"Drama,Thriller,Crime",USA,17215,118942
+Cléo from 5 to 7,4.0,4.15,-0.15,12/05/2020,90,1:30,French,Agnès Varda,1962,"Comedy,Drama",France,13552,66280
+Double Indemnity,4.0,4.17,-0.17,09/25/2020,107,1:47,English,Billy Wilder,1944,"Crime,Thriller,Mystery,Drama",USA,9752,69762
+The Virgin Suicides,4.0,3.77,0.23,10/23/2020,97,1:37,English,Sofia Coppola,1999,"Drama,Romance",USA,23750,156048
+Singin' in the Rain,4.0,4.26,-0.26,06/02/2020,103,1:43,English,Stanley Donen,1952,"Comedy,Romance,Music",USA,20381,144972
+Inside Man,4.0,3.61,0.39,06/09/2020,129,2:09,"English,Albanian",Spike Lee,2006,"Drama,Thriller,Crime",USA,8684,89099
+The Apartment,4.0,4.32,-0.32,09/03/2020,125,2:05,English,Billy Wilder,1960,"Comedy,Romance,Drama",USA,15113,90476
+Tenet,4.0,3.42,0.58,09/04/2020,150,2:30,English,Christopher Nolan,2020,"Science Fiction,Action,Thriller",UK,113863,450089
+Coco,4.0,4.18,-0.18,11/19/2020,105,1:45,"English,Spanish",Lee Unkrich,2017,"Fantasy,Family,Adventure,Animation,Music,Comedy",Mexico,45682,583193
+Barton Fink,4.0,3.98,0.02,12/19/2020,117,1:57,English,Joel Coen,1991,"Drama,Comedy",UK,7610,69603
+Roma,4.0,4.07,-0.07,02/24/2020,135,2:15,"Spanish,English",Alfonso Cuarón,2018,Drama,USA,31361,248335
+The Philadelphia Story,4.0,3.98,0.02,05/29/2020,113,1:53,"English,French",George Cukor,1940,"Comedy,Romance",USA,6462,33874
+World of Tomorrow Episode Two: The Burden of Other People's Thoughts,4.0,4.26,-0.26,03/21/2020,23,0:23,English,Don Hertzfeldt,2017,"Animation,Science Fiction,Drama",USA,2166,8163
+Shaun of the Dead,4.0,3.99,0.01,09/29/2020,99,1:39,English,Edgar Wright,2004,"Comedy,Horror",UK,26066,351687
+My Dinner with Andre,4.0,3.99,0.01,05/27/2020,110,1:50,English,Louis Malle,1981,"Drama,Comedy",USA,5713,24432
+The Talented Mr. Ripley,3.5,3.75,-0.25,11/26/2020,139,2:19,"English,Italian",Anthony Minghella,1999,"Crime,Thriller,Drama",USA,13362,97777
+Da 5 Bloods,3.5,3.54,-0.04,06/19/2020,156,2:36,"English,Finnish,French,Vietnamese",Spike Lee,2020,"War,Drama",USA,24759,103820
+Knives Out,4.0,4.04,-0.04,01/25/2020,131,2:11,"English,Spanish",Rian Johnson,2019,"Comedy,Mystery,Crime",USA,139415,915153
+The Vast of Night,3.5,3.52,-0.02,07/05/2020,91,1:31,English,Andrew Patterson,2019,"Thriller,Science Fiction,Mystery",USA,15344,61153
+On the Rocks,3.5,3.16,0.34,11/15/2020,96,1:36,"English,French,Russian,Spanish",Sofia Coppola,2020,"Drama,Comedy",USA,15019,57241
+Waves,3.5,3.81,-0.31,01/21/2020,136,2:16,English,Trey Edward Shults,2019,"Romance,Drama",USA,21092,71176
+The Rider,3.5,3.91,-0.41,02/17/2020,103,1:43,English,Chloé Zhao,2017,"Western,Drama",USA,6270,28603
+Rushmore,3.5,3.89,-0.39,02/29/2020,93,1:33,"English,French,Latin,Spanish",Wes Anderson,1998,"Comedy,Drama",USA,22963,159765
+Cinema Paradiso,3.5,4.34,-0.84,02/10/2020,124,2:04,Italian,Giuseppe Tornatore,1988,"Drama,Romance",Italy,13161,104876
+Stop Making Sense,4.0,4.54,-0.54,09/20/2020,88,1:28,English,Jonathan Demme,1984,"Music,Documentary",USA,14832,41916
+Eraserhead,3.5,3.9,-0.40,01/23/2020,89,1:29,English,David Lynch,1977,"Fantasy,Horror",USA,29665,145138
+Feels Good Man,3.5,3.87,-0.37,09/07/2020,94,1:34,English,Arthur Jones,2020,Documentary,USA,6410,21262
+Marie Antoinette,3.5,3.63,-0.13,10/25/2020,123,2:03,"English,French,Latin",Sofia Coppola,2006,"Drama,History",France,18986,114692
+Stray Dog,3.5,3.92,-0.42,04/08/2020,122,2:02,Japanese,Akira Kurosawa,1949,"Crime,Thriller,Drama",Japan,2595,14488
+Devs,3.5,3.87,-0.37,10/03/2020,409,6:49,English,Alex Garland,2020,"Mystery,Drama",UK,3574,15903
+Pan's Labyrinth,3.5,4.14,-0.64,12/13/2020,118,1:58,Spanish,Guillermo del Toro,2006,"War,Drama,Fantasy",Mexico,21895,327413
+A Serious Man,3.5,3.83,-0.33,12/08/2020,106,1:46,"English,Hebrew (modern),Yiddish,Italian",Joel Coen,2009,"Comedy,Drama",USA,13020,97528
+Primer,3.5,3.6,-0.10,12/21/2020,77,1:17,"English,French",Shane Carruth,2004,"Drama,Thriller,Science Fiction",USA,9659,68635
+25th Hour,3.5,3.78,-0.28,05/26/2020,135,2:15,English,Spike Lee,2002,"Drama,Crime",USA,3706,41061
+Hiroshima Mon Amour,3.5,4.12,-0.62,03/09/2020,92,1:32,"French,English,Japanese",Alain Resnais,1959,"Romance,Drama,History",France,6949,42222
+Honey Boy,3.5,3.84,-0.34,01/20/2020,94,1:34,English,Alma Har'el,2019,Drama,USA,25979,109248
+The Peanut Butter Falcon,3.5,3.84,-0.34,03/18/2020,97,1:37,English,Tyler Nilson,2019,"Comedy,Adventure,Drama",USA,20217,104824
+Mishima: A Life in Four Chapters,3.5,4.33,-0.83,12/15/2020,121,2:01,"English,Japanese",Paul Schrader,1985,Drama,Japan,7813,29264
+"The Good, the Bad and the Ugly",3.5,4.4,-0.90,05/22/2020,161,2:41,Italian,Sergio Leone,1966,Western,USA,16139,176001
+First Cow,3.5,3.84,-0.34,07/16/2020,122,2:02,English,Kelly Reichardt,2019,"Drama,Western",USA,17767,57037
+The Birds,3.5,3.74,-0.24,06/27/2020,119,1:59,English,Alfred Hitchcock,1963,Horror,USA,11909,132105
+The Game,3.5,3.68,-0.18,09/23/2020,129,2:09,"English,Cantonese,German",David Fincher,1997,"Thriller,Drama,Mystery",USA,19601,151304
+The Descent,3.5,3.63,-0.13,10/09/2020,99,1:39,English,Neil Marshall,2005,"Adventure,Horror",UK,14427,102606
+Butch Cassidy and the Sundance Kid,3.5,4.03,-0.53,12/05/2020,111,1:51,"English,Spanish",George Roy Hill,1969,"Drama,Crime,Western",USA,7281,63803
+Bringing Up Baby,3.5,3.93,-0.43,11/16/2020,102,1:42,English,Howard Hawks,1938,"Comedy,Romance",USA,7590,37445
+The Bridge on the River Kwai,3.5,4.11,-0.61,05/18/2020,161,2:41,"English,Japanese,Thai",David Lean,1957,"Drama,War,History",UK,3913,40294
+1917,3.5,4.08,-0.58,01/24/2020,119,1:59,"English,French,German",Sam Mendes,2019,"Thriller,War,Drama,Action",Canada,79105,546456
+Throne of Blood,3.5,4.18,-0.68,04/06/2020,108,1:48,Japanese,Akira Kurosawa,1957,"Drama,History",Japan,7339,42081
+Rashomon,3.5,4.17,-0.67,01/17/2020,88,1:28,Japanese,Akira Kurosawa,1950,"Crime,Drama,Mystery",Japan,13224,94278
+Bottle Rocket,3.5,3.52,-0.02,03/03/2020,91,1:31,"English,Spanish",Wes Anderson,1996,"Drama,Comedy,Crime",USA,12437,75077
+Columbus,3.5,3.92,-0.42,04/22/2020,104,1:44,"English,Korean",Kogonada,2017,Drama,USA,16425,55564
+The Ballad of Buster Scruggs,3.5,3.61,-0.11,12/12/2020,132,2:12,English,Joel Coen,2018,"Western,Comedy,Drama",USA,22032,178224
+The Graduate,3.5,4.06,-0.56,09/27/2020,106,1:46,English,Mike Nichols,1967,"Comedy,Drama",USA,21040,157754
+Jojo Rabbit,3.5,4.05,-0.55,01/15/2020,108,1:48,"English,German",Taika Waititi,2019,"Comedy,Drama,War",Czechia,83940,617240
+Say Anything...,3.0,3.58,-0.58,06/30/2020,100,1:40,English,Cameron Crowe,1989,"Comedy,Drama,Romance",USA,5333,44931
+Aliens,3.5,4.13,-0.63,07/14/2020,137,2:17,English,James Cameron,1986,"Thriller,Science Fiction,Action",USA,22848,228364
+"Planes, Trains and Automobiles",3.5,3.76,-0.26,11/21/2020,93,1:33,English,John Hughes,1987,Comedy,USA,9597,71457
+"Red, White and Blue",3.0,3.76,-0.76,12/06/2020,80,1:20,English,Steve McQueen,2020,Drama,N/A,3905,14705
+Manhattan,3.5,3.89,-0.39,05/24/2020,96,1:36,English,Woody Allen,1979,"Romance,Comedy,Drama",USA,6424,70623
+The Breakfast Club,3.5,3.82,-0.32,05/16/2020,98,1:38,English,John Hughes,1985,"Comedy,Drama",USA,25254,449489
+Groundhog Day,3.5,3.84,-0.34,08/11/2020,101,1:41,"English,French,Italian",Harold Ramis,1993,"Comedy,Fantasy,Romance,Drama",USA,18413,249795
+Men in Black,3.5,3.57,-0.07,10/31/2020,98,1:38,"English,Spanish",Barry Sonnenfeld,1997,"Action,Comedy,Adventure,Science Fiction",USA,7830,234669
+Crimson Tide,3.0,3.66,-0.66,07/10/2020,116,1:56,English,Tony Scott,1995,"War,Drama,Action,Thriller",USA,3143,24511
+Hamilton,3.0,4.18,-1.18,07/07/2020,160,2:40,English,Thomas Kail,2020,"History,Drama",USA,38218,147817
+Under the Skin,3.5,3.65,-0.15,03/15/2020,108,1:48,English,Jonathan Glazer,2013,"Drama,Science Fiction,Thriller",Switzerland,22741,155786
+The Last Black Man in San Francisco,3.5,4.05,-0.55,12/07/2020,121,2:01,"English,Haitian, Haitian Creole",Joe Talbot,2019,Drama,USA,20408,75726
+"Paris, Texas",3.5,4.33,-0.83,04/30/2020,145,2:25,"English,Spanish",Wim Wenders,1984,Drama,Germany,21198,119713
+Samsara,3.5,4.14,-0.64,05/28/2020,102,1:42,"English,No spoken language",Ron Fricke,2011,Documentary,Brazil,1979,17862
+Host,3.5,3.28,0.22,09/02/2020,57,0:57,English,Rob Savage,2020,"Horror,Mystery,Thriller",UK,19105,65669
+Gladiator,3.5,3.97,-0.47,05/13/2020,155,2:35,English,Ridley Scott,2000,"Action,Adventure,Drama",UK,15041,295391
+Dreams,3.5,4.08,-0.58,04/27/2020,119,1:59,"Japanese,English,French",Akira Kurosawa,1990,"Fantasy,Drama",USA,3792,22626
+Contagion,3.5,3.34,0.16,03/12/2020,106,1:46,"English,Cantonese,Chinese",Steven Soderbergh,2011,"Drama,Science Fiction,Thriller",USA,20712,151806
+American Factory,3.5,3.61,-0.11,01/19/2020,110,1:50,"English,Chinese",Steven Bognar,2019,Documentary,USA,4716,27248
+Psych 2: Lassie Come Home,3.0,3.49,-0.49,08/27/2020,88,1:28,English,Steve Franks,2020,"Comedy,Crime",USA,1067,4059
+A Very Murray Christmas,3.5,2.62,0.88,11/07/2020,56,0:56,English,Sofia Coppola,2015,"Music,Comedy",USA,2766,17501
+The Way Back,3.0,3.32,-0.32,07/19/2020,107,1:47,"English,Italian",Gavin O'Connor,2020,Drama,USA,10058,40708
+Inherent Vice,3.5,3.57,-0.07,03/26/2020,149,2:29,English,Paul Thomas Anderson,2014,"Mystery,Comedy,Drama",USA,20487,113569
+Where the Wild Things Are,3.5,3.39,0.11,06/27/2020,101,1:41,English,Spike Jonze,2009,"Drama,Science Fiction,Fantasy,Family",Australia,5812,78337
+The Watermelon Woman,3.5,3.96,-0.46,06/07/2020,85,1:25,English,Cheryl Dunye,1996,"Comedy,Drama,Romance",USA,5472,18857
+Wendy and Lucy,3.5,3.83,-0.33,10/20/2020,80,1:20,English,Kelly Reichardt,2008,Drama,USA,4590,21216
+Somewhere,3.0,3.27,-0.27,10/26/2020,98,1:38,"English,Italian",Sofia Coppola,2010,Drama,Italy,4124,29340
+The Cabinet of Dr. Caligari,3.5,4.04,-0.54,06/20/2020,77,1:17,"German,No spoken language",Robert Wiene,1920,"Thriller,Crime,Drama,Horror",Germany,11187,70672
+When We Were Kings,3.5,4.02,-0.52,04/23/2020,89,1:29,"English,French",Leon Gast,1996,Documentary,USA,1096,8029
+Borat Subsequent Moviefilm,3.0,3.31,-0.31,10/29/2020,96,1:36,"English,Bulgarian,Hebrew (modern),Hungarian,Romanian",Jason Woliner,2020,Comedy,USA,39196,214623
+The Doctor,3.5,3.52,-0.02,11/14/2020,90,1:30,English,Zak Levitt,2013,Documentary,USA,12,66
+The Theory of Everything,3.5,3.61,-0.11,02/20/2020,123,2:03,"English,Latin,French,Italian",James Marsh,2014,"Drama,Romance",UK,10093,225400
+Time,3.0,3.76,-0.76,10/07/2020,81,1:21,English,Garrett Bradley,2020,Documentary,USA,5937,21662
+Ad Astra,3.0,3.38,-0.38,02/06/2020,123,2:03,"English,Norwegian",James Gray,2019,"Drama,Science Fiction",Brazil,39895,202222
+The Two Popes,3.0,3.59,-0.59,01/16/2020,125,2:05,"English,French,German,Italian,Latin,Portuguese,Spanish",Fernando Meirelles,2019,"Comedy,Drama,History",USA,17123,117140
+John Mulaney & The Sack Lunch Bunch,3.0,3.77,-0.77,01/07/2020,70,1:10,English,Rhys Thomas,2019,"Comedy,Music,Family",USA,10756,30147
+Munich,3.0,3.69,-0.69,05/09/2020,164,2:44,"English,Arabic,German,Greek (modern),French,Hebrew (modern),Italian,Russian",Steven Spielberg,2005,"History,Thriller,Action,Drama",Canada,3786,51969
+The Ides of March,3.0,3.29,-0.29,02/19/2020,101,1:41,English,George Clooney,2011,Drama,USA,3409,46630
+David Byrne's American Utopia,3.0,4.25,-1.25,10/18/2020,105,1:45,English,Spike Lee,2020,"Music,Documentary",USA,7797,18251
+Honeyland,3.0,3.95,-0.95,01/13/2020,89,1:29,"Macedonian,Bosnian,Turkish,Serbo-Croatian",Ljubomir Stefanov,2019,Documentary,Macedonia,4325,22495
+Unstoppable,3.0,3.21,-0.21,01/14/2020,98,1:38,English,Tony Scott,2010,"Action,Thriller",USA,4729,41238
+Ford v Ferrari,3.0,3.85,-0.85,01/18/2020,153,2:33,"English,French,Japanese,Italian",James Mangold,2019,"Drama,History,Action",USA,36928,243033
+Close Encounters of the Third Kind,3.0,3.8,-0.80,09/06/2020,137,2:17,"English,Hindi,French,Spanish",Steven Spielberg,1977,"Drama,Science Fiction",USA,10105,105693
+Wonder Woman 1984,2.5,2.36,0.14,12/27/2020,151,2:31,English,Patty Jenkins,2020,"Adventure,Action,Fantasy",USA,61645,224399
+Chicago,2.5,3.75,-1.25,02/16/2020,113,1:53,"English,Hungarian",Rob Marshall,2002,"Drama,Crime,Comedy",Germany,12085,98405
+Rebecca,3.0,4.06,-1.06,09/13/2020,130,2:10,"English,French",Alfred Hitchcock,1940,"Thriller,Romance,Mystery,Drama",USA,7874,56551
+Bombshell,3.0,3.11,-0.11,01/30/2020,109,1:49,English,Jay Roach,2019,"Drama,History",Canada,19691,111129
+Moana,3.0,3.77,-0.77,03/01/2020,107,1:47,English,Ron Clements,2016,"Comedy,Adventure,Animation,Family",USA,23957,364405
+Mr. Nobody,3.0,3.71,-0.71,02/05/2020,141,2:21,English,Jaco Van Dormael,2009,"Science Fiction,Fantasy,Drama,Romance",Belgium,4650,74536
+13th,3.0,4.28,-1.28,02/18/2020,100,1:40,English,Ava DuVernay,2016,Documentary,USA,10897,77359
+Black Hawk Down,3.0,3.55,-0.55,11/28/2020,145,2:25,"English,Somali",Ridley Scott,2001,"War,Action,History",UK,3764,77922
+Twelve Monkeys,3.0,3.79,-0.79,11/27/2020,129,2:09,"English,French",Terry Gilliam,1995,"Thriller,Mystery,Science Fiction",USA,10962,154410
+Force Majeure,2.5,3.79,-1.29,10/19/2020,118,1:58,"Swedish,French,Norwegian,English",Ruben Östlund,2014,Drama,Denmark,6625,44870
+One Cut of the Dead,2.5,3.99,-1.49,09/21/2020,96,1:36,Japanese,Shinichiro Ueda,2017,"Comedy,Horror",Japan,13976,53530
+Inland Empire,2.0,3.73,-1.73,07/31/2020,180,3:00,"English,Polish",David Lynch,2006,"Mystery,Drama,Horror,Fantasy",Poland,8113,40695
+Risky Business,2.0,3.38,-1.38,05/23/2020,98,1:38,"English,German",Paul Brickman,1983,"Comedy,Romance,Drama",USA,5324,40012
+Uncle Boonmee Who Can Recall His Past Lives,2.0,3.82,-1.82,10/06/2020,114,1:54,"Thai,French,Lao",Apichatpong Weerasethakul,2010,"Comedy,Drama,Fantasy",Thailand,5366,25420
+A Simple Favor,2.0,3.24,-1.24,03/16/2020,117,1:57,English,Paul Feig,2018,"Comedy,Mystery,Crime,Thriller",Canada,24433,139291
+Men in Black II,1.5,2.83,-1.33,10/31/2020,88,1:28,English,Barry Sonnenfeld,2002,"Adventure,Science Fiction,Comedy,Action",USA,3271,124267
+Red Dawn,1.5,3.01,-1.51,03/05/2020,114,1:54,"English,Russian,Spanish",John Milius,1984,"Drama,Thriller,Action,War",USA,2026,18181
+Ladybugs,1.5,2.38,-0.88,08/02/2020,90,1:30,English,Sidney J. Furie,1992,"Family,Comedy",USA,406,3674
+Golden Shoes,1.0,2.01,-1.01,07/19/2020,89,1:29,English,Lance Kawas,2015,"Family,TV Movie",USA,30,84
+Agent Toby Barks,0.0,2.29,-2.29,04/16/2020,83,1:23,English,Dan Hunter,2020,"Adventure,Family,Comedy",USA,27,56
+The Kissing Booth 2,0.5,1.61,-1.11,08/07/2020,132,2:12,English,Vince Marcello,2020,"Comedy,Romance",UK,15516,62409

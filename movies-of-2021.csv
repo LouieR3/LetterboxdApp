@@ -1,0 +1,102 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+Chungking Express,5.0,4.26,0.74,04/11/2021,103,1:43,"Cantonese,English,Japanese,Hindi,Chinese,Eastern Punjabi, Eastern Panjabi",Wong Kar-wai,1994,"Romance,Comedy,Drama",Hong Kong,34136,154351
+Neon Genesis Evangelion: The End of Evangelion,4.5,4.41,0.09,08/07/2021,87,1:27,Japanese,Hideaki Anno,1997,"Animation,Science Fiction,Drama,Action",Japan,20630,102043
+Schindler's List,4.5,4.42,0.08,07/16/2021,195,3:15,"English,German,Polish,Hebrew (modern)",Steven Spielberg,1993,"War,Drama,History",USA,14613,313988
+Lawrence of Arabia,4.5,4.24,0.26,06/13/2021,228,3:48,"English,Arabic,Turkish",David Lean,1962,"Adventure,War,Drama,History",UK,9598,85156
+Licorice Pizza,4.5,3.86,0.64,12/28/2021,133,2:13,"English,Japanese,Spanish",Paul Thomas Anderson,2021,"Comedy,Drama",Canada,73859,181861
+Malcolm X,4.5,4.1,0.40,08/21/2021,202,3:22,"English,Arabic",Spike Lee,1992,"History,Drama",USA,7058,51747
+A Brighter Summer Day,4.5,4.45,0.05,06/29/2021,237,3:57,Chinese,Edward Yang,1991,"Drama,Romance,Crime",Taiwan,6340,26366
+In the Mood for Love,4.5,4.37,0.13,04/16/2021,99,1:39,"Cantonese,French,Spanish",Wong Kar-wai,2000,"Drama,Romance",China,38979,190017
+The Thing,4.5,4.31,0.19,10/09/2021,109,1:49,"English,Norwegian",John Carpenter,1982,"Science Fiction,Horror,Mystery",USA,41805,280258
+The French Dispatch,4.5,3.8,0.70,11/03/2021,108,1:48,"English,French",Wes Anderson,2021,"Drama,Romance,Comedy",Germany,87194,276836
+Dune,4.5,4.02,0.48,10/28/2021,155,2:35,"English,Chinese",Denis Villeneuve,2021,"Science Fiction,Adventure",USA,177206,599714
+The Tree of Life,4.5,3.8,0.70,09/03/2021,139,2:19,English,Terrence Malick,2011,"Drama,Fantasy",USA,17403,121203
+Brief Encounter,4.5,4.22,0.28,07/30/2021,86,1:26,English,David Lean,1945,"Romance,Drama",UK,6723,31659
+Memories of Murder,4.0,4.29,-0.29,02/14/2021,131,2:11,"Korean,English",Bong Joon-ho,2003,"Crime,Drama,Thriller",South Korea,27380,166213
+Everybody Wants Some!!,4.0,3.6,0.40,04/18/2021,116,1:56,English,Richard Linklater,2016,Comedy,USA,10263,55991
+Manhunter,4.0,3.8,0.20,04/17/2021,122,2:02,English,Michael Mann,1986,"Crime,Thriller,Horror",USA,10183,49772
+Can't Get You Out of My Head,4.0,4.25,-0.25,03/26/2021,480,8:00,"English,Chinese",Adam Curtis,2021,Documentary,UK,2200,5878
+The Girl with the Dragon Tattoo,4.0,3.8,0.20,02/26/2021,158,2:38,English,David Fincher,2011,"Thriller,Crime,Mystery",USA,20332,212316
+Magnolia,4.0,4.14,-0.14,02/23/2021,189,3:09,"English,French,German",Paul Thomas Anderson,1999,Drama,USA,26256,167687
+Rebel Without a Cause,4.0,3.8,0.20,11/06/2021,111,1:51,English,Nicholas Ray,1955,Drama,USA,8397,65466
+Badlands,4.0,4.01,-0.01,08/27/2021,93,1:33,"English,Spanish",Terrence Malick,1973,"Drama,Crime",USA,12338,73750
+Spider-Man: No Way Home,4.0,4.21,-0.21,12/18/2021,148,2:28,"English,Tagalog",Jon Watts,2021,"Action,Adventure,Science Fiction",USA,203705,603325
+The Power of the Dog,4.0,3.74,0.26,12/09/2021,127,2:07,English,Jane Campion,2021,"Drama,Western",Australia,59341,209420
+Treasure Planet,4.0,3.67,0.33,11/26/2021,95,1:35,English,Ron Clements,2002,"Family,Animation,Science Fiction,Adventure,Fantasy",USA,8620,89187
+Over the Garden Wall,4.0,4.58,-0.58,09/29/2021,109,1:49,English,Nate Cash,2014,"Animation,Mystery,Family,Comedy",USA,15955,79655
+Shiva Baby,4.0,3.87,0.13,06/12/2021,78,1:18,"English,Hebrew (modern)",Emma Seligman,2020,"Comedy,Drama",USA,45034,126653
+The Third Man,4.0,4.21,-0.21,07/24/2021,104,1:44,"English,Russian,German",Carol Reed,1949,"Thriller,Mystery",UK,9345,69597
+Scenes from a Marriage,4.0,4.15,-0.15,09/19/2021,300,5:00,English,Hagai Levi,2021,Drama,Sweden,5617,15297
+Another Round,4.0,4.01,-0.01,03/17/2021,117,1:57,"Danish,Swedish",Thomas Vinterberg,2020,"Comedy,Drama",Denmark,50039,209464
+Skyfall,4.0,3.8,0.20,02/11/2021,143,2:23,English,Sam Mendes,2012,"Action,Thriller,Adventure",UK,24385,315599
+Ikiru,4.0,4.41,-0.41,03/14/2021,143,2:23,Japanese,Akira Kurosawa,1952,Drama,Japan,7965,46859
+Sorcerer,4.0,4.13,-0.13,07/13/2021,122,2:02,"English,German,French,Spanish",William Friedkin,1977,"Adventure,Thriller",USA,6871,29070
+Derek DelGaudio's In & of Itself,4.0,3.93,0.07,01/29/2021,90,1:30,English,Frank Oz,2020,Documentary,USA,4863,13172
+Red Beard,4.0,4.24,-0.24,03/27/2021,185,3:05,Japanese,Akira Kurosawa,1965,Drama,Japan,1739,11091
+Thief,4.0,4,0.00,03/28/2021,123,2:03,English,Michael Mann,1981,"Thriller,Crime,Action",USA,12094,44849
+The War Room,4.0,3.78,0.22,06/04/2021,96,1:36,English,D. A. Pennebaker,1993,"Documentary,History",USA,1055,4932
+The French Connection,4.0,3.92,0.08,07/25/2021,104,1:44,"English,French",William Friedkin,1971,"Thriller,Crime,Action",USA,8092,59441
+Argo,4.0,3.63,0.37,08/18/2021,120,2:00,"English,Arabic,German,Persian (Farsi)",Ben Affleck,2012,"Drama,Thriller",UK,11149,190042
+Days of Heaven,4.0,4.05,-0.05,08/28/2021,94,1:34,"English,Italian",Terrence Malick,1978,"Drama,Romance",USA,10298,57001
+Shithouse,4.0,3.75,0.25,01/14/2021,102,1:42,English,Cooper Raiff,2020,"Comedy,Romance,Drama",USA,8383,20927
+Night on Earth,4.0,3.92,0.08,02/24/2021,128,2:08,"English,German,Italian,French,Finnish",Jim Jarmusch,1991,"Comedy,Drama",Germany,5189,36642
+A Man Escaped,4.0,4.25,-0.25,11/17/2021,101,1:41,"French,German",Robert Bresson,1956,"History,Drama,Thriller,War",France,4454,25921
+News from Home,4.0,4.08,-0.08,05/16/2021,85,1:25,French,Chantal Akerman,1976,Documentary,Belgium,2378,7989
+Fighting in the Age of Loneliness,4.0,4.11,-0.11,12/15/2021,120,2:00,English,Jon Bois,2018,Documentary,USA,528,1647
+The Thin Red Line,3.5,3.98,-0.48,08/30/2021,171,2:51,"English,Japanese",Terrence Malick,1998,"History,War,Drama",Canada,7823,75005
+Michael Clayton,3.5,3.71,-0.21,04/22/2021,120,2:00,English,Tony Gilroy,2007,"Drama,Thriller",USA,5724,41250
+Rat Film,3.5,3.65,-0.15,09/10/2021,82,1:22,English,Theo Anthony,2016,Documentary,USA,772,2818
+Spider-Man: Far From Home,3.5,3.54,-0.04,05/16/2021,129,2:09,"English,Czech,Dutch,German,Italian",Jon Watts,2019,"Adventure,Science Fiction,Action",USA,75312,572512
+Nomadland,3.5,3.86,-0.36,02/19/2021,108,1:48,English,Chloé Zhao,2020,Drama,USA,64624,266792
+Porco Rosso,3.5,3.9,-0.40,08/20/2021,94,1:34,Japanese,Hayao Miyazaki,1992,"Adventure,Comedy,Family,Animation",Japan,15016,101749
+Mister America,3.5,3.36,0.14,02/21/2021,88,1:28,English,Eric Notarnicola,2019,Comedy,USA,2139,5951
+Ran,3.5,4.37,-0.87,03/06/2021,160,2:40,Japanese,Akira Kurosawa,1985,"Drama,History,Action",Japan,9221,61386
+Mother,3.5,4.06,-0.56,02/20/2021,129,2:09,Korean,Bong Joon-ho,2009,"Mystery,Drama,Thriller,Crime",South Korea,10983,69247
+Fresh,3.5,3.77,-0.27,11/05/2021,114,1:54,English,Boaz Yakin,1994,"Thriller,Crime,Drama",France,381,3427
+Minari,3.5,4.1,-0.60,06/11/2021,115,1:55,"English,Korean",Lee Isaac Chung,2020,Drama,USA,54215,212484
+West Side Story,3.5,3.95,-0.45,12/26/2021,156,2:36,"English,Spanish",Steven Spielberg,2021,"Romance,Crime,Drama",USA,37251,86317
+The Conjuring 2,3.5,3.38,0.12,04/08/2021,134,2:14,English,James Wan,2016,"Horror,Thriller",USA,19356,176897
+Kiki's Delivery Service,3.5,4.11,-0.61,05/23/2021,103,1:43,Japanese,Hayao Miyazaki,1989,"Fantasy,Adventure,Family,Animation",Japan,28193,205858
+The Hunt for Red October,3.5,3.64,-0.14,06/11/2021,135,2:15,"English,Russian",John McTiernan,1990,"Action,Adventure,Thriller",USA,4257,45928
+The Karate Kid,3.5,3.66,-0.16,05/08/2021,126,2:06,English,John G. Avildsen,1984,"Family,Drama,Action",USA,9283,119630
+Judas and the Black Messiah,3.5,4.03,-0.53,03/03/2021,126,2:06,English,Shaka King,2021,"Drama,History",Canada,39433,172993
+The Matrix Reloaded,3.5,3.29,0.21,12/24/2021,138,2:18,English,Lilly Wachowski,2003,"Action,Adventure,Science Fiction,Thriller",USA,30127,225883
+Hard Eight,3.5,3.59,-0.09,03/02/2021,102,1:42,English,Paul Thomas Anderson,1996,"Crime,Drama",USA,10540,53787
+Jules and Jim,3.5,3.88,-0.38,02/25/2021,110,1:50,"French,English,German",François Truffaut,1962,"Drama,Romance",France,4841,36510
+The Beatles: Get Back,3.5,4.55,-1.05,11/26/2021,471,7:51,English,Peter Jackson,2021,Documentary,New Zealand,13136,32652
+King Richard,3.5,3.71,-0.21,12/04/2021,145,2:25,English,Reinaldo Marcus Green,2021,"Drama,History",USA,23181,82444
+Jiro Dreams of Sushi,3.5,3.9,-0.40,02/09/2021,82,1:22,"English,Japanese",David Gelb,2011,Documentary,USA,3516,30428
+In the Heights,3.5,3.6,-0.10,06/02/2021,143,2:23,"English,Spanish",Jon M. Chu,2021,"Music,Romance,Drama",USA,40805,117597
+The Suicide Squad,3.5,3.66,-0.16,08/08/2021,132,2:12,"English,French,Spanish",James Gunn,2021,"Action,Fantasy,Adventure",USA,112719,380322
+The Rescue,3.5,4.03,-0.53,12/06/2021,107,1:47,"English,German,Thai",Elizabeth Chai Vasarhelyi,2021,Documentary,UK,4427,16493
+Escape to Victory,3.5,3.19,0.31,08/14/2021,116,1:56,"English,French,German",John Huston,1981,"War,Drama",Italy,629,6956
+Halloween,3.5,3.91,-0.41,10/18/2021,91,1:31,English,John Carpenter,1978,"Thriller,Horror",USA,48400,292942
+Juice WRLD: Into the Abyss,3.5,3.46,0.04,12/16/2021,115,1:55,English,Tommy Oliver,2021,"Documentary,Music",USA,546,1439
+Listening to Kenny G,3.5,3.66,-0.16,12/14/2021,97,1:37,English,Penny Lane,2021,"Music,Documentary",USA,857,2579
+Val,3.5,3.71,-0.21,11/27/2021,109,1:49,English,Leo Scott,2021,Documentary,USA,4739,17303
+Pig,3.5,3.81,-0.31,08/23/2021,91,1:31,English,Michael Sarnoski,2021,"Drama,Thriller",UK,41359,123809
+Black Widow,3.5,3.31,0.19,07/17/2021,134,2:14,"English,Russian",Cate Shortland,2021,"Action,Adventure,Science Fiction",USA,105717,412730
+The Exorcist III,3.5,3.55,-0.05,11/02/2021,110,1:50,"English,Italian",William Peter Blatty,1990,"Horror,Mystery",USA,6199,27059
+Fallen Angels,3.5,4.17,-0.67,05/01/2021,98,1:38,"Cantonese,English,Japanese,Chinese",Wong Kar-wai,1995,"Action,Romance,Crime",Hong Kong,23417,102788
+One Night in Miami...,3.0,3.69,-0.69,01/24/2021,114,1:54,English,Regina King,2020,Drama,USA,16840,65067
+Belfast,3.0,3.52,-0.52,11/10/2021,98,1:38,English,Kenneth Branagh,2021,Drama,UK,22818,67240
+Louis Theroux: A Place for Paedophiles,3.5,3.57,-0.07,09/08/2021,59,0:59,English,Emma Cooper,2009,Documentary,N/A,134,1866
+Guardians of the Galaxy Vol. 2,3.0,3.55,-0.55,08/12/2021,137,2:17,English,James Gunn,2017,"Science Fiction,Action,Adventure",USA,38835,555762
+American Psycho,3.0,3.93,-0.93,06/03/2021,102,1:42,"English,Spanish,Cantonese",Mary Harron,2000,"Drama,Thriller,Crime,Horror",Canada,59601,534290
+Godzilla vs. Kong,3.0,2.91,0.09,04/10/2021,113,1:53,English,Adam Wingard,2021,"Action,Science Fiction,Fantasy",USA,65042,210056
+"All Light, Everywhere",3.0,3.71,-0.71,09/14/2021,109,1:49,English,Theo Anthony,2021,Documentary,USA,1310,3519
+Metagame,3.0,3.41,-0.41,07/22/2021,N/A,1:49,English,Travis Beauchamp,2021,Documentary,N/A,60,173
+Midnight in Paris,3.0,3.71,-0.71,06/23/2021,94,1:34,"English,French,German,Spanish",Woody Allen,2011,"Fantasy,Comedy,Romance",Spain,20906,237544
+The Green Knight,3.0,3.74,-0.74,07/31/2021,130,2:10,"English,Latin,Portuguese",David Lowery,2021,"Adventure,Fantasy,Drama",Canada,71016,211596
+Test Pattern,3.0,3.55,-0.55,07/12/2021,83,1:23,English,Shatara Michelle Ford,2019,Drama,USA,644,2237
+Atlantic City,3.0,3.64,-0.64,06/24/2021,104,1:44,"English,French",Louis Malle,1980,"Crime,Romance,Drama",Canada,1370,8040
+The Host,3.0,3.72,-0.72,02/22/2021,120,2:00,"Korean,English",Bong Joon-ho,2006,"Science Fiction,Horror,Drama",South Korea,15853,120196
+Taste of Cherry,3.0,4.19,-1.19,02/06/2021,99,1:39,Persian (Farsi),Abbas Kiarostami,1997,Drama,France,8730,44637
+8 Mile,3.0,3.45,-0.45,07/02/2021,111,1:51,English,Curtis Hanson,2002,"Music,Drama",USA,6658,122467
+Concrete Cowboy,3.0,3.28,-0.28,04/02/2021,111,1:51,"English,Spanish",Ricky Staub,2020,"Western,Drama",UK,3019,10779
+The Climb,3.0,3.51,-0.51,01/31/2021,94,1:34,English,Michael Angelo Covino,2019,"Comedy,Drama",USA,1987,7724
+The Forgotten Battle,3.0,3.31,-0.31,10/18/2021,124,2:04,"Dutch,English,German",Matthijs van Heijningen Jr.,2020,"History,Drama,War",Belgium,1244,8106
+Louis Theroux: Miami Mega-Jail,3.0,3.63,-0.63,09/08/2021,120,2:00,English,Emma Cooper,2011,Documentary,USA,76,1283
+Zack Snyder's Justice League,3.0,3.47,-0.47,03/21/2021,242,4:02,English,Zack Snyder,2021,"Action,Adventure,Science Fiction,Fantasy",USA,60983,204858
+The Crow,2.0,3.63,-1.63,11/26/2021,102,1:42,English,Alex Proyas,1994,"Thriller,Action,Fantasy",USA,6967,60288
+Pieces of a Woman,2.0,3.5,-1.50,01/08/2021,127,2:07,English,Kornél Mundruczó,2020,Drama,Canada,21147,87809

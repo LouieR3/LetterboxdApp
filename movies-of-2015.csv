@@ -1,0 +1,101 @@
+Movie,MyRating,LBRating,Difference,ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear,Genre,Country,NumberOfReviews,NumberOfRatings
+Drive,5.0,3.97,1.03,,100,1:40,English,Nicolas Winding Refn,2011,"Thriller,Drama,Crime",USA,46464,471759
+Scott Pilgrim vs. the World,4.0,3.87,0.13,07/21/2020,112,1:52,English,Edgar Wright,2010,"Romance,Comedy,Action,Fantasy",UK,74825,602811
+GoodFellas,5.0,4.42,0.58,08/29/2021,145,2:25,"English,Italian",Martin Scorsese,1990,"Drama,Crime",USA,40031,435177
+Inception,4.0,4.17,-0.17,,148,2:28,"English,Japanese,Swahili",Christopher Nolan,2010,"Science Fiction,Action,Adventure",UK,56402,907912
+The Social Network,5.0,3.95,1.05,06/20/2020,121,2:01,English,David Fincher,2010,Drama,USA,80168,664272
+Me and Earl and the Dying Girl,4.5,3.78,0.72,,105,1:45,English,Alfonso Gomez-Rejon,2015,"Comedy,Drama",USA,13564,116784
+The Prestige,4.0,4.13,-0.13,,130,2:10,English,Christopher Nolan,2006,"Drama,Mystery,Science Fiction",UK,28867,389166
+The Hateful Eight,4.0,3.84,0.16,,188,3:08,"English,Spanish",Quentin Tarantino,2015,"Drama,Mystery,Western",USA,29024,403098
+Good Will Hunting,4.0,4.18,-0.18,,127,2:07,English,Gus Van Sant,1997,Drama,USA,23834,397353
+Inglourious Basterds,4.5,4.28,0.22,,153,2:33,"English,German,French,Italian",Quentin Tarantino,2009,"Thriller,Drama,Action,War",Germany,47646,742320
+Boogie Nights,5.0,4.17,0.83,12/03/2021,156,2:36,English,Paul Thomas Anderson,1997,Drama,USA,29959,192564
+Star Wars: The Last Jedi,3.0,3.19,-0.19,12/22/2019,152,2:32,English,Rian Johnson,2017,"Science Fiction,Adventure,Action",USA,62062,535797
+Mad Max: Fury Road,4.0,4.15,-0.15,,121,2:01,English,George Miller,2015,"Adventure,Science Fiction,Action",Australia,52141,630991
+The Big Lebowski,4.0,4.12,-0.12,,117,1:57,"English,Hebrew (modern),Spanish,German",Joel Coen,1998,"Comedy,Crime",UK,35396,389808
+The Departed,3.5,4.19,-0.69,,151,2:31,"English,Cantonese",Martin Scorsese,2006,"Thriller,Drama,Crime",USA,29011,375003
+Into the Wild,4.0,3.76,0.24,,148,2:28,"English,Danish",Sean Penn,2007,"Adventure,Drama",USA,11348,188218
+Spirited Away,4.0,4.47,-0.47,,125,2:05,Japanese,Hayao Miyazaki,2001,"Fantasy,Animation,Family",Japan,55253,640810
+Raging Bull,4.0,4.19,-0.19,,129,2:09,English,Martin Scorsese,1980,"History,Drama",USA,15192,151808
+Apocalypse Now,5.0,4.36,0.64,03/28/2020,147,2:27,"English,Khmer,French,Vietnamese",Francis Ford Coppola,1979,"War,Drama",USA,26288,260872
+The Lord of the Rings: The Return of the King,4.5,4.4,0.10,,201,3:21,English,Peter Jackson,2003,"Fantasy,Adventure,Action",New Zealand,31411,466351
+Her,5.0,4.05,0.95,,126,2:06,English,Spike Jonze,2013,"Romance,Science Fiction,Drama",USA,53551,601914
+Collateral,3.5,3.77,-0.27,,120,2:00,"English,Spanish",Michael Mann,2004,"Drama,Crime,Thriller",USA,16137,130846
+Django Unchained,4.0,4.15,-0.15,,165,2:45,"English,French,German",Quentin Tarantino,2012,"Western,Drama",USA,37656,685935
+Rocky,4.5,4,0.50,,120,2:00,English,John G. Avildsen,1976,Drama,USA,12342,191848
+The Usual Suspects,3.5,3.97,-0.47,,106,1:46,"English,Spanish,French,Hungarian",Bryan Singer,1995,"Crime,Drama,Thriller",USA,13987,223337
+Ex Machina,4.5,3.98,0.52,,108,1:48,English,Alex Garland,2015,"Drama,Science Fiction",UK,36432,456005
+Creed,4.0,3.78,0.22,,133,2:13,English,Ryan Coogler,2015,Drama,USA,13124,176029
+The Bourne Ultimatum,3.0,3.63,-0.63,,115,1:55,"English,French,Arabic,Russian,Spanish",Paul Greengrass,2007,"Drama,Action,Mystery,Thriller",France,5349,113871
+Nightcrawler,4.0,4.03,-0.03,07/01/2020,118,1:58,English,Dan Gilroy,2014,"Thriller,Drama,Crime",USA,44515,470991
+The Matrix,4.5,4.17,0.33,12/23/2021,136,2:16,English,Lilly Wachowski,1999,"Science Fiction,Action",USA,68881,647317
+Zodiac,4.5,3.98,0.52,07/01/2020,157,2:37,English,David Fincher,2007,"Mystery,Thriller,Drama,Crime",USA,43369,446370
+Beasts of No Nation,3.0,3.82,-0.82,,137,2:17,English,Cary Joji Fukunaga,2015,"Drama,War",Ghana,3827,46581
+Steve Jobs,4.5,3.57,0.93,10/17/2020,122,2:02,English,Danny Boyle,2015,"History,Drama",UK,14193,122874
+The Wolf of Wall Street,4.5,4,0.50,07/20/2020,180,3:00,"English,French",Martin Scorsese,2013,"Comedy,Drama,Crime",USA,47149,751993
+The Lord of the Rings: The Two Towers,4.0,4.31,-0.31,,179,2:59,English,Peter Jackson,2002,"Fantasy,Adventure,Action",New Zealand,30175,451514
+The Bourne Identity,3.0,3.67,-0.67,,119,1:59,"English,French,German,Dutch,Italian",Doug Liman,2002,"Drama,Thriller,Action,Mystery",USA,8850,152301
+Ali,4.0,3.38,0.62,,157,2:37,English,Michael Mann,2001,Drama,South Africa,2653,25889
+Gone Girl,4.0,4.05,-0.05,,149,2:29,English,David Fincher,2014,"Drama,Thriller,Mystery",USA,74478,690633
+The Fighter,3.5,3.72,-0.22,,116,1:56,English,David O. Russell,2010,Drama,USA,4994,96084
+The Lord of the Rings: The Fellowship of the Ring,4.5,4.32,0.18,,179,2:59,English,Peter Jackson,2001,"Action,Fantasy,Adventure",New Zealand,43694,568409
+Fargo,4.0,4.21,-0.21,,98,1:38,English,Joel Coen,1996,"Drama,Crime,Thriller",UK,34603,358795
+Kill Bill: Vol. 1,4.0,4.14,-0.14,,111,1:51,"English,Japanese,French",Quentin Tarantino,2003,"Action,Crime",USA,39682,605900
+The Master,4.5,3.98,0.52,02/28/2021,137,2:17,English,Paul Thomas Anderson,2012,Drama,USA,28965,187675
+Sicario,4.0,3.9,0.10,,122,2:02,"English,Spanish",Denis Villeneuve,2015,"Crime,Thriller,Action",Mexico,23793,267995
+District 9,3.5,3.74,-0.24,,112,1:52,"English,Afrikaans,Chichewa, Chewa, Nyanja,Southern Sotho,Xhosa,Zulu",Neill Blomkamp,2009,Science Fiction,USA,8702,193172
+One Flew Over the Cuckoo's Nest,4.0,4.28,-0.28,,133,2:13,English,Miloš Forman,1975,Drama,USA,17393,266776
+John Wick,3.5,3.81,-0.31,,101,1:41,"English,Hungarian,Russian",Chad Stahelski,2014,"Thriller,Action",USA,36962,423183
+Argo,4.0,3.63,0.37,08/18/2021,120,2:00,"English,Arabic,German,Persian (Farsi)",Ben Affleck,2012,"Drama,Thriller",UK,11149,190047
+The Martian,3.0,3.72,-0.72,,144,2:24,"English,Chinese",Ridley Scott,2015,"Drama,Science Fiction,Adventure",UK,22209,490977
+(500) Days of Summer,2.5,3.64,-1.14,,95,1:35,"English,French,Swedish",Marc Webb,2009,"Drama,Romance,Comedy",USA,37938,349884
+Top Gun,4.0,3.33,0.67,06/19/2021,110,1:50,English,Tony Scott,1986,"Drama,Action,Adventure",USA,12864,131507
+Kill Bill: Vol. 2,3.5,4,-0.50,,136,2:16,"English,Chinese,Spanish,Cantonese",Quentin Tarantino,2004,"Action,Crime,Thriller",USA,21716,379126
+Rocky IV,3.5,3.42,0.08,,91,1:31,"English,Russian",Sylvester Stallone,1985,Drama,USA,6885,68793
+The Town,3.0,3.59,-0.59,,125,2:05,English,Ben Affleck,2010,"Crime,Drama,Thriller",UK,9171,108381
+Home Alone,4.5,3.75,0.75,11/25/2020,103,1:43,"English,French",Chris Columbus,1990,"Comedy,Family",USA,29799,401501
+Source Code,3.0,3.42,-0.42,,94,1:34,English,Duncan Jones,2011,"Mystery,Thriller,Science Fiction",Canada,6343,116507
+Anomalisa,3.5,3.79,-0.29,07/26/2020,90,1:30,English,Charlie Kaufman,2015,"Animation,Drama,Comedy,Romance",USA,12265,88290
+The Elephant Man,4.0,4.12,-0.12,08/25/2021,124,2:04,English,David Lynch,1980,"Drama,History",UK,10304,94105
+Black Mass,2.0,3.02,-1.02,,123,2:03,English,Scott Cooper,2015,"Drama,History,Crime",UK,3964,52724
+Rocky II,3.5,3.61,-0.11,,119,1:59,English,Sylvester Stallone,1979,Drama,USA,4798,68456
+8 Mile,3.0,3.45,-0.45,07/02/2021,111,1:51,English,Curtis Hanson,2002,"Music,Drama",USA,6661,122475
+The Bourne Supremacy,3.0,3.53,-0.53,,108,1:48,"English,Russian,German,Italian",Paul Greengrass,2004,"Thriller,Drama,Action",Germany,5413,102212
+Prisoners,3.5,4.18,-0.68,,153,2:33,English,Denis Villeneuve,2013,"Drama,Crime,Thriller",USA,40912,354104
+Se7en,3.0,4.27,-1.27,,127,2:07,English,David Fincher,1995,"Thriller,Crime,Mystery",USA,42490,591929
+Inside Out,4.0,3.89,0.11,,95,1:35,English,Pete Docter,2015,"Adventure,Comedy,Family,Drama,Animation",USA,27246,619037
+The Machinist,2.5,3.68,-1.18,,101,1:41,English,Brad Anderson,2004,"Drama,Thriller",France,7274,109424
+Gone Baby Gone,3.0,3.67,-0.67,,113,1:53,English,Ben Affleck,2007,"Crime,Drama,Mystery",USA,5221,63787
+Hoosiers,3.5,3.51,-0.01,,114,1:54,English,David Anspaugh,1986,"Drama,Family",USA,1434,14561
+Donnie Darko,3.0,3.95,-0.95,,114,1:54,English,Richard Kelly,2001,"Mystery,Drama,Fantasy",USA,39370,418914
+Shutter Island,3.0,4.02,-1.02,,138,2:18,"English,German",Martin Scorsese,2010,"Thriller,Mystery,Drama",USA,37170,556912
+Edge of Tomorrow,3.5,3.72,-0.22,,113,1:53,English,Doug Liman,2014,"Action,Science Fiction",Australia,17445,246174
+Million Dollar Baby,2.0,3.86,-1.86,,132,2:12,"English,Irish",Clint Eastwood,2004,Drama,USA,7737,130049
+Rocky III,3.0,3.33,-0.33,,99,1:39,English,Sylvester Stallone,1982,Drama,USA,4474,62566
+Moon,2.5,3.83,-1.33,,97,1:37,"English,Spanish",Duncan Jones,2009,"Drama,Science Fiction",UK,10949,148511
+Cobain: Montage of Heck,3.0,3.83,-0.83,,132,2:12,English,Brett Morgen,2015,"Music,Documentary",USA,2589,22506
+Avengers: Age of Ultron,2.5,3.13,-0.63,,141,2:21,English,Joss Whedon,2015,"Science Fiction,Action,Adventure",USA,34122,505673
+Man of Steel,1.5,2.92,-1.42,,143,2:23,English,Zack Snyder,2013,"Science Fiction,Action,Adventure,Fantasy",UK,22136,274792
+Super Troopers,2.5,3.24,-0.74,,100,1:40,English,Jay Chandrasekhar,2001,"Mystery,Crime,Comedy",USA,1734,25465
+Rain Man,3.5,3.77,-0.27,,134,2:14,"English,Italian",Barry Levinson,1988,Drama,USA,7668,127878
+My Neighbor Totoro,3.0,4.19,-1.19,,86,1:26,Japanese,Hayao Miyazaki,1988,"Family,Fantasy,Animation",Japan,37926,356452
+Black Hawk Down,3.0,3.55,-0.55,11/28/2020,145,2:25,"English,Somali",Ridley Scott,2001,"War,Action,History",UK,3764,77922
+Grave of the Fireflies,3.0,4.36,-1.36,,89,1:29,Japanese,Isao Takahata,1988,"War,Drama,Animation",Japan,20755,170489
+Next Goal Wins,3.0,3.87,-0.87,,97,1:37,English,Mike Brett,2014,Documentary,UK,280,1384
+Southpaw,2.5,3.39,-0.89,,123,2:03,English,Antoine Fuqua,2015,"Drama,Action",USA,5435,72777
+The Death of ,2.5,3.35,-0.85,,105,1:45,English,Jon Schnepp,2015,Documentary,USA,854,5092
+The Bourne Legacy,2.5,2.77,-0.27,,135,2:15,"English,Russian",Tony Gilroy,2012,"Thriller,Action",USA,3804,54723
+Casino,3.0,4.09,-1.09,,179,2:59,English,Martin Scorsese,1995,"Crime,Drama",France,16149,166108
+The Other Guys,3.0,3.19,-0.19,,107,1:47,English,Adam McKay,2010,"Comedy,Crime,Action",USA,8477,111116
+My Cousin Vinny,3.0,3.84,-0.84,,120,2:00,English,Jonathan Lynn,1992,Comedy,USA,9276,59538
+Ant-Man,2.5,3.34,-0.84,,117,1:57,English,Peyton Reed,2015,"Adventure,Science Fiction,Action",USA,28913,464854
+The Hunger Games: Mockingjay - Part 2,2.0,3.12,-1.12,,137,2:17,English,Francis Lawrence,2015,"Adventure,Action,Science Fiction",Germany,14191,220627
+From Dusk Till Dawn,2.5,3.49,-0.99,,108,1:48,"English,Spanish",Robert Rodriguez,1996,"Crime,Thriller,Horror,Action",USA,9737,122708
+A Christmas Story,1.0,3.67,-2.67,12/24/2019,93,1:33,English,Bob Clark,1983,"Comedy,Family",USA,10163,70010
+A Christmas Carol,2.0,3.04,-1.04,,94,1:34,English,Robert Zemeckis,2009,"Family,Animation,Fantasy,Drama",USA,4897,71396
+The Visit,2.0,3.06,-1.06,,94,1:34,English,M. Night Shyamalan,2015,"Mystery,Horror,Thriller",USA,11323,97772
+Deep Web,2.0,3.18,-1.18,,89,1:29,"English,German",Alex Winter,2015,Documentary,USA,311,3372
+The Island,1.5,2.87,-1.37,,136,2:16,English,Michael Bay,2005,"Science Fiction,Adventure,Action,Thriller",USA,2844,53796
+My Life,1.5,3.08,-1.58,,114,1:54,English,Bruce Joel Rubin,1993,"Drama,Romance",USA,237,2896
+The Lorax,1.5,2.87,-1.37,,86,1:26,English,Kyle Balda,2012,"Animation,Family",USA,7830,85880
+Battleship,1.5,2.1,-0.60,,131,2:11,"English,Japanese",Peter Berg,2012,"Action,Adventure,Thriller,Science Fiction",USA,2982,39191
