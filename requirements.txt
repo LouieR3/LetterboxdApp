@@ -1,0 +1,7 @@
+matplotlib
+bs4
+numpy
+urllib.error
+operator
+pydeck
+pandas
