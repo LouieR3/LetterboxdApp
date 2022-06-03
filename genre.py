@@ -16,7 +16,7 @@ def app():
     user = "cloakenswagger"
     file = "AllFilms" + user + ".csv"
     fullCSV = os.path.join(dataPath, file)
-    df = pd.read_csv(fullCSV)
+    df = pd.read_csv(file)
 
     lenDF = df[df["Genre"].notna()]
     finList = []

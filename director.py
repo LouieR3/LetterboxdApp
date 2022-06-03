@@ -17,7 +17,7 @@ def app():
     file = "AllFilms" + user + ".csv"
     # file = "AllFilmsMike.csv"
     fullCSV = os.path.join(dataPath, file)
-    df = pd.read_csv(fullCSV)
+    df = pd.read_csv(file)
 
     # CHECKING FAVORITE GENRE AND RATING BY GENRE\
     filmAverage = df["MyRating"].mean()
