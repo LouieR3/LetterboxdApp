@@ -11,7 +11,7 @@ import time
 import os
 from operator import itemgetter
 from urllib.error import URLError
-from streamlit_observable import observable
+# from streamlit_observable import observable
 import time
 import pandas_profiling
 from streamlit_pandas_profiling import st_profile_report
