@@ -7,7 +7,7 @@ def app():
     import numpy as np
     import matplotlib
 
-    st.header('Decade Ranked')
+    st.header('Years Ranked')
     st.caption('Here are ...')
     # user = "goldfishbrain"
     # user = "zacierka"
@@ -89,5 +89,5 @@ def app():
         "Difference",
         "Ranking",
     ])
-    df2 = df2.style.background_gradient(subset=['Ranking', 'Billing Score'])
+    # df2 = df2.style.background_gradient(subset=['Ranking', 'Billing Score'])
     st.dataframe(df2, height=700, width=2000)
