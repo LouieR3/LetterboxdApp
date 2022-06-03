@@ -22,6 +22,10 @@ import actors
 import intro
 import length
 import genre
+import country
+import decade
+import year
+import language
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
@@ -30,7 +34,11 @@ PAGES = {
     "Actors": actors,
     "Directors": director,
     "By Length": length,
-    "Genre": genre
+    "Genre": genre,
+    "Country": country,
+    "Decade": decade,
+    "Year": year,
+    "Language": language
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
