@@ -15,7 +15,7 @@ def app():
     user = "cloakenswagger"
     file = "AllFilms" + user + ".csv"
     fullCSV = os.path.join(dataPath, file)
-    df = pd.read_csv(fullCSV)
+    df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
 
