@@ -100,9 +100,11 @@ def app():
                                         tot, diff, finMult]
                                 )
                         else:
-                            finList.append(
-                                [a, finFloatStr, avg2, finAvg, tot, diff, finMult]
-                            )
+                            if finAv1 > 1.25:
+                                finList.append(
+                                    [a, finFloatStr, avg2, finAvg,
+                                        tot, diff, finMult]
+                                )
                         # if finFloat > filmAverage:
                         #     finList.append(
                         #         [a, finFloatStr, avg2, finAvg, tot, diff, finMult])
