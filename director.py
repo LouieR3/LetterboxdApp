@@ -8,11 +8,6 @@ def app():
     st.header('Directors Ranked')
     st.caption('Here are your favorite directors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, and the difference in the average rating you have for the director compared to Letterboxd')
 
-    # user = "goldfishbrain"
-    # user = "zacierka"
-    # user = "bluegrace11"
-    # user = "cloakenswagger"
-    # file = "AllFilms" + user + ".csv"
     file = user()
     df = pd.read_csv(file)
 

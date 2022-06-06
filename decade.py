@@ -7,9 +7,7 @@ def app():
 
     st.header('Decade Ranked')
     st.caption('Here are ...')
-    # user = "goldfishbrain"
-    # user = "zacierka"
-    # user = "bluegrace11"
+
     user = "cloakenswagger"
     file = "AllFilms" + user + ".csv"
     df = pd.read_csv(file)

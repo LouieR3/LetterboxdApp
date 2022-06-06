@@ -8,11 +8,6 @@ def app():
     st.header('Your Favorite Movies by Country')
     st.caption('Here are ...')
 
-    # user = "goldfishbrain"
-    # user = "zacierka"
-    # user = "bluegrace11"
-    # user = "cloakenswagger"
-    # file = "AllFilms" + user + ".csv"
     file = user()
     df = pd.read_csv(file)
 
