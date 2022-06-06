@@ -8,8 +8,7 @@ def app():
     st.header('Decade Ranked')
     st.caption('Here are ...')
 
-    user = "cloakenswagger"
-    file = "AllFilms" + user + ".csv"
+    file = user()
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
