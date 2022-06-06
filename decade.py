@@ -1,11 +1,9 @@
 def app():
     import pandas as pd
-    import os
     from operator import itemgetter
     from ratings import ratings
     import streamlit as st
-    import numpy as np
-    import matplotlib
+    from user import user
 
     st.header('Decade Ranked')
     st.caption('Here are ...')
@@ -14,33 +12,11 @@ def app():
     # user = "bluegrace11"
     user = "cloakenswagger"
     file = "AllFilms" + user + ".csv"
-    # fullCSV = os.path.join(dataPath, file)
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
 
-    # PERCENTAGE OF EACH RATING DISTRIBUTION
-    # DataFrame for movies with unique rating
-    lenDF = df.MyRating.unique()
-    sortList = sorted(lenDF, reverse=True)
-    dList = []
-    pnt = 1
-    for i in sortList:
-        if pd.notna(i):
-            num = df["MyRating"].value_counts(normalize=True)[i]
-            numFloat = "{:.4f}".format(num)
-            pct = float(numFloat)
-            pnt -= pct
-            numFloat2 = "{:.4f}".format(pnt)
-            pnt = float(numFloat2)
-            if pnt <= 0:
-                pnt = 0.004
-            fin = 0.5 + pnt
-            if i == 4:
-                fin -= 0.1
-            # fin = pnt
-            forOne = fin * i
-            dList.append([i, fin, forOne])
+    dList = ratings()
 
     finalDF = df.ReleaseYear.unique()
     decList = []

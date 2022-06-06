@@ -2,6 +2,7 @@ import pandas as pd
 import time
 import os
 from operator import itemgetter
+from user import user
 
 start_time = time.time()
 
@@ -12,8 +13,9 @@ def ratings():
     # user = "goldfishbrain"
     # user = "zacierka"
     # user = "bluegrace11"
-    user = "cloakenswagger"
-    file = "AllFilms" + user + ".csv"
+    # user = "cloakenswagger"
+    # file = "AllFilms" + user + ".csv"
+    file = user()
     # fullCSV = os.path.join(dataPath, file)
     df = pd.read_csv(file)
 

@@ -1,49 +1,24 @@
 def app():
     import pandas as pd
-    import os
     from operator import itemgetter
     from ratings import ratings
     import streamlit as st
-    import numpy as np
-    import matplotlib
+    from user import user
 
     st.header('Language Ranked')
     st.caption('Here are ...')
+
     # user = "goldfishbrain"
     # user = "zacierka"
     # user = "bluegrace11"
-    user = "cloakenswagger"
-    file = "AllFilms" + user + ".csv"
-    # fullCSV = os.path.join(dataPath, file)
+    # user = "cloakenswagger"
+    # file = "AllFilms" + user + ".csv"
+    file = user()
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
 
-    # PERCENTAGE OF EACH RATING DISTRIBUTION
-    # DataFrame for movies with unique rating
-    lenDF = df.MyRating.unique()
-    sortList = sorted(lenDF, reverse=True)
-    dList = []
-    pnt = 1
-    for i in sortList:
-        if pd.notna(i):
-            num = df["MyRating"].value_counts(normalize=True)[i]
-            numFloat = "{:.4f}".format(num)
-            pct = float(numFloat)
-            pnt -= pct
-            numFloat2 = "{:.4f}".format(pnt)
-            pnt = float(numFloat2)
-            if pnt <= 0:
-                pnt = 0.004
-            fin = 0.5 + pnt
-            if i == 4:
-                fin -= 0.1
-            # if i == 4.5:
-            #     fin -= 0.2
-            # if i == 5:
-            #     fin -= 0.2
-            forOne = fin * i
-            dList.append([i, fin, forOne])
+    dList = ratings()
 
     lenDF = df[~df["Languages"].str.contains("No spoken language")]
     for i in range(len(df)):
@@ -56,7 +31,6 @@ def app():
     nwList = []
     highest = 0
     for mem in finalDF:
-        # print(mem)
         cnt = 0
         finWeight = 0
         tot = 0
@@ -84,7 +58,6 @@ def app():
             # HIGHEST NUMBER IN LIST * 10 / 2
             finAvg = "{:.2f}".format(avg)
             finList.append([mem, finFloat, avg2, finAvg, tot, diff])
-        # print("---------")
     sortList = sorted(finList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
     df['index'] = range(1, len(df) + 1)

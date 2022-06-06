@@ -1,46 +1,24 @@
 def app():
     import pandas as pd
-    import os
     from operator import itemgetter
     import streamlit as st
-    import numpy as np
+    from ratings import ratings
+    from user import user
 
     st.header('Actors Ranked')
     st.caption('Here are your favorite actors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, the difference in the average rating you have for the actor compared to Letterboxd, and the actors billing score. Billing score, being the number of movies you have seen of that actor over the totalality of all that actors placings in the movies billing lists')
-    # dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
-    # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
+
     # user = "goldfishbrain"
     # user = "zacierka"
     # user = "bluegrace11"
-    user = "cloakenswagger"
-    file = "AllFilms" + user + ".csv"
-    # fullCSV = os.path.join(dataPath, file)
+    # user = "cloakenswagger"
+    # file = "AllFilms" + user + ".csv"
+    file = user()
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
 
-    # PERCENTAGE OF EACH RATING DISTRIBUTION
-    # DataFrame for movies with unique rating
-    lenDF = df.MyRating.unique()
-    sortList = sorted(lenDF, reverse=True)
-    dList = []
-    pnt = 1
-    for i in sortList:
-        if pd.notna(i):
-            num = df["MyRating"].value_counts(normalize=True)[i]
-            numFloat = "{:.4f}".format(num)
-            pct = float(numFloat)
-            pnt -= pct
-            numFloat2 = "{:.4f}".format(pnt)
-            pnt = float(numFloat2)
-            if pnt <= 0:
-                pnt = 0.004
-            fin = 0.5 + pnt
-            if i == 4:
-                fin -= 0.1
-            # fin = pnt
-            forOne = fin * i
-            dList.append([i, fin, forOne])
+    dList = ratings()
 
     filmAverage = df["MyRating"].mean()
     # DataFrame for movies within our length with a rating
