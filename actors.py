@@ -69,7 +69,7 @@ def app():
                 avg = 0
                 mid = a + ","
                 sub_df = lenDF[lenDF["Actors"].str.contains(mid, na=False)]
-                if len(sub_df) > 3:
+                if len(sub_df) > 2:
                     totalCount = 0
                     for i in range(len(sub_df)):
                         subActor = sub_df["Actors"].iloc[i].split(",")
