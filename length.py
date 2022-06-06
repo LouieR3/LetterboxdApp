@@ -45,11 +45,11 @@ def app():
             finList.append([lim, finFloat, avg2, finAvg, tot, diff])
         start += 10
         end += 10
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    df = pd.DataFrame(sortList)
+    # sortList = sorted(finList, key=itemgetter(1), reverse=True)
+    df = pd.DataFrame(finList)
     df['index'] = range(1, len(df) + 1)
     sortList = df.values.tolist()
-    sortList = sorted(sortList, key=itemgetter(3), reverse=True)
+    # sortList = sorted(sortList, key=itemgetter(3), reverse=True)
     df2 = pd.DataFrame(sortList, columns=[
         "Length",
         "Weighted",
