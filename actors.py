@@ -15,6 +15,10 @@ def app():
 
     dList = ratings()
 
+    numActors = 2
+    if len(df) < 800:
+        numActors = 1
+
     filmAverage = df["MyRating"].mean()
     # DataFrame for movies within our length with a rating
     lenDF = df[df["Actors"].notna()]
@@ -42,7 +46,7 @@ def app():
                 avg = 0
                 mid = a + ","
                 sub_df = lenDF[lenDF["Actors"].str.contains(mid, na=False)]
-                if len(sub_df) > 2:
+                if len(sub_df) > numActors:
                     totalCount = 0
                     for i in range(len(sub_df)):
                         subActor = sub_df["Actors"].iloc[i].split(",")
@@ -89,7 +93,13 @@ def app():
                         finAv1 = avg / 1.75
                         finAvg = "{:.2f}".format(finAv1)
 
-                        if finAv1 > 2.8:
+                        if len(df) > 800:
+                            if finAv1 > 2.8:
+                                finList.append(
+                                    [a, finFloatStr, avg2, finAvg,
+                                        tot, diff, finMult]
+                                )
+                        else:
                             finList.append(
                                 [a, finFloatStr, avg2, finAvg, tot, diff, finMult]
                             )
