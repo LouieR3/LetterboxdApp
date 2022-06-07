@@ -132,6 +132,7 @@ def app():
     if actor:
         unaccented_string = unidecode.unidecode(actor)
         actSplit = unaccented_string.replace(' ', '-').lower()
+        actSplit = actSplit.replace('!@#$%^&*()[];:,./<>?\|`~-=_+', '')
         urlTemp = "https://letterboxd.com/cloakenswagger/films/with/actor/" + actSplit + "/"
         webbrowser.open_new_tab(urlTemp)
         st.write(urlTemp)
