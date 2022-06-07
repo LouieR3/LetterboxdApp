@@ -4,7 +4,6 @@ def app():
     import streamlit as st
     from ratings import ratings
     from user import user
-    import webbrowser
     import unidecode
 
     st.header('Actors Ranked')
@@ -134,5 +133,4 @@ def app():
         actSplit = unaccented_string.replace(' ', '-').lower()
         actSplit = actSplit.replace('.', '').replace(',', '')
         urlTemp = "https://letterboxd.com/cloakenswagger/films/with/actor/" + actSplit + "/"
-        webbrowser.open_new_tab(urlTemp)
         st.write(urlTemp)
