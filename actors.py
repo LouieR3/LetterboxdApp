@@ -4,6 +4,7 @@ def app():
     import streamlit as st
     from ratings import ratings
     from user import user
+    import webbrowser
 
     st.header('Actors Ranked')
     st.caption('Here are your favorite actors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, the difference in the average rating you have for the actor compared to Letterboxd, and the actors billing score. Billing score, being the number of movies you have seen of that actor over the totalality of all that actors placings in the movies billing lists')
@@ -125,3 +126,9 @@ def app():
     ])
     df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
     st.dataframe(df2, height=900, width=2000)
+
+    actor = st.text_input('Check Actor', '')
+    if actor:
+        actSplit = actor.replaceAll(' ', '-')
+        urlTemp = "https://letterboxd.com/cloakenswagger/films/with/actor/" + actSplit + "/"
+        webbrowser.open_new_tab(urlTemp)
