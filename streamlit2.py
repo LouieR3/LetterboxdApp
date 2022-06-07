@@ -23,6 +23,7 @@ import country
 import decade
 import year
 import language
+import unidecode
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
