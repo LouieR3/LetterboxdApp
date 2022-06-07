@@ -12,12 +12,12 @@ from tabulate import tabulate
 
 start_time = time.time()
 
-dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\DeltekMap\\DeltekMapScirpts\\LBCode"
+dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
 # user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
-user = "cloakenswagger"
+user = "cloakenswagger2"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
 df = pd.read_csv(fullCSV)
