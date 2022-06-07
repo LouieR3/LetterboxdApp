@@ -68,27 +68,6 @@ for link in listOfPage:
         else:
             rating_class = rating['class'][-1]
             rating_val = int(rating_class.split('-')[-1])/2
-            # print(rating_val)
-
-        # rating = ""
-        # rate = ""
-        # diff = ""
-        # format_float = ""
-        # if movie.find("span", class_="rating").has_attr('data-owner-rating'):
-        #     print("true")
-        #     rating = movie.attrs["data-owner-rating"]
-        #     print(rating)
-        #     rate = int(rating) / 2
-        #     diff = rate - avgRate
-        #     format_float = "{:.2f}".format(diff)
-        # else:
-        #     print("false")
-        #     rating = ""
-        #     rate = ""
-        #     diff = ""
-        #     format_float = ""
-        # print("Rating:")
-        # print(rate)
 
         # print("My rating is: " + rate)
         div = movie.find("div")
@@ -161,17 +140,25 @@ for link in listOfPage:
                 director = ""
 
             # GET ONLY CREDITED ACTORS BY A TAG
-            actor = ""
+            actors = ""
             try:
-                actor = lttrboxdJSON["actors"]
+                actors = lttrboxdJSON["actors"]
             except:
-                actor = ""
+                actors = ""
             act1 = ""
-            for act in range(len(actor)):
+            limit = 0
+            if len(actors) >= 20 and len(actors) < 27:
+                limit = len(actors)*0.6
+            elif len(actors) >= 27:
+                limit = len(actors)*0.4
+            else:
+                limit = len(actors)
+            limit = round(limit)
+            for act in range(limit):
                 if act == 0:
-                    act1 = act1 + actor[act]["name"]
+                    act1 = act1 + actors[act]["name"]
                 else:
-                    act1 = act1 + "," + actor[act]["name"]
+                    act1 = act1 + "," + actors[act]["name"]
 
             release = lttrboxdJSON["releasedEvent"][0]["startDate"]
 

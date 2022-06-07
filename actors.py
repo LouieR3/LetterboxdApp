@@ -16,41 +16,46 @@ def app():
 
     dList = ratings()
 
+    # limit on lowest amount of movies seen by actor to include
     numActors = 2
     if len(df) < 800:
         numActors = 1
 
-    filmAverage = df["MyRating"].mean()
     # DataFrame for movies within our length with a rating
-    lenDF = df[df["Actors"].notna()]
-    print(len(lenDF))
-    lenDF = lenDF[lenDF["Genre"].str.contains("Documentary") == False]
-    print(len(lenDF))
+    movieDF = df[df["Actors"].notna()]
+    print(len(movieDF))
+    # Don't include Documentaries
+    movieDF = movieDF[movieDF["Genre"].str.contains("Documentary") == False]
+    print(len(movieDF))
     finList = []
     # For each index in our final DataFrame
-    for i in range(len(lenDF)):
+    for i in range(len(movieDF)):
         # actor is a list of every actor in the current film
-        actors = lenDF["Actors"].iloc[i].split(",")
+        actors = movieDF["Actors"].iloc[i].split(",")
         # for each actor in this film
         for a in actors:
             inList = False
-            # if the list isn't empty
+            # if the final list of actors isn't empty
             if len(finList) > 0:
-                # for each list in the list
+                # for each actor in the list
                 for i in range(len(finList)):
-                    # check if actor is in that list already and if true set the checker to true
+                    # check if actor is in the list already and if true set the checker to true
                     y = a in finList[i]
                     if y == True:
                         inList = True
-            if inList != True and (" " in a):
+            # if we have not included this actor yet and it is not a one word name actor (messes up the algo)
+            if inList == False and (" " in a):
                 tot = 0
                 avg = 0
-                mid = a + ","
-                sub_df = lenDF[lenDF["Actors"].str.contains(mid, na=False)]
-                if len(sub_df) > numActors:
+                # we need to only look for names with a comma next to them or it will mess up the algo
+                checkActor = a + ","
+                # all movies where this actor appears in the movie
+                actorsDF = movieDF[movieDF["Actors"].str.contains(
+                    checkActor, na=False)]
+                if len(actorsDF) > numActors:
                     totalCount = 0
-                    for i in range(len(sub_df)):
-                        subActor = sub_df["Actors"].iloc[i].split(",")
+                    for i in range(len(actorsDF)):
+                        subActor = actorsDF["Actors"].iloc[i].split(",")
                         count = 1
                         for actor in subActor:
                             if a == actor:
@@ -58,19 +63,20 @@ def app():
                                 break
                             count += 1
                     try:
-                        # finMult = (len(sub_df) / totalCount)*2
-                        finMult = len(sub_df) / totalCount
+                        # finMult = (len(actorsDF) / totalCount)*2
+                        finMult = len(actorsDF) / totalCount
                     except:
                         finMult = 0
                     if finMult < 0.1:
                         break
-                    diff = sub_df["Difference"].mean()
+                    diff = actorsDF["Difference"].mean()
                     diff = "{:.2f}".format(diff)
                     cnt = 0
                     finWeight = 0
                     tot = 0
                     for rate in dList:
-                        rateLen = len(sub_df[(sub_df["MyRating"] == rate[0])])
+                        rateLen = len(
+                            actorsDF[(actorsDF["MyRating"] == rate[0])])
                         finWeight = (rateLen * rate[0]) * rate[1]
                         cnt += finWeight
                         tot += rateLen
@@ -84,7 +90,7 @@ def app():
                         finFloat = fin / 1.75
                         finFloatStr = "{:.2f}".format(finFloat)
 
-                        avg1 = sub_df["MyRating"].mean()
+                        avg1 = actorsDF["MyRating"].mean()
                         avg2 = "{:.2f}".format(avg1)
                         avg = avg1
                         avg += float(diff)

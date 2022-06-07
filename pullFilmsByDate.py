@@ -129,17 +129,25 @@ for movie in soup.find_all("li", class_="poster-container"):
                 director = ""
             release = y["releasedEvent"][0]["startDate"]
 
-            actor = ""
+            actors = ""
             try:
-                actor = y["actors"]
+                actors = y["actors"]
             except:
-                actor = ""
+                actors = ""
             act1 = ""
-            for act in range(len(actor)):
+            limit = 0
+            if len(actors) > 20 and len(actors) < 27:
+                limit = len(actors)*0.6
+            elif len(actors) >= 27:
+                limit = len(actors)*0.4
+            else:
+                limit = len(actors)
+            limit = round(limit)
+            for act in range(limit):
                 if act == 0:
-                    act1 = act1 + actor[act]["name"]
+                    act1 = act1 + actors[act]["name"]
                 else:
-                    act1 = act1 + "," + actor[act]["name"]
+                    act1 = act1 + "," + actors[act]["name"]
 
             genreString = ""
             genre_in_dict = "genre" in y

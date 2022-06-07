@@ -11,89 +11,13 @@ from operator import itemgetter
 
 start_time = time.time()
 
-dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\DeltekMap\\DeltekMapScirpts\\LBCode"
+dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
 file = "AllFilms.csv"
 fullCSV = os.path.join(dataPath, file)
 df = pd.read_csv(fullCSV)
 
 pd.options.mode.chained_assignment = None
-
-# # AVERAGE LENGTH AND RATING BY THAT 10 MINUTE INCREMENT
-# start = 60
-# end = 70
-# limit = 500
-# print("Let's see your favorite length of movie...")
-# while start <= limit:
-#     total = 0
-#     count = 0
-#     fin = 0
-#     finFloat = 0
-#     data = df[(df['MovieLength'] >= start) & (df['MovieLength'] < end)]
-#     for i in range(len(data)):
-#         rate = data["MyRating"].iloc[i]
-#         length = data["MovieLength"].iloc[i]
-#         if pd.notna(rate):
-#             myRate = float(rate)
-#             total += myRate
-#             count += 1
-#             # print(data["Movie"].iloc[i], data["MyRating"].iloc[i], data["MovieLength"].iloc[i])
-#     if count > 0:
-#         fin = total / count
-#         finFloat = "{:.2f}".format(fin)
-#         print("Average rating of " + str(start) + "-" + str(end) + ": " + str(finFloat) + " and the number of movies was: " + str(count))
-#     else:
-#         print("There were no movies in the range of: " + str(start) + "-" + str(end) + " minutes")
-#     start += 10
-#     end += 10
-
-# AVERAGE LENGTH WEIGHTED
-# print("Let's see calculated average by length...")
-# finList = []
-# start = 60
-# end = 70
-# limit = 500
-# while start <= limit:
-#     total = 0
-#     count = 0
-#     fin = 0
-#     finFloat = 0
-#     data = df[(df['MovieLength'] >= start) & (df['MovieLength'] < end)]
-#     for i in range(len(data)):
-#         rate = data["MyRating"].iloc[i]
-#         length = data["MovieLength"].iloc[i]
-#         if pd.notna(rate):
-#             # SOMETHING ABOUT ADDING EACH ONE TO A LIST AND DOING 5(2) + 4.5 (44) so on
-#             myRate = float(rate)
-#             total += myRate
-#             count += 1
-#             # print(data["Movie"].iloc[i], data["MyRating"].iloc[i], data["MovieLength"].iloc[i])
-#     if count > 0:
-#         fin = count / total
-#         finFloat = "{:.2f}".format(fin)
-#         # finFloat = (float(finFloat) * rate[0] * 0.075) / 2
-#         # finFloat = "{:.2f}".format(finFloat)
-#         # finList.append([i, finFloat, total])
-#         print("Average rating of " + str(start) + "-" + str(end) + ": " + str(finFloat) + " and the number of movies was: " + str(count))
-#     else:
-#         print("There were no movies in the range of: " + str(start) + "-" + str(end) + " minutes")
-#     start += 10
-#     end += 10
-# sortList = sorted(nwList, key=itemgetter(1))
-# count = 0
-# for set in sortList:
-#     for x in finList:
-#         if set[0] == x[0]:
-#             print(
-#                 str(set[0])[:4]
-#                 + " movies weighted average: "
-#                 + str(x[1])
-#                 + " non-weight average: "
-#                 + str(set[1])
-#                 + " | # of movies: "
-#                 + str(set[2])
-#             )
-#             count += set[2]
 
 # PERCENTAGE OF EACH RATING DISTRIBUTION
 # DataFrame for movies with unique rating
@@ -241,9 +165,9 @@ sortList = sorted(finList, key=itemgetter(1))
 #                 + " | # of movies: "
 #                 + str(set[2])
 #             )
-    # i = 0
-    # while i < len(nwList):
-    #     if set[0]
+# i = 0
+# while i < len(nwList):
+#     if set[0]
 
 # CHECKING FAVORITE GENRE AND RATING BY GENRE
 start = 60
