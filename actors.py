@@ -129,7 +129,7 @@ def app():
 
     actor = st.text_input('Check Actor', '')
     if actor:
-        actSplit = actor.replace(' ', '-')
+        actSplit = actor.replace(' ', '-').lower()
         urlTemp = "https://letterboxd.com/cloakenswagger/films/with/actor/" + actSplit + "/"
         webbrowser.open_new_tab(urlTemp)
         st.write(urlTemp)
