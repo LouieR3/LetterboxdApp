@@ -101,7 +101,7 @@ def app():
                         avg = avg * (1 + (tot / 50))
                         # HIGHEST NUMBER IN LIST * 10 / 2
                         avg *= 1 + finMult
-                        finAv1 = avg / 1.75
+                        finAv1 = avg / 2
                         finAvg = "{:.2f}".format(finAv1)
 
                         if len(df) > 800:
