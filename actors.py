@@ -48,7 +48,7 @@ def app():
                     if y == True:
                         inList = True
             # if we have not included this actor yet and it is not a one word name actor (messes up the algo)
-            if inList != True and (" " in a):
+            if inList == False and (" " in a):
                 tot = 0
                 avg = 0
                 # we need to only look for names with a comma next to them or it will mess up the algo
@@ -91,7 +91,7 @@ def app():
                         fin = fin * (1 + (tot / 100))
                         # finFloat += finMult
                         fin *= 1 + finMult
-                        finFloat = fin / 1.75
+                        finFloat = fin / 2
                         finFloatStr = "{:.2f}".format(finFloat)
 
                         avg1 = actorsDF["MyRating"].mean()

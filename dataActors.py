@@ -17,7 +17,7 @@ dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
 # user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
-user = "cloakenswagger2"
+user = "cloakenswagger"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
 df = pd.read_csv(fullCSV)
@@ -115,10 +115,10 @@ for i in range(len(lenDF)):
                     avg2 = "{:.2f}".format(avg1)
                     avg = avg1
                     avg += float(diff)
-                    avg = avg * (1 + (tot / 100))
+                    avg = avg * (1 + (tot / 50))
                     # HIGHEST NUMBER IN LIST * 10 / 2
                     avg *= 1 + finMult
-                    finAv1 = avg / 1.75
+                    finAv1 = avg / 2
                     finAvg = "{:.2f}".format(finAv1)
 
                     if finAv1 > 2.8:
@@ -132,7 +132,7 @@ sortList = sorted(finList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 df["index"] = range(1, len(df) + 1)
 sortList = df.values.tolist()
-sortList = sorted(sortList, key=itemgetter(3))
+sortList = sorted(sortList, key=itemgetter(3), reverse=True)
 print(
     tabulate(
         sortList,
