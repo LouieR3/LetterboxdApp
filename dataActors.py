@@ -118,7 +118,7 @@ for i in range(len(lenDF)):
                     avg = avg * (1 + (tot / 50))
                     # HIGHEST NUMBER IN LIST * 10 / 2
                     avg *= 1 + finMult
-                    finAv1 = avg / 2
+                    finAv1 = avg / 1.75
                     finAvg = "{:.2f}".format(finAv1)
 
                     if finAv1 > 2.8:

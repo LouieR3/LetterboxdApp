@@ -91,7 +91,7 @@ def app():
                         fin = fin * (1 + (tot / 100))
                         # finFloat += finMult
                         fin *= 1 + finMult
-                        finFloat = fin / 2
+                        finFloat = fin / 1.75
                         finFloatStr = "{:.2f}".format(finFloat)
 
                         avg1 = actorsDF["MyRating"].mean()
@@ -101,7 +101,7 @@ def app():
                         avg = avg * (1 + (tot / 50))
                         # HIGHEST NUMBER IN LIST * 10 / 2
                         avg *= 1 + finMult
-                        finAv1 = avg / 2
+                        finAv1 = avg / 1.75
                         finAvg = "{:.2f}".format(finAv1)
 
                         if len(df) > 800:
