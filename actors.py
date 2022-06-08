@@ -67,11 +67,11 @@ def app():
                                 break
                             count += 1
                     try:
-                        # finMult = (len(actorsDF) / totalCount)*2
-                        finMult = len(actorsDF) / totalCount
+                        # billScore = (len(actorsDF) / totalCount)*2
+                        billScore = len(actorsDF) / totalCount
                     except:
-                        finMult = 0
-                    if finMult < 0.1:
+                        billScore = 0
+                    if billScore < 0.1:
                         break
                     diff = actorsDF["Difference"].mean()
                     diff = "{:.2f}".format(diff)
@@ -85,40 +85,42 @@ def app():
                         cnt += finWeight
                         tot += rateLen
                     if tot > 0:
+                        # Bad Weighted
                         fin = cnt / tot
                         fin += float(diff) / 2
                         fin = max(fin, 0.5)
                         fin = fin * (1 + (tot / 100))
-                        # finFloat += finMult
-                        fin *= 1 + finMult
+                        # finFloat += billScore
+                        fin *= 1 + billScore
                         finFloat = fin / 1.75
                         finFloatStr = "{:.2f}".format(finFloat)
 
+                        # Final Weighted
                         avg1 = actorsDF["MyRating"].mean()
                         avg2 = "{:.2f}".format(avg1)
                         avg = avg1
                         avg += float(diff)
                         avg = avg * (1 + (tot / 50))
                         # HIGHEST NUMBER IN LIST * 10 / 2
-                        avg *= 1 + finMult
+                        avg *= 1 + billScore
                         finAv1 = avg / 1.75
                         finAvg = "{:.2f}".format(finAv1)
 
                         if len(df) > 800:
-                            if finAv1 > 2.8:
+                            if finAv1 > 3:
                                 finList.append(
                                     [a, finFloatStr, avg2, finAvg,
-                                        tot, diff, finMult]
+                                        tot, diff, billScore]
                                 )
                         else:
-                            if finAv1 > 1.25:
+                            if finAv1 > 1.5:
                                 finList.append(
                                     [a, finFloatStr, avg2, finAvg,
-                                        tot, diff, finMult]
+                                        tot, diff, billScore]
                                 )
                         # if finFloat > filmAverage:
                         #     finList.append(
-                        #         [a, finFloatStr, avg2, finAvg, tot, diff, finMult])
+                        #         [a, finFloatStr, avg2, finAvg, tot, diff, billScore])
     sortList = sorted(finList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
     df["Ranking"] = range(1, len(df) + 1)
