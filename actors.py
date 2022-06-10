@@ -18,7 +18,7 @@ def app():
 
     pd.options.mode.chained_assignment = None
 
-    dList = ratings()
+    ratingList = ratings()
 
     # limit on lowest amount of movies seen by actor to include
     numActors = 2
@@ -60,7 +60,6 @@ def app():
                 if len(actorsDF) > numActors:
                     totalCount = 0
                     # go through each movie
-                    trialCount = 0
                     for i in range(len(actorsDF)):
                         # get all the actors in each movie to find the billing of the actor for each movie
                         subActor = actorsDF["Actors"].iloc[i].split(",")
@@ -69,23 +68,26 @@ def app():
                         for actor in subActor:
                             # if the current actor is the one we are looking at
                             if a == actor:
+                                # tally up billing
                                 totalCount += count
-                                trialCount += (count/10)
                                 break
                             count += 1
+                    # get the billing score and if it is super low get rid of the person and don't include
                     try:
-                        # billScore = (len(actorsDF) / totalCount)*2
                         billScore = len(actorsDF) / totalCount
                     except:
                         billScore = 0
                     if billScore < 0.1:
                         break
+                    # get the avg difference between user and letterboxd for actor
                     diff = actorsDF["Difference"].mean()
                     diff = "{:.2f}".format(diff)
+
+                    # all of this computes the old weight I used to use
                     cnt = 0
                     finWeight = 0
                     tot = 0
-                    for rate in dList:
+                    for rate in ratingList:
                         rateLen = len(
                             actorsDF[(actorsDF["MyRating"] == rate[0])])
                         finWeight = (rateLen * rate[0]) * rate[1]
@@ -104,22 +106,20 @@ def app():
 
                         # Final Weighted
                         avg1 = actorsDF["MyRating"].mean()
-
-                        avg3 = 0
-                        for i in range(len(actorsDF)):
-                            rate = actorsDF["MyRating"].iloc[i]
-                            if pd.notna(rate):
-                                avg3 += rate
-                        fin2 = (avg3-trialCount) / tot
-                        avg2 = "{:.2f}".format(fin2)
-                        avg = fin2
+                        avg2 = "{:.2f}".format(avg1)
+                        avg = avg1
+                        # plus difference
                         avg += float(diff)
+                        # add in total
                         avg = avg * (1 + (tot / 50))
                         # HIGHEST NUMBER IN LIST * 10 / 2
+                        # multiply by billing score
                         avg *= 1 + billScore
+                        # it just seems dividing by 1.75 brings it to a good number
                         finAv1 = avg / 1.75
                         finAvg = "{:.2f}".format(finAv1)
 
+                        # how many actors you include in the end depends on number of movies user has watched all together
                         if len(df) > 800:
                             if finAv1 > 3:
                                 finList.append(
