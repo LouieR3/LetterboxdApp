@@ -56,14 +56,21 @@ def app():
                 # all movies where this actor appears in the movie
                 actorsDF = movieDF[movieDF["Actors"].str.contains(
                     checkActor, na=False)]
+                # only continue if they have been in more than 2 movies
                 if len(actorsDF) > numActors:
                     totalCount = 0
+                    # go through each movie
+                    trialCount = 0
                     for i in range(len(actorsDF)):
+                        # get all the actors in each movie to find the billing of the actor for each movie
                         subActor = actorsDF["Actors"].iloc[i].split(",")
                         count = 1
+                        # go through all actors for each movie
                         for actor in subActor:
+                            # if the current actor is the one we are looking at
                             if a == actor:
                                 totalCount += count
+                                trialCount += (count/10)
                                 break
                             count += 1
                     try:
@@ -97,8 +104,15 @@ def app():
 
                         # Final Weighted
                         avg1 = actorsDF["MyRating"].mean()
-                        avg2 = "{:.2f}".format(avg1)
-                        avg = avg1
+
+                        avg3 = 0
+                        for i in range(len(actorsDF)):
+                            rate = actorsDF["MyRating"].iloc[i]
+                            if pd.notna(rate):
+                                avg3 += rate
+                        fin2 = (avg3-trialCount) / tot
+                        avg2 = "{:.2f}".format(fin2)
+                        avg = fin2
                         avg += float(diff)
                         avg = avg * (1 + (tot / 50))
                         # HIGHEST NUMBER IN LIST * 10 / 2
