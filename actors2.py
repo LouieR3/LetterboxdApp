@@ -153,7 +153,7 @@ def app():
                         # if finFloat > filmAverage:
                         #     finList.append(
                         #         [a, finFloatStr, avg2, finAvg, tot, diff, billScore])
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
+    sortList = sorted(finList, key=itemgetter(3), reverse=True)
     df = pd.DataFrame(sortList)
     df["Ranking"] = range(1, len(df) + 1)
     sortList = df.values.tolist()
