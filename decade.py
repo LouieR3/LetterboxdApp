@@ -16,21 +16,19 @@ def app():
     dList = ratings()
 
     finalDF = df.ReleaseYear.unique()
-    decList = []
+    decadeList = []
     for mem in finalDF:
         y = str(mem)
         x = y[:3]
-        if x not in decList:
-            decList.append(x)
+        if x not in decadeList:
+            decadeList.append(x)
     finList = []
-    nwList = []
 
-    for mem in decList:
+    for mem in decadeList:
         df['ReleaseYear'] = df['ReleaseYear'].astype("string")
         cnt = 0
         finWeight = 0
         tot = 0
-        otherTOT = 0
         # DataFrame for movies of just the current iteration genre
         xdf = df.loc[df["ReleaseYear"].str.startswith(mem, na=False)]
         diff = xdf["Difference"].mean()
@@ -51,7 +49,7 @@ def app():
             avg2 = "{:.2f}".format(avg1)
             avg = avg1
             avg += (float(diff)/2)
-            avg = avg * (1 + (tot/1000))
+            avg = avg * (1 + (tot/1700))
             # HIGHEST NUMBER IN LIST * 10 / 2
             finAvg = "{:.2f}".format(avg)
 

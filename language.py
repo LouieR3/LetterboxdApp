@@ -45,6 +45,7 @@ def app():
             fin = fin * (1 + (tot/1000))
             fin = max(fin, 0.5)
             finFloat = "{:.2f}".format(fin)
+
             avg1 = xdf["MyRating"].mean()
             avg2 = "{:.2f}".format(avg1)
             avg = avg1
