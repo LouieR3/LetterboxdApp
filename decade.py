@@ -51,7 +51,7 @@ def app():
             avg2 = "{:.2f}".format(avg1)
             avg = avg1
             avg += (float(diff)/2)
-            avg = avg * (1 + (tot/1700))
+            avg = avg * (1 + (tot/1000))
             # HIGHEST NUMBER IN LIST * 10 / 2
             finAvg = "{:.2f}".format(avg)
 
