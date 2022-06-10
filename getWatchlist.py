@@ -40,11 +40,10 @@ listOfPage.reverse()
 csv_file = open(list + '.csv', 'w', newline='', encoding='utf-8')
 
 csv_writer = csv.writer(csv_file)
-csv_writer.writerow(['Movie', 'MyRating', 'LBRating', 'Difference', 'ReviewDate', 'MovieLength', 'LengthInHour',
+csv_writer.writerow(['Movie', 'LBRating', 'MovieLength', 'LengthInHour',
                     'Languages', 'Director', 'ReleaseYear', 'Genre', 'Country', 'NumberOfReviews', 'NumberOfRatings', 'Actors'])
-bigList = []
 url = "https://letterboxd.com"
-myUrl = "https://letterboxd.com/" + user
+# myUrl = "https://letterboxd.com/" + user
 # myUrl = "https://letterboxd.com/cloakenswagger"
 for link in listOfPage:
     source = requests.get(link).text
@@ -57,26 +56,7 @@ for link in listOfPage:
         div = movie.find("div")
         filmLink = div.attrs["data-film-slug"]
         filmURL = url + filmLink
-        myFilmUrl = myUrl + filmLink
-        myReview = requests.get(myFilmUrl).text
-        myFilm = BeautifulSoup(myReview, "lxml")
-        viewDate = "N/A"
-        vv = ""
-        TheDate = ""
-        yr = ""
-        rest = ""
-        finalDate = ""
-        try:
-            viewDate = myFilm.find(
-                "p", class_="view-date").find("a").next_sibling.next_element
-            vv = str(viewDate)
-            lenToUse = len(user)+27
-            TheDate = vv[lenToUse:-9]
-            yr = TheDate[:4]
-            rest = TheDate[5:]
-            finalDate = rest + "/" + yr
-        except:
-            viewDate = "N/A"
+        # myFilmUrl = myUrl + filmLink
         sourceFilm = requests.get(filmURL).text
         soupFilm = BeautifulSoup(sourceFilm, "lxml")
         length = soupFilm.find("p", class_="text-link").text
@@ -103,21 +83,21 @@ for link in listOfPage:
         subs = detailsDiv[start:end]
         lttrboxdJSON = json.loads(subs)
         try:
-            avgRate = lttrboxdJSON["aggregateRating"]["ratingValue"]
+            lbRating = lttrboxdJSON["aggregateRating"]["ratingValue"]
         except:
-            avgRate = 0
-        # print(avgRate)
-        if finalLen > 60 and finalLen < 500 and avgRate > 0:
+            lbRating = 0
+        # print(lbRating)
+        if finalLen > 60 and finalLen < 500 and lbRating > 0:
             languages = soupFilm.find("div", id="tab-details")
             lan = languages.find_all("a", href=re.compile("language"))
             lanList = []
-            lanString = ""
+            languageStr = ""
             for item in lan:
                 lanList.append(item.text.strip())
             if len(lanList) > 1:
-                lanString = ','.join(lanList)
+                languageStr = ','.join(lanList)
             else:
-                lanString = lanList[0]
+                languageStr = lanList[0]
 
             director = ""
             try:
@@ -126,17 +106,25 @@ for link in listOfPage:
                 director = ""
 
             # GET ONLY CREDITED ACTORS BY A TAG
-            actor = ""
+            actors = ""
             try:
-                actor = lttrboxdJSON["actors"]
+                actors = lttrboxdJSON["actors"]
             except:
-                actor = ""
+                actors = ""
             act1 = ""
-            for act in range(len(actor)):
+            limit = 0
+            if len(actors) >= 20 and len(actors) < 27:
+                limit = len(actors)*0.6
+            elif len(actors) >= 27:
+                limit = len(actors)*0.4
+            else:
+                limit = len(actors)
+            limit = round(limit)
+            for act in range(limit):
                 if act == 0:
-                    act1 = act1 + actor[act]["name"]
+                    act1 = act1 + actors[act]["name"]
                 else:
-                    act1 = act1 + "," + actor[act]["name"]
+                    act1 = act1 + "," + actors[act]["name"]
 
             release = lttrboxdJSON["releasedEvent"][0]["startDate"]
 
@@ -162,10 +150,8 @@ for link in listOfPage:
             else:
                 numReviews = 0
                 numRatings = 0
-            bigList.append([movieName, avgRate, finalDate, finalLen,
-                            lengthInHour, lanList, director, release, genre, country, numReviews, numRatings, act1])
-            csv_writer.writerow([movieName, avgRate, finalDate, finalLen, lengthInHour,
-                                lanString, director, release, genreString, country, numReviews, numRatings, act1])
+            csv_writer.writerow([movieName, lbRating, finalLen, lengthInHour,
+                                languageStr, director, release, genreString, country, numReviews, numRatings, act1])
 # print(bigList)
 print("ALL DONE")
 csv_file.close()
