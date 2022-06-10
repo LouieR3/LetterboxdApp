@@ -59,6 +59,7 @@ def app():
                 # only continue if they have been in more than 2 movies
                 if len(actorsDF) > numActors:
                     totalCount = 0
+                    trialCount = 0
                     # go through each movie
                     for i in range(len(actorsDF)):
                         # get all the actors in each movie to find the billing of the actor for each movie
@@ -70,6 +71,7 @@ def app():
                             if a == actor:
                                 # tally up billing
                                 totalCount += count
+                                trialCount += (count/10)
                                 break
                             count += 1
                     # get the billing score and if it is super low get rid of the person and don't include
@@ -107,6 +109,21 @@ def app():
                         # Final Weighted
                         avg1 = actorsDF["MyRating"].mean()
                         avg2 = "{:.2f}".format(avg1)
+                        avg3 = 0
+                        for i in range(len(actorsDF)):
+                            rate = actorsDF["MyRating"].iloc[i]
+                            if pd.notna(rate):
+                                avg3 += rate
+                        fin2 = (avg3-trialCount) / tot
+                        fin2 += float(diff)
+                        # add in total
+                        fin2 = fin2 * (1 + (tot / 50))
+                        # HIGHEST NUMBER IN LIST * 10 / 2
+                        # multiply by billing score
+                        fin2 *= 1 + billScore
+                        # it just seems dividing by 1.75 brings it to a good number
+                        BillWeight = fin2 / 1.75
+
                         avg = avg1
                         # plus difference
                         avg += float(diff)
@@ -123,7 +140,7 @@ def app():
                         if len(df) > 800:
                             if finAv1 > 3:
                                 finList.append(
-                                    [a, finFloatStr, avg2, finAvg,
+                                    [a, finFloatStr, avg2, finAvg, BillWeight,
                                         tot, diff, billScore]
                                 )
                         else:
@@ -145,6 +162,7 @@ def app():
         "Weighted",
         "Average",
         "Final Weighted",
+        "Bill Weight",
         "# of Movies Watched",
         "Difference",
         "Billing Score",

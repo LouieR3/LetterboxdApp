@@ -60,7 +60,6 @@ def app():
                 if len(actorsDF) > numActors:
                     totalCount = 0
                     # go through each movie
-                    trialCount = 0
                     for i in range(len(actorsDF)):
                         # get all the actors in each movie to find the billing of the actor for each movie
                         subActor = actorsDF["Actors"].iloc[i].split(",")
@@ -71,7 +70,6 @@ def app():
                             if a == actor:
                                 # tally up billing
                                 totalCount += count
-                                trialCount += (count/10)
                                 break
                             count += 1
                     # get the billing score and if it is super low get rid of the person and don't include
@@ -107,14 +105,9 @@ def app():
                         finFloatStr = "{:.2f}".format(finFloat)
 
                         # Final Weighted
-                        avg3 = 0
-                        for i in range(len(actorsDF)):
-                            rate = actorsDF["MyRating"].iloc[i]
-                            if pd.notna(rate):
-                                avg3 += rate
-                        fin2 = (avg3-trialCount) / tot
-                        avg2 = "{:.2f}".format(fin2)
-                        avg = fin2
+                        avg1 = actorsDF["MyRating"].mean()
+                        avg2 = "{:.2f}".format(avg1)
+                        avg = avg1
                         # plus difference
                         avg += float(diff)
                         # add in total
