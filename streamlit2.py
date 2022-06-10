@@ -16,6 +16,7 @@ import numpy as np
 from ratings import ratings
 import director
 import actors
+import actors2
 import intro
 import length
 import genre
@@ -30,6 +31,7 @@ st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 PAGES = {
     "Intro": intro,
     "Actors": actors,
+    "Actors2": actors2,
     "Directors": director,
     "By Length": length,
     "Genre": genre,
