@@ -123,6 +123,7 @@ def app():
                         fin2 *= 1 + billScore
                         # it just seems dividing by 1.75 brings it to a good number
                         BillWeight = fin2 / 1.75
+                        BillWeight2 = "{:.2f}".format(BillWeight)
 
                         avg = avg1
                         # plus difference
@@ -140,7 +141,7 @@ def app():
                         if len(df) > 800:
                             if finAv1 > 3:
                                 finList.append(
-                                    [a, finFloatStr, avg2, finAvg, BillWeight,
+                                    [a, finFloatStr, avg2, finAvg, BillWeight2,
                                         tot, diff, billScore]
                                 )
                         else:
@@ -156,7 +157,7 @@ def app():
     df = pd.DataFrame(sortList)
     df["Ranking"] = range(1, len(df) + 1)
     sortList = df.values.tolist()
-    sortList = sorted(sortList, key=itemgetter(3), reverse=True)
+    sortList = sorted(sortList, key=itemgetter(4), reverse=True)
     df = pd.DataFrame(sortList, columns=[
         "Actor",
         "Weighted",
