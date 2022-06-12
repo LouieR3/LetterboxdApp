@@ -55,11 +55,14 @@ for movie in soup.find_all("li", class_="poster-container"):
         rating_class = rating["class"][-1]
         rating_val = int(rating_class.split("-")[-1]) / 2
     # print(movieName)
-    movieBool = df["Movie"].str.contains(movieName).any()
+    # if the current movie is exactly equal to anything in the Movie column
+    movieBool = df["Movie"].eq(movieName).any()
+    # if true then check if the rating is now different
     if movieBool == True:
         temp = df.loc[df['Movie'] == movieName]
         temp = temp.reset_index()
         rateCheck = temp.at[0, "MyRating"]
+    # if this is a unique record or updated movie, add it
     if movieBool == False or float(rateCheck) != rating_val:
         # print("My rating is: " + rate)
         div = movie.find("div")
