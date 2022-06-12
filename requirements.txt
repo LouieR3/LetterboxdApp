@@ -1,6 +1,6 @@
-matplotlib
+# matplotlib
 bs4
 numpy
-pydeck
+# pydeck
 pandas
 unidecode
