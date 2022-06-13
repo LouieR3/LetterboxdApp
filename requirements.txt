@@ -4,3 +4,4 @@ numpy
 # pydeck
 pandas
 unidecode
+lxml
