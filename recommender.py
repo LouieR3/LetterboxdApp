@@ -72,6 +72,7 @@ def app():
     url = "https://letterboxd.com"
     first20 = sortList[0:20]
     recommendList = []
+    df2 = pd.read_csv(file)
     for director in range(len(first20)):
         director = first20[director][0]
         unaccented_string = unidecode.unidecode(director)
@@ -124,7 +125,7 @@ def app():
             else:
                 numReviews = 0
                 numRatings = 0
-            movieBool = df["Movie"].eq(movieName).any()
+            movieBool = df2["Movie"].eq(movieName).any()
             if finalLen > 60 and finalLen < 500 and lbRating > 3.0 and numRatings > 10000 and movieBool == False:
                 languages = soupFilm.find("div", id="tab-details")
                 lan = languages.find_all("a", href=re.compile("language"))
