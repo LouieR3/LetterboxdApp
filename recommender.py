@@ -188,7 +188,7 @@ def app():
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
     sortList = df.values.tolist()
-    sortList = sorted(sortList, key=itemgetter(3), reverse=True)
+    sortList = sorted(sortList, key=itemgetter(1), reverse=True)
     df2 = pd.DataFrame(sortList, columns=[
         "Movie",
         "Rating",
