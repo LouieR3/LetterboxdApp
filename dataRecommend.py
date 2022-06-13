@@ -7,7 +7,10 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import re
+import time
 from tabulate import tabulate
+
+start_time = time.time()
 
 file = user()
 df = pd.read_csv(file)
@@ -140,27 +143,6 @@ for director in range(len(first20)):
             except:
                 director = ""
 
-            # GET ONLY CREDITED ACTORS BY A TAG
-            actors = ""
-            try:
-                actors = lttrboxdJSON["actors"]
-            except:
-                actors = ""
-            act1 = ""
-            limit = 0
-            if len(actors) >= 20 and len(actors) < 27:
-                limit = len(actors)*0.6
-            elif len(actors) >= 27:
-                limit = len(actors)*0.4
-            else:
-                limit = len(actors)
-            limit = round(limit)
-            for act in range(limit):
-                if act == 0:
-                    act1 = act1 + actors[act]["name"]
-                else:
-                    act1 = act1 + "," + actors[act]["name"]
-
             release = lttrboxdJSON["releasedEvent"][0]["startDate"]
 
             genreString = ""
@@ -180,7 +162,7 @@ for director in range(len(first20)):
                 country = "N/A"
 
             recommendList.append([movieName, lbRating, finalLen, lengthInHour,
-                                  languageStr, director, release, genreString, country, numReviews, numRatings, act1])
+                                  languageStr, director, release, genreString, country, numReviews, numRatings])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 sortList = df.values.tolist()
@@ -196,5 +178,6 @@ print(tabulate(sortList, headers=[
       'Genre',
       'Country',
       'Number of Reviews',
-      'Number of Ratings',
-      'Actors']))
+      'Number of Ratings']))
+
+print("--- %s seconds ---" % (time.time() - start_time))

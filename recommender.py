@@ -126,7 +126,7 @@ def app():
                 numReviews = 0
                 numRatings = 0
             movieBool = df2["Movie"].eq(movieName).any()
-            if finalLen > 60 and finalLen < 500 and lbRating > 3.0 and numRatings > 10000 and movieBool == False:
+            if finalLen > 60 and finalLen < 500 and lbRating > 3.2 and numRatings > 10000 and movieBool == False:
                 languages = soupFilm.find("div", id="tab-details")
                 lan = languages.find_all("a", href=re.compile("language"))
                 lanList = []
