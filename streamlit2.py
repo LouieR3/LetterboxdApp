@@ -25,6 +25,7 @@ import decade
 import year
 import language
 import unidecode
+import recommender
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
@@ -38,7 +39,8 @@ PAGES = {
     "Country": country,
     "Decade": decade,
     "Year": year,
-    "Language": language
+    "Language": language,
+    "Recommendation": recommender
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))

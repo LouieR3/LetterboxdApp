@@ -9,6 +9,7 @@ import time
 import os
 from operator import itemgetter
 from tabulate import tabulate
+import unidecode
 from ratings import ratings
 
 start_time = time.time()
@@ -74,7 +75,7 @@ sortList = sorted(finList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 df['index'] = range(1, len(df) + 1)
 sortList = df.values.tolist()
-sortList = sorted(sortList, key=itemgetter(3))
+sortList = sorted(sortList, key=itemgetter(3), reverse=True)
 print(tabulate(sortList, headers=[
       'Director', 'Weighted', 'Average', 'Weigthed 2', 'Total', 'Difference', 'Index']))
 
