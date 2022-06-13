@@ -105,7 +105,7 @@ def app():
                     finmod = str(mod)
                 lengthInHour = str(hour) + ":" + finmod
             except:
-                print(name)
+                # print(name)
                 finalLen = 0
             detailsDiv = soupFilm.find(
                 "script", type="application/ld+json").string
