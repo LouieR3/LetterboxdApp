@@ -127,6 +127,8 @@ def app():
                 numRatings = 0
             movieBool = df2["Movie"].eq(movieName).any()
             if finalLen > 60 and finalLen < 500 and lbRating > 3.2 and numRatings > 10000 and movieBool == False:
+                lbRating = "{:.2f}".format(lbRating)
+
                 languages = soupFilm.find("div", id="tab-details")
                 lan = languages.find_all("a", href=re.compile("language"))
                 lanList = []
@@ -204,5 +206,5 @@ def app():
         'Actors'
     ])
 
-    df3 = df2.style.background_gradient(subset=['Rating', 'Number of Ratings'])
+    df3 = df2.style.background_gradient(subset=['Number of Ratings'])
     st.dataframe(df3, height=700, width=2000)
