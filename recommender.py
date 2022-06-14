@@ -204,5 +204,5 @@ def app():
         'Actors'
     ])
 
-    # df2 = df2.style.background_gradient(subset=['Rating'])
-    st.dataframe(df2, height=700, width=2000)
+    df3 = df2.style.background_gradient(subset=['Rating', 'Number of Ratings'])
+    st.dataframe(df3, height=700, width=2000)
