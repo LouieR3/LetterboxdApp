@@ -123,13 +123,13 @@ def app():
                         if len(df) > 800:
                             if finAv1 > 3:
                                 finList.append(
-                                    [a, finFloatStr, avg2, finAvg,
+                                    [a, finFloatStr, avg2, finAvg, avg,
                                         tot, diff, billScore]
                                 )
                         else:
                             if finAv1 > 1.5:
                                 finList.append(
-                                    [a, finFloatStr, avg2, finAvg,
+                                    [a, finFloatStr, avg2, finAvg, avg,
                                         tot, diff, billScore]
                                 )
                         # if finFloat > filmAverage:
@@ -145,6 +145,7 @@ def app():
         "Weighted",
         "Average",
         "Final Weighted",
+        "Without Divide",
         "# of Movies Watched",
         "Difference",
         "Billing Score",

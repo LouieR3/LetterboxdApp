@@ -17,6 +17,7 @@ dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
 # user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
+# user = "gr8escape10"
 user = "cloakenswagger"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
@@ -123,7 +124,7 @@ for i in range(len(lenDF)):
 
                     if finAv1 > 2.8:
                         finList.append(
-                            [a, finFloatStr, avg2, finAvg, tot, diff, finMult]
+                            [a, finFloatStr, avg2, finAvg, avg, tot, diff, finMult]
                         )
                     # if finFloat > filmAverage:
                     #     finList.append(
@@ -141,6 +142,7 @@ print(
             "Weighted",
             "Average",
             "Weigthed 2",
+            "Without Divide",
             "Total",
             "Difference",
             "Billing Score",
