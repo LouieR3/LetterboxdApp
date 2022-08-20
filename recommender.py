@@ -185,7 +185,7 @@ def app():
                 except:
                     country = "N/A"
 
-                lbr = int(lbRating)
+                lbr = float(lbRating)
                 nr = int(numRatings)
                 finRating = lbr*(1+(nr/1000000))
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
