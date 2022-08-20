@@ -58,7 +58,7 @@ while start <= limit:
     cnt = 0
     finWeight = 0
     tot = 0
-    lim = str(start) + "-" + str(end) + " minutes"
+    lim = str(start) + "-" + str(end)
     data = df[(df['MovieLength'] >= start) & (df['MovieLength'] < end)]
     diff = data["Difference"].mean()
     diff = "{:.2f}".format(diff)
@@ -80,7 +80,8 @@ while start <= limit:
         avg = avg * (1 + (tot/1000))
         # HIGHEST NUMBER IN LIST * 10 / 2
         finAvg = "{:.2f}".format(avg)
-        finList.append([lim, finFloat, avg2, finAvg, tot, diff])
+        # finList.append([lim, finFloat, avg2, finAvg, tot, diff])
+        finList.append([lim, finAvg])
     start += 10
     end += 10
 sortList = sorted(finList, key=itemgetter(1), reverse=True)
