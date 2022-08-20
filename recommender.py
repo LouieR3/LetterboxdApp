@@ -184,8 +184,8 @@ def app():
                     country = lttrboxdJSON["countryOfOrigin"][0]["name"]
                 except:
                     country = "N/A"
-
-                recommendList.append([movieName, lbRating, finalLen, lengthInHour,
+                finRating = lbRating*(1+(numRatings/1000000))
+                recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, director, release, genreString, country, numReviews, numRatings, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
@@ -193,7 +193,8 @@ def app():
     sortList = sorted(sortList, key=itemgetter(1), reverse=True)
     df2 = pd.DataFrame(sortList, columns=[
         "Movie",
-        "Rating",
+        "Fin Rating",
+        "LB Rating",
         "Length",
         "Length in hours",
         "Languages",
