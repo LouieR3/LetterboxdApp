@@ -4,7 +4,7 @@ def app():
     import streamlit as st
     from ratings import ratings
     from user import user
-    from callLength import len
+    from callLength import lenMovies
     import unidecode
     from bs4 import BeautifulSoup
     import requests
@@ -14,7 +14,7 @@ def app():
     st.header('Recommender By Actor')
     st.caption('Top 20 actors and then check the movies you havent see of theirs')
 
-    lenList = len()
+    lenList = lenMovies()
     file = user()
     df = pd.read_csv(file)
 

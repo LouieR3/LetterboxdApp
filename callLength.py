@@ -1,4 +1,4 @@
-def len():
+def lenMovies():
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
