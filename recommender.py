@@ -4,6 +4,7 @@ def app():
     import streamlit as st
     from ratings import ratings
     from user import user
+    from callLength import len
     import unidecode
     from bs4 import BeautifulSoup
     import requests
@@ -13,6 +14,7 @@ def app():
     st.header('Recommender By Actor')
     st.caption('Top 20 actors and then check the movies you havent see of theirs')
 
+    lenList = len()
     file = user()
     df = pd.read_csv(file)
 
@@ -188,6 +190,15 @@ def app():
                 lbr = float(lbRating)
                 nr = int(numRatings)
                 finRating = lbr*(1+(nr/1000000))
+
+                x = finalLen % 10
+                lengthByTen = finalLen - x
+                for i in lenList:
+                    nums = i[0].split("-")
+                    for y in nums:
+                        if str(lengthByTen) == y:
+                            rate = float(i[1])
+                            finRating = finRating * (1+(rate/10))
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, director, release, genreString, country, numReviews, numRatings, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
