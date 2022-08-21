@@ -5,6 +5,7 @@ def app():
     from ratings import ratings
     from user import user
     from callLength import lenMovies
+    from callGenre import genreMovies
     import unidecode
     from bs4 import BeautifulSoup
     import requests
@@ -15,6 +16,9 @@ def app():
     st.caption('Top 20 actors and then check the movies you havent see of theirs')
 
     lenList = lenMovies()
+    genreList = genreMovies()
+    genreList = pd.DataFrame(genreList)
+    genreList.columns = ["genre", "average"]
     file = user()
     df = pd.read_csv(file)
 
@@ -199,6 +203,17 @@ def app():
                         if str(lengthByTen) == y:
                             rate = float(i[1])
                             finRating = finRating * (1+(rate/10))
+                gList = genreString.split(",")
+                cnt = 0
+                tot = 0
+                for g in gList:
+                    if len(genreList.loc[genreList['genre'] == g]) > 0:
+                        grow = genreList.loc[genreList['genre']
+                                             == g, "average"].iat[0]
+                        cnt += float(grow)
+                        tot += 1
+                fin = cnt / tot
+                finRating = finRating * (1+(fin/10))
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, director, release, genreString, country, numReviews, numRatings, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)

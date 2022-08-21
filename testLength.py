@@ -12,6 +12,7 @@ import unidecode
 from tabulate import tabulate
 from ratings import ratings
 from callLength import lenMovies
+from callGenre import genreMovies
 
 start_time = time.time()
 
@@ -29,7 +30,9 @@ df = pd.read_csv(fullCSV)
 pd.options.mode.chained_assignment = None
 dList = ratings()
 lenList = lenMovies()
-print(lenList)
+genreList = genreMovies()
+genreList = pd.DataFrame(genreList)
+genreList.columns = ["genre", "average"]
 
 # CHECKING FAVORITE GENRE AND RATING BY GENRE\
 filmAverage = df["MyRating"].mean()
@@ -208,6 +211,20 @@ for director in range(len(first20)):
                     if str(lengthByTen) == y:
                         rate = float(i[1])
                         finRating = finRating * (1+(rate/10))
+            gList = genreString.split(",")
+            cnt = 0
+            tot = 0
+            for g in gList:
+                if len(genreList.loc[genreList['genre'] == g]) > 0:
+                    grow = genreList.loc[genreList['genre']
+                                         == g, "average"].iat[0]
+                    cnt += float(grow)
+                    tot += 1
+            fin = cnt / tot
+            finRating = finRating * (1+(fin/10))
+            print(movieName)
+            print(genreString)
+            print(fin)
             recommendList.append([movieName, finRating, lbRating, finalLen,
                                   languageStr, director, release, genreString, numRatings])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
