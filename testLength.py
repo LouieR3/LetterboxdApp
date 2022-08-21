@@ -13,6 +13,8 @@ from tabulate import tabulate
 from ratings import ratings
 from callLength import lenMovies
 from callGenre import genreMovies
+from callLanguage import langMovies
+from callDecade import decadeMovies
 
 start_time = time.time()
 
@@ -33,6 +35,11 @@ lenList = lenMovies()
 genreList = genreMovies()
 genreList = pd.DataFrame(genreList)
 genreList.columns = ["genre", "average"]
+langList = langMovies()
+langList = pd.DataFrame(langList)
+langList.columns = ["language", "average"]
+decList = decadeMovies()
+# print(langList)
 
 # CHECKING FAVORITE GENRE AND RATING BY GENRE\
 filmAverage = df["MyRating"].mean()
@@ -222,9 +229,16 @@ for director in range(len(first20)):
                     tot += 1
             fin = cnt / tot
             finRating = finRating * (1+(fin/10))
-            print(movieName)
-            print(genreString)
-            print(fin)
+
+            lang = lanList[0]
+            if len(langList.loc[langList['language'] == lang]) > 0:
+                lrow = float(
+                    langList.loc[langList['language'] == lang, "average"].iat[0])
+                lrow = lrow/10
+            else:
+                lrow = 0.1
+            finRating = finRating * (1+(lrow))
+
             recommendList.append([movieName, finRating, lbRating, finalLen,
                                   languageStr, director, release, genreString, numRatings])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)

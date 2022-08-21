@@ -1,4 +1,4 @@
-def langMovies():
+def decadeMovies():
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
@@ -9,21 +9,22 @@ def langMovies():
     file = user()
     df = pd.read_csv(file)
 
-    lenDF = df[~df["Languages"].str.contains("No spoken language")]
-    for i in range(len(df)):
-        language = df["Languages"].iloc[i].split(",")[0]
-        lenDF.at[i, "Languages"] = language
-        rate = df["MyRating"].iloc[i]
-    # DataFrame for movies with unique language
-    finalDF = lenDF.Languages.unique()
-    finList = []
+    finalDF = df.ReleaseYear.unique()
+    decadeList = []
     for mem in finalDF:
+        y = str(mem)
+        x = y[:3]
+        if x not in decadeList:
+            decadeList.append(x)
+    finList = []
+
+    for mem in decadeList:
+        df['ReleaseYear'] = df['ReleaseYear'].astype("string")
         cnt = 0
         finWeight = 0
         tot = 0
-        # DataFrame for movies of just the current iteration language
-        # Weighted average is too high for bad movies like 2.0 Uncle Boonme
-        xdf = lenDF.loc[lenDF["Languages"] == mem]
+        # DataFrame for movies of just the current iteration genre
+        xdf = df.loc[df["ReleaseYear"].str.startswith(mem, na=False)]
         diff = xdf["Difference"].mean()
         diff = "{:.2f}".format(diff)
         for rate in dList:
@@ -33,21 +34,18 @@ def langMovies():
             tot += rateLen
         if tot > 0:
             fin = cnt / tot
-            fin += (float(diff)/2)
             fin = fin * (1 + (tot/1000))
-            fin = max(fin, 0.5)
-
+            fin += (float(diff)/2)
+            s = mem + "0"
+            s = int(s)
             avg1 = xdf["MyRating"].mean()
             avg = avg1
             avg += (float(diff)/2)
-            avg = avg * (1 + (tot/4700))
+            avg = avg * (1 + (tot/1700))
             # HIGHEST NUMBER IN LIST * 10 / 2
             finAvg = "{:.2f}".format(avg)
-            finList.append([mem, finAvg])
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    df = pd.DataFrame(sortList)
-    df['index'] = range(1, len(df) + 1)
 
-    sortList = df.values.tolist()
+            finList.append([s, finAvg])
+
     sortList = sorted(finList, key=itemgetter(1), reverse=True)
     return sortList

@@ -2,7 +2,7 @@ def genreMovies():
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
-    import streamlit as st
+    # import streamlit as st
     from user import user
 
     file = user()

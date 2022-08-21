@@ -32,9 +32,7 @@ def lenMovies():
             fin = fin * (1 + (tot/1000))
             fin += (float(diff)/2)
             fin = max(fin, 0.5)
-            finFloat = "{:.2f}".format(fin)
             avg1 = data["MyRating"].mean()
-            avg2 = "{:.2f}".format(avg1)
             avg = avg1
             avg += (float(diff)/2)
             avg = avg * (1 + (tot/1000))

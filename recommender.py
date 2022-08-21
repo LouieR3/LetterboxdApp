@@ -6,19 +6,23 @@ def app():
     from user import user
     from callLength import lenMovies
     from callGenre import genreMovies
+    from callLanguage import langMovies
     import unidecode
     from bs4 import BeautifulSoup
     import requests
     import json
     import re
 
-    st.header('Recommender By Actor')
+    st.header('Recommender By Director')
     st.caption('Top 20 actors and then check the movies you havent see of theirs')
 
     lenList = lenMovies()
     genreList = genreMovies()
     genreList = pd.DataFrame(genreList)
     genreList.columns = ["genre", "average"]
+    langList = langMovies()
+    langList = pd.DataFrame(langList)
+    langList.columns = ["language", "average"]
     file = user()
     df = pd.read_csv(file)
 
@@ -214,6 +218,15 @@ def app():
                         tot += 1
                 fin = cnt / tot
                 finRating = finRating * (1+(fin/10))
+
+                lang = lanList[0]
+                lrow = float(
+                    langList.loc[langList['language'] == lang, "average"].iat[0])
+                finRating = finRating * (1+(lrow/10))
+
+                x = int(release) % 10
+                yearByTen = int(release) - x
+
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, director, release, genreString, country, numReviews, numRatings, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
