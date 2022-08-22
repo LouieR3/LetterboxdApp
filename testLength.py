@@ -214,7 +214,7 @@ for director in range(len(first20)):
 
             lbr = float(lbRating)
             nr = int(numRatings)
-            finRating = lbr*(1+(nr/1000000))
+            finRating = lbr*(1+(nr/2000000))
 
             x = finalLen % 10
             lengthByTen = finalLen - x
@@ -233,8 +233,9 @@ for director in range(len(first20)):
                                          == g, "average"].iat[0]
                     cnt += float(grow)
                     tot += 1
-            fin = cnt / tot
-            finRating = finRating * (1+(fin/10))
+            if cnt > 0 and tot > 0:
+                fin = cnt / tot
+                finRating = finRating * (1+(fin/10))
 
             lang = lanList[0]
             if len(langList.loc[langList['language'] == lang]) > 0:
@@ -274,3 +275,4 @@ print(tabulate(sortList, headers=[
       "Release",
       'Genre',
       'Number of Ratings']))
+print("--- %s seconds ---" % (time.time() - start_time))

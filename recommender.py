@@ -223,8 +223,9 @@ def app():
                                              == g, "average"].iat[0]
                         cnt += float(grow)
                         tot += 1
-                fin = cnt / tot
-                finRating = finRating * (1+(fin/10))
+                if cnt > 0 and tot > 0:
+                    fin = cnt / tot
+                    finRating = finRating * (1+(fin/10))
 
                 lang = lanList[0]
                 if len(langList.loc[langList['language'] == lang]) > 0:
