@@ -97,7 +97,10 @@ def app():
         soup = BeautifulSoup(source, "lxml")
         for movie in soup.find_all("li", class_="poster-container"):
             name = movie.find("img")
-            movieName = name.attrs["alt"]
+            try:
+                movieName = name.attrs["alt"]
+            except:
+                break
 
             div = movie.find("div")
             filmLink = div.attrs["data-film-slug"]

@@ -23,8 +23,8 @@ dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
 # user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
-# user = "cloakenswagger"
-user = "gr8escape10"
+user = "cloakenswagger"
+# user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
 df = pd.read_csv(fullCSV)
@@ -107,7 +107,10 @@ for director in range(len(first20)):
     soup = BeautifulSoup(source, "lxml")
     for movie in soup.find_all("li", class_="poster-container"):
         name = movie.find("img")
-        movieName = name.attrs["alt"]
+        try:
+            movieName = name.attrs["alt"]
+        except:
+            break
 
         div = movie.find("div")
         filmLink = div.attrs["data-film-slug"]
