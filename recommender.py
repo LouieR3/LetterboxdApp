@@ -88,8 +88,8 @@ def app():
     recommendList = []
     df2 = pd.read_csv(file)
     for director in range(len(first20)):
-        director = first20[director][0]
-        unaccented_string = unidecode.unidecode(director)
+        directorName = first20[director][0]
+        unaccented_string = unidecode.unidecode(directorName)
         directorSplit = unaccented_string.replace(' ', '-').lower()
         directorSplit = directorSplit.replace('.', '').replace(',', '')
         urlTemp = "https://letterboxd.com/director/" + directorSplit + "/"
@@ -157,11 +157,11 @@ def app():
                 else:
                     languageStr = lanList[0]
 
-                director = ""
+                direct = ""
                 try:
-                    director = lttrboxdJSON["director"][0]["name"]
+                    direct = lttrboxdJSON["director"][0]["name"]
                 except:
-                    director = ""
+                    direct = ""
 
                 # GET ONLY CREDITED ACTORS BY A TAG
                 actors = ""
@@ -204,7 +204,7 @@ def app():
 
                 lbr = float(lbRating)
                 nr = int(numRatings)
-                finRating = lbr*(1+(nr/1000000))
+                finRating = lbr*(1+(nr/2000000))
 
                 x = finalLen % 10
                 lengthByTen = finalLen - x
@@ -245,8 +245,11 @@ def app():
                     drow = 0.1
                 finRating = finRating * (1+(drow))
 
+                directorRank = float(first20[director][3])
+                finRating += directorRank
+
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
-                                      languageStr, director, release, genreString, country, numReviews, numRatings, act1])
+                                      languageStr, direct, release, genreString, country, numReviews, numRatings, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
     sortList = df.values.tolist()

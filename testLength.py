@@ -23,8 +23,8 @@ dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
 # user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
-user = "cloakenswagger"
-# user = "gr8escape10"
+# user = "cloakenswagger"
+user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
 df = pd.read_csv(fullCSV)
@@ -98,8 +98,8 @@ first20 = sortList[0:20]
 recommendList = []
 df2 = pd.read_csv(file)
 for director in range(len(first20)):
-    director = first20[director][0]
-    unaccented_string = unidecode.unidecode(director)
+    directorName = first20[director][0]
+    unaccented_string = unidecode.unidecode(directorName)
     directorSplit = unaccented_string.replace(' ', '-').lower()
     directorSplit = directorSplit.replace('.', '').replace(',', '')
     urlTemp = "https://letterboxd.com/director/" + directorSplit + "/"
@@ -167,11 +167,11 @@ for director in range(len(first20)):
             else:
                 languageStr = lanList[0]
 
-            director = ""
+            direct = ""
             try:
-                director = lttrboxdJSON["director"][0]["name"]
+                direct = lttrboxdJSON["director"][0]["name"]
             except:
-                director = ""
+                direct = ""
 
             # GET ONLY CREDITED ACTORS BY A TAG
             actors = ""
@@ -215,6 +215,7 @@ for director in range(len(first20)):
             lbr = float(lbRating)
             nr = int(numRatings)
             finRating = lbr*(1+(nr/1000000))
+
             x = finalLen % 10
             lengthByTen = finalLen - x
             for i in lenList:
@@ -254,8 +255,11 @@ for director in range(len(first20)):
                 drow = 0.1
             finRating = finRating * (1+(drow))
 
+            directorRank = float(first20[director][3])
+            finRating += directorRank
+
             recommendList.append([movieName, finRating, lbRating, finalLen,
-                                  languageStr, director, release, genreString, numRatings])
+                                  languageStr, direct, release, genreString, numRatings])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 sortList = df.values.tolist()
