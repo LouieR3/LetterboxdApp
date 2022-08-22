@@ -7,6 +7,7 @@ def app():
     from callLength import lenMovies
     from callGenre import genreMovies
     from callLanguage import langMovies
+    from callDecade import decadeMovies
     import unidecode
     from bs4 import BeautifulSoup
     import requests
@@ -23,6 +24,9 @@ def app():
     langList = langMovies()
     langList = pd.DataFrame(langList)
     langList.columns = ["language", "average"]
+    decList = decadeMovies()
+    decList = pd.DataFrame(decList)
+    decList.columns = ["decade", "average"]
     file = user()
     df = pd.read_csv(file)
 
@@ -220,12 +224,23 @@ def app():
                 finRating = finRating * (1+(fin/10))
 
                 lang = lanList[0]
-                lrow = float(
-                    langList.loc[langList['language'] == lang, "average"].iat[0])
-                finRating = finRating * (1+(lrow/10))
+                if len(langList.loc[langList['language'] == lang]) > 0:
+                    lrow = float(
+                        langList.loc[langList['language'] == lang, "average"].iat[0])
+                    lrow = lrow/10
+                else:
+                    lrow = 0.1
+                finRating = finRating * (1+(lrow))
 
                 x = int(release) % 10
                 yearByTen = int(release) - x
+                if len(decList.loc[decList['decade'] == yearByTen]) > 0:
+                    drow = float(
+                        decList.loc[decList['decade'] == yearByTen, "average"].iat[0])
+                    drow = drow/10
+                else:
+                    drow = 0.1
+                finRating = finRating * (1+(drow))
 
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, director, release, genreString, country, numReviews, numRatings, act1])

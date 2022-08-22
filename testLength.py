@@ -39,6 +39,8 @@ langList = langMovies()
 langList = pd.DataFrame(langList)
 langList.columns = ["language", "average"]
 decList = decadeMovies()
+decList = pd.DataFrame(decList)
+decList.columns = ["decade", "average"]
 # print(langList)
 
 # CHECKING FAVORITE GENRE AND RATING BY GENRE\
@@ -238,6 +240,16 @@ for director in range(len(first20)):
             else:
                 lrow = 0.1
             finRating = finRating * (1+(lrow))
+
+            x = int(release) % 10
+            yearByTen = int(release) - x
+            if len(decList.loc[decList['decade'] == yearByTen]) > 0:
+                drow = float(
+                    decList.loc[decList['decade'] == yearByTen, "average"].iat[0])
+                drow = drow/10
+            else:
+                drow = 0.1
+            finRating = finRating * (1+(drow))
 
             recommendList.append([movieName, finRating, lbRating, finalLen,
                                   languageStr, director, release, genreString, numRatings])
