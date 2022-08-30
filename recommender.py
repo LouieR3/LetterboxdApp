@@ -214,6 +214,7 @@ def app():
                         if str(lengthByTen) == y:
                             rate = float(i[1])
                             finRating = finRating * (1+(rate/10))
+
                 gList = genreString.split(",")
                 cnt = 0
                 tot = 0
@@ -248,6 +249,8 @@ def app():
 
                 directorRank = float(first20[director][3])
                 finRating += directorRank
+
+                finRating /= 5
 
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, direct, release, genreString, country, numReviews, numRatings, act1])

@@ -259,6 +259,8 @@ for director in range(len(first20)):
             directorRank = float(first20[director][3])
             finRating += directorRank
 
+            # finRating /= 5
+
             recommendList.append([movieName, finRating, lbRating, finalLen,
                                   languageStr, direct, release, genreString, numRatings])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
