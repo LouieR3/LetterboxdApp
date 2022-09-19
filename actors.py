@@ -14,6 +14,7 @@ def app():
     st.caption('Here are your favorite actors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, the difference in the average rating you have for the actor compared to Letterboxd, and the actors billing score. Billing score, being the number of movies you have seen of that actor over the totalality of all that actors placings in the movies billing lists')
 
     file = user()
+    username = file.split(".cs")[0].split("AllFilms")[1]
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
@@ -159,5 +160,5 @@ def app():
         unaccented_string = unidecode.unidecode(actor)
         actSplit = unaccented_string.replace(' ', '-').lower()
         actSplit = actSplit.replace('.', '').replace(',', '')
-        urlTemp = "https://letterboxd.com/cloakenswagger/films/with/actor/" + actSplit + "/"
+        urlTemp = "https://letterboxd.com/"+username+"/films/with/actor/" + actSplit + "/"
         st.write(urlTemp)
