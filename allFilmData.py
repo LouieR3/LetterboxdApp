@@ -11,7 +11,7 @@ from operator import itemgetter
 
 start_time = time.time()
 
-dataPath = "C:\\Users\\louie\\OneDrive\\Desktop\\repo\\LetterboxdApp"
+dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
 file = "AllFilms.csv"
 fullCSV = os.path.join(dataPath, file)
