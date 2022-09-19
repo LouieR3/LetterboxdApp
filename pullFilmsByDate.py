@@ -14,10 +14,10 @@ start_time = time.time()
 
 dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
-# user = "goldfishbrain"
+user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
-user = "cloakenswagger"
+# user = "cloakenswagger"
 # user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
@@ -118,6 +118,7 @@ for movie in soup.find_all("li", class_="poster-container"):
                 lanList.append(item.text.strip())
             if len(lanList) > 1:
                 lanString = ",".join(lanList)
+                lanString = str(lanString.split(',',1)[1])
             else:
                 lanString = lanList[0]
             detailsDiv = soupFilm.find(

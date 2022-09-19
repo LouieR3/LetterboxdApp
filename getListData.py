@@ -97,6 +97,7 @@ for link in listOfPage:
                 lanList.append(item.text.strip())
             if len(lanList) > 1:
                 languageStr = ','.join(lanList)
+                languageStr = str(languageStr.split(',',1)[1])
             else:
                 languageStr = lanList[0]
 

@@ -124,6 +124,7 @@ for link in listOfPage:
                 lanList.append(item.text.strip())
             if len(lanList) > 1:
                 lanString = ','.join(lanList)
+                lanString = str(lanString.split(',',1)[1])
             else:
                 lanString = lanList[0]
 
