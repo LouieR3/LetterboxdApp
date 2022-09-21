@@ -40,6 +40,7 @@ def app():
 
     cond = df250['Movie'].isin(df2['Movie'])
     df250.drop(df250[cond].index, inplace = True)
+    df250 = df250.reset_index(drop=True)
     recommendList = []
     for m in range(len(df250)):
         lbr = float(df250["LBRating"][m])
@@ -68,7 +69,7 @@ def app():
             fin = cnt / tot
             finRating = finRating * (1+(fin/10))
 
-        lang = df250["Language"][m].split(",")[0]
+        lang = df250["Languages"][m].split(",")[0]
         if len(langList.loc[langList['language'] == lang]) > 0:
             lrow = float(
                 langList.loc[langList['language'] == lang, "average"].iat[0])

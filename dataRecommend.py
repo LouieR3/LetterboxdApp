@@ -2,171 +2,115 @@ import pandas as pd
 from operator import itemgetter
 from ratings import ratings
 from user import user
-import unidecode
-from bs4 import BeautifulSoup
-import requests
-import json
-import re
-import time
+from callLength import lenMovies
+from callGenre import genreMovies
+from callLanguage import langMovies
+from callDirector import directorMovies
+from callDecade import decadeMovies
 from tabulate import tabulate
+import time
 
 start_time = time.time()
 
+lenList = lenMovies()
+genreList = genreMovies()
+genreList = pd.DataFrame(genreList)
+genreList.columns = ["genre", "average"]
+langList = langMovies()
+langList = pd.DataFrame(langList)
+langList.columns = ["language", "average"]
+decList = decadeMovies()
+decList = pd.DataFrame(decList)
+decList.columns = ["decade", "average"]
+directList = directorMovies()
+directList = pd.DataFrame(directList)
+directList.columns = ["director", "average"]
 file = user()
 df = pd.read_csv(file)
 
 pd.options.mode.chained_assignment = None
 
-# CHECKING FAVORITE GENRE AND RATING BY GENRE\
-filmAverage = df["MyRating"].mean()
-for i in range(len(df)):
-    director = df["Director"].iloc[i]
-    df.at[i, "Director"] = director
-    rate = df["MyRating"].iloc[i]
-# DataFrame for movies with unique genre
-finalDF = df.Director.unique()
-# print("=========")
-finList = []
-dList = ratings()
-for mem in finalDF:
-    # print(mem)
-    cnt = 0
-    finWeight = 0
-    tot = 0
-    # DataFrame for movies of just the current iteration genre
-    xdf = df.loc[df["Director"] == mem]
-    diff = xdf["Difference"].mean()
-    diff = "{:.2f}".format(diff)
-    for rate in dList:
-        rateLen = len(xdf[(xdf["MyRating"] == rate[0])])
-        finWeight = (rateLen*rate[0]) * rate[1]
-        cnt += finWeight
-        tot += rateLen
-    if tot > 1:
-        fin = cnt / tot
-        fin += (float(diff)/2)
-        fin = fin * (1 + (tot/100))
-        # ^ THIS SHOULD BE TOTAL WATCHED / TOTAL FILMS THEY HAVE THAT ARE DECENTLY WATCHED AND ACCOUNT FOR BAD RATINGS
-        # higher total should mean difference is more legit and factored in more
-        finFloat = "{:.2f}".format(fin)
-
-        avg1 = xdf["MyRating"].mean()
-        avg2 = "{:.2f}".format(avg1)
-        avg = avg1
-        avg += (float(diff)/2)
-        avg = avg * (1 + (tot/50))
-        # HIGHEST NUMBER IN LIST * 10 / 2
-        finAvg = "{:.2f}".format(avg)
-
-        if avg > filmAverage:
-            finList.append(
-                [mem, finFloat, avg2, finAvg, tot, diff])
-
-sortList = sorted(finList, key=itemgetter(1), reverse=True)
-df = pd.DataFrame(sortList)
-df['Ranking'] = range(1, len(df) + 1)
-sortList = df.values.tolist()
-sortList = sorted(sortList, key=itemgetter(3), reverse=True)
-
-url = "https://letterboxd.com"
-first20 = sortList[0:20]
-recommendList = []
 df2 = pd.read_csv(file)
-for director in range(len(first20)):
-    director = first20[director][0]
-    unaccented_string = unidecode.unidecode(director)
-    directorSplit = unaccented_string.replace(' ', '-').lower()
-    directorSplit = directorSplit.replace('.', '').replace(',', '')
-    urlTemp = "https://letterboxd.com/director/" + directorSplit + "/"
-    source = requests.get(urlTemp).text
-    soup = BeautifulSoup(source, "lxml")
-    for movie in soup.find_all("li", class_="poster-container"):
-        name = movie.find("img")
-        movieName = name.attrs["alt"]
+df250 = pd.read_csv("Top250Films.csv")
 
-        div = movie.find("div")
-        filmLink = div.attrs["data-film-slug"]
-        filmURL = url + filmLink
-        sourceFilm = requests.get(filmURL).text
-        soupFilm = BeautifulSoup(sourceFilm, "lxml")
-        length = soupFilm.find("p", class_="text-link").text
-        lengthOfMovie = length[12:15]
-        lenNum = [int(s) for s in lengthOfMovie.split() if s.isdigit()]
-        try:
-            finalLen = lenNum[0]
-            mod = finalLen % 60
-            hour = finalLen / 60
-            hour = int(hour)
-            finmod = ""
-            if mod < 10:
-                finmod = "0"+str(mod)
-            else:
-                finmod = str(mod)
-            lengthInHour = str(hour) + ":" + finmod
-        except:
-            print(name)
-            finalLen = 0
-        detailsDiv = soupFilm.find(
-            "script", type="application/ld+json").string
-        start = detailsDiv.find("/* <![CDATA[ */") + len("/* <![CDATA[ */")
-        end = detailsDiv.find("/* ]]> */")
-        subs = detailsDiv[start:end]
-        lttrboxdJSON = json.loads(subs)
-        try:
-            lbRating = lttrboxdJSON["aggregateRating"]["ratingValue"]
-        except:
-            lbRating = 0
-        # print(lbRating)
+cond = df250['Movie'].isin(df2['Movie'])
+df250.drop(df250[cond].index, inplace = True)
+df250 = df250.reset_index(drop=True)
+recommendList = []
+print(df250)
+print(df250.columns)
+for m in range(len(df250)):
+    lbr = float(df250["LBRating"][m])
+    nr = int(df250["NumberOfRatings"][m])
+    finRating = lbr*(1+(nr/2000000))
+    finalLen = df250["MovieLength"][m]
+    x = finalLen % 10
+    lengthByTen = finalLen - x
+    for i in lenList:
+        nums = i[0].split("-")
+        for y in nums:
+            if str(lengthByTen) == y:
+                rate = float(i[1])
+                finRating = finRating * (1+(rate/10))
 
-        if "aggregateRating" in lttrboxdJSON:
-            numReviews = lttrboxdJSON["aggregateRating"]["reviewCount"]
-            numRatings = lttrboxdJSON["aggregateRating"]["ratingCount"]
-        else:
-            numReviews = 0
-            numRatings = 0
-        movieBool = df2["Movie"].eq(movieName).any()
-        if finalLen > 60 and finalLen < 500 and lbRating > 3.0 and numRatings > 10000 and movieBool == False:
-            languages = soupFilm.find("div", id="tab-details")
-            lan = languages.find_all("a", href=re.compile("language"))
-            lanList = []
-            languageStr = ""
-            for item in lan:
-                lanList.append(item.text.strip())
-            if len(lanList) > 1:
-                languageStr = ','.join(lanList)
-            else:
-                languageStr = lanList[0]
+    gList = df250["Genre"][m].split(",")
+    cnt = 0
+    tot = 0
+    for g in gList:
+        if len(genreList.loc[genreList['genre'] == g]) > 0:
+            grow = genreList.loc[genreList['genre']
+                                    == g, "average"].iat[0]
+            cnt += float(grow)
+            tot += 1
+    if cnt > 0 and tot > 0:
+        fin = cnt / tot
+        finRating = finRating * (1+(fin/10))
 
-            director = ""
-            try:
-                director = lttrboxdJSON["director"][0]["name"]
-            except:
-                director = ""
+    lang = df250["Languages"][m].split(",")[0]
+    if len(langList.loc[langList['language'] == lang]) > 0:
+        lrow = float(
+            langList.loc[langList['language'] == lang, "average"].iat[0])
+        lrow = lrow/10
+    else:
+        lrow = 0.1
+    finRating = finRating * (1+(lrow))
+    
+    release = df250["ReleaseYear"][m]
+    x = int(release) % 10
+    yearByTen = int(release) - x
+    if len(decList.loc[decList['decade'] == yearByTen]) > 0:
+        drow = float(
+            decList.loc[decList['decade'] == yearByTen, "average"].iat[0])
+        drow = drow/10
+    else:
+        drow = 0.1
+    finRating = finRating * (1+(drow))
 
-            release = lttrboxdJSON["releasedEvent"][0]["startDate"]
+    direct = df250["Director"][m]
+    if len(directList.loc[directList['director'] == direct]) > 0:
+        directorRank = float(
+            directList.loc[directList['director'] == direct, "average"].iat[0])
+        directorRank = directorRank/10
+    else:
+        directorRank = 0.1
+    finRating = finRating * (1+(drow))
+    finRating += directorRank
 
-            genreString = ""
-            genre_in_dict = "genre" in lttrboxdJSON
-            if (genre_in_dict):
-                genre = lttrboxdJSON["genre"]
-                if len(genre) > 1:
-                    genreString = ','.join(genre)
-                else:
-                    genreString = genre[0]
-            else:
-                genre = ""
+    finRating /= 5
 
-            try:
-                country = lttrboxdJSON["countryOfOrigin"][0]["name"]
-            except:
-                country = "N/A"
-
-            recommendList.append([movieName, lbRating, finalLen, lengthInHour,
-                                  languageStr, director, release, genreString, country, numReviews, numRatings])
+    movieName = df250["Movie"][m]
+    lengthInHour = df250["LengthInHour"][m]
+    languageStr = df250["Languages"][m]
+    genreString = df250["Genre"][m]
+    country = df250["Country"][m]
+    numReviews = df250["NumberOfReviews"][m]
+    act1 = df250["Actors"][m]
+    recommendList.append([movieName, finRating, lbr, finalLen, lengthInHour,
+                            languageStr, direct, release, genreString, country, numReviews, nr, act1])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 sortList = df.values.tolist()
-sortList = sorted(sortList, key=itemgetter(3), reverse=True)
+sortList = sorted(sortList, key=itemgetter(1), reverse=True)
 print(tabulate(sortList, headers=[
       "Movie",
       "Rating",
