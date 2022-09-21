@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pydeck as pdk
+# import pydeck as pdk
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -26,6 +26,7 @@ import year
 import language
 import unidecode
 import recommender
+import recommender2
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
@@ -40,7 +41,8 @@ PAGES = {
     "Decade": decade,
     "Year": year,
     "Language": language,
-    "Recommendation": recommender
+    "Recommendation": recommender,
+    "Recommendation by Top 250": recommender2
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))

@@ -32,13 +32,13 @@ def app():
 
     pd.options.mode.chained_assignment = None
 
-    # CHECKING FAVORITE GENRE AND RATING BY GENRE\
+    # CHECKING FAVORITE Director AND RATING BY Director
     filmAverage = df["MyRating"].mean()
     for i in range(len(df)):
         director = df["Director"].iloc[i]
         df.at[i, "Director"] = director
         rate = df["MyRating"].iloc[i]
-    # DataFrame for movies with unique genre
+    # DataFrame for movies with unique Director
     finalDF = df.Director.unique()
     # print("=========")
     finList = []
@@ -48,7 +48,7 @@ def app():
         cnt = 0
         finWeight = 0
         tot = 0
-        # DataFrame for movies of just the current iteration genre
+        # DataFrame for movies of just the current iteration Director
         xdf = df.loc[df["Director"] == mem]
         diff = xdf["Difference"].mean()
         diff = "{:.2f}".format(diff)
