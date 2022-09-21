@@ -96,8 +96,7 @@ def app():
             directorRank = directorRank/10
         else:
             directorRank = 0.1
-        finRating = finRating * (1+(drow))
-        finRating += directorRank
+        finRating = finRating * (1+(directorRank))
 
         # finRating /= 5
 

@@ -37,8 +37,7 @@ cond = df250['Movie'].isin(df2['Movie'])
 df250.drop(df250[cond].index, inplace = True)
 df250 = df250.reset_index(drop=True)
 recommendList = []
-print(df250)
-print(df250.columns)
+testList = []
 for m in range(len(df250)):
     lbr = float(df250["LBRating"][m])
     nr = int(df250["NumberOfRatings"][m])
@@ -91,12 +90,16 @@ for m in range(len(df250)):
         directorRank = float(
             directList.loc[directList['director'] == direct, "average"].iat[0])
         directorRank = directorRank/10
+        directorRank += 1
+        finRating = finRating * directorRank
     else:
-        directorRank = 0.1
-    finRating = finRating * (1+(drow))
-    finRating += directorRank
+        directorRank = 1
+        finRating += directorRank
+    
 
-    finRating /= 5
+    test = directorRank
+    testList.append([direct, test])
+    # finRating /= 5
 
     movieName = df250["Movie"][m]
     lengthInHour = df250["LengthInHour"][m]
@@ -111,17 +114,20 @@ sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 sortList = df.values.tolist()
 sortList = sorted(sortList, key=itemgetter(1), reverse=True)
-print(tabulate(sortList, headers=[
-      "Movie",
-      "Rating",
-      "Length",
-      "Length in hours",
-      "Languages",
+print(tabulate(testList, headers=[
       "Director",
-      'Release Year',
-      'Genre',
-      'Country',
-      'Number of Reviews',
-      'Number of Ratings']))
+      "Rating",]))
+# print(tabulate(sortList, headers=[
+#       "Movie",
+#       "Rating",
+#       "Length",
+#       "Length in hours",
+#       "Languages",
+#       "Director",
+#       'Release Year',
+#       'Genre',
+#       'Country',
+#       'Number of Reviews',
+#       'Number of Ratings']))
 
 print("--- %s seconds ---" % (time.time() - start_time))
