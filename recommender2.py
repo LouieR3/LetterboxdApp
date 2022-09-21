@@ -42,10 +42,7 @@ def app():
     df250.drop(df250[cond].index, inplace = True)
     recommendList = []
     for m in range(len(df250)):
-        lbRating = "{:.2f}".format(lbRating)
-
-        lbr = df250["LBRating"][m]
-        lbr = float(lbr)
+        lbr = float(df250["LBRating"][m])
         nr = int(df250["NumberOfRatings"][m])
         finRating = lbr*(1+(nr/2000000))
         finalLen = df250["MovieLength"][m]
@@ -110,7 +107,7 @@ def app():
         country = df250["Country"][m]
         numReviews = df250["NumberOfReviews"][m]
         act1 = df250["Actors"][m]
-        recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
+        recommendList.append([movieName, finRating, lbr, finalLen, lengthInHour,
                                 languageStr, direct, release, genreString, country, numReviews, nr, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
