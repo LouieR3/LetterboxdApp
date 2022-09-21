@@ -99,7 +99,7 @@ def app():
         finRating = finRating * (1+(drow))
         finRating += directorRank
 
-        finRating /= 5
+        # finRating /= 5
 
         movieName = df250["Movie"][m]
         lengthInHour = df250["LengthInHour"][m]
