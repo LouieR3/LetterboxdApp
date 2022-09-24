@@ -127,7 +127,7 @@ def app():
             # finRating = finRating * (1+(fin/10))
             finRating += actorRank
         else:
-            actorRank = 3
+            actorRank = 2
             finRating += actorRank
 
         # if len(actorList.loc[actorList['actor'] == direct]) > 0:
