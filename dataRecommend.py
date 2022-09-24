@@ -8,6 +8,7 @@ from callLanguage import langMovies
 from callDirector import directorMovies
 from callDecade import decadeMovies
 from tabulate import tabulate
+from callActors import actorMovies
 import time
 
 start_time = time.time()
@@ -25,6 +26,9 @@ decList.columns = ["decade", "average"]
 directList = directorMovies()
 directList = pd.DataFrame(directList)
 directList.columns = ["director", "average"]
+actorList = actorMovies()
+actorList = pd.DataFrame(actorList)
+actorList.columns = ["actor", "average"]
 file = user()
 df = pd.read_csv(file)
 
@@ -92,22 +96,47 @@ for m in range(len(df250)):
         directorRank = directorRank/10
         directorRank += 1
         finRating = finRating * directorRank
+        finRating += directorRank
     else:
         directorRank = 1
         finRating += directorRank
-    
 
-    test = directorRank
-    testList.append([direct, test])
+    # finRating /= 5
+    act1 = df250["Actors"][m]
+    actors = df250["Actors"][m].split(",")
+
+    cnt = 0
+    tot = 0
+    billTotal = 0
+    for act in actors:
+        billTotal += 1
+        if len(actorList.loc[actorList['actor'] == act]) > 0:
+            arow = float(actorList.loc[actorList['actor']
+                                    == act, "average"].iat[0])
+            tot += 1
+            billScore = billTotal / 10
+            billFin = arow - billScore
+            cnt += billFin
+    if cnt > 0 and tot > 0:
+        fin = cnt / tot
+        actorRank = fin
+        # finRating = finRating * (1+(fin/10))
+        finRating += actorRank
+    else:
+        actorRank = 3
+        finRating += actorRank
+    
+    movieName = df250["Movie"][m]
+    test = actorRank
+    testList.append([movieName, direct, test, tot])
     # finRating /= 5
 
-    movieName = df250["Movie"][m]
+    
     lengthInHour = df250["LengthInHour"][m]
     languageStr = df250["Languages"][m]
     genreString = df250["Genre"][m]
     country = df250["Country"][m]
     numReviews = df250["NumberOfReviews"][m]
-    act1 = df250["Actors"][m]
     recommendList.append([movieName, finRating, lbr, finalLen, lengthInHour,
                             languageStr, direct, release, genreString, country, numReviews, nr, act1])
 sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
@@ -115,8 +144,10 @@ df = pd.DataFrame(sortList)
 sortList = df.values.tolist()
 sortList = sorted(sortList, key=itemgetter(1), reverse=True)
 print(tabulate(testList, headers=[
-      "Director",
-      "Rating",]))
+      "Movie",
+      "Actors",
+      "Rating",
+      "Total",]))
 # print(tabulate(sortList, headers=[
 #       "Movie",
 #       "Rating",

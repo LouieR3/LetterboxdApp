@@ -9,6 +9,7 @@ def app():
     from callLanguage import langMovies
     from callDirector import directorMovies
     from callDecade import decadeMovies
+    from callActors import actorMovies
     import unidecode
     from bs4 import BeautifulSoup
     import requests
@@ -30,6 +31,9 @@ def app():
     directList = directorMovies()
     directList = pd.DataFrame(directList)
     directList.columns = ["director", "average"]
+    actorList = actorMovies()
+    actorList = pd.DataFrame(actorList)
+    actorList.columns = ["actor", "average"]
     file = user()
     df = pd.read_csv(file)
 
@@ -93,10 +97,46 @@ def app():
         if len(directList.loc[directList['director'] == direct]) > 0:
             directorRank = float(
                 directList.loc[directList['director'] == direct, "average"].iat[0])
-            directorRank = directorRank/10
+            # directorRank = directorRank/10
+            # finRating = finRating * (1+(directorRank))
+            finRating += directorRank
         else:
-            directorRank = 0.1
-        finRating = finRating * (1+(directorRank))
+            # directorRank = 0.1
+            directorRank = 1
+            finRating += directorRank
+        
+
+        act1 = df250["Actors"][m]
+        actors = df250["Actors"][m].split(",")
+
+        cnt = 0
+        tot = 0
+        billTotal = 0
+        for act in actors:
+            billTotal += 1
+            if len(actorList.loc[actorList['actor'] == act]) > 0:
+                arow = float(actorList.loc[actorList['actor']
+                                        == act, "average"].iat[0])
+                tot += 1
+                billScore = billTotal / 10
+                billFin = arow - billScore
+                cnt += billFin
+        if cnt > 0 and tot > 0:
+            fin = cnt / tot
+            actorRank = fin
+            # finRating = finRating * (1+(fin/10))
+            finRating += actorRank
+        else:
+            actorRank = 3
+            finRating += actorRank
+
+        # if len(actorList.loc[actorList['actor'] == direct]) > 0:
+        #     directorRank = float(
+        #         actorList.loc[actorList['actor'] == direct, "average"].iat[0])
+        #     directorRank = directorRank/10
+        # else:
+        #     directorRank = 0.1
+        # finRating = finRating * (1+(directorRank))
 
         # finRating /= 5
 
@@ -106,7 +146,6 @@ def app():
         genreString = df250["Genre"][m]
         country = df250["Country"][m]
         numReviews = df250["NumberOfReviews"][m]
-        act1 = df250["Actors"][m]
         recommendList.append([movieName, finRating, lbr, finalLen, lengthInHour,
                                 languageStr, direct, release, genreString, country, numReviews, nr, act1])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
