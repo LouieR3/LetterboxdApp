@@ -29,6 +29,7 @@ directList.columns = ["director", "average"]
 actorList = actorMovies()
 actorList = pd.DataFrame(actorList)
 actorList.columns = ["actor", "average"]
+print(actorList)
 file = user()
 df = pd.read_csv(file)
 

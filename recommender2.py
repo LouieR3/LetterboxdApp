@@ -104,11 +104,9 @@ def app():
             # directorRank = 0.1
             directorRank = 1
             finRating += directorRank
-        
 
         act1 = df250["Actors"][m]
         actors = df250["Actors"][m].split(",")
-
         cnt = 0
         tot = 0
         billTotal = 0

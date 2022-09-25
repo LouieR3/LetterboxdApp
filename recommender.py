@@ -250,7 +250,7 @@ def app():
                 directorRank = float(first20[director][3])
                 finRating += directorRank
 
-                finRating /= 5
+                # finRating /= 5
 
                 recommendList.append([movieName, finRating, lbRating, finalLen, lengthInHour,
                                       languageStr, direct, release, genreString, country, numReviews, numRatings, act1])
