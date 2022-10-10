@@ -105,7 +105,7 @@ def app():
         
     df = pd.DataFrame(masterList, columns = names)
     df = df.set_index("Teams")
-    st.dataframe(df, height=400)
+    st.dataframe(df, height=500)
     # print(df)
     # print(tabulate(records, headers=[
     #       "Team",
