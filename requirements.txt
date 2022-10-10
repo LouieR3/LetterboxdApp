@@ -6,3 +6,4 @@ pandas
 unidecode
 lxml
 requests
+espn_api
