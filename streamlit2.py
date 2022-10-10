@@ -28,6 +28,7 @@ import unidecode
 import recommender
 import recommender2
 import fantasyfootball
+from espn_api.football import League
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
