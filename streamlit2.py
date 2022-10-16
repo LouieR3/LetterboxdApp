@@ -27,7 +27,6 @@ import language
 import unidecode
 import recommender
 import recommender2
-import fantasyfootball
 from espn_api.football import League
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
@@ -44,8 +43,7 @@ PAGES = {
     "Year": year,
     "Language": language,
     "Recommendation": recommender,
-    "Recommendation by Top 250": recommender2,
-    "Fantasy Football": fantasyfootball
+    "Recommendation by Top 250": recommender2
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
