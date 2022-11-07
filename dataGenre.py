@@ -99,6 +99,8 @@ for i in range(len(lenDF)):
 sortList = sorted(finList, key=itemgetter(1), reverse=True)
 df = pd.DataFrame(sortList)
 df['index'] = range(1, len(df) + 1)
+# df.index += 1 
+print(df)
 sortList = df.values.tolist()
 sortList = sorted(sortList, key=itemgetter(3))
 
