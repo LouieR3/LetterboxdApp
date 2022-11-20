@@ -110,6 +110,7 @@ for movie in soup.find_all("li", class_="poster-container"):
         except:
             finalLen = 0
         if finalLen > 60 and finalLen < 500:
+            # print(movieName)
             languages = soupFilm.find("div", id="tab-details")
             lan = languages.find_all("a", href=re.compile("language"))
             lanList = []
@@ -168,12 +169,24 @@ for movie in soup.find_all("li", class_="poster-container"):
                 country = y["countryOfOrigin"][0]["name"]
             except:
                 country = ""
-            avgRate = y["aggregateRating"]["ratingValue"]
+            
+            try:
+                avgRate = y["aggregateRating"]["ratingValue"]
+            except:
+                avgRate = 0
             if format_float == 0:
                 diff = rating_val - avgRate
                 format_float = "{:.2f}".format(diff)
-            numReviews = y["aggregateRating"]["reviewCount"]
-            numRatings = y["aggregateRating"]["ratingCount"]
+            
+            try:
+                numReviews = y["aggregateRating"]["reviewCount"]
+            except:
+                numReviews = 0
+            try:
+                numRatings = y["aggregateRating"]["ratingCount"]
+            except:
+                numRatings = 0
+            
             bigList.append(
                 [
                     movieName,
