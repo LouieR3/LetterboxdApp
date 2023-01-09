@@ -84,10 +84,10 @@ for movie in soup.find_all("li", class_="poster-container"):
                 myFilm.find(
                     "p", class_="view-date").find("a").next_sibling.next_element
             )
-            vd = str(viewDate)
+            vd = str(viewDate).split("for")[1]
             TheDate = vd[41:-9]
-            yr = TheDate[:4]
-            rest = TheDate[5:]
+            yr = vd[1:5]
+            rest = vd[6:11]
             finalDate = rest + "/" + yr
         except:
             viewDate = ""
