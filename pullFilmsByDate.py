@@ -18,6 +18,7 @@ dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # user = "zacierka"
 # user = "bluegrace11"
 user = "cloakenswagger"
+# user = "carmal"
 # user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
 fullCSV = os.path.join(dataPath, file)
@@ -27,7 +28,7 @@ df = pd.read_csv(fullCSV)
 # fullCSV2 = os.path.join(dataPath, file2)
 # df3 = pd.read_csv(fullCSV2)
 
-firstUrl = "https://letterboxd.com/" + user + "/films/ratings/"
+firstUrl = "https://letterboxd.com/" + user + "/films/by/rated-date/"
 source = requests.get(firstUrl).text
 soup = BeautifulSoup(source, "lxml")
 
