@@ -69,6 +69,7 @@ def app():
         "Difference",
         "Ranking",
     ])
-    df2 = df2.style.background_gradient(subset=['Ranking'])
+    df2.index += 1 
+    df3 = df2.style.background_gradient(subset=['Ranking'])
     # df2.index += 1 
-    st.dataframe(df2, height=425, width=2000)
+    st.dataframe(df3, height=425, width=2000)
