@@ -155,7 +155,7 @@ def app():
     df.index += 1 
     df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
     # df2.index += 1 
-    st.dataframe(df2, height=900, width=1500)
+    st.dataframe(df2, height=900, width=1000)
 
     actor = st.text_input('Check Actor', '')
     if actor:
