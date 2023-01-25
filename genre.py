@@ -16,9 +16,9 @@ def app():
     dList = ratings()
     # For each index in our final DataFrame
     for i in range(len(lenDF)):
-        # actor is a list of every actor in the current film
+        # genre is a list of every genre in the current film
         genre = lenDF["Genre"].iloc[i].split(",")
-        # for each actor in this film
+        # for each genre in this genre string
         for a in genre:
             x = False
             if len(finList) > 0:
@@ -32,6 +32,7 @@ def app():
                 tot = 0
                 avg = 0
                 mid = a
+                # find all films that have this genre anywhere in the genre string
                 sub_df = lenDF[lenDF['Genre'].str.contains(mid, na=False)]
                 if len(sub_df) > 3:
                     diff = sub_df["Difference"].mean()

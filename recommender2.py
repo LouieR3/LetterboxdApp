@@ -40,7 +40,7 @@ def app():
     pd.options.mode.chained_assignment = None
 
     df2 = pd.read_csv(file)
-    df250 = pd.read_csv("Top250Films.csv")
+    df250 = pd.read_csv("Top1001Films.csv")
 
     cond = df250['Movie'].isin(df2['Movie'])
     df250.drop(df250[cond].index, inplace = True)
