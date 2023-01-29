@@ -8,6 +8,7 @@ start_time = time.time()
 file = user()
 df = pd.read_csv(file)
 # df = df[df["ReleaseYear"].notna()]
+df['MyRating'] = (df["MyRating"]*2)
 df['length'] = (df["MovieLength"]//10)*10
 # group the dataframe by user and genre
 user_genre_group = df.groupby(["length"])
@@ -36,7 +37,7 @@ genre_ratings["percentage"] = (genre_ratings["total_movies"] / len(df)) * 100
 # favorite_genre = genre_ratings.loc[genre_ratings.groupby("user_id")["percentage"].idxmax()]
 
 # define the weighting factor
-weight = 0.991
+weight = 0.95
 
 # create a new column with the weighted sum of ratings and total_movies
 genre_ratings['weighted_sum'] = genre_ratings['avg_rating']*weight + genre_ratings['total_movies']*(1-weight)

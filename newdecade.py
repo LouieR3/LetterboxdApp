@@ -9,6 +9,7 @@ file = user()
 df = pd.read_csv(file)
 # df = df[df["ReleaseYear"].notna()]
 df['decade'] = (df["ReleaseYear"]//10)*10
+df['MyRating'] = (df["MyRating"]*2)
 # group the dataframe by user and genre
 user_genre_group = df.groupby(["decade"])
 

@@ -1,0 +1,41 @@
+user_id_x,movie_id_x,title,rating,lb_rating,difference,user_id_y,movie_id_y
+1.0,1.0,F9,0.5,2.58,-2.08,2.0,1.0
+,,Wrath of Man,3.5,3.25,0.25,2.0,2.0
+,,Bad Boys for Life,3.0,3.01,-0.01,2.0,3.0
+,,Limitless,4.0,3.25,0.75,2.0,4.0
+,,The Butterfly Effect,4.5,3.45,1.05,2.0,5.0
+,,Ford v Ferrari,4.0,3.86,0.14,2.0,6.0
+,,Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn),4.0,3.23,0.77,2.0,7.0
+,,Source Code,4.0,3.42,0.58,2.0,8.0
+,,The Curious Case of Benjamin Button,4.0,3.6,0.4,2.0,9.0
+,,Click,4.0,2.71,1.29,2.0,10.0
+,,The Bounty Hunter,3.5,2.36,1.14,2.0,11.0
+,,21,3.5,2.94,0.56,2.0,12.0
+,,Transcendence,5.0,2.44,2.56,2.0,13.0
+,,Kick-Ass,3.5,3.48,0.02,2.0,14.0
+,,Now You See Me,3.5,3.24,0.26,2.0,15.0
+,,Legion,4.0,2.31,1.69,2.0,16.0
+,,Edge of Tomorrow,3.5,3.71,-0.21,2.0,17.0
+,,The Great Gatsby,5.0,3.35,1.65,2.0,18.0
+,,Venom,3.5,2.88,0.62,2.0,19.0
+,,John Wick,3.5,3.81,-0.31,2.0,20.0
+,,Scott Pilgrim vs. the World,4.0,3.87,0.13,2.0,21.0
+,,Ex Machina,4.5,3.98,0.52,2.0,22.0
+,,Drive,4.5,3.97,0.53,2.0,23.0
+,,The Last Witch Hunter,4.0,2.38,1.62,2.0,24.0
+,,Riddick,4.0,2.81,1.19,2.0,25.0
+,,Mad Max: Fury Road,4.0,4.14,-0.14,2.0,26.0
+,,Southpaw,4.0,3.4,0.6,2.0,27.0
+,,Suicide Squad,5.0,2.08,2.92,2.0,28.0
+,,Hacksaw Ridge,3.0,3.79,-0.79,2.0,29.0
+,,Split,4.0,3.5,0.5,2.0,30.0
+,,Assassin's Creed,0.5,2.1,-1.6,2.0,31.0
+,,John Wick: Chapter 2,5.0,3.69,1.31,2.0,32.0
+,,Baby Driver,4.0,3.77,0.23,2.0,33.0
+,,A Quiet Place,4.5,3.71,0.79,2.0,34.0
+,,Deadpool 2,3.5,3.5,0.0,2.0,35.0
+,,Glass,3.5,2.96,0.54,2.0,36.0
+,,mid90s,4.0,3.73,0.27,2.0,37.0
+,,Everybody’s Everything,5.0,3.75,1.25,2.0,38.0
+,,Joker,2.5,3.87,-1.37,2.0,39.0
+,,El Camino: A Breaking Bad Movie,3.5,3.51,-0.01,2.0,40.0

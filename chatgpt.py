@@ -1,5 +1,14 @@
+import pandas as pd
+from user import user
+import time
+import numpy as np
+start_time = time.time()
+
+movies_df = pd.read_csv("Test.csv")
+ratings_df = pd.read_csv("TestRatings.csv")
+
 # define weighting factors for each attribute
-weights = {"genre": 0.4, "decade": 0.2, "length": 0.1, "language": 0.1, "director": 0.1, "previous_ratings": 0.1, "popularity": 0.2}
+weights = {"genre": 0.1, "decade": 0.3, "length": 0.4, "language": 0.1, "director": 0.5, "previous_ratings": 0.1, "popularity": 0.3}
 
 # create a function to calculate the recommendation score
 def recommend(movie, user, ratings_df):

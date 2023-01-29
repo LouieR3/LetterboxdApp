@@ -7,6 +7,8 @@ start_time = time.time()
 # load the dataframe
 file = user()
 df = pd.read_csv(file)
+df = pd.read_csv("AllFilmscarmal.csv")
+df['MyRating'] = (df["MyRating"]*2)
 # create a sample dataframe
 # df = pd.DataFrame({"movie_id": [1, 2, 3], "movie_title": ["Movie 1", "Movie 2", "Movie 3"], "genres": ["Action, Adventure, Sci-Fi", "Comedy, Romance", "Drama, History"]})
 
@@ -48,7 +50,7 @@ genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'avg_rating', 'Total'
 genre_ratings["percentage"] = (genre_ratings["Total"] / len(df)) * 100
 
 # define the weighting factor
-weight = 0.998
+weight = 0.995
 
 # create a new column with the weighted sum of ratings and total_movies
 genre_ratings['weighted_sum'] = genre_ratings['avg_rating']*weight + genre_ratings['Total']*(1-weight)

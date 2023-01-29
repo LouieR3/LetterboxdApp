@@ -25,111 +25,79 @@ df = pd.read_csv(fullCSV)
 
 pd.options.mode.chained_assignment = None
 
-# PERCENTAGE OF EACH RATING DISTRIBUTION
-# DataFrame for movies with unique rating
-lenDF = df.MyRating.unique()
-sortList = sorted(lenDF, reverse=True)
-dList = []
-pnt = 1
-for i in sortList:
-    if pd.notna(i):
-        num = df["MyRating"].value_counts(normalize=True)[i]
-        numFloat = "{:.4f}".format(num)
-        pct = float(numFloat)
-        pnt -= pct
-        numFloat2 = "{:.4f}".format(pnt)
-        pnt = float(numFloat2)
-        if pnt <= 0:
-            pnt = 0.004
-        fin = 0.5 + pnt
-        if i == 4:
-            fin -= 0.1
-        # fin = pnt
-        forOne = fin * i
-        dList.append([i, fin, forOne])
-
 filmAverage = df["MyRating"].mean()
 # DataFrame for movies within our length with a rating
-lenDF = df[df["Actors"].notna()]
-print(len(lenDF))
-lenDF = lenDF[lenDF["Genre"].str.contains("Documentary") == False]
-print(len(lenDF))
-finList = []
-# For each index in our final DataFrame
-for i in range(len(lenDF)):
-    # actor is a list of every actor in the current film
-    actors = lenDF["Actors"].iloc[i].split(",")
+df = df[df["Actors"].notna()]
+print(len(df))
+df = df[df["Genre"].str.contains("Documentary") == False]
+df['MyRating'] = (df["MyRating"]*2)
+print(len(df))
+actorsList = []
+# For each movie in DataFrame
+for i in range(len(df)):
+    # actors is a list of every actor in the current film
+    actors = df["Actors"].iloc[i].split(",")
     # for each actor in this film
-    for a in actors:
-        inList = False
+    for actor in actors:
+        check_if_in_list = False
         # if the list isn't empty
-        if len(finList) > 0:
+        if len(actorsList) > 0:
             # for each list in the list
-            for i in range(len(finList)):
+            for i in range(len(actorsList)):
                 # check if actor is in that list already and if true set the checker to true
-                y = a in finList[i]
-                if y == True:
-                    inList = True
-        if inList != True and (" " in a):
-            tot = 0
+                isAlreadyInList = actor in actorsList[i]
+                if isAlreadyInList == True:
+                    check_if_in_list = True
+        # If actor hasn't been checked yet and actor has a first and last name
+        if check_if_in_list != True and (" " in actor):
+            totalMoviesSeen = 0
             avg = 0
-            mid = a + ","
-            sub_df = lenDF[lenDF["Actors"].str.contains(mid, na=False)]
-            if len(sub_df) > 2:
-                totalCount = 0
-                for i in range(len(sub_df)):
-                    subActor = sub_df["Actors"].iloc[i].split(",")
+            # including the comma helps us not find actors whos names are short enough that they could be contained in another actors name
+            mid = actor + ","
+            actor_df = df[df["Actors"].str.contains(mid, na=False)]
+            if len(actor_df) > 2:
+                billingTotal = 0
+                for i in range(len(actor_df)):
+                    subActor = actor_df["Actors"].iloc[i].split(",")
                     count = 1
-                    for actor in subActor:
-                        if a == actor:
-                            totalCount += count
+                    for actor2 in subActor:
+                        if actor == actor2:
+                            billingTotal += count
                             break
                         count += 1
                 try:
-                    # finMult = (len(sub_df) / totalCount)*2
-                    finMult = len(sub_df) / totalCount
+                    # billing_score = (len(actor_df) / billingTotal)*2
+                    billing_score = len(actor_df) / billingTotal
                 except:
-                    finMult = 0
-                if finMult < 0.1:
+                    billing_score = 0
+                if billing_score < 0.1:
                     break
-                diff = sub_df["Difference"].mean()
-                diff = "{:.2f}".format(diff)
-                cnt = 0
-                finWeight = 0
-                tot = 0
-                for rate in dList:
-                    rateLen = len(sub_df[(sub_df["MyRating"] == rate[0])])
-                    finWeight = (rateLen * rate[0]) * rate[1]
-                    cnt += finWeight
-                    tot += rateLen
-                if tot > 0:
-                    fin = cnt / tot
-                    fin += float(diff) / 2
-                    fin = max(fin, 0.5)
-                    fin = fin * (1 + (tot / 100))
-                    # finFloat += finMult
-                    fin *= 1 + finMult
-                    finFloat = fin / 1.75
-                    finFloatStr = "{:.2f}".format(finFloat)
+                difference = actor_df["Difference"].mean()
+                difference = "{:.2f}".format(difference)
+                if len(actor_df) > 0:
 
-                    avg1 = sub_df["MyRating"].mean()
-                    avg2 = "{:.2f}".format(avg1)
-                    avg = avg1
-                    avg += float(diff)
-                    avg = avg * (1 + (tot / 50))
+                    LB_avgStr = actor_df["MyRating"].mean()
+                    LB_avg = "{:.2f}".format(LB_avgStr)
+                    avg = LB_avgStr
+                    avg += float(difference)
+                    avg = avg * (1 + (len(actor_df) / 50))
                     # HIGHEST NUMBER IN LIST * 10 / 2
-                    avg *= 1 + finMult
-                    finAv1 = avg / 1.75
-                    finAvg = "{:.2f}".format(finAv1)
-
-                    if finAv1 > 2.8:
-                        finList.append(
-                            [a, finFloatStr, avg2, finAvg, avg, tot, diff, finMult]
+                    avg *= 1 + billing_score
+                    WeightedAvgFlt = avg / 1.75
+                    WeightedAvg = "{:.2f}".format(WeightedAvgFlt)
+                    actorsList.append(
+                            [actor, LB_avg, WeightedAvg, avg, len(actor_df), difference, billing_score]
                         )
+                    # if WeightedAvgFlt > 2.8:
+                    #     actorsList.append(
+                    #         [actor, LB_avg, WeightedAvg, avg, len(actor_df), difference, billing_score]
+                    #     )
                     # if finFloat > filmAverage:
-                    #     finList.append(
-                    #         [a, finFloatStr, avg2, finAvg, tot, diff, finMult])
-sortList = sorted(finList, key=itemgetter(1), reverse=True)
+                    #     actorsList.append(
+                    #         [actor, finFloatStr, LB_avg, WeightedAvg, totalMoviesSeen, difference, billing_score])
+
+sortList = sorted(actorsList, key=itemgetter(3), reverse=True)
+sortList = sortList[:50]
 df = pd.DataFrame(sortList)
 df["index"] = range(1, len(df) + 1)
 sortList = df.values.tolist()
@@ -139,7 +107,6 @@ print(
         sortList,
         headers=[
             "Actor",
-            "Weighted",
             "Average",
             "Weigthed 2",
             "Without Divide",
