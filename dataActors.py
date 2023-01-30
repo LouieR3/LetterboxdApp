@@ -54,8 +54,11 @@ for i in range(len(df)):
             avg = 0
             # including the comma helps us not find actors whos names are short enough that they could be contained in another actors name
             mid = actor + ","
+            # get all movies that the current actor is in
             actor_df = df[df["Actors"].str.contains(mid, na=False)]
-            if len(actor_df) > 2:
+            # only calculate a score for actors in more than one movie
+            if len(actor_df) > 1:
+                # calculate billing score as average billing across movies the actor is in
                 billingTotal = 0
                 for i in range(len(actor_df)):
                     subActor = actor_df["Actors"].iloc[i].split(",")
@@ -70,19 +73,23 @@ for i in range(len(df)):
                     billing_score = len(actor_df) / billingTotal
                 except:
                     billing_score = 0
+                # If the actor's billing score is below 0.1, denoting them as mainly a smaller actor, exclude them
                 if billing_score < 0.1:
                     break
+                
+                # Get the average difference between all movies the actor is in, to see how the user favors this actor compared to the site as a whole
                 difference = actor_df["Difference"].mean()
                 difference = "{:.2f}".format(difference)
                 if len(actor_df) > 0:
-
                     LB_avgStr = actor_df["MyRating"].mean()
+
                     LB_avg = "{:.2f}".format(LB_avgStr)
                     avg = LB_avgStr
-                    avg += float(difference)
-                    avg = avg * (1 + (len(actor_df) / 50))
+                    # avg += float(difference)
+                    # avg *= (1 + (len(actor_df) / (df.shape[0]*.2))) * (1 + billing_score)
+                    avg = (avg + float(difference))* (1 + (len(actor_df) / (df.shape[0]*.2)))  * (1 + billing_score)
                     # HIGHEST NUMBER IN LIST * 10 / 2
-                    avg *= 1 + billing_score
+                    # avg = 1 + billing_score
                     WeightedAvgFlt = avg / 1.75
                     WeightedAvg = "{:.2f}".format(WeightedAvgFlt)
                     actorsList.append(
@@ -97,7 +104,7 @@ for i in range(len(df)):
                     #         [actor, finFloatStr, LB_avg, WeightedAvg, totalMoviesSeen, difference, billing_score])
 
 sortList = sorted(actorsList, key=itemgetter(3), reverse=True)
-sortList = sortList[:50]
+sortList = sortList[:100]
 df = pd.DataFrame(sortList)
 df["index"] = range(1, len(df) + 1)
 sortList = df.values.tolist()
