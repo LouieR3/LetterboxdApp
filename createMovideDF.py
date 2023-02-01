@@ -12,10 +12,10 @@ file = user()
 # df = pd.read_csv("AllFilmszacierka.csv")
 # df = pd.read_csv("AllFilmsgr8escape10.csv")
 # df = pd.read_csv("AllFilmsgoldfishbrain.csv")
-# df = pd.read_csv("AllFilmszacierka.csv")
+df = pd.read_csv("AllFilmszacierka.csv")
 
-df = pd.read_csv("Test.csv")
-ratings_df = pd.read_csv("TestRatings.csv")
+# df = pd.read_csv("Test.csv")
+# ratings_df = pd.read_csv("TestRatings.csv")
 # df = df[df["MyRating"].notna()]
 
 movie_df = df
@@ -35,6 +35,8 @@ movie_df = df
 # new_movies_df = pd.read_csv("AllFilmsbluegrace11.csv")
 new_movies_df = pd.read_csv("AllFilmszacierka.csv")
 
+
+
 new_movies_df = new_movies_df[new_movies_df["MyRating"].notna()]
 # new_movies_df.insert(0, 'movie_id', range(max(movie_df['movie_id'].unique()) + 1, max(movie_df['movie_id'].unique()) + 1 + len(new_movies_df)))
 new_movies_df.insert(0, 'user_id', max(ratings_df['user_id'].unique()) + 1)
@@ -44,6 +46,19 @@ new_movies_df['Decade'] = (new_movies_df["ReleaseYear"]//10)*10
 new_movies_df['MovieLength'] = (new_movies_df["MovieLength"]//10)*10
 new_movies_df= new_movies_df.rename(columns={"MyRating": "rating", "LBRating": "lb_rating", "Difference": "difference", "MovieLength": "length", "Decade": "decade", "Languages": "language", "Movie": "title", "Director": "director", "Genre": "genres", "NumberOfRatings": "popularity"})
 
+
+# create dataframes for User 1 and User 2
+movies_user1 = movie_df
+movies_user2 = new_movies_df
+
+# combine the two dataframes into one
+movies_df = pd.concat([movies_user1, movies_user2])
+
+# drop duplicates in the combined dataframe
+movies_df.drop_duplicates(subset='Movie', keep='first', inplace=True)
+
+# create a ratings_df that has the average rating of4 each movie across the two users
+ratings_df = movies_df.groupby('Movie').mean().reset_index()
 # split the new dataframe into movies and ratings dataframes
 # movies_df = movie_df[["movie_id", "title", "length", "language", "genres", "director", "decade", "popularity", "Actors"]]
 # ratings_df = movie_df[["user_id", "movie_id", "rating", "lb_rating", "difference"]]
