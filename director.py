@@ -37,6 +37,6 @@ def app():
     director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
     director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
     director_ratings = director_ratings[:50]
-    df3 = director_ratings.style.background_gradient(subset=['Ranking'])
+    df3 = director_ratings.style.background_gradient(subset=['Weighted Average'])
     # df2.index += 1 
     st.dataframe(df3, height=700, width=400)
