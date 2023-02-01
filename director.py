@@ -11,66 +11,31 @@ def app():
     file = user()
     df = pd.read_csv(file)
 
-    # CHECKING FAVORITE GENRE AND RATING BY GENRE\
-    filmAverage = df["MyRating"].mean()
-    for i in range(len(df)):
-        director = df["Director"].iloc[i]
-        df.at[i, "Director"] = director
-        rate = df["MyRating"].iloc[i]
-    # DataFrame for movies with unique genre
-    finalDF = df.Director.unique()
-    # print("=========")
-    finList = []
-    dList = ratings()
-    for mem in finalDF:
-        # print(mem)
-        cnt = 0
-        finWeight = 0
-        tot = 0
-        # DataFrame for movies of just the current iteration genre
-        xdf = df.loc[df["Director"] == mem]
-        diff = xdf["Difference"].mean()
-        diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(xdf[(xdf["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
-        if tot > 1:
-            fin = cnt / tot
-            fin += (float(diff)/2)
-            fin = fin * (1 + (tot/100))
-            # ^ THIS SHOULD BE TOTAL WATCHED / TOTAL FILMS THEY HAVE THAT ARE DECENTLY WATCHED AND ACCOUNT FOR BAD RATINGS
-            # higher total should mean difference is more legit and factored in more
-            finFloat = "{:.2f}".format(fin)
+    # group the dataframe by user and director
+    user_director_group = df.groupby(["Director"])
 
-            avg1 = xdf["MyRating"].mean()
-            avg2 = "{:.2f}".format(avg1)
-            avg = avg1
-            avg += (float(diff)/2)
-            avg = avg * (1 + (tot/50))
-            # HIGHEST NUMBER IN LIST * 10 / 2
-            finAvg = "{:.2f}".format(avg)
+    # calculate the sum of ratings for each director seen by each user
+    director_sum_ratings = user_director_group["MyRating"].sum()
 
-            if avg > filmAverage:
-                finList.append(
-                    [mem, finFloat, avg2, finAvg, tot, diff])
+    # calculate the total number of movies seen by each user for each director
+    director_total_movies = user_director_group["Movie"].count()
 
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    df = pd.DataFrame(sortList)
-    df['Ranking'] = range(1, len(df) + 1)
-    sortList = df.values.tolist()
-    sortList = sorted(sortList, key=itemgetter(3), reverse=True)
-    df2 = pd.DataFrame(sortList, columns=[
-        "Director",
-        "Weighted",
-        "Average",
-        "Final Weighted",
-        "# of Movies Watched",
-        "Difference",
-        'Ranking'
-    ])
-    df2.index += 1
-    df3 = df2.style.background_gradient(subset=['Ranking'])
+    # calculate the average rating for each director seen by each user
+    director_avg_ratings = director_sum_ratings / director_total_movies
+
+    # create a dataframe with the average rating for each director seen by each user
+    director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "total_movies": director_total_movies})
+
+    # calculate the percentage of movies seen for each director by each user
+    director_ratings["percentage"] = (director_ratings["total_movies"] / len(df)) * 100
+
+    # create a new column with the weighted sum of ratings and total_movies
+    director_ratings['weighted_sum'] = director_ratings['avg_rating']*0.9 + ((director_ratings['total_movies'] + director_ratings['Difference'])*0.2)
+
+    # print the favorite director for user 1
+    director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
+    director_ratings = director_ratings[:50]
+    df3 = director_ratings.style.background_gradient(subset=['Ranking'])
     # df2.index += 1 
-    st.dataframe(df3, height=700, width=2000)
+    st.dataframe(df3, height=700, width=400)
