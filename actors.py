@@ -47,12 +47,6 @@ def app():
             actors[actor]["Average Rating"].append(rating)
             actors[actor]["Difference"].append(difference)
 
-    # Define the weight for rating average
-    rating_weight = 1.1
-
-    # Define the weight for billing average
-    billing_weight = 0.1
-
     # Step 2: For each actor, calculate the average of their billing positions
     for actor in actors:
         # actors[actor]["Billing Score"] = sum(actors[actor]["Billing Positions"]) / len(actors[actor]["Billing Positions"])
@@ -77,6 +71,7 @@ def app():
     actor_df = actor_df.sort_values("Weighted Average", ascending=False)
     actor_df["Ranking"] = range(1, len(actor_df) + 1)
     actor_df = actor_df.drop(["Billing Positions"], axis=1)
+    actor_df = actor_df[:50]
     df2 = actor_df.style.background_gradient(subset=['Ranking', 'Billing Score'])
     # df2.index += 1 
     st.dataframe(df2, height=900, width=500)

@@ -66,10 +66,11 @@ else:
 actor_df = actor_df.sort_values("Weighted Average", ascending=False)
 actor_df["Ranking"] = range(1, len(actor_df) + 1)
 actor_df = actor_df.drop(["Billing Positions"], axis=1)
+actor_df = actor_df[:50]
 # actor_df.insert(0, "Ranking", range(1, len(actor_df) + 1))
 # actor_df.set_index("Ranking")
 print("==================================")
-print(actor_df.head(50))
+print(actor_df)
 print("==================================")
 
 print("--- %s seconds ---" % (time.time() - start_time))
