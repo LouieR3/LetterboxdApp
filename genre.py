@@ -63,6 +63,6 @@ def app():
     # print the favorite genre for user 1
     genre_ratings= genre_ratings.sort_values(by=['Weighted Average'], ascending=False)
     genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
-    df3 = genre_ratings.style.background_gradient(subset=['Ranking'])
+    df3 = genre_ratings.style.background_gradient(subset=['Weighted Average'])
     # df2.index += 1 
     st.dataframe(df3, height=700, width=2000)
