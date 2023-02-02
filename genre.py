@@ -47,8 +47,8 @@ def app():
         # checkList.append([genre, avg_rating, total_movies])
 
     # create a dataframe with the average rating for each genre seen by each user
-    genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'avg_rating', 'Total', 'Difference']).set_index('Genre')
-    # genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'avg_rating', 'Total']).set_index('Genre')
+    genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'Average Rating', 'Total', 'Difference']).set_index('Genre')
+    # genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'Average Rating', 'Total']).set_index('Genre')
 
     # calculate the percentage of movies seen for each genre by each user
     genre_ratings["percentage"] = (genre_ratings["Total"] / len(df)) * 100
@@ -57,11 +57,12 @@ def app():
     weight = 0.98
 
     # create a new column with the weighted sum of ratings and total_movies
-    # genre_ratings['weighted_sum'] = (genre_ratings['avg_rating']*weight) + (genre_ratings['Total']*(1-weight)) + genre_ratings['Difference']
-    genre_ratings['weighted_sum'] = (genre_ratings['avg_rating']*weight) + (genre_ratings['Total']*(1-weight)) + genre_ratings['Difference']
+    # genre_ratings['Weighted Average'] = (genre_ratings['Average Rating']*weight) + (genre_ratings['Total']*(1-weight)) + genre_ratings['Difference']
+    genre_ratings['Weighted Average'] = (genre_ratings['Average Rating']*weight) + (genre_ratings['Total']*(1-weight)) + genre_ratings['Difference']
 
     # print the favorite genre for user 1
-    genre_ratings= genre_ratings.sort_values(by=['weighted_sum'], ascending=False)
+    genre_ratings= genre_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
     df3 = genre_ratings.style.background_gradient(subset=['Ranking'])
     # df2.index += 1 
     st.dataframe(df3, height=700, width=2000)
