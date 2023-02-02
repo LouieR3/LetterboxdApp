@@ -11,55 +11,45 @@ def app():
     file = user()
     df = pd.read_csv(file)
 
-    start = 60
-    end = 70
-    limit = 500
-    finList = []
-    dList = ratings()
-    while start <= limit:
-        cnt = 0
-        finWeight = 0
-        tot = 0
-        lim = str(start) + "-" + str(end) + " minutes"
-        data = df[(df['MovieLength'] >= start) & (df['MovieLength'] < end)]
-        diff = data["Difference"].mean()
-        diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(data[(data["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
-        if tot > 0:
-            fin = cnt / tot
-            fin = fin * (1 + (tot/1000))
-            fin += (float(diff)/2)
-            fin = max(fin, 0.5)
-            finFloat = "{:.2f}".format(fin)
-            avg1 = data["MyRating"].mean()
-            avg2 = "{:.2f}".format(avg1)
-            avg = avg1
-            avg += (float(diff)/2)
-            avg = avg * (1 + (tot/1000))
-            # HIGHEST NUMBER IN LIST * 10 / 2
-            finAvg = "{:.2f}".format(avg)
-            finList.append([lim, finFloat, avg2, finAvg, tot, diff])
-        start += 10
-        end += 10
-    # sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    df = pd.DataFrame(finList)
-    df['index'] = range(1, len(df) + 1)
-    sortList = df.values.tolist()
-    # sortList = sorted(sortList, key=itemgetter(3), reverse=True)
-    df2 = pd.DataFrame(sortList, columns=[
-        "Length",
-        "Weighted",
-        "Average",
-        "Final Weighted",
-        "# of Movies Watched",
-        "Difference",
-        'Ranking'
-    ])
+    df['MyRating'] = (df["MyRating"]*2)
+    df['length'] = (df["MovieLength"]//10)*10
+    # group the dataframe by user and length
+    user_length_group = df.groupby(["length"])
 
-    df2 = df2.style.background_gradient(subset=['Final Weighted'])
+    # calculate the total number of movies seen by each user
+    user_total_movies = len(df)
+
+    # calculate the sum of ratings for each length seen by each user
+    length_sum_ratings = user_length_group["MyRating"].sum()
+
+    # calculate the total number of movies seen by each user for each length
+    length_total_movies = user_length_group["Movie"].count()
+
+    # calculate the average rating for each length seen by each user
+    length_avg_ratings = length_sum_ratings / length_total_movies
+
+    # create a dataframe with the average rating for each length seen by each user
+    length_ratings = pd.DataFrame({"Average Rating": length_avg_ratings, "Total Movies": length_total_movies})
+
+    # calculate the percentage of movies seen for each length by each user
+    length_ratings["Percentage"] = (length_ratings["Total Movies"] / len(df)) * 100
+
+
+
+    # find the favorite length for each user
+    # favorite_length = length_ratings.loc[length_ratings.groupby("user_id")["percentage"].idxmax()]
+
+    # define the weighting factor
+    weight = 0.95
+
+    # create a new column with the weighted sum of ratings and total_movies
+    length_ratings['Weighted Average'] = length_ratings['Average Rating']*weight + length_ratings['Total Movies']*(1-weight)
+
+    # find the favorite length for each user
+    # favorite_length = length_ratings.loc[length_ratings.groupby("user_id")["Weighted Average"].idxmax()]
+
+    # print the favorite length for user 1
+    length_ratings= length_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    df2 = length_ratings.style.background_gradient(subset=['Final Weighted'])
     # df2.index += 1 
     st.dataframe(df2, height=700, width=2000)
