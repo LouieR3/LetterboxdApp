@@ -11,65 +11,38 @@ def app():
     file = user()
     df = pd.read_csv(file)
 
-    pd.options.mode.chained_assignment = None
+    df['decade'] = (df["ReleaseYear"]//10)*10
+    df['MyRating'] = (df["MyRating"]*2)
+    # group the dataframe by user and decade
+    user_decade_group = df.groupby(["decade"])
 
-    dList = ratings()
+    # calculate the total number of movies seen by each user
+    user_total_movies = len(df)
 
-    finalDF = df.ReleaseYear.unique()
-    decadeList = []
-    for mem in finalDF:
-        y = str(mem)
-        x = y[:3]
-        if x not in decadeList:
-            decadeList.append(x)
-    finList = []
+    # calculate the sum of ratings for each decade seen by each user
+    decade_sum_ratings = user_decade_group["MyRating"].sum()
 
-    for mem in decadeList:
-        df['ReleaseYear'] = df['ReleaseYear'].astype("string")
-        cnt = 0
-        finWeight = 0
-        tot = 0
-        # DataFrame for movies of just the current iteration genre
-        xdf = df.loc[df["ReleaseYear"].str.startswith(mem, na=False)]
-        diff = xdf["Difference"].mean()
-        diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(xdf[(xdf["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
-        if tot > 0:
-            fin = cnt / tot
-            fin = fin * (1 + (tot/1000))
-            fin += (float(diff)/2)
-            finFloat = "{:.2f}".format(fin)
-            s = mem + "0's"
+    # calculate the total number of movies seen by each user for each decade
+    decade_total_movies = user_decade_group["Movie"].count()
 
-            avg1 = xdf["MyRating"].mean()
-            avg2 = "{:.2f}".format(avg1)
-            avg = avg1
-            avg += (float(diff)/2)
-            avg = avg * (1 + (tot/1700))
-            # HIGHEST NUMBER IN LIST * 10 / 2
-            finAvg = "{:.2f}".format(avg)
+    # calculate the average rating for each decade seen by each user
+    decade_avg_ratings = decade_sum_ratings / decade_total_movies
 
-            finList.append([s, finFloat, avg2, finAvg, tot, diff])
+    # create a dataframe with the average rating for each decade seen by each user
+    decade_ratings = pd.DataFrame({"Average Rating": decade_avg_ratings, "Total Movies": decade_total_movies})
 
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    df = pd.DataFrame(sortList)
-    df['index'] = range(1, len(df) + 1)
-    sortList = df.values.tolist()
-    sortList = sorted(sortList, key=itemgetter(3), reverse=True)
-    df2 = pd.DataFrame(sortList, columns=[
-        "Decade",
-        "Weighted",
-        "Average",
-        "Final Weighted",
-        "# of Movies Watched",
-        "Difference",
-        "Ranking",
-    ])
-    df2.index += 1 
-    df3 = df2.style.background_gradient(subset=['Ranking'])
+    # calculate the percentage of movies seen for each decade by each user
+    decade_ratings["percentage"] = (decade_ratings["Total Movies"] / len(df)) * 100
+
+    # define the weighting factor
+    weight = 0.99
+
+    # create a new column with the weighted sum of ratings and total_movies
+    decade_ratings['Weighted Average'] = decade_ratings['Average Rating']*weight + decade_ratings['Total Movies']*(1-weight)
+
+    # print the favorite decade for user 1
+    decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    decade_ratings["Ranking"] = range(1, len(decade_ratings) + 1)
+    df3 = decade_ratings.style.background_gradient(subset=['Weighted Average'])
     # df2.index += 1 
     st.dataframe(df3, height=425, width=2000)

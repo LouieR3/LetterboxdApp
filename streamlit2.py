@@ -38,12 +38,12 @@ PAGES = {
     "Your Favorite Directors": director,
     "Your Favorite Movies By Length": length,
     "Your Favorite Genres": genre,
-    "Your Favorite Country": country,
     "Your Favorite Decades": decade,
-    "Your Favorite Year": year,
     "Your Favorite Languages": language,
-    "Your Recommendation": recommender,
-    "Your Recommendation by Top 250": recommender2
+    "Your Favorite Country": country,
+    "Your Favorite Year": year,
+    "Your Recommendations": recommender,
+    "Your Recommendations by Top 250": recommender2
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
