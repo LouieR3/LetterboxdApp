@@ -16,7 +16,6 @@ import numpy as np
 from ratings import ratings
 import director
 import actors
-# import actors2
 import intro
 import length
 import genre
@@ -27,14 +26,12 @@ import language
 import unidecode
 import recommender
 import recommender2
-from espn_api.football import League
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
 PAGES = {
     "Intro": intro,
     "Your Favorite Actors": actors,
-    # "Actors2": actors2,
     "Your Favorite Directors": director,
     "Your Favorite Movies By Length": length,
     "Your Favorite Genres": genre,
