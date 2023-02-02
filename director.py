@@ -19,7 +19,7 @@ def app():
 
     # calculate the total number of movies seen by each user for each director
     director_total_movies = user_director_group["Movie"].count()
-    director_difference = user_director_group["Difference"].count()
+    director_difference = user_director_group["Difference"].mean()
 
     # calculate the average rating for each director seen by each user
     director_avg_ratings = director_sum_ratings / director_total_movies
