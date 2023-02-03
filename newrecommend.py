@@ -1,3 +1,27 @@
+import pandas as pd
+from operator import itemgetter
+import streamlit as st
+from ratings import ratings
+from user import user
+from callLength import lenMovies
+from callGenre import genreMovies
+from callLanguage import langMovies
+from callDirector import directorMovies
+from callDecade import decadeMovies
+from callActors import actorMovies
+import time
+
+start_time = time.time()
+
+# load the dataframe
+file = user()
+
+df250 = pd.read_csv("Top1001Films.csv")
+df = pd.read_csv(file)
+cond = df250['Movie'].isin(df['Movie'])
+df250.drop(df250[cond].index, inplace = True)
+df250 = df250.reset_index(drop=True)
+
 # define weighting factors for each attribute
 weights = {"genre": 0.4, "decade": 0.2, "length": 0.1, "language": 0.1, "director": 0.1, "rating":0.1}
 
