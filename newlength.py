@@ -5,7 +5,7 @@ import time
 start_time = time.time()
 
 # load the dataframe
-file = user()
+file = user("cloakenswagger")
 df = pd.read_csv(file)
 # df = df[df["ReleaseYear"].notna()]
 df['MyRating'] = (df["MyRating"]*2)
@@ -46,7 +46,10 @@ genre_ratings['weighted_sum'] = genre_ratings['avg_rating']*weight + genre_ratin
 # favorite_genre = genre_ratings.loc[genre_ratings.groupby("user_id")["weighted_sum"].idxmax()]
 
 # print the favorite genre for user 1
-genre_ratings= genre_ratings.sort_values(by=['weighted_sum'], ascending=False)
+# genre_ratings= genre_ratings.sort_values(by=['weighted_sum'], ascending=False)
+genre_ratings['length'] = genre_ratings.index
+genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
+genre_ratings = genre_ratings.set_index("Ranking")
 print(genre_ratings)
 
 print("--- %s seconds ---" % (time.time() - start_time))

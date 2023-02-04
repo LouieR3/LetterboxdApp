@@ -49,7 +49,10 @@ def app():
     language_ratings['Weighted Average'] = language_ratings['Average Rating']*weight + language_ratings['Total Movies']*(1-weight)
 
     # print the favorite language for user 1
+    language_ratings["Ranking"] = range(1, len(language_ratings) + 1)
+    language_ratings.insert(0, 'language', language_ratings.index)
     language_ratings= language_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    language_ratings = language_ratings.set_index("Ranking")
     df3 = language_ratings.style.background_gradient(subset=['Weighted Average'])
     # df2.index += 1 
     st.dataframe(df3, height=700, width=2000)

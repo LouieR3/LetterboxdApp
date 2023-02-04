@@ -5,7 +5,7 @@ import time
 start_time = time.time()
 
 # load the dataframe
-file = user()
+file = user("cloakenswagger")
 df = pd.read_csv(file)
 df = df[df["Genre"].str.contains("Documentary") == False]
 df['MyRating'] = (df["MyRating"]*2)

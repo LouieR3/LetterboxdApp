@@ -5,69 +5,75 @@ import time
 start_time = time.time()
 
 # load the dataframe
-file = user()
+file = user("cloakenswagger")
 df = pd.read_csv(file)
 df = df[df["Actors"].notna()]
 print(len(df))
 df = df[df["Genre"].str.contains("Documentary") == False]
+print(len(df))
+df = df[df["Actors"].str.contains(",") == True]
+print(len(df))
 df['MyRating'] = (df["MyRating"]*2)
-# create a sample dataframe
-# df = pd.DataFrame({"movie_id": [1, 2, 3], "movie_title": ["Movie 1", "Movie 2", "Movie 3"], "genres": ["Action, Adventure, Sci-Fi", "Comedy, Romance", "Drama, History"]})
 
-# split the genres column into multiple rows
-split_df = df["Actors"].str.split(",").apply(pd.Series)
-# split_df = split_df.drop([4, 5], axis=1)
-# print(split_df)
-
-# join the split dataframe back to the original dataframe
-df = df.join(split_df)
-print(split_df.columns)
-
-# ReviewDate,MovieLength,LengthInHour,Languages,Director,ReleaseYear
-df = df.drop(['LBRating', 'Difference', 'ReviewDate', 'MovieLength', 'LengthInHour', 'Languages', 'Director', 'ReleaseYear', 'Country', 'NumberOfReviews', 'NumberOfRatings', 'Actors'], axis=1)
-
-# rename the columns
-df.columns = ["Movie", "MyRating", "Actors", "genre_1", "genre_2", "genre_3", "genre_4"]
-
-# # drop the original genres column
-# df = df.drop(["Genre"], axis=1)
 key = 15
 actorList = []
-for i in range(len(key)):
-    str = "actor_" + str(i+1)
+for i in range(key):
+    num = i+1
+    actStr = "actor_" + str(num)
     actorList.append(str)
-actors_list = df[actorList].stack().unique()
 
+# Step 1: Create a dictionary with actors as keys and a list of their billing positions in each movie as values.
+actors = {}
+for i in range(len(df)):
+    subActor = df["Actors"].iloc[i].split(",", 10)
+    rating = df["MyRating"].iloc[i]
+    difference = df["Difference"].iloc[i]
+    for j, actor in enumerate(subActor):
+        if actor not in actors:
+            actors[actor] = {"Billing Positions": [], "Number of Movies Seen": 0, "Average Rating": [], "Difference": []}
+        actors[actor]["Billing Positions"].append(j+1)
+        actors[actor]["Number of Movies Seen"] += 1
+        actors[actor]["Average Rating"].append(rating)
+        actors[actor]["Difference"].append(difference)
 
-# MAKE LIST WITH THOSE NUMS PLUS THE WEIGHTED AND THEN MAKE DF OF THAT LIST AFTER
-checkList = []
-for actor in actors_list:
-    # create a boolean mask to select the rows where the genre is contained in the genres column
-    mask = df["Genre"].str.contains(actor)
+# Define the weight for rating average
+rating_weight = 1.1
 
-    # calculate the average rating for the selected rows
-    avg_rating = df.loc[mask, "MyRating"].mean()
-    total_movies = df.loc[mask, "MyRating"].count()
+# Define the weight for billing average
+billing_weight = 0.1
 
-    # print the average rating
-    checkList.append([actor, avg_rating, total_movies])
+# Step 2: For each actor, calculate the average of their billing positions
+for actor in actors:
+    # actors[actor]["Billing Score"] = sum(actors[actor]["Billing Positions"]) / len(actors[actor]["Billing Positions"])
+    actors[actor]["Billing Score"] = len(actors[actor]["Billing Positions"]) / sum(actors[actor]["Billing Positions"])
+    actors[actor]["Average Rating"] = sum(actors[actor]["Average Rating"]) / len(actors[actor]["Average Rating"])
+    actors[actor]["Difference"] = sum(actors[actor]["Difference"]) / len(actors[actor]["Difference"])
+    # actors[actor]["weight"] = (actors[actor]["Average Rating"] + 1/(actors[actor]["Billing Score"]*2)) / 2 * (actors[actor]["Number of Movies Seen"] / df.shape[0]*.2)
+    # actors[actor]["weight"] = (actors[actor]["Average Rating"] + actors[actor]["Difference"])* (1 + (actors[actor]["Number of Movies Seen"] / (df.shape[0]*.2)))  * (1 + actors[actor]["Billing Score"])
+    # actors[actor]["weight"] = ((actors[actor]["Average Rating"]* (1 + actors[actor]["Billing Score"])) + actors[actor]["Difference"])* (2 * (actors[actor]["Number of Movies Seen"] / (df.shape[0]*.2)))  
 
-# create a dataframe with the average rating for each genre seen by each user
-genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'avg_rating', 'Total']).set_index('Genre')
+    # Calculate the weighted average of rating and billing for each actor
+    actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"]*0.6 + (2*actors[actor]['Billing Score'])*1.2 + actors[actor]['Number of Movies Seen']*0.1) + actors[actor]["Difference"]) * 1.1
+    
 
-# calculate the percentage of movies seen for each genre by each user
-genre_ratings["percentage"] = (genre_ratings["Total"] / len(df)) * 100
+# Step 3: Create a new dataframe with actors as index and their average billing position and number of movies  as values
+# print(actors)
+actor_df = pd.DataFrame.from_dict(actors, orient='index')
+# actor_df = pd.DataFrame.from_dict(actors, columns = ['Actor','Weighted Average'])
+actor_df.index.name = 'Actor'
+if df.shape[0] > 600:
+    actor_df = actor_df[actor_df["Number of Movies Seen"] > 2]
+else:
+    actor_df = actor_df[actor_df["Number of Movies Seen"] > 1]
+actor_df = actor_df.sort_values("Weighted Average", ascending=False)
+# actor_df["Ranking"] = range(1, len(actor_df) + 1)
+actor_df = actor_df.drop(["Billing Positions", "Number of Movies Seen", "Average Rating", "Difference", "Billing Score"], axis=1)
+actor_df = actor_df[:50]
+actor_df.insert(0, "Ranking", range(1, len(actor_df) + 1))
+actor_df.insert(0, 'Actor', actor_df.index)
+actor_df = actor_df.set_index("Ranking")
+print("==================================")
+print(actor_df)
+print("==================================")
 
-# define the weighting factor
-weight = 0.995
-
-# create a new column with the weighted sum of ratings and total_movies
-genre_ratings['weighted_sum'] = genre_ratings['avg_rating']*weight + genre_ratings['Total']*(1-weight)
-
-# find the favorite genre for each user
-# favorite_genre = genre_ratings.loc[genre_ratings.groupby("user_id")["weighted_sum"].idxmax()]
-
-# print the favorite genre for user 1
-genre_ratings= genre_ratings.sort_values(by=['weighted_sum'], ascending=False)
-# print the dataframe
-print(genre_ratings)
+print("--- %s seconds ---" % (time.time() - start_time))

@@ -79,6 +79,9 @@ def app():
     actor_df["Ranking"] = range(1, len(actor_df) + 1)
     actor_df = actor_df.drop(["Billing Positions"], axis=1)
     actor_df = actor_df[:75]
+    # actor_df['Actor'] = actor_df.index
+    actor_df.insert(0, 'Actor', actor_df.index)
+    actor_df = actor_df.set_index("Ranking")
     df2 = actor_df.style.background_gradient(subset=['Weighted Average', 'Billing Score'])
     # df2.index += 1 
     st.dataframe(df2, height=900, width=400)

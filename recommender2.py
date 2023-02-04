@@ -15,24 +15,8 @@ def app():
     import json
     import re
 
-    st.header('Recommender By Top 250')
+    st.header('Recommender By Top 1001 Films')
 
-    lenList = lenMovies()
-    genreList = genreMovies()
-    genreList = pd.DataFrame(genreList)
-    genreList.columns = ["genre", "average"]
-    langList = langMovies()
-    langList = pd.DataFrame(langList)
-    langList.columns = ["language", "average"]
-    decList = decadeMovies()
-    decList = pd.DataFrame(decList)
-    decList.columns = ["decade", "average"]
-    directList = directorMovies()
-    directList = pd.DataFrame(directList)
-    directList.columns = ["director", "average"]
-    actorList = actorMovies()
-    actorList = pd.DataFrame(actorList)
-    actorList.columns = ["actor", "average"]
     option = 'cloakenswagger'
     option = st.selectbox(
         'Which user do you want to look at?',
@@ -40,6 +24,23 @@ def app():
 
     st.write('You selected:', option)
     file = user(option)
+    lenList = lenMovies(option)
+    genreList = genreMovies(option)
+    genreList = pd.DataFrame(genreList)
+    genreList.columns = ["genre", "average"]
+    langList = langMovies(option)
+    langList = pd.DataFrame(langList)
+    langList.columns = ["language", "average"]
+    decList = decadeMovies(option)
+    decList = pd.DataFrame(decList)
+    decList.columns = ["decade", "average"]
+    directList = directorMovies(option)
+    directList = pd.DataFrame(directList)
+    directList.columns = ["director", "average"]
+    actorList = actorMovies(option)
+    actorList = pd.DataFrame(actorList)
+    actorList.columns = ["actor", "average"]
+    
     # file = user()
     df = pd.read_csv(file)
 
