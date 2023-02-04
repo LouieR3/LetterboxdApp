@@ -27,7 +27,14 @@ def app():
     decList = decadeMovies()
     decList = pd.DataFrame(decList)
     decList.columns = ["decade", "average"]
-    file = user()
+    option = 'cloakenswagger'
+    option = st.selectbox(
+        'Which user do you want to look at?',
+        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+
+    st.write('You selected:', option)
+    file = user(option)
+    # file = user()
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
