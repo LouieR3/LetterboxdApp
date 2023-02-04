@@ -5,7 +5,14 @@ def app():
 
     st.header('All Your Movies')
     st.caption('TO PUT HERE.....')
-    file = user()
+    
+
+    option = st.selectbox(
+        'Which user do you want to look at?',
+        ('cloakenwwagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+
+    st.write('You selected:', option)
+    file = user(option)
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
