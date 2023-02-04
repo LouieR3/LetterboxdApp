@@ -5,12 +5,11 @@ def app():
 
     st.header('All Your Movies')
     st.caption('TO PUT HERE.....')
-    st.caption('TO PUT HERE.....')
     
 
     option = st.selectbox(
         'Which user do you want to look at?',
-        ('cloakenwwagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
 
     st.write('You selected:', option)
     file = user(option)
