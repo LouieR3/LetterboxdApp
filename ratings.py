@@ -15,7 +15,14 @@ def ratings():
     # user = "bluegrace11"
     # user = "cloakenswagger"
     # file = "AllFilms" + user + ".csv"
-    file = user()
+    option = 'cloakenswagger'
+    option = st.selectbox(
+        'Which user do you want to look at?',
+        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+
+    st.write('You selected:', option)
+    file = user(option)
+    # file = user()
     # fullCSV = os.path.join(dataPath, file)
     df = pd.read_csv(file)
 
