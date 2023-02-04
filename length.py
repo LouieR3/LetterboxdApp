@@ -57,10 +57,10 @@ def app():
 
     # print the favorite length for user 1
     # length_ratings= length_ratings.sort_values(by=['Weighted Average'], ascending=False)
-    length_ratings["Ranking"] = range(1, len(length_ratings) + 1)
-    length_ratings.insert(0, 'length', length_ratings.index)
+    # length_ratings["Ranking"] = range(1, len(length_ratings) + 1)
+    # length_ratings.insert(0, 'length', length_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index
-    length_ratings = length_ratings.set_index("Ranking")
+    # length_ratings = length_ratings.set_index("Ranking")
     df2 = length_ratings.style.background_gradient(subset=['Weighted Average'])
     # df2.index += 1 
     st.dataframe(df2, height=700, width=2000)
