@@ -37,8 +37,8 @@ PAGES = {
     "Your Favorite Genres": genre,
     "Your Favorite Decades": decade,
     "Your Favorite Languages": language,
-    "Your Favorite Country": country,
-    "Your Favorite Year": year,
+    # "Your Favorite Country": country,
+    # "Your Favorite Year": year,
     "Your Recommendations": recommender,
     "Your Recommendations by Top 250": recommender2
 }
