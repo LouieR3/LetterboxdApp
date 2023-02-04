@@ -18,12 +18,12 @@ def app():
     file = user(option)
     # file = user()
     username = file.split(".cs")[0].split("AllFilms")[1]
-    df = pd.read_csv(file)
+    # df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None
 
     # load the dataframe
-    file = user()
+    # file = user()
     df = pd.read_csv(file)
     df = df[df["Actors"].notna()]
     print(len(df))
