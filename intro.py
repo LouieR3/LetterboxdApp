@@ -6,7 +6,7 @@ def app():
     st.header('All Your Movies')
     st.caption('TO PUT HERE.....')
     
-
+    option = 'cloakenswagger'
     option = st.selectbox(
         'Which user do you want to look at?',
         ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
