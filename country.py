@@ -15,7 +15,6 @@ def app():
 
     st.write('You selected:', option)
     file = user(option)
-    # file = user()
     df = pd.read_csv(file)
 
     lenDF = df.MyRating.unique()
