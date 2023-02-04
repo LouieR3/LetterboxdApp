@@ -2,7 +2,6 @@ def app():
     import pandas as pd
     from operator import itemgetter
     import streamlit as st
-    from ratings import ratings
     from user import user
     from callLength import lenMovies
     from callGenre import genreMovies
@@ -49,7 +48,7 @@ def app():
     finalDF = df.Director.unique()
     # print("=========")
     finList = []
-    dList = ratings()
+    # dList = ratings()
     for mem in finalDF:
         # print(mem)
         cnt = 0
@@ -59,11 +58,6 @@ def app():
         xdf = df.loc[df["Director"] == mem]
         diff = xdf["Difference"].mean()
         diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(xdf[(xdf["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
         if tot > 1:
             fin = cnt / tot
             fin += (float(diff)/2)
