@@ -12,7 +12,7 @@ def app():
         ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
 
     st.write('You selected:', option)
-    file = st.cache(persist=True)(lambda: user(option))
+    file = user(option)
     df = pd.read_csv(file)
 
     pd.options.mode.chained_assignment = None

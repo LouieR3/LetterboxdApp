@@ -8,7 +8,14 @@ def app():
     st.header('Decade Ranked')
     st.caption('Here are ...')
 
-    file = user()
+    option = 'cloakenswagger'
+    option = st.selectbox(
+        'Which user do you want to look at?',
+        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+
+    st.write('You selected:', option)
+    file = user(option)
+    # file = user()
     df = pd.read_csv(file)
 
     df['decade'] = (df["ReleaseYear"]//10)*10
