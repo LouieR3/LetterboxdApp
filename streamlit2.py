@@ -40,7 +40,7 @@ PAGES = {
     # "Your Favorite Country": country,
     # "Your Favorite Year": year,
     "Your Recommendations": recommender,
-    "Your Recommendations by Top 250": recommender2
+    "Your Recommendations by Top 1001 Films": recommender2
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
