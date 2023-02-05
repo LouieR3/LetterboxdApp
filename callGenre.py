@@ -79,8 +79,5 @@ def genreMovies(option):
     genre_ratings.insert(0, 'Genre', genre_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index
     genre_ratings = genre_ratings.set_index("Ranking")
-    df3 = genre_ratings.style.background_gradient(subset=['Weighted Average'])
 
-    return df
-    # sortList = df.values.tolist()
-    # sortList = sorted(sortList, key=itemgetter(3), reverse=True)
+    return genre_ratings
