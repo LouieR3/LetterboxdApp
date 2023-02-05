@@ -1,48 +1,45 @@
-def lenMovies():
+def lenMovies(option):
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
     # import streamlit as st
     from user import user
 
-    dList = ratings()
-    file = user()
+    file = user(option)
+    # file = user()
     df = pd.read_csv(file)
 
-    start = 60
-    end = 70
-    limit = 500
-    lenList = []
-    nwList = []
-    while start <= limit:
-        cnt = 0
-        finWeight = 0
-        tot = 0
-        lim = str(start) + "-" + str(end)
-        data = df[(df['MovieLength'] >= start) & (df['MovieLength'] < end)]
-        diff = data["Difference"].mean()
-        diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(data[(data["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
-        if tot > 0:
-            fin = cnt / tot
-            fin = fin * (1 + (tot/1000))
-            fin += (float(diff)/2)
-            fin = max(fin, 0.5)
-            avg1 = data["MyRating"].mean()
-            avg = avg1
-            avg += (float(diff)/2)
-            avg = avg * (1 + (tot/1000))
-            # HIGHEST NUMBER IN LIST * 10 / 2
-            finAvg = "{:.2f}".format(avg)
-            # finList.append([lim, finFloat, avg2, finAvg, tot, diff])
-            lenList.append([lim, finAvg])
-        start += 10
-        end += 10
-    # sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    # df = pd.DataFrame(finList)
-    # print(finList)
-    return lenList
+    df['MyRating'] = (df["MyRating"]*2)
+    df['length'] = (df["MovieLength"]//10)*10
+    # group the dataframe by user and length
+    user_length_group = df.groupby(["length"])
+
+    # calculate the sum of ratings for each length seen by each user
+    length_sum_ratings = user_length_group["MyRating"].sum()
+
+    # calculate the total number of movies seen by each user for each length
+    length_total_movies = user_length_group["Movie"].count()
+
+    # calculate the average rating for each length seen by each user
+    length_avg_ratings = length_sum_ratings / length_total_movies
+
+    difference = user_length_group["Difference"].mean()
+
+    # create a dataframe with the average rating for each length seen by each user
+    length_ratings = pd.DataFrame({"Average Rating": length_avg_ratings, "Total Movies": length_total_movies, "Difference": difference})
+
+    # calculate the percentage of movies seen for each length by each user
+    length_ratings["Percentage"] = (length_ratings["Total Movies"] / len(df)) * 100
+
+    # define the weighting factor
+    weight = 0.95
+
+    # create a new column with the weighted sum of ratings and total_movies
+    length_ratings['Weighted Average'] = length_ratings['Average Rating']*weight + length_ratings['Total Movies']*(1-weight) + length_ratings['Difference']
+    length_ratings = length_ratings.drop(["Average Rating", "Total Movies", "Percentage"], axis=1)
+    length_ratings= length_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    length_ratings["Ranking"] = range(1, len(length_ratings) + 1)
+    length_ratings.insert(0, 'length', length_ratings.index)
+    length_ratings['length'] = length_ratings.index
+    length_ratings = length_ratings.set_index("Ranking")
+    return length_ratings

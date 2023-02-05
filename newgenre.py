@@ -5,7 +5,7 @@ import time
 start_time = time.time()
 
 # load the dataframe
-file = user()
+file = user("cloakenswagger")
 df = pd.read_csv(file)
 # df = pd.read_csv("AllFilmscarmal.csv")
 df['MyRating'] = (df["MyRating"]*2)
@@ -14,7 +14,8 @@ df['MyRating'] = (df["MyRating"]*2)
 
 # split the genres column into multiple rows
 split_df = df["Genre"].str.split(",").apply(pd.Series)
-split_df = split_df.drop([4, 5], axis=1)
+if 4 in split_df.columns:
+    split_df = split_df.drop([4, 5], axis=1)
 
 # join the split dataframe back to the original dataframe
 df = df.join(split_df)

@@ -1,51 +1,41 @@
-def directorMovies():
+def directorMovies(option):
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
     # import streamlit as st
     from user import user
 
-    dList = ratings()
-    file = user()
+    file = user(option)
+    # file = user()
     df = pd.read_csv(file)
+    df['MyRating'] = (df["MyRating"]*2)
+    # group the dataframe by user and director
+    user_director_group = df.groupby(["Director"])
 
-    # CHECKING FAVORITE Director AND RATING BY Director
-    filmAverage = df["MyRating"].mean()
-    for i in range(len(df)):
-        director = df["Director"].iloc[i]
-        df.at[i, "Director"] = director
-        rate = df["MyRating"].iloc[i]
-    # DataFrame for movies with unique Director
-    finalDF = df.Director.unique()
-    # print("=========")
-    finList = []
-    dList = ratings()
-    for mem in finalDF:
-        # print(mem)
-        cnt = 0
-        finWeight = 0
-        tot = 0
-        # DataFrame for movies of just the current iteration Director
-        xdf = df.loc[df["Director"] == mem]
-        diff = xdf["Difference"].mean()
-        diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(xdf[(xdf["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
-        if tot > 1:
-            fin = cnt / tot
-            fin += (float(diff)/2)
-            fin = fin * (1 + (tot/100))
-            avg1 = xdf["MyRating"].mean()
-            avg = avg1
-            avg += (float(diff)/2)
-            avg = avg * (1 + (tot/50))
-            # HIGHEST NUMBER IN LIST * 10 / 2
-            finAvg = "{:.2f}".format(avg)
+    # calculate the sum of ratings for each director seen by each user
+    director_sum_ratings = user_director_group["MyRating"].sum()
 
-            if avg > filmAverage:
-                finList.append(
-                    [mem, finAvg])
-    return finList
+    # calculate the total number of movies seen by each user for each director
+    director_total_movies = user_director_group["Movie"].count()
+    director_difference = user_director_group["Difference"].mean()
+
+    # calculate the average rating for each director seen by each user
+    director_avg_ratings = director_sum_ratings / director_total_movies
+
+    # create a dataframe with the average rating for each director seen by each user
+    director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_difference})
+
+    # calculate the percentage of movies seen for each director by each user
+    director_ratings["percentage"] = (director_ratings["Total Movies"] / len(df)) * 100
+
+    # create a new column with the weighted sum of ratings and total_movies
+    director_ratings['Weighted Average'] = director_ratings['Average Rating']*0.9 + ((director_ratings["Total Movies"] + director_ratings['Difference'])*0.2)
+
+    # print the favorite director for user 1
+    director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    director_ratings = director_ratings.drop(["percentage", "Total Movies", "Average Rating", "Difference"], axis=1)
+    director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
+    director_ratings = director_ratings[:50]
+    director_ratings.insert(0, 'Director', director_ratings.index)
+    director_ratings = director_ratings.set_index("Ranking")
+    return director_ratings

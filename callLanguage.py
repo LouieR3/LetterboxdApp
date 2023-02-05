@@ -1,53 +1,51 @@
-def langMovies():
+def langMovies(option):
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
     # import streamlit as st
     from user import user
 
-    dList = ratings()
-    file = user()
+    file = user(option)
+    # file = user()
     df = pd.read_csv(file)
 
-    lenDF = df[~df["Languages"].str.contains("No spoken language")]
-    for i in range(len(df)):
-        language = df["Languages"].iloc[i].split(",")[0]
-        lenDF.at[i, "Languages"] = language
-        rate = df["MyRating"].iloc[i]
-    # DataFrame for movies with unique language
-    finalDF = lenDF.Languages.unique()
-    finList = []
-    for mem in finalDF:
-        cnt = 0
-        finWeight = 0
-        tot = 0
-        # DataFrame for movies of just the current iteration language
-        # Weighted average is too high for bad movies like 2.0 Uncle Boonme
-        xdf = lenDF.loc[lenDF["Languages"] == mem]
-        diff = xdf["Difference"].mean()
-        diff = "{:.2f}".format(diff)
-        for rate in dList:
-            rateLen = len(xdf[(xdf["MyRating"] == rate[0])])
-            finWeight = (rateLen*rate[0]) * rate[1]
-            cnt += finWeight
-            tot += rateLen
-        if tot > 0:
-            fin = cnt / tot
-            fin += (float(diff)/2)
-            fin = fin * (1 + (tot/1000))
-            fin = max(fin, 0.5)
+    df['MyRating'] = (df["MyRating"]*2)
+    df = df[df["Languages"].notna()]
+    df['language'] = df['Languages'].str.split(',').str[0]
+    # group the dataframe by user and language
+    user_language_group = df.groupby(["language"])
 
-            avg1 = xdf["MyRating"].mean()
-            avg = avg1
-            avg += (float(diff)/2)
-            avg = avg * (1 + (tot/4700))
-            # HIGHEST NUMBER IN LIST * 10 / 2
-            finAvg = "{:.2f}".format(avg)
-            finList.append([mem, finAvg])
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    df = pd.DataFrame(sortList)
-    df['index'] = range(1, len(df) + 1)
+    # calculate the total number of movies seen by each user
+    user_total_movies = len(df)
 
-    sortList = df.values.tolist()
-    sortList = sorted(finList, key=itemgetter(1), reverse=True)
-    return sortList
+    # calculate the sum of ratings for each language seen by each user
+    language_sum_ratings = user_language_group["MyRating"].sum()
+
+    # calculate the total number of movies seen by each user for each language
+    language_total_movies = user_language_group["Movie"].count()
+
+    # calculate the average rating for each language seen by each user
+    language_avg_ratings = language_sum_ratings / language_total_movies
+
+    # create a dataframe with the average rating for each language seen by each user
+    difference = user_language_group["Difference"].mean()
+
+    # create a dataframe with the average rating for each language seen by each user
+    language_ratings = pd.DataFrame({"Average Rating": language_avg_ratings, "Total Movies": language_total_movies, "Difference": difference})
+
+    # calculate the percentage of movies seen for each language by each user
+    language_ratings["Percentage"] = (language_ratings["Total Movies"] / len(df)) * 100
+
+    # define the weighting factor
+    weight = 0.95
+
+    # create a new column with the weighted sum of ratings and Total Movies
+    language_ratings['Weighted Average'] = language_ratings['Average Rating']*weight + language_ratings['Total Movies']*(1-weight) + language_ratings['Difference']
+
+    language_ratings= language_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    # print the favorite language for user 1
+    language_ratings = language_ratings.drop(["Average Rating", "Total Movies", "Percentage"], axis=1)
+    language_ratings["Ranking"] = range(1, len(language_ratings) + 1)
+    language_ratings.insert(0, 'language', language_ratings.index)
+    language_ratings = language_ratings.set_index("Ranking")
+    return language_ratings

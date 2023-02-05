@@ -37,7 +37,10 @@ def app():
     language_avg_ratings = language_sum_ratings / language_total_movies
 
     # create a dataframe with the average rating for each language seen by each user
-    language_ratings = pd.DataFrame({"Average Rating": language_avg_ratings, "Total Movies": language_total_movies})
+    difference = user_language_group["Difference"].mean()
+
+    # create a dataframe with the average rating for each language seen by each user
+    language_ratings = pd.DataFrame({"Average Rating": language_avg_ratings, "Total Movies": language_total_movies, "Difference": difference})
 
     # calculate the percentage of movies seen for each language by each user
     language_ratings["Percentage"] = (language_ratings["Total Movies"] / len(df)) * 100
@@ -46,7 +49,7 @@ def app():
     weight = 0.95
 
     # create a new column with the weighted sum of ratings and Total Movies
-    language_ratings['Weighted Average'] = language_ratings['Average Rating']*weight + language_ratings['Total Movies']*(1-weight)
+    language_ratings['Weighted Average'] = language_ratings['Average Rating']*weight + language_ratings['Total Movies']*(1-weight) + language_ratings['Difference']
 
     language_ratings= language_ratings.sort_values(by=['Weighted Average'], ascending=False)
     # print the favorite language for user 1
