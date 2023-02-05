@@ -6,17 +6,29 @@ start_time = time.time()
 
 # load the dataframe
 file = user("cloakenswagger")
+file = user("prahladsingh")
 df = pd.read_csv(file)
+df = df[df["Genre"].notna()]
 # df = pd.read_csv("AllFilmscarmal.csv")
 df['MyRating'] = (df["MyRating"]*2)
 # create a sample dataframe
-# df = pd.DataFrame({"movie_id": [1, 2, 3], "movie_title": ["Movie 1", "Movie 2", "Movie 3"], "genres": ["Action, Adventure, Sci-Fi", "Comedy, Romance", "Drama, History"]})
 
 # split the genres column into multiple rows
 split_df = df["Genre"].str.split(",").apply(pd.Series)
+print(split_df.columns)
+print(split_df.head)
+if 3 in split_df.columns:
+    split_df = split_df.drop([3], axis=1)
 if 4 in split_df.columns:
-    split_df = split_df.drop([4, 5], axis=1)
-
+    split_df = split_df.drop([4], axis=1)
+if 5 in split_df.columns:
+    split_df = split_df.drop([5], axis=1)
+if 6 in split_df.columns:
+    split_df = split_df.drop([6], axis=1)
+if 7 in split_df.columns:
+    split_df = split_df.drop([7], axis=1)
+if 8 in split_df.columns:
+    split_df = split_df.drop([8], axis=1)
 # join the split dataframe back to the original dataframe
 df = df.join(split_df)
 
@@ -24,11 +36,11 @@ df = df.join(split_df)
 df = df.drop(['LBRating',  'ReviewDate', 'MovieLength', 'LengthInHour', 'Languages', 'Director', 'ReleaseYear', 'Country', 'NumberOfReviews', 'NumberOfRatings', 'Actors'], axis=1)
 
 # rename the columns
-df.columns = ["Movie", "MyRating", "Difference", "Genre", "genre_1", "genre_2", "genre_3", "genre_4"]
+df.columns = ["Movie", "MyRating", "Difference", "Genre", "genre_1", "genre_2", "genre_3"]
 
 # # drop the original genres column
 # df = df.drop(["Genre"], axis=1)
-genres_list = df[["genre_1", "genre_2", "genre_3", "genre_4"]].stack().unique()
+genres_list = df[["genre_1", "genre_2", "genre_3"]].stack().unique()
 
 
 # MAKE LIST WITH THOSE NUMS PLUS THE WEIGHTED AND THEN MAKE DF OF THAT LIST AFTER
