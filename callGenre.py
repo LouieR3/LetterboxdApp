@@ -62,9 +62,6 @@ def genreMovies(option):
     genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'Average Rating', 'Total', 'Difference']).set_index('Genre')
     # genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'Average Rating', 'Total']).set_index('Genre')
 
-    # calculate the percentage of movies seen for each genre by each user
-    genre_ratings["percentage"] = (genre_ratings["Total"] / len(df)) * 100
-
     # define the weighting factor
     weight = 0.98
 
@@ -74,7 +71,7 @@ def genreMovies(option):
 
     # print the favorite genre for user 1
     genre_ratings= genre_ratings.sort_values(by=['Weighted Average'], ascending=False)
-    genre_ratings = genre_ratings.drop(["Average Rating", "Total", "Difference", "percentage"], axis=1)
+    genre_ratings = genre_ratings.drop(["Average Rating", "Total", "Difference"], axis=1)
     genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
     genre_ratings.insert(0, 'Genre', genre_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index

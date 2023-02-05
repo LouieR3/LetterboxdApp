@@ -28,15 +28,12 @@ def lenMovies(option):
     # create a dataframe with the average rating for each length seen by each user
     length_ratings = pd.DataFrame({"Average Rating": length_avg_ratings, "Total Movies": length_total_movies, "Difference": difference})
 
-    # calculate the percentage of movies seen for each length by each user
-    length_ratings["Percentage"] = (length_ratings["Total Movies"] / len(df)) * 100
-
     # define the weighting factor
     weight = 0.95
 
     # create a new column with the weighted sum of ratings and total_movies
     length_ratings['Weighted Average'] = length_ratings['Average Rating']*weight + length_ratings['Total Movies']*(1-weight) + length_ratings['Difference']
-    length_ratings = length_ratings.drop(["Average Rating", "Total Movies", "Percentage", "Difference"], axis=1)
+    length_ratings = length_ratings.drop(["Average Rating", "Total Movies", "Difference"], axis=1)
     length_ratings= length_ratings.sort_values(by=['Weighted Average'], ascending=False)
     length_ratings["Ranking"] = range(1, len(length_ratings) + 1)
     length_ratings.insert(0, 'length', length_ratings.index)

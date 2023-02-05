@@ -28,8 +28,6 @@ def decadeMovies(option):
     # create a dataframe with the average rating for each decade seen by each user
     decade_ratings = pd.DataFrame({"Average Rating": decade_avg_ratings, "Total Movies": decade_total_movies, "Difference": difference})
 
-    # calculate the percentage of movies seen for each decade by each user
-    decade_ratings["percentage"] = (decade_ratings["Total Movies"] / len(df)) * 100
 
     # define the weighting factor
     weight = 0.99
@@ -39,7 +37,7 @@ def decadeMovies(option):
 
     # print the favorite decade for user 1
     decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
-    decade_ratings = decade_ratings.drop(["Total Movies", "Average Rating", "percentage", "Billing Score", "Difference"], axis=1)
+    decade_ratings = decade_ratings.drop(["Total Movies", "Average Rating", "Difference"], axis=1)
     decade_ratings["Ranking"] = range(1, len(decade_ratings) + 1)
     decade_ratings.insert(0, 'decade', decade_ratings.index)
     decade_ratings = decade_ratings.set_index("Ranking")
