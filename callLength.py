@@ -36,7 +36,7 @@ def lenMovies(option):
 
     # create a new column with the weighted sum of ratings and total_movies
     length_ratings['Weighted Average'] = length_ratings['Average Rating']*weight + length_ratings['Total Movies']*(1-weight) + length_ratings['Difference']
-    length_ratings = length_ratings.drop(["Average Rating", "Total Movies", "Percentage"], axis=1)
+    length_ratings = length_ratings.drop(["Average Rating", "Total Movies", "Percentage", "Difference"], axis=1)
     length_ratings= length_ratings.sort_values(by=['Weighted Average'], ascending=False)
     length_ratings["Ranking"] = range(1, len(length_ratings) + 1)
     length_ratings.insert(0, 'length', length_ratings.index)

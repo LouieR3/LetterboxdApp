@@ -39,7 +39,7 @@ def decadeMovies(option):
 
     # print the favorite decade for user 1
     decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
-    decade_ratings = decade_ratings.drop(["Total Movies", "Average Rating", "percentage", "Billing Score"], axis=1)
+    decade_ratings = decade_ratings.drop(["Total Movies", "Average Rating", "percentage", "Billing Score", "Difference"], axis=1)
     decade_ratings["Ranking"] = range(1, len(decade_ratings) + 1)
     decade_ratings.insert(0, 'decade', decade_ratings.index)
     decade_ratings = decade_ratings.set_index("Ranking")
