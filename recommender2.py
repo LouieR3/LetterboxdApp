@@ -24,6 +24,7 @@ def app():
 
     st.write('You selected:', option)
     file = user(option)
+    
     lenList = lenMovies(option)
     lenList["Ranking"] = range(1, len(lenList) + 1)
     lenList.insert(0, 'length', lenList.index)
@@ -31,19 +32,34 @@ def app():
     lenList = lenList.set_index("Ranking")
 
     genreList = genreMovies(option)
-    genreList.columns = ["genre", "average"]
+    genreList["Ranking"] = range(1, len(genreList) + 1)
+    genreList.insert(0, 'genre', genreList.index)
+    genreList['genre'] = genreList.index
+    genreList = genreList.set_index("Ranking")
 
     langList = langMovies(option)
-    langList.columns = ["language", "average"]
+    langList["Ranking"] = range(1, len(langList) + 1)
+    langList.insert(0, 'language', langList.index)
+    langList['language'] = langList.index
+    langList = langList.set_index("Ranking")
 
     decList = decadeMovies(option)
-    decList.columns = ["decade", "average"]
+    decList["Ranking"] = range(1, len(decList) + 1)
+    decList.insert(0, 'decade', decList.index)
+    decList['decade'] = decList.index
+    decList = decList.set_index("Ranking")
 
     directList = directorMovies(option)
-    directList.columns = ["director", "average"]
+    directList["Ranking"] = range(1, len(directList) + 1)
+    directList.insert(0, 'director', directList.index)
+    directList['director'] = directList.index
+    directList = directList.set_index("Ranking")
 
     actorList = actorMovies(option)
-    actorList.columns = ["actor", "average"]
+    actorList["Ranking"] = range(1, len(actorList) + 1)
+    actorList.insert(0, 'actor', actorList.index)
+    actorList['actor'] = actorList.index
+    actorList = actorList.set_index("Ranking")
     
     # file = user()
     df = pd.read_csv(file)
