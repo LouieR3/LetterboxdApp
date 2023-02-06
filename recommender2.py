@@ -24,7 +24,7 @@ def app():
 
     st.write('You selected:', option)
     file = user(option)
-    
+
     lenList = lenMovies(option)
     lenList["Ranking"] = range(1, len(lenList) + 1)
     lenList.insert(0, 'length', lenList.index)
@@ -93,7 +93,7 @@ def app():
         for g in gList:
             if len(genreList.loc[genreList['genre'] == g]) > 0:
                 grow = genreList.loc[genreList['genre']
-                                        == g, "average"].iat[0]
+                                        == g, "Weighted Average"].iat[0]
                 cnt += float(grow)
                 tot += 1
         if cnt > 0 and tot > 0:
@@ -103,7 +103,7 @@ def app():
         lang = df250["Languages"][movie].split(",")[0]
         if len(langList.loc[langList['language'] == lang]) > 0:
             lrow = float(
-                langList.loc[langList['language'] == lang, "average"].iat[0])
+                langList.loc[langList['language'] == lang, "Weighted Average"].iat[0])
             lrow = lrow/10
         else:
             lrow = 0.1
@@ -112,7 +112,7 @@ def app():
         release = df250["decade"][movie]
         if len(decList.loc[decList['decade'] == release]) > 0:
             drow = float(
-                decList.loc[decList['decade'] == release, "average"].iat[0])
+                decList.loc[decList['decade'] == release, "Weighted Average"].iat[0])
             drow = drow/10
         else:
             drow = 0.1
@@ -121,7 +121,7 @@ def app():
         direct = df250["Director"][movie]
         if len(directList.loc[directList['director'] == direct]) > 0:
             directorRank = float(
-                directList.loc[directList['director'] == direct, "average"].iat[0])
+                directList.loc[directList['director'] == direct, "Weighted Average"].iat[0])
             # directorRank = directorRank/10
             # finRating = finRating * (1+(directorRank))
             finRating += directorRank
@@ -139,7 +139,7 @@ def app():
             billTotal += 1
             if len(actorList.loc[actorList['actor'] == act]) > 0:
                 arow = float(actorList.loc[actorList['actor']
-                                        == act, "average"].iat[0])
+                                        == act, "Weighted Average"].iat[0])
                 tot += 1
                 billScore = billTotal / 10
                 billFin = arow - billScore
