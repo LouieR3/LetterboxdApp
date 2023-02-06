@@ -94,7 +94,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         language = movie['Languages'].split(',')[0]
         if language in fav_language.index:
             score += fav_language.loc[language, 'Weighted Average']
-        
+        score += 0.9 * float(movie['LBRating']) +  movie['NumberOfRatings']/100000
         scores.append(score)
     # movies_df['Score'] = scores
     movies_df.insert(1, 'Score', scores)

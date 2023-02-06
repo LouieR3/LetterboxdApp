@@ -25,20 +25,24 @@ def app():
     st.write('You selected:', option)
     file = user(option)
     lenList = lenMovies(option)
+    lenList["Ranking"] = range(1, len(lenList) + 1)
+    lenList.insert(0, 'length', lenList.index)
+    lenList['length'] = lenList.index
+    lenList = lenList.set_index("Ranking")
+
     genreList = genreMovies(option)
-    genreList = pd.DataFrame(genreList)
     genreList.columns = ["genre", "average"]
+
     langList = langMovies(option)
-    langList = pd.DataFrame(langList)
     langList.columns = ["language", "average"]
+
     decList = decadeMovies(option)
-    decList = pd.DataFrame(decList)
     decList.columns = ["decade", "average"]
+
     directList = directorMovies(option)
-    directList = pd.DataFrame(directList)
     directList.columns = ["director", "average"]
+
     actorList = actorMovies(option)
-    actorList = pd.DataFrame(actorList)
     actorList.columns = ["actor", "average"]
     
     # file = user()
