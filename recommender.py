@@ -18,27 +18,6 @@ def app():
     st.header('Recommender By ChatGPT Mock 1')
     st.caption('Top 20 actors and then check the movies you havent see of theirs')
 
-    option = "cloakenswagger"
-    # load the dataframe
-    file = user(option)
-
-    fav_length = lenMovies(option)
-    # fav_length.columns = ["Length", "Weighted Average"]
-
-    fav_genres = genreMovies(option)
-    # fav_genres.columns = ["Genres", "Weighted Average"]
-
-    fav_language = langMovies(option)
-    # fav_language.columns = ["Language", "Weighted Average"]
-    #
-    fav_decade = decadeMovies(option)
-    # fav_decade.columns = ["decade", "Weighted Average"]
-
-    fav_directors = directorMovies(option)
-    # fav_directors.columns = ["Director", "Weighted Average"]
-
-    fav_actors = actorMovies(option)
-    # fav_actors.columns = ["Actors", "Weighted Average"]
     option = 'cloakenswagger'
     option = st.selectbox(
         'Which user do you want to look at?',
