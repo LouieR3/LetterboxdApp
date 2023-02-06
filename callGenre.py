@@ -15,8 +15,7 @@ def genreMovies(option):
 
     # split the genres column into multiple rows
     split_df = df["Genre"].str.split(",").apply(pd.Series)
-    print(split_df.columns)
-    print(split_df.head)
+
     if 3 in split_df.columns:
         split_df = split_df.drop([3], axis=1)
     if 4 in split_df.columns:
@@ -72,9 +71,9 @@ def genreMovies(option):
     # print the favorite genre for user 1
     genre_ratings= genre_ratings.sort_values(by=['Weighted Average'], ascending=False)
     genre_ratings = genre_ratings.drop(["Average Rating", "Total", "Difference"], axis=1)
-    genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
-    genre_ratings.insert(0, 'Genre', genre_ratings.index)
+    # genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
+    # genre_ratings.insert(0, 'Genre', genre_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index
-    genre_ratings = genre_ratings.set_index("Ranking")
+    # genre_ratings = genre_ratings.set_index("Ranking")
 
     return genre_ratings

@@ -14,13 +14,15 @@ import time
 start_time = time.time()
 
 # load the dataframe
-file = user()
+file = user("cloakenswagger")
 
 df250 = pd.read_csv("Top1001Films.csv")
 df = pd.read_csv(file)
 cond = df250['Movie'].isin(df['Movie'])
 df250.drop(df250[cond].index, inplace = True)
 df250 = df250.reset_index(drop=True)
+df250['length'] = (df250["MovieLength"]//10)*10
+df250['decade'] = (df250["ReleaseYear"]//10)*10
 
 # define weighting factors for each attribute
 weights = {"genre": 0.4, "decade": 0.2, "length": 0.1, "language": 0.1, "director": 0.1, "rating":0.1}
@@ -61,3 +63,6 @@ if score > 0.5:
     print("Recommend this movie to the user")
 else:
     print("Do not recommend this movie to the user")
+
+
+print("--- %s seconds ---" % (time.time() - start_time))

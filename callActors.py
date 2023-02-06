@@ -16,11 +16,11 @@ def actorMovies(option):
     # file = user()
     df = pd.read_csv(file)
     df = df[df["Actors"].notna()]
-    print(len(df))
+    # print(len(df))
     df = df[df["Genre"].str.contains("Documentary") == False]
-    print(len(df))
+    # print(len(df))
     df = df[df["Actors"].str.contains(",") == True]
-    print(len(df))
+    # print(len(df))
     df['MyRating'] = (df["MyRating"]*2)
 
     key = 15
@@ -69,8 +69,8 @@ def actorMovies(option):
     # actor_df["Ranking"] = range(1, len(actor_df) + 1)
     actor_df = actor_df.drop(["Billing Positions", "Number of Movies Seen", "Average Rating", "Difference", "Billing Score"], axis=1)
 
-    actor_df = actor_df[:100]
-    actor_df["Ranking"] = range(1, len(actor_df) + 1)
-    actor_df.insert(0, 'Actor', actor_df.index)
-    actor_df = actor_df.set_index("Ranking")
+    # actor_df = actor_df[:100]
+    # actor_df["Ranking"] = range(1, len(actor_df) + 1)
+    # actor_df.insert(0, 'Actor', actor_df.index)
+    # actor_df = actor_df.set_index("Ranking")
     return actor_df

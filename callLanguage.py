@@ -42,7 +42,7 @@ def langMovies(option):
     language_ratings= language_ratings.sort_values(by=['Weighted Average'], ascending=False)
     # print the favorite language for user 1
     language_ratings = language_ratings.drop(["Average Rating", "Total Movies", "Difference"], axis=1)
-    language_ratings["Ranking"] = range(1, len(language_ratings) + 1)
-    language_ratings.insert(0, 'language', language_ratings.index)
-    language_ratings = language_ratings.set_index("Ranking")
+    # language_ratings["Ranking"] = range(1, len(language_ratings) + 1)
+    # language_ratings.insert(0, 'language', language_ratings.index)
+    # language_ratings = language_ratings.set_index("Ranking")
     return language_ratings

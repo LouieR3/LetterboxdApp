@@ -1,73 +1,111 @@
 import pandas as pd
+from operator import itemgetter
+# import streamlit as st
+from ratings import ratings
 from user import user
+from callLength import lenMovies
+from callGenre import genreMovies
+from callLanguage import langMovies
+from callDirector import directorMovies
+from callDecade import decadeMovies
+from callActors import actorMovies
 import time
-import numpy as np
+
 start_time = time.time()
+option = "cloakenswagger"
+# load the dataframe
+file = user(option)
 
-movies_df = pd.read_csv("Test.csv")
-ratings_df = pd.read_csv("TestRatings.csv")
+fav_length = lenMovies(option)
+# fav_length.columns = ["Length", "Weighted Average"]
 
-# define weighting factors for each attribute
-weights = {"genre": 0.1, "decade": 0.3, "length": 0.4, "language": 0.1, "director": 0.5, "previous_ratings": 0.1, "popularity": 0.3}
+fav_genres = genreMovies(option)
+# fav_genres.columns = ["Genres", "Weighted Average"]
 
-# create a function to calculate the recommendation score
-def recommend(movie, user, ratings_df):
-    score = 0
-    for attribute in weights:
-        # get the user's favorite value for the attribute
-        if attribute == 'previous_ratings':
-            user_preference = get_user_preference_on_ratings(ratings_df, user)
-        else:
-            user_preference = user[attribute]
-        # get the movie's value for the attribute
-        movie_value = movie[attribute]
-        # calculate the similarity score between the user's preference and the movie's value
-        if attribute == 'previous_ratings':
-            similarity = calculate_similarity_on_ratings(user_preference, movie_value)
-        else:
-            similarity = calculate_similarity(user_preference, movie_value)
-        # update the score
-        score += weights[attribute] * similarity
-    return score
+fav_language = langMovies(option)
+# fav_language.columns = ["Language", "Weighted Average"]
+#
+fav_decade = decadeMovies(option)
+# fav_decade.columns = ["decade", "Weighted Average"]
 
-# define a function to calculate the similarity score between two values
-def calculate_similarity(user_preference, movie_value):
-    # example implementation: return 1 if the values match, 0 otherwise
-    return 1 if user_preference == movie_value else 0
+fav_directors = directorMovies(option)
+# fav_directors.columns = ["Director", "Weighted Average"]
 
-#define function to get the user's preference based on ratings
-def get_user_preference_on_ratings(ratings_df, user):
-    user_ratings = ratings_df[ratings_df['user_id'] == user['user_id']]
-    user_mean_rating = user_ratings['rating'].mean()
-    return user_mean_rating
+fav_actors = actorMovies(option)
+# fav_actors.columns = ["Actors", "Weighted Average"]
 
-def calculate_similarity_on_ratings(user_preference, movie_rating):
-    # Example implementation: return 1 - the absolute difference between the two ratings
-    return 1 - abs(user_preference - movie_rating)
+df250 = pd.read_csv("Top1001Films.csv")
+df = pd.read_csv(file)
+cond = df250['Movie'].isin(df['Movie'])
+df250.drop(df250[cond].index, inplace = True)
+df250 = df250.reset_index(drop=True)
+df250['LBRating'] = (df250["LBRating"]*2)
+# df250['Length'] = (df250["MovieLength"]//10)*10
+# df250['decade'] = (df250["ReleaseYear"]//10)*10
 
-# create a list of movies to recommend
-movies_to_recommend = []
+def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
+    scores = []
+    for i in range(len(movies_df)):
+        movie = movies_df.iloc[i]
+        score = 0
+        
+        # calculate the director score
+        director = movie['Director']
+        if director in fav_directors.index:
+            score += fav_directors.loc[director, 'Weighted Average']
+        
+        # calculate the actors score
+        actors = movie['Actors'].split(',')[:10]
+        actors_score = 0
+        actors_count = 0
+        i = 0
+        for actor in actors:
+            i += .5
+            if actor in fav_actors.index:
+                actors_score += fav_actors.loc[actor, 'Weighted Average'] - i
+                actors_count += 1
+        if actors_count > 0:
+            score += actors_score / actors_count
+        
+        # calculate the genre score
+        genres = movie['Genre'].split(',')
+        genres_score = 0
+        genres_count = 0
+        for genre in genres:
+            if genre in fav_genres.index:
+                genres_score += fav_genres.loc[genre, 'Weighted Average']
+                genres_count += 1
+        if genres_count > 0:
+            score += genres_score / genres_count
+        
+        # calculate the length score
+        length = movie['MovieLength']
+        length_bucket = length // 10 * 10
+        if length_bucket in fav_length.index:
+            score += fav_length.loc[length_bucket, 'Weighted Average']
+        
+        # calculate the decade score
+        decade = movie['ReleaseYear'] // 10 * 10
+        # decade = movie['decade']
+        if decade in fav_decade.index:
+            score += fav_decade.loc[decade, 'Weighted Average']
+        
+        # calculate the language score
+        language = movie['Languages'].split(',')[0]
+        if language in fav_language.index:
+            score += fav_language.loc[language, 'Weighted Average']
+        
+        scores.append(score)
+    # movies_df['Score'] = scores
+    movies_df.insert(1, 'Score', scores)
+    return movies_df
 
-# create a sample user with favorite genres, decade of movie, length of movie, language, and director
-user = {"user_id": 1, "genre": "Action", "decade": "2010s", "length": "120", "language": "English", "director": "Christopher Nolan"}
+# use the calculate_score function on your movie dataframe
+movies_df = calculate_score(df250, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language)
+movies_df= movies_df.sort_values(by=['Score'], ascending=False)
+movies_df= movies_df.reset_index(drop=True)
+movies_df.index = movies_df.index + 1
+# movies_df = movies_df.drop(["MovieLength", "NumberOfReviews"], axis=1)
+print(movies_df)
 
-# create a sample movie with genres, decade of movie, length of movie, language, and director
-movie = {"genre": "Action", "decade": "2010s", "length": "120", "language": "English", "director": "Christopher Nolan"}
-
-# iterate through all the movies in your dataset
-for index, movie in movies_df.iterrows():
-    # calculate the recommendation score for the current movie
-    score = recommend(movie, user, ratings_df)
-    # add the movie and its score to the list
-    movies_to_recommend.append((movie, score))
-
-# sort the list of movies by score in descending order
-movies_to_recommend.sort(key=lambda x: x[1], reverse=True)
-
-# select the top N movies to recommend
-top_n_movies = movies_to_recommend[:20]
-
-# print the recommended movies
-for movie, score in top_n_movies:
-    print("Movie: ", movie["title"])
-    print("Recommendation Score: ", score)
+print("--- %s seconds ---" % (time.time() - start_time))
