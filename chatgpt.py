@@ -105,7 +105,7 @@ movies_df = calculate_score(df250, fav_directors, fav_actors, fav_genres, fav_le
 movies_df= movies_df.sort_values(by=['Score'], ascending=False)
 movies_df= movies_df.reset_index(drop=True)
 movies_df.index = movies_df.index + 1
-# movies_df = movies_df.drop(["MovieLength", "NumberOfReviews"], axis=1)
+movies_df = movies_df.drop(["MovieLength", "NumberOfReviews"], axis=1)
 print(movies_df)
 
 print("--- %s seconds ---" % (time.time() - start_time))

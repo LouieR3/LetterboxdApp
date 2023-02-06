@@ -1,6 +1,6 @@
 import pandas as pd
 from operator import itemgetter
-import streamlit as st
+# import streamlit as st
 from ratings import ratings
 from user import user
 from callLength import lenMovies
