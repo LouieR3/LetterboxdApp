@@ -52,22 +52,22 @@ def app():
     cond = df250['Movie'].isin(df2['Movie'])
     df250.drop(df250[cond].index, inplace = True)
     df250 = df250.reset_index(drop=True)
+    df250['length'] = (df250["MovieLength"]//10)*10
+    df250['decade'] = (df250["ReleaseYear"]//10)*10
     recommendList = []
-    for m in range(len(df250)):
-        lbr = float(df250["LBRating"][m])
-        nr = int(df250["NumberOfRatings"][m])
-        finRating = lbr*(1+(nr/2000000))
-        finalLen = df250["MovieLength"][m]
-        x = finalLen % 10
-        lengthByTen = finalLen - x
+    for movie in range(len(df250)):
+        lbr = float(df250["LBRating"][movie]*2)
+        numberOfRatings = int(df250["NumberOfRatings"][movie])
+        finRating = lbr*(1+(numberOfRatings/2000000))
+        finalLen = df250["length"][movie]
         for i in lenList:
             nums = i[0].split("-")
             for y in nums:
-                if str(lengthByTen) == y:
+                if str(finalLen) == y:
                     rate = float(i[1])
                     finRating = finRating * (1+(rate/10))
 
-        gList = df250["Genre"][m].split(",")
+        gList = df250["Genre"][movie].split(",")
         cnt = 0
         tot = 0
         for g in gList:
@@ -80,7 +80,7 @@ def app():
             fin = cnt / tot
             finRating = finRating * (1+(fin/10))
 
-        lang = df250["Languages"][m].split(",")[0]
+        lang = df250["Languages"][movie].split(",")[0]
         if len(langList.loc[langList['language'] == lang]) > 0:
             lrow = float(
                 langList.loc[langList['language'] == lang, "average"].iat[0])
@@ -89,18 +89,16 @@ def app():
             lrow = 0.1
         finRating = finRating * (1+(lrow))
         
-        release = df250["ReleaseYear"][m]
-        x = int(release) % 10
-        yearByTen = int(release) - x
-        if len(decList.loc[decList['decade'] == yearByTen]) > 0:
+        release = df250["decade"][movie]
+        if len(decList.loc[decList['decade'] == release]) > 0:
             drow = float(
-                decList.loc[decList['decade'] == yearByTen, "average"].iat[0])
+                decList.loc[decList['decade'] == release, "average"].iat[0])
             drow = drow/10
         else:
             drow = 0.1
         finRating = finRating * (1+(drow))
 
-        direct = df250["Director"][m]
+        direct = df250["Director"][movie]
         if len(directList.loc[directList['director'] == direct]) > 0:
             directorRank = float(
                 directList.loc[directList['director'] == direct, "average"].iat[0])
@@ -112,8 +110,8 @@ def app():
             directorRank = 1
             finRating += directorRank
 
-        act1 = df250["Actors"][m]
-        actors = df250["Actors"][m].split(",")
+        allActors = df250["Actors"][movie]
+        actors = df250["Actors"][movie].split(",")
         cnt = 0
         tot = 0
         billTotal = 0
@@ -145,24 +143,23 @@ def app():
 
         # finRating /= 5
 
-        movieName = df250["Movie"][m]
-        lengthInHour = df250["LengthInHour"][m]
-        languageStr = df250["Languages"][m]
-        genreString = df250["Genre"][m]
-        country = df250["Country"][m]
-        numReviews = df250["NumberOfReviews"][m]
-        recommendList.append([movieName, finRating, lbr, finalLen, lengthInHour,
-                                languageStr, direct, release, genreString, country, numReviews, nr, act1])
+        movieName = df250["Movie"][movie]
+        lengthInHour = df250["LengthInHour"][movie]
+        languageStr = df250["Languages"][movie]
+        genreString = df250["Genre"][movie]
+        country = df250["Country"][movie]
+        numReviews = df250["NumberOfReviews"][movie]
+        recommendList.append([movieName, finRating, lbr, lengthInHour,
+                                languageStr, direct, release, genreString, country, numReviews, numberOfRatings, allActors])
     sortList = sorted(recommendList, key=itemgetter(1), reverse=True)
     df = pd.DataFrame(sortList)
     sortList = df.values.tolist()
     sortList = sorted(sortList, key=itemgetter(1), reverse=True)
     df2 = pd.DataFrame(sortList, columns=[
         "Movie",
-        "Fin Rating",
+        "Weighted Rating",
         "LB Rating",
-        "Length",
-        "Length in hours",
+        "Movie Length",
         "Languages",
         "Director",
         'Release Year',
