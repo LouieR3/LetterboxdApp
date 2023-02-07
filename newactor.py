@@ -53,7 +53,8 @@ for actor in actors:
     # actors[actor]["weight"] = ((actors[actor]["Average Rating"]* (1 + actors[actor]["Billing Score"])) + actors[actor]["Difference"])* (2 * (actors[actor]["Number of Movies Seen"] / (df.shape[0]*.2)))  
 
     # Calculate the weighted average of rating and billing for each actor
-    actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"]*0.6 + (2*actors[actor]['Billing Score'])*1.2 + actors[actor]['Number of Movies Seen']*0.1) + actors[actor]["Difference"]) * 1.1
+    # actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"]*0.7 + (2*actors[actor]['Billing Score'])*1.3 + actors[actor]['Number of Movies Seen']*0.2) + actors[actor]["Difference"]) * 1.2
+    actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"] + (2*actors[actor]['Billing Score'])*1.6 + actors[actor]['Number of Movies Seen']*0.2) + actors[actor]["Difference"]) * 1.2
     
 
 # Step 3: Create a new dataframe with actors as index and their average billing position and number of movies  as values
@@ -67,8 +68,8 @@ else:
     actor_df = actor_df[actor_df["Number of Movies Seen"] > 1]
 actor_df = actor_df.sort_values("Weighted Average", ascending=False)
 # actor_df["Ranking"] = range(1, len(actor_df) + 1)
-actor_df = actor_df.drop(["Billing Positions", "Number of Movies Seen", "Average Rating", "Difference", "Billing Score"], axis=1)
-actor_df = actor_df[:50]
+# actor_df = actor_df.drop(["Billing Positions", "Number of Movies Seen", "Average Rating", "Difference", "Billing Score"], axis=1)
+actor_df = actor_df[:20]
 actor_df.insert(0, "Ranking", range(1, len(actor_df) + 1))
 actor_df.insert(0, 'Actor', actor_df.index)
 actor_df = actor_df.set_index("Ranking")

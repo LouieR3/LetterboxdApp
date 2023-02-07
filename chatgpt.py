@@ -60,12 +60,17 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         actors_count = 0
         i = 0
         for actor in actors:
-            i += .5
+            i += .1
             if actor in fav_actors.index:
                 actors_score += fav_actors.loc[actor, 'Weighted Average'] - i
                 actors_count += 1
         if actors_count > 0:
+            print(movie['Movie'])
+            print(actors_score / actors_count)
+            print()
             score += actors_score / actors_count
+        else:
+            score += 4
         
         # calculate the genre score
         genres = movie['Genre'].split(',')
@@ -76,25 +81,24 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
                 genres_score += fav_genres.loc[genre, 'Weighted Average']
                 genres_count += 1
         if genres_count > 0:
-            score += genres_score / genres_count
+            score += (genres_score / genres_count)*0.4
         
         # calculate the length score
         length = movie['MovieLength']
         length_bucket = length // 10 * 10
         if length_bucket in fav_length.index:
-            score += fav_length.loc[length_bucket, 'Weighted Average']
+            score += (fav_length.loc[length_bucket, 'Weighted Average']*0.8)
         
         # calculate the decade score
         decade = movie['ReleaseYear'] // 10 * 10
         # decade = movie['decade']
         if decade in fav_decade.index:
-            score += fav_decade.loc[decade, 'Weighted Average']
+            score += (fav_decade.loc[decade, 'Weighted Average']*0.8)
         
         # calculate the language score
         language = movie['Languages'].split(',')[0]
         if language in fav_language.index:
-            score += fav_language.loc[language, 'Weighted Average']
-        # score += 0.9 * float(movie['LBRating']) +  movie['NumberOfRatings']/100000
+            score += (fav_language.loc[language, 'Weighted Average']*0.5)
         score += float(movie['LBRating']) * (1+(movie['NumberOfRatings']/2000000))
         scores.append(score)
     # movies_df['Score'] = scores
