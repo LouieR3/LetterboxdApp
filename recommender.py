@@ -86,7 +86,7 @@ def app():
                     genres_score += fav_genres.loc[genre, 'Weighted Average']
                     genres_count += 1
             if genres_count > 0:
-                score += genres_score / genres_count
+                score += (genres_score / genres_count)*0.4
             
             # calculate the length score
             length = movie['MovieLength']
@@ -103,7 +103,7 @@ def app():
             # calculate the language score
             language = movie['Languages'].split(',')[0]
             if language in fav_language.index:
-                score += fav_language.loc[language, 'Weighted Average']
+                score += (fav_language.loc[language, 'Weighted Average']*0.5)
             score += float(movie['LBRating']) * (1+(movie['NumberOfRatings']/2000000))
             # score += avg_rating_weight * movies_df['LBRating'] + num_ratings_weight * movies_df['NumberOfRatings']
             scores.append(score)
