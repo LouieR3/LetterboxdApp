@@ -60,7 +60,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         actors_count = 0
         i = 0
         for actor in actors:
-            i += .1
+            i += .2
             if actor in fav_actors.index:
                 actors_score += fav_actors.loc[actor, 'Weighted Average'] - i
                 actors_count += 1

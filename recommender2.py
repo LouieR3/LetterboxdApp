@@ -69,9 +69,9 @@ def app():
     df2 = pd.read_csv(file)
     df250 = pd.read_csv("Top1001Films.csv")
 
-    cond = df250['Movie'].isin(df2['Movie'])
-    df250.drop(df250[cond].index, inplace = True)
-    df250 = df250.reset_index(drop=True)
+    # cond = df250['Movie'].isin(df2['Movie'])
+    # df250.drop(df250[cond].index, inplace = True)
+    # df250 = df250.reset_index(drop=True)
     df250['length'] = (df250["MovieLength"]//10)*10
     df250['decade'] = (df250["ReleaseYear"]//10)*10
     recommendList = []
