@@ -46,9 +46,9 @@ def app():
 
     df250 = pd.read_csv("Top1001Films.csv")
     df = pd.read_csv(file)
-    cond = df250['Movie'].isin(df['Movie'])
-    df250.drop(df250[cond].index, inplace = True)
-    df250 = df250.reset_index(drop=True)
+    # cond = df250['Movie'].isin(df['Movie'])
+    # df250.drop(df250[cond].index, inplace = True)
+    # df250 = df250.reset_index(drop=True)
     df250['LBRating'] = (df250["LBRating"]*2)
     # df250['Length'] = (df250["MovieLength"]//10)*10
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
