@@ -191,6 +191,6 @@ def app():
     ])
     df2.index += 1
 
-    df3 = df2.style.background_gradient(subset=['Number of Ratings'])
+    df3 = df2.style.background_gradient(subset=['Weighted Rating', 'Number of Ratings'])
     # df3.index += 1 
     st.dataframe(df3, height=700, width=2000)

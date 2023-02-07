@@ -116,7 +116,7 @@ def app():
     movies_df= movies_df.sort_values(by=['Score'], ascending=False)
     movies_df= movies_df.reset_index(drop=True)
     movies_df.index = movies_df.index + 1
-    movies_df = movies_df.drop(["MovieLength", "NumberOfReviews"], axis=1)
+    movies_df = movies_df.drop(["MovieLength", "NumberOfRatings"], axis=1)
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
     #     "Fin Rating",
