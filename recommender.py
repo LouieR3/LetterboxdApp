@@ -104,6 +104,7 @@ def app():
             language = movie['Languages'].split(',')[0]
             if language in fav_language.index:
                 score += (fav_language.loc[language, 'Weighted Average']*0.5)
+                
             score += float(movie['LBRating']) * (1+(movie['NumberOfRatings']/2000000))
             # score += avg_rating_weight * movies_df['LBRating'] + num_ratings_weight * movies_df['NumberOfRatings']
             scores.append(score)
