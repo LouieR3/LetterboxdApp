@@ -32,7 +32,7 @@ def directorMovies(option):
     director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
     director_ratings = director_ratings.drop(["Total Movies", "Average Rating", "Difference"], axis=1)
     # director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
-    # director_ratings = director_ratings[:50]
+    director_ratings = director_ratings[:75]
     # director_ratings.insert(0, 'Director', director_ratings.index)
     # director_ratings = director_ratings.set_index("Ranking")
     return director_ratings
