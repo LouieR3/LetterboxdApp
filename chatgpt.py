@@ -46,7 +46,7 @@ df250['LBRating'] = (df250["LBRating"]*3)
 total_num_ratings = df250["NumberOfRatings"].max()
 genre_weight = 0.4
 actor_weight = 0.4
-director_weight = 0.4
+director_weight = 1.2
 length_weight = 0.8
 language_weight = 0.3
 decade_weight = 1
@@ -63,7 +63,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         # calculate the director score
         director = movie['Director']
         if director in fav_directors.index:
-            directorScore = fav_directors.loc[director, 'Weighted Average']
+            directorScore = fav_directors.loc[director, 'Weighted Average']*director_weight
             score += directorScore
         else:
             # directorScore = 5
