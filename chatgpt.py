@@ -39,9 +39,18 @@ df = pd.read_csv(file)
 cond = df250['Movie'].isin(df['Movie'])
 df250.drop(df250[cond].index, inplace = True)
 df250 = df250.reset_index(drop=True)
-df250['LBRating'] = (df250["LBRating"]*2)
+df250['LBRating'] = (df250["LBRating"]*3)
 # df250['Length'] = (df250["MovieLength"]//10)*10
 # df250['decade'] = (df250["ReleaseYear"]//10)*10
+
+total_num_ratings = df250["NumberOfRatings"].max()
+genre_weight = 0.4
+actor_weight = 0.4
+director_weight = 0.4
+length_weight = 0.4
+decade_weight = 0.4
+popularity_weight = 0.4
+rating_weight = 0.4
 
 def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
     scores = []
@@ -65,12 +74,12 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
                 actors_count += 1
             i += 1
         if actors_count > 0:
-            print(movie['Movie'])
+            # print(movie['Movie'])
             # score += ((actors_score / actors_count) * 1.5)
             # score += actors_score / actors_count
             score += actors_score
-            print(actors_score)
-            print()
+            # print(actors_score)
+            # print()
         else:
             score += 5
         
@@ -83,7 +92,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
                 genres_score += fav_genres.loc[genre, 'Weighted Average']
                 genres_count += 1
         if genres_count > 0:
-            score += (genres_score / genres_count)*0.4
+            score += (genres_score / genres_count)*genre_weight
         
         # calculate the length score
         length = movie['MovieLength']
@@ -101,7 +110,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         language = movie['Languages'].split(',')[0]
         if language in fav_language.index:
             score += (fav_language.loc[language, 'Weighted Average']*0.5)
-        score += float(movie['LBRating']) * (1+(movie['NumberOfRatings']/2000000))
+        score += float(movie['LBRating']) + ((movie['NumberOfRatings']/total_num_ratings))
         scores.append(score)
     # movies_df['Score'] = scores
     movies_df.insert(1, 'Score', scores)

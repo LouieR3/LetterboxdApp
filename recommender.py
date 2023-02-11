@@ -49,22 +49,17 @@ def app():
     # cond = df250['Movie'].isin(df['Movie'])
     # df250.drop(df250[cond].index, inplace = True)
     # df250 = df250.reset_index(drop=True)
-    df250['LBRating'] = (df250["LBRating"]*2)
+    df250['LBRating'] = (df250["LBRating"]*3)
     # df250['Length'] = (df250["MovieLength"]//10)*10
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
-
-    # Calculate the popularity score for each movie
-    # max_user_rating = df['MyRating'].max()
-    # min_user_rating = df['MyRating'].min()
-    # user_rating_range = max_user_rating - min_user_rating
-
-    # max_popularity = movies_df['NumberOfRatings'].max()
-    # min_popularity = movies_df['NumberOfRatings'].min()
-    # popularity_range = max_popularity - min_popularity
-
-    # movies_df['PopularityScore'] = (movies_df['NumberOfRatings'] - min_popularity) / popularity_range
-    # df['PopularityScore'] = (df['MyRating'] - min_user_rating) / user_rating_range
-
+    total_num_ratings = df250["NumberOfRatings"].max()
+    genre_weight = 0.4
+    actor_weight = 0.4
+    director_weight = 0.4
+    length_weight = 0.4
+    decade_weight = 0.4
+    popularity_weight = 0.4
+    rating_weight = 0.4
 
     def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
         scores = []
@@ -107,7 +102,7 @@ def app():
                     genres_score += fav_genres.loc[genre, 'Weighted Average']
                     genres_count += 1
             if genres_count > 0:
-                score += (genres_score / genres_count)*0.4
+                score += (genres_score / genres_count)*genre_weight
             
             # calculate the length score
             length = movie['MovieLength']
@@ -126,7 +121,7 @@ def app():
             if language in fav_language.index:
                 score += (fav_language.loc[language, 'Weighted Average']*0.5)
                 
-            score += float(movie['LBRating']) * (1+(movie['NumberOfRatings']/2000000))
+            score += float(movie['LBRating']) + ((movie['NumberOfRatings']/total_num_ratings))
             # score += avg_rating_weight * movies_df['LBRating'] + num_ratings_weight * movies_df['NumberOfRatings']
             scores.append(score)
         # movies_df['Score'] = scores
