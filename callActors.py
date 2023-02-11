@@ -71,7 +71,7 @@ def actorMovies(option):
     # actor_df["Ranking"] = range(1, len(actor_df) + 1)
     actor_df = actor_df.drop(["Billing Positions", "Number of Movies Seen", "Average Rating", "Difference", "Billing Score"], axis=1)
 
-    actor_df = actor_df[:100]
+    actor_df = actor_df[:150]
     # actor_df["Ranking"] = range(1, len(actor_df) + 1)
     # actor_df.insert(0, 'Actor', actor_df.index)
     # actor_df = actor_df.set_index("Ranking")

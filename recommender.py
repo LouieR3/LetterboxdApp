@@ -89,12 +89,14 @@ def app():
             actors_count = 0
             i = 0
             for actor in actors:
-                i += .5
                 if actor in fav_actors.index:
                     actors_score += fav_actors.loc[actor, 'Weighted Average'] - i
                     actors_count += 1
+                i += 1
             if actors_count > 0:
-                score += actors_score / actors_count
+                score += actors_score
+            else:
+                score += 5
             
             # calculate the genre score
             genres = movie['Genre'].split(',')
