@@ -79,7 +79,7 @@ def app():
     actor_df = actor_df.sort_values("Weighted Average", ascending=False)
     actor_df["Ranking"] = range(1, len(actor_df) + 1)
     actor_df = actor_df.drop(["Billing Positions"], axis=1)
-    actor_df = actor_df[:75]
+    actor_df = actor_df[:100]
     # actor_df['Actor'] = actor_df.index
     actor_df.insert(0, 'Actor', actor_df.index)
     actor_df = actor_df.set_index("Ranking")

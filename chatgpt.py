@@ -60,17 +60,20 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         actors_count = 0
         i = 0
         for actor in actors:
-            i += .2
             if actor in fav_actors.index:
                 actors_score += fav_actors.loc[actor, 'Weighted Average'] - i
+                print(actor)
+                print(fav_actors.loc[actor, 'Weighted Average'])
                 actors_count += 1
+            i += .5
         if actors_count > 0:
             print(movie['Movie'])
-            print(actors_score / actors_count)
-            print()
+            # score += ((actors_score / actors_count) * 1.5)
             score += actors_score / actors_count
+            print(score)
+            print()
         else:
-            score += 4
+            score += 7
         
         # calculate the genre score
         genres = movie['Genre'].split(',')

@@ -53,11 +53,30 @@ def app():
     # df250['Length'] = (df250["MovieLength"]//10)*10
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
 
+    # Calculate the popularity score for each movie
+    # max_user_rating = df['MyRating'].max()
+    # min_user_rating = df['MyRating'].min()
+    # user_rating_range = max_user_rating - min_user_rating
+
+    # max_popularity = movies_df['NumberOfRatings'].max()
+    # min_popularity = movies_df['NumberOfRatings'].min()
+    # popularity_range = max_popularity - min_popularity
+
+    # movies_df['PopularityScore'] = (movies_df['NumberOfRatings'] - min_popularity) / popularity_range
+    # df['PopularityScore'] = (df['MyRating'] - min_user_rating) / user_rating_range
+
+
     def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
         scores = []
         for i in range(len(movies_df)):
             movie = movies_df.iloc[i]
             score = 0
+
+            # Calculate weighted average of user's rating and site's average rating
+            # weight_user = min(1.0, movie['NumberOfRatings'] / 50.0)  # Give higher weight to user's rating for less popular movies
+            # weight_site = max(0.0, 1.0 - weight_user)  # Give higher weight to site's average rating for more popular movies
+            # rating_user = (movie['Avg Rating'] * weight_site + user_rating * weight_user) / (weight_user + weight_site)
+
             
             # calculate the director score
             director = movie['Director']
