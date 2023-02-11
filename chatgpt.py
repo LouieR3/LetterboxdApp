@@ -88,7 +88,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
             # print(actorsScore)
             # print()
         else:
-            actorsScore = 5
+            actorsScore = 10
             score += actorsScore
         
         # calculate the genre score

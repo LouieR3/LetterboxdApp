@@ -97,7 +97,7 @@ def app():
                 # print(actorsScore)
                 # print()
             else:
-                actorsScore = 5
+                actorsScore = 10
                 score += actorsScore
             
             # calculate the genre score
