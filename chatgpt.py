@@ -42,7 +42,7 @@ df250 = df250.reset_index(drop=True)
 df250['LBRating'] = (df250["LBRating"]*3)
 # df250['Length'] = (df250["MovieLength"]//10)*10
 # df250['decade'] = (df250["ReleaseYear"]//10)*10
-
+# print(round(len(df)*.1))
 total_num_ratings = df250["NumberOfRatings"].max()
 genre_weight = 0.4
 actor_weight = 0.4
