@@ -17,6 +17,7 @@ def app():
     file = user(option)
     # file = user()
     df = pd.read_csv(file)
+    df = df[df["Genre"].str.contains("Documentary") == False]
     df['MyRating'] = (df["MyRating"]*2)
     # group the dataframe by user and director
     user_director_group = df.groupby(["Director"])
