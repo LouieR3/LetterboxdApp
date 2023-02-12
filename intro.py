@@ -18,7 +18,7 @@ def app():
     df["Languages"] = df["Languages"].str.split(",")
     df["Actors"] = df["Actors"].str.split(",")
     df = df.drop(["MovieLength", "NumberOfReviews"], axis=1)
-    df.rename(columns={"MyRating": "Your Rating", "LBRating": "Letterboxd Rating", "ReviewDate": "Date Reviewed", "LengthInHour": "Movie Length", "Genre": "Genres", "NumberOfRatings": "Number Of Ratings", "ReleaseYear": "Release Year"}) 
+    df = df.rename(columns={"MyRating": "Your Rating", "LBRating": "Letterboxd Rating", "ReviewDate": "Date Reviewed", "LengthInHour": "Movie Length", "Genre": "Genres", "NumberOfRatings": "Number Of Ratings", "ReleaseYear": "Release Year"}) 
     pd.options.mode.chained_assignment = None
     # df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
     st.dataframe(df, height=700, width=2000)
