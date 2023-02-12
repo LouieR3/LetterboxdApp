@@ -27,10 +27,10 @@ director_total_movies = user_director_group["Movie"].count()
 director_avg_ratings = director_sum_ratings / director_total_movies
 
 # create a dataframe with the average rating for each director seen by each user
-director_ratings = pd.DataFrame({"avg_rating": director_avg_ratings, "total_movies": director_total_movies, "Difference": director_diff_avg})
+director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_diff_avg})
 
-# create a new column with the weighted sum of ratings and total_movies
-director_ratings['weighted_sum'] = (director_ratings['avg_rating']*0.9 + ((director_ratings['total_movies'] + director_ratings['Difference'])*0.2))*1.3
+# create a new column with the weighted sum of ratings and Total Movies
+director_ratings['weighted_sum'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*1.3
 
 # print the favorite director for user 1
 director_ratings= director_ratings.sort_values(by=['weighted_sum'], ascending=False)
