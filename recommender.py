@@ -185,6 +185,6 @@ def app():
     #     'Actors'
     # ])
 
-    df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings'])
+    df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).style.format("{:.2%}")
     # df3.index += 1 
-    st.dataframe(df3.style.format("{:.2%}"), height=700, width=2000)
+    st.dataframe(df3, height=700, width=2000)
