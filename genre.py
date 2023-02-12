@@ -59,7 +59,7 @@ def app():
         # rows where the genre is contained in the genres column
         mask = df["Genre"].str.contains(genre)
         # calculate the average rating for the selected rows
-        avg_rating = (df.loc[mask, "MyRating"].mean() / 2)
+        avg_rating = df.loc[mask, "MyRating"].mean()
         difference = df.loc[mask, "Difference"].mean()
         total_movies = df.loc[mask, "MyRating"].count()
 
@@ -83,6 +83,7 @@ def app():
 
     # print the favorite genre for user 1
     genre_ratings= genre_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    genre_ratings["Average Rating"] = genre_ratings["Average Rating"]/2
     genre_ratings["Ranking"] = range(1, len(genre_ratings) + 1)
     genre_ratings.insert(0, 'Genre', genre_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index

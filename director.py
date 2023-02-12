@@ -30,7 +30,7 @@ def app():
     director_difference = user_director_group["Difference"].mean()
 
     # calculate the average rating for each director seen by each user
-    director_avg_ratings = (director_sum_ratings / director_total_movies)/2
+    director_avg_ratings = director_sum_ratings / director_total_movies
 
     # create a dataframe with the average rating for each director seen by each user
     director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_difference})
@@ -44,6 +44,7 @@ def app():
     # print the favorite director for user 1
     director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
     director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
+    director_ratings["Average Rating"] = director_ratings["Average Rating"]/2
     director_ratings = director_ratings[:50]
     director_ratings.insert(0, 'Director', director_ratings.index)
     director_ratings = director_ratings.set_index("Ranking")

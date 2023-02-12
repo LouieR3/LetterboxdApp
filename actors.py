@@ -58,7 +58,7 @@ def app():
     for actor in actors:
         # actors[actor]["Billing Score"] = sum(actors[actor]["Billing Positions"]) / len(actors[actor]["Billing Positions"])
         actors[actor]["Billing Score"] = len(actors[actor]["Billing Positions"]) / sum(actors[actor]["Billing Positions"])
-        actors[actor]["Average Rating"] = (sum(actors[actor]["Average Rating"]) / len(actors[actor]["Average Rating"]))/2
+        actors[actor]["Average Rating"] = sum(actors[actor]["Average Rating"]) / len(actors[actor]["Average Rating"])
         actors[actor]["Difference"] = sum(actors[actor]["Difference"]) / len(actors[actor]["Difference"])
         # actors[actor]["weight"] = (actors[actor]["Average Rating"] + 1/(actors[actor]["Billing Score"]*2)) / 2 * (actors[actor]["Number of Movies Seen"] / df.shape[0]*.2)
         # actors[actor]["weight"] = (actors[actor]["Average Rating"] + actors[actor]["Difference"])* (1 + (actors[actor]["Number of Movies Seen"] / (df.shape[0]*.2)))  * (1 + actors[actor]["Billing Score"])
@@ -83,6 +83,7 @@ def app():
     # actor_df['Actor'] = actor_df.index
     actor_df.insert(0, 'Actor', actor_df.index)
     actor_df = actor_df.set_index("Ranking")
+    actor_df["Average Rating"] = actor_df["Average Rating"]/2
     
     df2 = actor_df.style.background_gradient(subset=['Weighted Average', 'Billing Score']).format({"Difference": "{:.2f}","Billing Score": "{:.2f}","Average Rating": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 

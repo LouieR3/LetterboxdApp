@@ -34,7 +34,7 @@ def app():
     language_total_movies = user_language_group["Movie"].count()
 
     # calculate the average rating for each language seen by each user
-    language_avg_ratings = (language_sum_ratings / language_total_movies)/2
+    language_avg_ratings = language_sum_ratings / language_total_movies
 
     # create a dataframe with the average rating for each language seen by each user
     difference = user_language_group["Difference"].mean()
@@ -54,6 +54,7 @@ def app():
     language_ratings= language_ratings.sort_values(by=['Weighted Average'], ascending=False)
     # print the favorite language for user 1
     language_ratings["Ranking"] = range(1, len(language_ratings) + 1)
+    language_ratings["Average Rating"] = language_ratings["Average Rating"]/2
     language_ratings.insert(0, 'language', language_ratings.index)
     language_ratings = language_ratings.set_index("Ranking")
     df3 = language_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
