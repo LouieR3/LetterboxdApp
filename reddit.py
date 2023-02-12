@@ -3,9 +3,12 @@ import pandas as pd
 import requests
 
 # Connect to Reddit API using PRAW
-reddit = praw.Reddit(client_id='your_client_id',
-                     client_secret='your_client_secret',
-                     user_agent='your_user_agent')
+reddit = praw.Reddit(
+    client_id='9HkbP6RR0JXoKrxjy-iA_g',
+    client_secret='73bzC98_6SqFCYh5KeGRzk3jLEOkwA',
+    user_agent='Cl0akenSwagger',
+    redirect_uri='http://localhost:8000'
+)
 
 # Get NBA schedule using the NBA schedule API
 url = 'https://www.balldontlie.io/#get-all-games'
