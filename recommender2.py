@@ -22,7 +22,7 @@ def app():
     option = 'cloakenswagger'
     option = st.selectbox(
         'Which user do you want to look at?',
-        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain'))
 
     st.write('You selected:', option)
     file = user(option)
