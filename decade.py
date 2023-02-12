@@ -54,6 +54,9 @@ def app():
     decade_ratings["Ranking"] = range(1, len(decade_ratings) + 1)
     decade_ratings.insert(0, 'decade', decade_ratings.index)
     decade_ratings = decade_ratings.set_index("Ranking")
+    decade_ratings["Genre"] = decade_ratings["Genre"].str.split(",")
+    decade_ratings["Languages"] = decade_ratings["Languages"].str.split(",")
+    decade_ratings["Actors"] = decade_ratings["Actors"].str.split(",")
     df3 = decade_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
     st.dataframe(df3, height=425, width=2000)

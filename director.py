@@ -47,6 +47,9 @@ def app():
     director_ratings = director_ratings[:50]
     director_ratings.insert(0, 'Director', director_ratings.index)
     director_ratings = director_ratings.set_index("Ranking")
+    director_ratings["Genre"] = director_ratings["Genre"].str.split(",")
+    director_ratings["Languages"] = director_ratings["Languages"].str.split(",")
+    director_ratings["Actors"] = director_ratings["Actors"].str.split(",")
     df3 = director_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}", 'Weighted Average': '{:.2f}'})
 
     

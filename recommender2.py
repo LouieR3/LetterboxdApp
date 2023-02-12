@@ -174,6 +174,8 @@ def app():
     movies_df.index = movies_df.index + 1
     movies_df = movies_df.drop(["MovieLength", 'Country', "NumberOfReviews", "LBRatingNew"], axis=1)
     movies_df["Genre"] = movies_df["Genre"].str.split(",")
+    movies_df["Languages"] = movies_df["Languages"].str.split(",")
+    movies_df["Actors"] = movies_df["Actors"].str.split(",")
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
     #     "Fin Rating",
