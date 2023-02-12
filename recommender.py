@@ -151,7 +151,7 @@ def app():
 
             popularityScore = float(movie['LBRatingNew'])*(1+(movie['NumberOfRatings']/total_num_ratings))
             score += popularityScore
-            score = str(round(score, 2))
+            # score = str(round(score, 2))
             scores.append(score)
             scoreList.append([directorScore, actorsScore, genreScore, lengthScore, decadeScore, languageScore, popularityScore])
         # movies_df['Score'] = scores
