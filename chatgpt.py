@@ -140,6 +140,8 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
     # movies_df['Score'] = scores
     movies_df['scoreList'] = scoreList
     movies_df.insert(1, 'Score', scores)
+    movies_df['Score'] = movies_df['Score'].round(2)
+    movies_df['LBRating'] = movies_df['LBRating'].round(2)
     return movies_df
 
 # use the calculate_score function on your movie dataframe
