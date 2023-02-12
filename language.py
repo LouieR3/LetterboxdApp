@@ -34,7 +34,7 @@ def app():
     language_total_movies = user_language_group["Movie"].count()
 
     # calculate the average rating for each language seen by each user
-    language_avg_ratings = language_sum_ratings / language_total_movies
+    language_avg_ratings = (language_sum_ratings / language_total_movies)/2
 
     # create a dataframe with the average rating for each language seen by each user
     difference = user_language_group["Difference"].mean()

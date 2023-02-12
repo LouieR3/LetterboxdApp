@@ -35,7 +35,7 @@ def app():
     difference = user_decade_group["Difference"].mean()
 
     # calculate the average rating for each decade seen by each user
-    decade_avg_ratings = decade_sum_ratings / decade_total_movies
+    decade_avg_ratings = (decade_sum_ratings / decade_total_movies)/2
 
     # create a dataframe with the average rating for each decade seen by each user
     decade_ratings = pd.DataFrame({"Average Rating": decade_avg_ratings, "Total Movies": decade_total_movies, "Difference": difference})

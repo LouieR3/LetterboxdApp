@@ -59,7 +59,7 @@ def app():
         # rows where the genre is contained in the genres column
         mask = df["Genre"].str.contains(genre)
         # calculate the average rating for the selected rows
-        avg_rating = df.loc[mask, "MyRating"].mean()
+        avg_rating = (df.loc[mask, "MyRating"].mean() / 2)
         difference = df.loc[mask, "Difference"].mean()
         total_movies = df.loc[mask, "MyRating"].count()
 

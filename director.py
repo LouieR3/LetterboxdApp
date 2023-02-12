@@ -30,7 +30,7 @@ def app():
     director_difference = user_director_group["Difference"].mean()
 
     # calculate the average rating for each director seen by each user
-    director_avg_ratings = director_sum_ratings / director_total_movies
+    director_avg_ratings = (director_sum_ratings / director_total_movies)/2
 
     # create a dataframe with the average rating for each director seen by each user
     director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_difference})

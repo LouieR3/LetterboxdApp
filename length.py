@@ -30,7 +30,7 @@ def app():
     length_total_movies = user_length_group["Movie"].count()
 
     # calculate the average rating for each length seen by each user
-    length_avg_ratings = length_sum_ratings / length_total_movies
+    length_avg_ratings = (length_sum_ratings / length_total_movies)/2
 
     difference = user_length_group["Difference"].mean()
 
