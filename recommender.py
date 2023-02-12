@@ -47,14 +47,16 @@ def app():
 
     df250 = pd.read_csv("Top1001Films.csv")
     df = pd.read_csv(file)
-    # cond = df250['Movie'].isin(df['Movie'])
-    # df250.drop(df250[cond].index, inplace = True)
-    # df250 = df250.reset_index(drop=True)
+    cond = df250['Movie'].isin(df['Movie'])
+    df250.drop(df250[cond].index, inplace = True)
+    df250 = df250.reset_index(drop=True)
+
     # df250['LBRating'] = (df250["LBRating"]*3)
     df250['LBRatingNew'] = (df250["LBRating"]*3)
     # df250['Length'] = (df250["MovieLength"]//10)*10
     # df250['LBRating'] = str(round(df250["LBRating"], 2))
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
+    
     total_num_ratings = df250["NumberOfRatings"].max()
     genre_weight = 0.4
     actor_weight = 0.4
@@ -168,7 +170,7 @@ def app():
     movies_df= movies_df.sort_values(by=['Score'], ascending=False)
     movies_df= movies_df.reset_index(drop=True)
     movies_df.index = movies_df.index + 1
-    movies_df = movies_df.drop(["MovieLength", 'Country', "NumberOfReviews"], axis=1)
+    movies_df = movies_df.drop(["MovieLength", 'Country', "NumberOfReviews", "LBRatingNew"], axis=1)
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
     #     "Fin Rating",
