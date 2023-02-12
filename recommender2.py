@@ -46,6 +46,7 @@ def app():
     # fav_actors.columns = ["Actors", "Weighted Average"]
 
     df250 = pd.read_csv("random-movie-roulette.csv")
+    df250 = df250[df250['Genre'].notnull()]
     df = pd.read_csv(file)
     cond = df250['Movie'].isin(df['Movie'])
     df250.drop(df250[cond].index, inplace = True)
