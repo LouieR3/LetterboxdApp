@@ -158,8 +158,8 @@ def app():
         # movies_df['Score'] = scores
         movies_df['scoreList'] = scoreList
         movies_df.insert(1, 'Score', scores)
-        movies_df['Score'] = str(movies_df['Score'].round(2))
-        movies_df['LBRating'] = str(movies_df['LBRating'].round(2))
+        movies_df['Score'] = movies_df['Score'].round(2)
+        movies_df['LBRating'] = movies_df['LBRating'].round(2)
         
         return movies_df
 
@@ -187,4 +187,4 @@ def app():
 
     df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings'])
     # df3.index += 1 
-    st.dataframe(df3, height=700, width=2000)
+    st.dataframe(df3.style.format("{:.2%}"), height=700, width=2000)
