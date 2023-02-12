@@ -39,7 +39,7 @@ def app():
     director_ratings["percentage"] = (director_ratings["Total Movies"] / len(df)) * 100
 
     # create a new column with the weighted sum of ratings and total_movies
-    director_ratings['Weighted Average'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*1.3
+    director_ratings['Weighted Average'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*1.5
 
     # print the favorite director for user 1
     director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
