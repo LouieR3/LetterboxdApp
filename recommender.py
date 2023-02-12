@@ -17,7 +17,7 @@ def app():
     import re
 
     st.header('Here are your recommendations ranked!')
-    st.text('Top 20 actors and then check the movies you havent see of theirs')
+    st.write('Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
 
     option = 'cloakenswagger'
     option = st.selectbox(
