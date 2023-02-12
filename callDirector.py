@@ -26,7 +26,7 @@ def directorMovies(option):
     director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_difference})
 
     # create a new column with the weighted sum of ratings and total_movies
-    director_ratings['Weighted Average'] = director_ratings['Average Rating']*0.9 + ((director_ratings["Total Movies"] + director_ratings['Difference'])*0.2)
+    director_ratings['Weighted Average'] = director_ratings['Average Rating']*0.9 + ((director_ratings["Total Movies"] + director_ratings['Difference'])*0.2)*1.3
 
     # print the favorite director for user 1
     director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)

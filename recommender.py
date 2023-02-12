@@ -111,7 +111,10 @@ def app():
             if genres_count > 0:
                 genreScore = (genres_score / genres_count)*genre_weight
                 score += genreScore
-            
+            else:
+                genreScore = fav_genres["Weighted Average"].min()
+                score += genreScore
+
             # calculate the length score
             length = movie['MovieLength']
             length_bucket = length // 10 * 10
@@ -128,7 +131,10 @@ def app():
             if decade in fav_decade.index:
                 decadeScore = (fav_decade.loc[decade, 'Weighted Average']*decade_weight)
                 score += decadeScore
-            
+            else:
+                decadeScore = fav_decade["Weighted Average"].min()
+                score += decadeScore
+
             # calculate the language score
             language = movie['Languages'].split(',')[0]
             if language in fav_language.index:
