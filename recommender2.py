@@ -82,7 +82,7 @@ def app():
                 directorScore = fav_directors.loc[director, 'Weighted Average']*director_weight
                 score += (directorScore*director_weight)
             else:
-                directorScore = 6
+                directorScore = 10
                 # directorScore = fav_directors["Weighted Average"].min()
                 score += directorScore
             
