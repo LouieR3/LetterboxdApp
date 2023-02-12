@@ -14,6 +14,9 @@ def app():
     st.write('You selected:', option)
     file = user(option)
     df = pd.read_csv(file)
+    df["Genre"] = df["Genre"].str.split(",")
+    df["Languages"] = df["Languages"].str.split(",")
+    df["Actors"] = df["Actors"].str.split(",")
 
     pd.options.mode.chained_assignment = None
     # df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
