@@ -6,7 +6,7 @@ def app():
     from user import user
 
     st.header('Language Ranked')
-    st.caption('Here are ...')
+    st.write('Here are your favorite languages of movies ranked')
 
     option = 'cloakenswagger'
     option = st.selectbox(

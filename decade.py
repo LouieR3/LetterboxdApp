@@ -6,7 +6,7 @@ def app():
     from user import user
 
     st.header('Decade Ranked')
-    st.caption('Here are ...')
+    st.write('Here are your favorite decades of movies ranked')
 
     option = 'cloakenswagger'
     option = st.selectbox(

@@ -6,7 +6,7 @@ def app():
     from user import user
 
     st.header('Your Favorite Movies by Length in Minutes')
-    st.caption('Here are ...')
+    st.write('This is how much you like a movie by 10 minute increments')
 
     option = 'cloakenswagger'
     option = st.selectbox(

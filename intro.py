@@ -4,7 +4,7 @@ def app():
     from user import user
 
     st.header('All Your Movies')
-    st.caption('TO PUT HERE.....')
+    # st.write('TO PUT HERE.....')
     
     option = 'cloakenswagger'
     option = st.selectbox(
