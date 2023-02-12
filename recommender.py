@@ -157,6 +157,8 @@ def app():
         # movies_df['Score'] = scores
         movies_df['scoreList'] = scoreList
         movies_df.insert(1, 'Score', scores)
+        movies_df['Score'].round(2)
+        movies_df['LBRating'].round(2)
         
         return movies_df
 
