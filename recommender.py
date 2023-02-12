@@ -16,8 +16,8 @@ def app():
     import json
     import re
 
-    st.header('Recommender By ChatGPT Mock 1')
-    st.caption('Top 20 actors and then check the movies you havent see of theirs')
+    st.header('Here are your recommendations ranked!')
+    st.text('Top 20 actors and then check the movies you havent see of theirs')
 
     option = 'cloakenswagger'
     option = st.selectbox(
@@ -56,7 +56,7 @@ def app():
     # df250['Length'] = (df250["MovieLength"]//10)*10
     # df250['LBRating'] = str(round(df250["LBRating"], 2))
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
-    
+
     total_num_ratings = df250["NumberOfRatings"].max()
     genre_weight = 0.4
     actor_weight = 0.4
