@@ -41,7 +41,7 @@ def app():
     decade_ratings = pd.DataFrame({"Average Rating": decade_avg_ratings, "Total Movies": decade_total_movies, "Difference": difference})
 
     # calculate the percentage of movies seen for each decade by each user
-    decade_ratings["percentage"] = (decade_ratings["Total Movies"] / len(df)) * 100
+    decade_ratings["Percentage"] = (decade_ratings["Total Movies"] / len(df)) * 100
 
     # define the weighting factor
     weight = 0.99
@@ -54,6 +54,6 @@ def app():
     decade_ratings["Ranking"] = range(1, len(decade_ratings) + 1)
     decade_ratings.insert(0, 'decade', decade_ratings.index)
     decade_ratings = decade_ratings.set_index("Ranking")
-    df3 = decade_ratings.style.background_gradient(subset=['Weighted Average'])
+    df3 = decade_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
     st.dataframe(df3, height=425, width=2000)

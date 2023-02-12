@@ -52,6 +52,6 @@ def app():
     # length_ratings.insert(0, 'length', length_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index
     # length_ratings = length_ratings.set_index("Ranking")
-    df2 = length_ratings.style.background_gradient(subset=['Weighted Average'])
+    df2 = length_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
     st.dataframe(df2, height=700, width=2000)

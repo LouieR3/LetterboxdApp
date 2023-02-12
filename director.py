@@ -36,7 +36,7 @@ def app():
     director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_difference})
 
     # calculate the percentage of movies seen for each director by each user
-    director_ratings["percentage"] = (director_ratings["Total Movies"] / len(df)) * 100
+    # director_ratings["percentage"] = (director_ratings["Total Movies"] / len(df)) * 100
 
     # create a new column with the weighted sum of ratings and total_movies
     director_ratings['Weighted Average'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*1.5
@@ -47,7 +47,7 @@ def app():
     director_ratings = director_ratings[:50]
     director_ratings.insert(0, 'Director', director_ratings.index)
     director_ratings = director_ratings.set_index("Ranking")
-    df3 = director_ratings.style.background_gradient(subset=['Weighted Average'])
+    df3 = director_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}", 'Weighted Average': '{:.2f}'})
 
     
     # df2.index += 1 

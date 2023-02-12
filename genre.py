@@ -72,7 +72,7 @@ def app():
     # genre_ratings = pd.DataFrame(checkList, columns =['Genre', 'Average Rating', 'Total']).set_index('Genre')
 
     # calculate the percentage of movies seen for each genre by each user
-    genre_ratings["percentage"] = (genre_ratings["Total"] / len(df)) * 100
+    genre_ratings["Percentage"] = (genre_ratings["Total"] / len(df)) * 100
 
     # define the weighting factor
     weight = 0.98
@@ -87,6 +87,6 @@ def app():
     genre_ratings.insert(0, 'Genre', genre_ratings.index)
     # genre_ratings['Genre'] = genre_ratings.index
     genre_ratings = genre_ratings.set_index("Ranking")
-    df3 = genre_ratings.style.background_gradient(subset=['Weighted Average'])
+    df3 = genre_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
     st.dataframe(df3, height=700, width=2000)

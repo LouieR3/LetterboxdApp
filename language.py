@@ -56,6 +56,6 @@ def app():
     language_ratings["Ranking"] = range(1, len(language_ratings) + 1)
     language_ratings.insert(0, 'language', language_ratings.index)
     language_ratings = language_ratings.set_index("Ranking")
-    df3 = language_ratings.style.background_gradient(subset=['Weighted Average'])
+    df3 = language_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
     st.dataframe(df3, height=700, width=2000)
