@@ -49,8 +49,10 @@ def app():
     # cond = df250['Movie'].isin(df['Movie'])
     # df250.drop(df250[cond].index, inplace = True)
     # df250 = df250.reset_index(drop=True)
-    df250['LBRating'] = (df250["LBRating"]*3)
+    # df250['LBRating'] = (df250["LBRating"]*3)
+    df250['LBRatingNew'] = (df250["LBRating"]*3)
     # df250['Length'] = (df250["MovieLength"]//10)*10
+    df250['LBRating'] = str(round(df250["LBRating"], 2))
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
     total_num_ratings = df250["NumberOfRatings"].max()
     genre_weight = 0.4
@@ -147,14 +149,15 @@ def app():
             # LBscore = float(movie['LBRating'])
             # score += LBscore
 
-            popularityScore = float(movie['LBRating'])*(1+(movie['NumberOfRatings']/total_num_ratings))
+            popularityScore = float(movie['LBRatingNew'])*(1+(movie['NumberOfRatings']/total_num_ratings))
             score += popularityScore
-
+            score = str(round(score, 2))
             scores.append(score)
             scoreList.append([directorScore, actorsScore, genreScore, lengthScore, decadeScore, languageScore, popularityScore])
         # movies_df['Score'] = scores
         movies_df['scoreList'] = scoreList
         movies_df.insert(1, 'Score', scores)
+        
         return movies_df
 
     # use the calculate_score function on your movie dataframe

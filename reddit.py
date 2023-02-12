@@ -20,7 +20,8 @@ for game in schedule:
     away_team = game['away_team']['full_name']
     date = game['date']
     subreddit = reddit.subreddit('nba')
-    title = f'[Post Game Thread] {away_team} @ {home_team}'
+    # title = f'[Post Game Thread] {away_team} @ {home_team}'
+    title = f'[Post Game Thread]'
     submission = subreddit.search(title, sort='new', limit=1).next()
     print(submission)
     comment_counts[title] = submission.num_comments
