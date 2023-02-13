@@ -159,7 +159,8 @@ def app():
             score += popularityScore
             # score = str(round(score, 2))
             scores.append(score)
-            scoreList.append([directorScore, actorsScore, genreScore, lengthScore, decadeScore, languageScore, popularityScore])
+            # scoreList.append([directorScore, actorsScore, genreScore, lengthScore, decadeScore, languageScore, popularityScore])
+            scoreList.append([round(directorScore, 2), round(actorsScore, 2), round(genreScore, 2), round(lengthScore, 2), round(decadeScore, 2), round(languageScore, 2), round(popularityScore, 2)])
         # movies_df['Score'] = scores
         movies_df['scoreList'] = scoreList
         movies_df.insert(1, 'Score', scores)
