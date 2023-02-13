@@ -17,7 +17,7 @@ def app():
     import re
 
     st.header('Here are your recommendations ranked!')
-    st.write('Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
+    st.write('NOT REMOVING SEEN MOVIES. Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
 
     option = 'cloakenswagger'
     option = st.selectbox(
@@ -45,11 +45,12 @@ def app():
     fav_actors = actorMovies(option)
     # fav_actors.columns = ["Actors", "Weighted Average"]
 
-    df250 = pd.read_csv("Top1001Films.csv")
+    # df250 = pd.read_csv("Top1001Films.csv")
+    df250 = pd.read_csv("random-movie-roulette.csv")
     df = pd.read_csv(file)
-    cond = df250['Movie'].isin(df['Movie'])
-    df250.drop(df250[cond].index, inplace = True)
-    df250 = df250.reset_index(drop=True)
+    # cond = df250['Movie'].isin(df['Movie'])
+    # df250.drop(df250[cond].index, inplace = True)
+    # df250 = df250.reset_index(drop=True)
 
     # df250['LBRating'] = (df250["LBRating"]*3)
     df250['LBRatingNew'] = (df250["LBRating"]*3)
