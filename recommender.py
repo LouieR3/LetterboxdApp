@@ -130,7 +130,7 @@ def app():
                 lengthScore = (fav_length.loc[length_bucket, 'Weighted Average']*length_weight)
                 score += lengthScore
             else:
-                lengthScore = fav_length["Weighted Average"].min()
+                lengthScore = 0
                 score += lengthScore
             
             # calculate the decade score
@@ -148,9 +148,9 @@ def app():
             if language in fav_language.index:
                 languageScore = (fav_language.loc[language, 'Weighted Average']*language_weight)
                 score += languageScore
-            # else:
-            #     languageScore = fav_language["Weighted Average"].min()
-            #     score += languageScore
+            else:
+                languageScore = 0
+                score += languageScore
 
             # LBscore = float(movie['LBRating'])
             # score += LBscore
