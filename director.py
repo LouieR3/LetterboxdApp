@@ -4,6 +4,7 @@ def app():
     from ratings import ratings
     import streamlit as st
     from user import user
+    import unidecode
 
     st.header('Directors Ranked')
     st.write('Here are your favorite directors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, and the difference in the average rating you have for the director compared to Letterboxd')
@@ -54,3 +55,11 @@ def app():
     
     # df2.index += 1 
     st.dataframe(df3, height=700, width=400)
+
+    actor = st.text_input('Check Director', '')
+    if actor:
+        unaccented_string = unidecode.unidecode(actor)
+        actSplit = unaccented_string.replace(' ', '-').lower()
+        actSplit = actSplit.replace('.', '').replace(',', '')
+        urlTemp = "https://letterboxd.com/director/" + actSplit + "/"
+        st.write(urlTemp)
