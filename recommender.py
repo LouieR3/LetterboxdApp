@@ -148,9 +148,9 @@ def app():
             if language in fav_language.index:
                 languageScore = (fav_language.loc[language, 'Weighted Average']*language_weight)
                 score += languageScore
-            else:
-                languageScore = fav_language["Weighted Average"].min()
-                score += languageScore
+            # else:
+            #     languageScore = fav_language["Weighted Average"].min()
+            #     score += languageScore
 
             # LBscore = float(movie['LBRating'])
             # score += LBscore
