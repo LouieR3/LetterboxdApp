@@ -5,7 +5,7 @@ import time
 start_time = time.time()
 
 # load the dataframe
-file = user()
+file = user("cloakenswagger")
 df = pd.read_csv(file)
 
 df['decade'] = (df["ReleaseYear"]//10)*10
@@ -38,7 +38,7 @@ weight = 0.99
 decade_ratings['Weighted Average'] = decade_ratings['Average Rating']*weight + decade_ratings['Total Movies']*(1-weight)
 
 # print the favorite decade for user 1
-decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
+# decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
 print(decade_ratings)
 
 print("--- %s seconds ---" % (time.time() - start_time))

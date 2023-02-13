@@ -50,7 +50,7 @@ def app():
     decade_ratings['Weighted Average'] = decade_ratings['Average Rating']*weight + decade_ratings['Total Movies']*(1-weight) + decade_ratings['Difference']
 
     # print the favorite decade for user 1
-    decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
+    # decade_ratings= decade_ratings.sort_values(by=['Weighted Average'], ascending=False)
     decade_ratings["Average Rating"] = decade_ratings["Average Rating"]/2
     decade_ratings["Ranking"] = range(1, len(decade_ratings) + 1)
     decade_ratings.insert(0, 'decade', decade_ratings.index)
