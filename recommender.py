@@ -195,8 +195,12 @@ def app():
     #     'Actors'
     # ])
     # movies_df.style
-    filtered_df = dataframe_explorer(movies_df, columns=["Score", "NumberOfRatings", "LBRating"])
-    styled_df = filtered_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
-    # df3.index += 1 
+    # filtered_df = dataframe_explorer(movies_df, columns=["Score", "NumberOfRatings", "LBRating"])
+    # styled_df = filtered_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
+    # # df3.index += 1 
     
-    st.dataframe(styled_df, use_container_width=True, height=700, width=2000)
+    # st.dataframe(styled_df, use_container_width=True, height=700, width=2000)
+
+    df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
+    # df3.index += 1 
+    st.dataframe(df3, height=700, width=2000)
