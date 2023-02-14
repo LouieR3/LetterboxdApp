@@ -15,6 +15,7 @@ def app():
     import requests
     import json
     import re
+    from streamlit_extras.dataframe_explorer import dataframe_explorer
 
     st.header('Here are your recommendations ranked!')
     st.write('NOT REMOVING SEEN MOVIES. Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')

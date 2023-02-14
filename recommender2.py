@@ -15,6 +15,7 @@ def app():
     import requests
     import json
     import re
+    from streamlit_extras.dataframe_explorer import dataframe_explorer
 
     st.header('Here are your recommendations ranked!')
     st.write('Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
@@ -194,4 +195,5 @@ def app():
     # movies_df.style
     df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
     # df3.index += 1 
-    st.dataframe(df3, height=700, width=2000)
+    filtered_df = dataframe_explorer(df3)
+    st.dataframe(filtered_df, use_container_width=True, height=700, width=2000)
