@@ -193,7 +193,7 @@ def app():
     #     'Actors'
     # ])
     # movies_df.style
-    filtered_df = dataframe_explorer(movies_df)
+    filtered_df = dataframe_explorer(movies_df, columns=["Score", "NumberOfRatings", "LBRating"])
     styled_df = filtered_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
     # df3.index += 1 
     
