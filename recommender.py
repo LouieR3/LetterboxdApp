@@ -203,4 +203,4 @@ def app():
 
     df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
     # df3.index += 1 
-    st.dataframe(df3, height=700, width=2000)
+    st.dataframe(df3, height=900, width=2000)
