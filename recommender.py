@@ -98,7 +98,7 @@ def app():
                     actorsScore += fav_actors.loc[actor, 'Weighted Average'] - i
                     actors_count += 1
                 i += 1
-            if actors_count > 0:
+            if actorsScore > 10:
                 # print(movie['Movie'])
                 # score += ((actorsScore / actors_count) * 1.5)
                 # score += actorsScore / actors_count
