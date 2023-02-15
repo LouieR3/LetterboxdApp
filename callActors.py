@@ -57,7 +57,8 @@ def actorMovies(option):
         # Calculate the weighted average of rating and billing for each actor
         # actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"]*0.6 + (2*actors[actor]['Billing Score'])*1.2 + actors[actor]['Number of Movies Seen']*0.1) + actors[actor]["Difference"]) * 1.1
         # actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"]*0.7 + (2*actors[actor]['Billing Score'])*1.3 + actors[actor]['Number of Movies Seen']*0.2) + actors[actor]["Difference"]) * 1.2
-        actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"] + (2*actors[actor]['Billing Score'])*1.6 + actors[actor]['Number of Movies Seen']*0.2) + actors[actor]["Difference"]) * 1.2
+        # actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"] + (2*actors[actor]['Billing Score'])*1.5 + actors[actor]['Number of Movies Seen']*0.2) + actors[actor]["Difference"]) * 1.2
+        actors[actor]['Weighted Average'] = ((actors[actor]["Average Rating"] + (2*actors[actor]['Billing Score'])+ actors[actor]['Number of Movies Seen']*0.2) + actors[actor]["Difference"])
         
 
     # Step 3: Create a new dataframe with actors as index and their average billing position and number of movies  as values
