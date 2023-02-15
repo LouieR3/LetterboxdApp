@@ -30,11 +30,13 @@ director_avg_ratings = director_sum_ratings / director_total_movies
 director_ratings = pd.DataFrame({"Average Rating": director_avg_ratings, "Total Movies": director_total_movies, "Difference": director_diff_avg})
 
 # create a new column with the weighted sum of ratings and Total Movies
-director_ratings['weighted_sum'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*1.5
+director_ratings['weighted_sum'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*2
 
 # print the favorite director for user 1
 director_ratings= director_ratings.sort_values(by=['weighted_sum'], ascending=False)
 director_ratings = director_ratings[:20]
+director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
+director_ratings['weighted_sum'] = director_ratings['weighted_sum'] - director_ratings["Ranking"]/10
 print(director_ratings)
 
 print("--- %s seconds ---" % (time.time() - start_time))

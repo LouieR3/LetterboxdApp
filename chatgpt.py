@@ -46,13 +46,13 @@ df250['LBRatingNew'] = (df250["LBRating"]*3)
 # df250['decade'] = (df250["ReleaseYear"]//10)*10
 # print(round(len(df)*.1))
 total_num_ratings = df250["NumberOfRatings"].max()
-genre_weight = 0.4
+genre_weight = 0.5
 actor_weight = 0.4
-director_weight = 1.2
+director_weight = 1.3
 length_weight = 0.8
 language_weight = 0.3
 decade_weight = 1
-popularity_weight = 0.4
+popularity_weight = 0.8
 rating_weight = 1.5
 
 def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
@@ -82,7 +82,6 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
                 actorsScore += fav_actors.loc[actor, 'Weighted Average'] - i
                 actors_count += 1
             i += 1
-        # if actors_count > 0:
         if actorsScore > 10:
             # print(movie['Movie'])
             # score += ((actorsScore / actors_count) * 1.5)
@@ -141,7 +140,7 @@ def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length
         # LBscore = float(movie['LBRating'])
         # score += LBscore
 
-        popularityScore = (float(movie['LBRatingNew'])*rating_weight)*(1+(movie['NumberOfRatings']/total_num_ratings))
+        popularityScore = (float(movie['LBRatingNew'])*rating_weight)*((1+(movie['NumberOfRatings']/total_num_ratings))*popularity_weight)
         score += popularityScore
 
         scores.append(score)
@@ -160,7 +159,7 @@ movies_df= movies_df.sort_values(by=['Score'], ascending=False)
 movies_df= movies_df.reset_index(drop=True)
 movies_df.index = movies_df.index + 1
 movies_df = movies_df.drop(["MovieLength", "NumberOfReviews"], axis=1)
-# movies_df = movies_df[:30]
+movies_df = movies_df[:20]
 print(movies_df)
 
 print("--- %s seconds ---" % (time.time() - start_time))
