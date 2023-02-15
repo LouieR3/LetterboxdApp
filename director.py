@@ -40,12 +40,13 @@ def app():
     # director_ratings["percentage"] = (director_ratings["Total Movies"] / len(df)) * 100
 
     # create a new column with the weighted sum of ratings and total_movies
-    director_ratings['Weighted Average'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*1.5
+    director_ratings['Weighted Average'] = (director_ratings['Average Rating']*0.9 + ((director_ratings['Total Movies'] + director_ratings['Difference'])*0.2))*2
 
     # print the favorite director for user 1
     director_ratings= director_ratings.sort_values(by=['Weighted Average'], ascending=False)
     director_ratings["Ranking"] = range(1, len(director_ratings) + 1)
     director_ratings["Average Rating"] = director_ratings["Average Rating"]/2
+    director_ratings['Weighted Average'] = director_ratings['Weighted Average'] - director_ratings["Ranking"]/10
     director_ratings = director_ratings[:50]
     director_ratings.insert(0, 'Director', director_ratings.index)
     director_ratings = director_ratings.set_index("Ranking")
@@ -56,10 +57,10 @@ def app():
     # df2.index += 1 
     st.dataframe(df3, height=700, width=400)
 
-    actor = st.text_input('Check Director', '')
-    if actor:
-        unaccented_string = unidecode.unidecode(actor)
-        actSplit = unaccented_string.replace(' ', '-').lower()
-        actSplit = actSplit.replace('.', '').replace(',', '')
-        urlTemp = "https://letterboxd.com/director/" + actSplit + "/"
+    director = st.text_input('Check Director', '')
+    if director:
+        unaccented_string = unidecode.unidecode(director)
+        directorSplit = unaccented_string.replace(' ', '-').lower()
+        directorSplit = directorSplit.replace('.', '').replace(',', '')
+        urlTemp = "https://letterboxd.com/director/" + directorSplit + "/"
         st.write(urlTemp)
