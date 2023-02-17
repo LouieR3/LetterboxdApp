@@ -88,7 +88,7 @@ def app():
     
     df2 = actor_df.style.background_gradient(subset=['Weighted Average', 'Billing Score']).format({"Difference": "{:.2f}","Billing Score": "{:.2f}","Average Rating": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
-    st.dataframe(df2, height=900, width=400)
+    st.dataframe(df2, height=900, use_container_width=True)
 
     actor = st.text_input('Check Actor', '')
     if actor:

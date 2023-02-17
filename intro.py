@@ -21,4 +21,4 @@ def app():
     df = df.rename(columns={"MyRating": "Your Rating", "LBRating": "Letterboxd Rating", "ReviewDate": "Date Reviewed", "LengthInHour": "Movie Length", "Genre": "Genres", "NumberOfRatings": "Number Of Ratings", "ReleaseYear": "Release Year"}) 
     pd.options.mode.chained_assignment = None
     # df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
-    st.dataframe(df, height=700, width=2000)
+    st.dataframe(df, height=700, use_container_width=True)

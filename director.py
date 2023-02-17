@@ -55,7 +55,7 @@ def app():
 
     
     # df2.index += 1 
-    st.dataframe(df3, height=700, width=400)
+    st.dataframe(df3, height=700, use_container_width=True)
 
     director = st.text_input('Check Director', '')
     if director:
