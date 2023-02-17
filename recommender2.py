@@ -55,7 +55,7 @@ def app():
     cond = df250['Movie'].isin(df['Movie'])
     df250.drop(df250[cond].index, inplace = True)
     df250 = df250.reset_index(drop=True)
-
+    df250['Movie'] = df250['Movie'].replace("\xc2\xa0", " ")
     # df250['LBRating'] = (df250["LBRating"]*3)
     df250['LBRatingNew'] = (df250["LBRating"]*3)
     # df250['Length'] = (df250["MovieLength"]//10)*10
