@@ -58,4 +58,4 @@ def app():
 
     df3 = decade_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
-    st.dataframe(df3, height=425, width=2000)
+    st.dataframe(df3, height=425, use_container_width=True)

@@ -90,4 +90,4 @@ def app():
     genre_ratings = genre_ratings.set_index("Ranking")
     df3 = genre_ratings.style.background_gradient(subset=['Weighted Average']).format({"Difference": "{:.2f}","Average Rating": "{:.2f}","Percentage": "{:.2f}", 'Weighted Average': '{:.2f}'})
     # df2.index += 1 
-    st.dataframe(df3, height=700, width=2000)
+    st.dataframe(df3, height=700, use_container_width=True)
