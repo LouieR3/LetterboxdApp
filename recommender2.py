@@ -49,6 +49,7 @@ def app():
     df250 = pd.read_csv("random-movie-roulette.csv")
     df250 = df250[df250['Genre'].notnull()]
     df250 = df250[df250['Actors'].notnull()]
+    df250 = df250[df250['LBRating'] > 3.0]
     df = pd.read_csv(file)
     cond = df250['Movie'].isin(df['Movie'])
     df250.drop(df250[cond].index, inplace = True)
