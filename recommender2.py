@@ -65,12 +65,12 @@ def app():
     total_num_ratings = df250["NumberOfRatings"].max()
     genre_weight = 0.4
     actor_weight = 0.4
-    director_weight = 1.1
+    director_weight = 1
     length_weight = 0.8
     language_weight = 0.3
     decade_weight = 1
     popularity_weight = 0.4
-    rating_weight = 1.5
+    rating_weight = 1.6
 
     def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
         scores = []
