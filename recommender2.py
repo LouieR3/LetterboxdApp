@@ -63,7 +63,7 @@ def app():
     total_num_ratings = df250["NumberOfRatings"].max()
     genre_weight = 0.4
     actor_weight = 0.4
-    director_weight = 1.2
+    director_weight = 1.1
     length_weight = 0.8
     language_weight = 0.3
     decade_weight = 1
