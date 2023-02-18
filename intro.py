@@ -6,12 +6,13 @@ def app():
     st.header('All Your Movies')
     # st.write('TO PUT HERE.....')
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
-
+    st.write(st.session_state)
     for key in st.session_state:
         st.write(key)
-
+        del st.session_state
+    st.write(st.session_state)
     # option = 'cloakenswagger'
-    st.selectbox('Which user do you want to look at?', options, key="my_selectbox", on_change=lambda value: st.session_state.update_option(value))
+    st.selectbox('Which user do you want to look at?', options, on_change=lambda value: st.session_state.update_option(value))
     # print(option)
     # Define a default value for the session variable
     if "selected_option" not in st.session_state:
