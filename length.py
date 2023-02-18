@@ -8,11 +8,11 @@ def app():
     st.header('Your Favorite Movies by Length in Minutes')
     st.write('This is how much you like a movie by 10 minute increments')
 
-    option = 'cloakenswagger'
-    option = st.selectbox(
-        'Which user do you want to look at?',
-        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-
+    # option = 'cloakenswagger'
+    # option = st.selectbox(
+    #     'Which user do you want to look at?',
+    #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+    option = st.session_state.key
     st.write('You selected:', option)
     file = user(option)
     # file = user()

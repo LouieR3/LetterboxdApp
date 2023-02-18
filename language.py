@@ -8,11 +8,11 @@ def app():
     st.header('Language Ranked')
     st.write('Here are your favorite languages of movies ranked')
 
-    option = 'cloakenswagger'
-    option = st.selectbox(
-        'Which user do you want to look at?',
-        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-
+    # option = 'cloakenswagger'
+    # option = st.selectbox(
+    #     'Which user do you want to look at?',
+    #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+    option = st.session_state.key
     st.write('You selected:', option)
     file = user(option)
     # file = user()

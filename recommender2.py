@@ -16,7 +16,6 @@ def app():
     import json
     import re
     from streamlit_extras.dataframe_explorer import dataframe_explorer
-    from get_user import get_user
 
     st.header('Here are your recommendations ranked!')
     st.write('Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
@@ -25,7 +24,7 @@ def app():
     # option = st.selectbox(
     #     'Which user do you want to look at?',
     #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-    option = get_user()
+    option = st.session_state.key
 
     st.write('You selected:', option)
     file = user(option)

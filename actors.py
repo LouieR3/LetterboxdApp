@@ -9,11 +9,11 @@ def app():
     st.header('Actors Ranked')
     st.write('Here are your favorite actors ranked by the average rating of the movies you have watched of theirs, accounting for the number of their films you have seen, the difference in the average rating you have for the actor compared to Letterboxd, and the actors billing score. Billing score, being the number of movies you have seen of that actor over the totalality of all that actors placings in the movies billing lists')
 
-    option = 'cloakenswagger'
-    option = st.selectbox(
-        'Which user do you want to look at?',
-        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-
+    # option = 'cloakenswagger'
+    # option = st.selectbox(
+    #     'Which user do you want to look at?',
+    #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+    option = st.session_state.key
     st.write('You selected:', option)
     file = user(option)
     # file = user()
