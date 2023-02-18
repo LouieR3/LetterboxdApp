@@ -5,14 +5,18 @@ def app():
 
     st.header('All Your Movies')
     # st.write('TO PUT HERE.....')
+    options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
+
+    # Define a default value for the session variable
+    if "selected_option" not in st.session_state:
+        st.session_state.selected_option = options[0]
 
     # option = 'cloakenswagger'
-    option = st.selectbox( 'Which user do you want to look at?',
-            ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-    print(option)
-    st.write('You selected:', option)
+    st.selectbox('Which user do you want to look at?', options, on_change=lambda value: setattr(st.session_state, "selected_option", value))
+    # print(option)
+    st.write('You selected:', st.session_state.selected_option)
 
-    file = user(option)
+    file = user(st.session_state.selected_option)
     df = pd.read_csv(file)
     df["Genre"] = df["Genre"].str.split(",")
     df["Languages"] = df["Languages"].str.split(",")
