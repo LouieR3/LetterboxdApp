@@ -7,7 +7,7 @@ def app():
     # st.write('TO PUT HERE.....')
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
-    for key in st.session_state.keys():
+    for key in st.session_state:
         st.write(key)
 
     # option = 'cloakenswagger'
