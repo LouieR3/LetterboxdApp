@@ -1,7 +1,7 @@
 def user(user):
     from get_user import get_user
     if user:
-        get_user.cache_clear()
+        # get_user.cache_clear()
         get_user.set(user)
     # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
     # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
