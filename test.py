@@ -12,8 +12,12 @@ user = "goldfishbrain"
 file = "AllFilms" + user + ".csv"
 username = file.split(".cs")[0].split("AllFilms")[1]
 print(username)
-# import time
-# start_time = time.time()
+
+str = "Star Wars: Episode III - Revenge of the Sith"
+newStr = str.replace("\xc2\xa0", " ")
+print(str)
+print(newStr)
+print(str == newStr)
 
 # list = "movies-of-2020"
 # firstUrl = "https://letterboxd.com/cloakenswagger/films/"
