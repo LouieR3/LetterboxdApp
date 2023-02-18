@@ -23,7 +23,7 @@ def app():
 
     st.write('You selected:', option)
     if option:
-        get_name.cache_clear()
+        # get_name.cache_clear()
         get_name.set(option)
 
     file = user(option)
