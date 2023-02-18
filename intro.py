@@ -8,7 +8,7 @@ def app():
 
     # option = 'cloakenswagger'
     option = st.selectbox( 'Which user do you want to look at?',
-            ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'), on_change=user())
+            ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'), on_change=user(option))
 
     st.write('You selected:', option)
 
