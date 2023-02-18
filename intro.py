@@ -12,7 +12,7 @@ def app():
         st.session_state.selected_option = options[0]
 
     # option = 'cloakenswagger'
-    st.selectbox('Which user do you want to look at?', options, on_change=lambda value: setattr(st.session_state, "selected_option", value))
+    st.selectbox('Which user do you want to look at?', options, key="my_selectbox", on_change=lambda value: setattr(st.session_state, "selected_option", value))
     # print(option)
     st.write('You selected:', st.session_state.selected_option)
 
