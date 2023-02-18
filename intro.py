@@ -6,9 +6,9 @@ def app():
     st.header('All Your Movies')
     # st.write('TO PUT HERE.....')
 
-    option = 'cloakenswagger'
+    # option = 'cloakenswagger'
     option = st.selectbox( 'Which user do you want to look at?',
-            ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+            ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'), on_change=user())
 
     st.write('You selected:', option)
 
