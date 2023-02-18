@@ -16,16 +16,12 @@ def app():
     import json
     import re
     from streamlit_extras.dataframe_explorer import dataframe_explorer
+    from streamlit2 import get_name
 
     st.header('Here are your recommendations ranked!')
     st.write('NOT REMOVING SEEN MOVIES. Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
 
-    option = 'cloakenswagger'
-    option = st.selectbox(
-        'Which user do you want to look at?',
-        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-
-    st.write('You selected:', option)
+    option = get_name() or "unknown"
     file = user(option)
 
     fav_length = lenMovies(option)
