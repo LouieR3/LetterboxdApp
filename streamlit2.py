@@ -33,7 +33,8 @@ def another_page():
     # Get the selected username from the cached function
     username = st.session_state.key
     st.write(username)
-    st.write(file)
+    # file = file
+    # st.write(file)
     df = pd.read_csv(username)
     df['MyRating'] = (df["MyRating"]*2)
     df['length'] = (df["MovieLength"]//10)*10
