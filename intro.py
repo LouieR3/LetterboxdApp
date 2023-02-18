@@ -6,8 +6,7 @@ def app():
     st.header('All Your Movies')
     # st.write('TO PUT HERE.....')
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
-    if st.session_state != None:
-        st.write(st.session_state)
+
     for key in st.session_state:
         st.write(key)
         del st.session_state
