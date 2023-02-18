@@ -27,9 +27,7 @@ import unidecode
 import recommender
 import recommender2
 
-@st.cache_data()
-def get_name():
-    return None
+
 
 st.set_page_config(page_title="Letterboxd Stats", layout="wide")
 
@@ -46,16 +44,6 @@ PAGES = {
     "Recommendations All": recommender,
     "Recommendations": recommender2
 }
-
-# option = 'cloakenswagger'
-option = st.selectbox(
-    'Which user do you want to look at?',
-    ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-
-st.write('You selected:', option)
-if option:
-    get_name.cache_clear()
-    get_name.set(option)
 
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))

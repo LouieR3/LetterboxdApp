@@ -2,21 +2,29 @@ def app():
     import pandas as pd
     import streamlit as st
     from user import user
-    from streamlit2 import get_name
 
     st.header('All Your Movies')
     # st.write('TO PUT HERE.....')
-    
-    # option = 'cloakenswagger'
-    # option = st.selectbox(
-    #     'Which user do you want to look at?',
-    #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
 
     # st.write('You selected:', option)
     # if option:
     #     get_name.cache_clear()
     #     get_name.set(option)
-    option = get_name() or "unknown"
+    @st.cache_data()
+    def get_name():
+        return None
+
+    # option = get_name() or "unknown"
+
+    # option = 'cloakenswagger'
+    option = st.selectbox(
+        'Which user do you want to look at?',
+        ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
+
+    st.write('You selected:', option)
+    if option:
+        get_name.cache_clear()
+        get_name.set(option)
 
     file = user(option)
     df = pd.read_csv(file)
