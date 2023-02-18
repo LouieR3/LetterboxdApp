@@ -5,7 +5,7 @@ import pandas as pd
 def load_user_data(user):
     # Load user data for the selected username
     user_data = "AllFilms" + user + ".csv"
-     
+    st.session_state['key'] = user_data
     return user_data
 
 # Define your Streamlit app pages as functions
@@ -29,7 +29,7 @@ def homepage():
 
 def another_page():
     # Get the selected username from the cached function
-    username = st.cache_data_lookup(load_user_data).args[0]
+    username = st.session_state.key
     df = pd.read_csv(username)
     df['MyRating'] = (df["MyRating"]*2)
     df['length'] = (df["MovieLength"]//10)*10
