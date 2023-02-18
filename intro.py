@@ -7,13 +7,13 @@ def app():
     # st.write('TO PUT HERE.....')
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
+    # option = 'cloakenswagger'
+    st.selectbox('Which user do you want to look at?', options, key="my_selectbox", on_change=lambda value: st.session_state.update_option(value))
+    # print(option)
     # Define a default value for the session variable
     if "selected_option" not in st.session_state:
         st.session_state.selected_option = options[0]
-
-    # option = 'cloakenswagger'
-    st.selectbox('Which user do you want to look at?', options, key="my_selectbox", on_change=lambda value: setattr(st.session_state, "selected_option", value))
-    # print(option)
+        
     st.write('You selected:', st.session_state.selected_option)
 
     file = user(st.session_state.selected_option)
