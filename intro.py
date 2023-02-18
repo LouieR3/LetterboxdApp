@@ -7,9 +7,10 @@ def app():
     # st.write('TO PUT HERE.....')
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
-    for key in st.session_state:
-        st.write(key)
-        del st.session_state
+    if len(st.session_state) > 0:
+        for key in st.session_state:
+            st.write(key)
+            del st.session_state
     # option = 'cloakenswagger'
     st.selectbox('Which user do you want to look at?', options, on_change=lambda value: st.session_state.update_option(value))
     # print(option)
