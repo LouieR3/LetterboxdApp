@@ -25,7 +25,7 @@ def homepage():
     df = df.drop(["MovieLength", "NumberOfReviews"], axis=1)
     df = df.rename(columns={"MyRating": "Your Rating", "LBRating": "Letterboxd Rating", "ReviewDate": "Date Reviewed", "LengthInHour": "Movie Length", "Genre": "Genres", "NumberOfRatings": "Number Of Ratings", "ReleaseYear": "Release Year"})
     # st.write(user_data)
-    st.dataframe(user_data, height=700, use_container_width=True)
+    st.dataframe(df, height=700, use_container_width=True)
 
 def another_page():
     # Get the selected username from the cached function
