@@ -1,3 +1,5 @@
+import streamlit as st
+@st.cache_data(experimental_allow_widgets=True)
 def user(user):
     from get_user import get_user
     if user:

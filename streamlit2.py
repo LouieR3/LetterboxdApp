@@ -1,54 +1,40 @@
+
 import streamlit as st
-import pandas as pd
-# import pydeck as pdk
-from bs4 import BeautifulSoup
-import requests
-import csv
-import json
-import re
-import asyncio
-# from operator import itemgetter
-# from urllib.error import URLError
-# from streamlit_observable import observable
-# import pandas_profiling
-# from streamlit_pandas_profiling import st_profile_report
-import numpy as np
-from ratings import ratings
-import director
-import actors
-import intro
-import length
-import genre
-import country
-import decade
-import year
-import language
-import unidecode
-import recommender
-import recommender2
 
 
+@st.cache
+def get_name():
+    return None
 
-st.set_page_config(page_title="Letterboxd Stats", layout="wide")
+def page1():
+    name = get_name() or "unknown"
+    st.write("Hello, {}! This is page 1.".format(name))
+    set_name()
 
+def page2():
+    name = get_name() or "unknown"
+    st.write("Hello, {}! This is page 2.".format(name))
+    set_name()
+
+def page3():
+    name = get_name() or "unknown"
+    st.write("Hello, {}! This is page 3.".format(name))
+    set_name()
+
+def set_name():
+    name = st.text_input("What is your name?")
+    if name:
+        get_name.cache_clear()
+        get_name.set(name)
+
+# Define the pages and their associated functions
 PAGES = {
-    "Home": intro,
-    "Your Favorite Actors": actors,
-    "Your Favorite Directors": director,
-    "Your Favorite Movies By Length": length,
-    "Your Favorite Genres": genre,
-    "Your Favorite Decades": decade,
-    "Your Favorite Languages": language,
-    # "Your Favorite Country": country,
-    # "Your Favorite Year": year,
-    "Recommendations All": recommender,
-    "Recommendations": recommender2
+    "Page 1": page1,
+    "Page 2": page2,
+    "Page 3": page3,
 }
 
-st.sidebar.title('Navigation')
-selection = st.sidebar.radio("Go to", list(PAGES.keys()))
-page = PAGES[selection]
-page.app()
-
-# pr = df.profile_report()
-# st_profile_report(pr)
+# Define the sidebar navigation
+nav = st.sidebar.radio("Go to", list(PAGES.keys()))
+page = PAGES[nav]
+page()
