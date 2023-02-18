@@ -10,16 +10,16 @@ def app():
     # if option:
     #     get_name.cache_clear()
     #     get_name.set(option)
-    @st.cache_data(experimental_allow_widgets=True)
-    def get_name():
-        option = st.selectbox( 'Which user do you want to look at?',
+    # @st.cache_data(experimental_allow_widgets=True)
+    # def get_name():
+        
+    #     return option
+
+    # option = get_name() or "unknown"
+
+    option = 'cloakenswagger'
+    option = st.selectbox( 'Which user do you want to look at?',
             ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-        return option
-
-    option = get_name() or "unknown"
-
-    # option = 'cloakenswagger'
-    
 
     st.write('You selected:', option)
     # if option:
