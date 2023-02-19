@@ -2,13 +2,14 @@ def app():
     import pandas as pd
     import streamlit as st
     from user import user
+    from user import get_user
 
     st.header('All Your Movies')
     # st.write('TO PUT HERE.....')
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
     # option = 'cloakenswagger'
-    username = st.selectbox('Which user do you want to look at?', options, on_change=lambda value: st.session_state.update_option(value))
+    username = st.selectbox('Which user do you want to look at?', options, on_change=lambda value: user(value))
     # print(option)
     # Define a default value for the session variable
     if "key" not in st.session_state:
@@ -16,7 +17,7 @@ def app():
         
     st.write('You selected:', st.session_state.key)
 
-    file = user(st.session_state.key)
+    file = get_user()
     df = pd.read_csv(file)
     df["Genre"] = df["Genre"].str.split(",")
     df["Languages"] = df["Languages"].str.split(",")

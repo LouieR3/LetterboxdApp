@@ -1,5 +1,7 @@
 import streamlit as st
-@st.cache_data(experimental_allow_widgets=True)
+
+file = None
+
 def user(user):
     # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
     # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
@@ -11,6 +13,10 @@ def user(user):
     # user = "gr8escape10"
     # user = "prahladsingh"
     # user = "carmal"
+    global file
     file = "AllFilms" + user + ".csv"
     st.session_state.key = user
+    # return file
+
+def get_user():
     return file

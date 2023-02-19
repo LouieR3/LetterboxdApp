@@ -3,6 +3,7 @@ def app():
     from operator import itemgetter
     import streamlit as st
     from user import user
+    from user import get_user
     from callLength import lenMovies
     from callGenre import genreMovies
     from callLanguage import langMovies
@@ -20,7 +21,7 @@ def app():
     st.header('Here are your recommendations ranked!')
     st.write('NOT REMOVING SEEN MOVIES. Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
 
-    option = st.session_state.key
+    option = get_user()
     st.write('You selected:', option)
     file = user(option)
 
