@@ -27,7 +27,8 @@ def app():
     option = st.session_state.my_global_variable
 
     st.write('You selected:', option)
-    file = user(option)
+    # file = user(option)
+    file = option
 
     fav_length = lenMovies(option)
     # fav_length.columns = ["Length", "Weighted Average"]

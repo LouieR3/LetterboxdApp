@@ -12,10 +12,10 @@ def app():
     # option = st.selectbox(
     #     'Which user do you want to look at?',
     #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
-    option = st.session_state.key
+    option = st.session_state.my_global_variable
     st.write('You selected:', option)
-    file = user(option)
-    # file = user()
+    # file = user(option)
+    file = option
     df = pd.read_csv(file)
     df = df[df["Genre"].notna()]
     # df = pd.read_csv("AllFilmscarmal.csv")
