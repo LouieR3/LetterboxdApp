@@ -64,7 +64,7 @@ def another_page():
     # df2.index += 1 
     st.dataframe(df2, height=700, use_container_width=True)
     # Display the selected username on another page
-    st.write(f"You selected the username: {username}")
+    st.write(f"You selected the username: {file}")
 # Define your Streamlit app navigation
 PAGES = {
     "Homepage": homepage,
