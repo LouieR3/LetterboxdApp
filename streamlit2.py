@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 # Define your cached function using st.cache_data
+file = ""
 @st.cache_data()
 def load_user_data(user):
     # Load user data for the selected username
