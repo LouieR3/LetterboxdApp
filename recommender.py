@@ -23,7 +23,8 @@ def app():
 
     option = get_user()
     st.write('You selected:', option)
-    file = user(option)
+    # file = user(option)
+    file = option
 
     fav_length = lenMovies(option)
     # fav_length.columns = ["Length", "Weighted Average"]

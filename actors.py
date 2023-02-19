@@ -15,7 +15,8 @@ def app():
     #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
     option = st.session_state.my_global_variable
     st.write('You selected:', option)
-    file = user(option)
+    # file = user(option)
+    file = option
     # file = user()
     username = file.split(".cs")[0].split("AllFilms")[1]
     # df = pd.read_csv(file)
