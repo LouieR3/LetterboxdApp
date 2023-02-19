@@ -9,7 +9,7 @@ def app():
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
     # option = 'cloakenswagger'
-    username = st.selectbox('Which user do you want to look at?', options, on_change=lambda value: user(value))
+    username = st.selectbox('Which user do you want to look at?', options, on_change=user(username))
     # print(option)
     # Define a default value for the session variable
     if "key" not in st.session_state:
