@@ -11,12 +11,12 @@ def app():
     username = st.selectbox('Which user do you want to look at?', options, on_change=lambda value: st.session_state.update_option(value))
     # print(option)
     # Define a default value for the session variable
-    if "selected_option" not in st.session_state:
-        st.session_state.selected_option = options[0]
+    if "key" not in st.session_state:
+        st.session_state.key = options[0]
         
-    st.write('You selected:', st.session_state.selected_option)
+    st.write('You selected:', st.session_state.key)
 
-    file = user(st.session_state.selected_option)
+    file = user(st.session_state.key)
     df = pd.read_csv(file)
     df["Genre"] = df["Genre"].str.split(",")
     df["Languages"] = df["Languages"].str.split(",")
