@@ -12,5 +12,5 @@ def user(user):
     # user = "prahladsingh"
     # user = "carmal"
     file = "AllFilms" + user + ".csv"
-    st.session_state.key = user
+    st.session_state.selected_option = user
     return file
