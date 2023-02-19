@@ -6,7 +6,7 @@ import pandas as pd
 def load_user_data(user):
     # Load user data for the selected username
     user_data = "AllFilms" + user + ".csv"
-    st.session_state.key = user_data
+    # st.session_state.key = user_data
     global file
     file = user_data
     return user_data
@@ -30,10 +30,10 @@ def homepage():
     st.dataframe(df, height=700, use_container_width=True)
 def another_page():
     # Get the selected username from the cached function
-    username = st.session_state.key
-    st.write(username)
+    # username = st.session_state.key
     st.write(file)
-    df = pd.read_csv(username)
+    st.write(file)
+    df = pd.read_csv(file)
     df['MyRating'] = (df["MyRating"]*2)
     df['length'] = (df["MovieLength"]//10)*10
     # group the dataframe by user and length
