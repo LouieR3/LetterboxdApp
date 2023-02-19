@@ -2,10 +2,11 @@ def actorMovies(option):
     import pandas as pd
     from operator import itemgetter
     from ratings import ratings
-    # import streamlit as st
+    import streamlit as st
     from user import user
 
-    file = user(option)
+    # file = user(option)
+    file = st.session_state.my_global_variable
     # file = user()
     username = file.split(".cs")[0].split("AllFilms")[1]
     # df = pd.read_csv(file)
