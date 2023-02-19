@@ -15,8 +15,8 @@ def user(user):
     # user = "carmal"
     global file
     file = "AllFilms" + user + ".csv"
-    st.session_state.key = user
+    st.session_state.my_global_variable = file
     # return file
 
 def get_user():
-    return file
+    return st.session_state.my_global_variable

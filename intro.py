@@ -9,15 +9,14 @@ def app():
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
     # option = 'cloakenswagger'
-    username = st.selectbox('Which user do you want to look at?', options)
-    username.on_change=(lambda value: user(value.new))
+    username = st.selectbox('Which user do you want to look at?', options, on_change=user)
     # print(option)
     # Define a default value for the session variable
-    if "key" not in st.session_state:
-        st.session_state.key = options[0]
+    if "my_global_variable" not in st.session_state:
+        st.session_state.my_global_variable = options[0]
         
-    st.write('You selected:', st.session_state.key)
-
+    st.write('You selected:', st.session_state.my_global_variable)
+    
     file = get_user()
     df = pd.read_csv(file)
     df["Genre"] = df["Genre"].str.split(",")
