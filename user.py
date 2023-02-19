@@ -1,6 +1,6 @@
 import streamlit as st
 
-file = None
+file = "AllFilmscloakenswagger.csv"
 
 def user(user):
     # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
