@@ -16,7 +16,7 @@ def app():
     if "my_global_variable" not in st.session_state:
         st.session_state.my_global_variable = "AllFilms" + options[0] + ".csv"
         
-    st.write('You selected:', st.session_state.my_global_variable)
+    st.write('You selected:', my_global_variable)
     
     file = get_user()
     df = pd.read_csv(file)
