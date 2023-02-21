@@ -20,6 +20,8 @@ def app():
     
     file = get_user()
     df = pd.read_csv(file)
+    dfAvg = df[("MovieLength" > 60) & ("MovieLength" < 275)]
+    avg = dfAvg["MyRating"].sum() / dfAvg["Movie"].count()
     df["Genre"] = df["Genre"].str.split(",")
     df["Languages"] = df["Languages"].str.split(",")
     df["Actors"] = df["Actors"].str.split(",")
@@ -28,4 +30,8 @@ def app():
     df = df.rename(columns={"MyRating": "Your Rating", "LBRating": "Letterboxd Rating", "ReviewDate": "Date Reviewed", "LengthInHour": "Movie Length", "Genre": "Genres", "NumberOfRatings": "Number Of Ratings", "ReleaseYear": "Release Year"}) 
     pd.options.mode.chained_assignment = None
     # df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
+
+
+    st.write(f'Your average rating across all movies is: **{avg}**')
+
     st.dataframe(df, height=700, use_container_width=True)
