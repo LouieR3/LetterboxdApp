@@ -45,7 +45,7 @@ def app():
     # fav_actors.columns = ["Actors", "Weighted Average"]
 
     # df250 = pd.read_csv("Top1001Films.csv")
-    df250 = pd.read_csv("random-movie-roulette.csv")
+    df250 = pd.read_csv("TopFilms.csv")
     df250 = df250[df250['Genre'].notnull()]
     df250 = df250[df250['Actors'].notnull()]
     df = pd.read_csv(file)

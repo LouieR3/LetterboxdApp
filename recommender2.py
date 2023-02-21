@@ -48,7 +48,7 @@ def app():
     fav_actors = actorMovies(option)
     # fav_actors.columns = ["Actors", "Weighted Average"]
 
-    df250 = pd.read_csv("random-movie-roulette.csv")
+    df250 = pd.read_csv("TopFilms.csv")
     df250 = df250[df250['Genre'].notnull()]
     df250 = df250[df250['Actors'].notnull()]
     df250 = df250[df250['LBRating'] > 3.0]
