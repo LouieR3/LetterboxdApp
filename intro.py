@@ -23,7 +23,6 @@ def app():
     df["Genre"] = df["Genre"].str.split(",")
     df["Languages"] = df["Languages"].str.split(",")
     df["Actors"] = df["Actors"].str.split(",")
-    df["ReleaseYear"] = int(df["ReleaseYear"])
     df = df.drop(["MovieLength", "NumberOfReviews"], axis=1)
     df.index = df.index + 1
     df = df.rename(columns={"MyRating": "Your Rating", "LBRating": "Letterboxd Rating", "ReviewDate": "Date Reviewed", "LengthInHour": "Movie Length", "Genre": "Genres", "NumberOfRatings": "Number Of Ratings", "ReleaseYear": "Release Year"}) 
