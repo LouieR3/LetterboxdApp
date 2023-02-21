@@ -22,7 +22,7 @@ def app():
     st.write('NOT REMOVING SEEN MOVIES. Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
 
     option = st.session_state.my_global_variable
-    st.write('You selected:', option)
+    st.write('You selected:', option.split("AllFilms")[1].split(".csv")[0])
     # file = user(option)
     file = option
 

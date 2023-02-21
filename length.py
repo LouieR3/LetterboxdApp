@@ -13,7 +13,7 @@ def app():
     #     'Which user do you want to look at?',
     #     ('cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka'))
     option = st.session_state.my_global_variable
-    st.write('You selected:', option)
+    st.write('You selected:', option.split("AllFilms")[1].split(".csv")[0])
     # file = user(option)
     file = option
     # file = user()

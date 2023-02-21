@@ -9,14 +9,14 @@ def app():
     options = ['cloakenswagger', 'carmal', 'prahladsingh', 'bluegrace11', 'gr8escape10', 'zacierka', 'goldfishbrain']
 
     # option = 'cloakenswagger'
-    my_global_variable = st.selectbox('Which user do you want to look at?', options)
-    st.button('Change User', on_click=user, args=(my_global_variable, ))
+    selectUser = st.selectbox('Which user do you want to look at?', options)
+    st.button('Change User', on_click=user, args=(selectUser, ))
     # print(option)
     # Define a default value for the session variable
     if "my_global_variable" not in st.session_state:
         st.session_state.my_global_variable = "AllFilms" + options[0] + ".csv"
-        
-    st.write('You selected:', my_global_variable)
+
+    st.write('You selected:', st.session_state.my_global_variable.split("AllFilms")[1].split(".csv")[0])
     
     file = get_user()
     df = pd.read_csv(file)

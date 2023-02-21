@@ -21,6 +21,7 @@ frames.append(total_movies_df)
 extension = 'csv'
 csvs = glob.glob('AllFilms*.{}'.format(extension))
 for file in csvs:
+    print(file.split("AllFilms")[1].split(".csv")[0])
     df = pd.read_csv(file)
     df = df.drop(["MyRating", "Difference", "ReviewDate"], axis=1)
     frames.append(df)
