@@ -20,7 +20,7 @@ def app():
     
     file = get_user()
     df = pd.read_csv(file)
-    dfAvg = df[("MovieLength" > 60) & ("MovieLength" < 275)]
+    dfAvg = df[(df["MovieLength"] > 60) & (df["MovieLength"] < 275)]
     avg = dfAvg["MyRating"].sum() / dfAvg["Movie"].count()
     df["Genre"] = df["Genre"].str.split(",")
     df["Languages"] = df["Languages"].str.split(",")
