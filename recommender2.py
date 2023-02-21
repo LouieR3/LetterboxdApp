@@ -55,7 +55,7 @@ def app():
     df250['Movie'] = df250['Movie'].replace("\xc2\xa0", " ")
     df250 = df250[df250['NumberOfRatings'] > 500]
     df = pd.read_csv(file)
-    df['Movie'] = df['Movie'].replace("\xc2\xa0", " ")
+    # df['Movie'] = df['Movie'].replace("\xc2\xa0", " ")
     cond = df250['Movie'].isin(df['Movie'])
     df250.drop(df250[cond].index, inplace = True)
     df250 = df250.reset_index(drop=True)
