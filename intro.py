@@ -37,4 +37,4 @@ def app():
     totalMovies = len(df)
     st.write(f'Your average rating across all movies is: **{avgRound}** over **{totalMovies}** amount of movies')
 
-    st.dataframe(df, height=700, use_container_width=True)
+    st.dataframe(dfxxx, height=700, use_container_width=True)
