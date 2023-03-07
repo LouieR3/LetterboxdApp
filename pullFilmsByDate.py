@@ -12,16 +12,17 @@ import time
 
 start_time = time.time()
 
-dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
+# dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
-user = "goldfishbrain"
+# user = "goldfishbrain"
 # user = "zacierka"
 # user = "bluegrace11"
-# user = "cloakenswagger"
+user = "cloakenswagger"
 # user = "carmal"
 # user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
-fullCSV = os.path.join(dataPath, file)
+fullCSV = "AllFilms" + user + ".csv"
+# fullCSV = os.path.join(dataPath, file)
 df = pd.read_csv(fullCSV)
 
 # file2 = "AllFilmActors.csv"
@@ -120,7 +121,7 @@ for movie in soup.find_all("li", class_="poster-container"):
                 lanList.append(item.text.strip())
             if len(lanList) > 1:
                 lanString = ",".join(lanList)
-                lanString = str(lanString.split(',',1)[1])
+                lanString = str(lanString.split(',', 1)[1])
             else:
                 lanString = lanList[0]
             detailsDiv = soupFilm.find(
@@ -170,7 +171,7 @@ for movie in soup.find_all("li", class_="poster-container"):
                 country = y["countryOfOrigin"][0]["name"]
             except:
                 country = ""
-            
+
             try:
                 avgRate = y["aggregateRating"]["ratingValue"]
             except:
@@ -178,7 +179,7 @@ for movie in soup.find_all("li", class_="poster-container"):
             if format_float == 0:
                 diff = rating_val - avgRate
                 format_float = "{:.2f}".format(diff)
-            
+
             try:
                 numReviews = y["aggregateRating"]["reviewCount"]
             except:
@@ -187,7 +188,7 @@ for movie in soup.find_all("li", class_="poster-container"):
                 numRatings = y["aggregateRating"]["ratingCount"]
             except:
                 numRatings = 0
-            
+
             bigList.append(
                 [
                     movieName,
