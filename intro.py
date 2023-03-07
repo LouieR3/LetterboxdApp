@@ -37,7 +37,7 @@ def app():
     # df2 = df.style.background_gradient(subset=['Ranking', 'Billing Score'])
 
     avgRound = "{:.2f}".format(avg)
-    totalMovies = len(ddf)
+    totalMovies = len(df)
     st.write(
         f'Your average rating across all movies is: **{avgRound}** over **{totalMovies}** amount of movies')
 
