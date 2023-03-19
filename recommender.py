@@ -18,8 +18,8 @@ def app():
     import re
     from streamlit_extras.dataframe_explorer import dataframe_explorer
 
-    st.header('Here are your recommendations ranked!')
-    st.write('NOT REMOVING SEEN MOVIES. Looking at your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd to predict new movies for you to watch')
+    st.header('Here are all movies you have seen, and those you have not yet, ranked!')
+    st.write('Using our models for your favorite actors, directors, genres, length of movie, language, and the average rating and popularity of the movie on Letterboxd, this predicts your favorite movies')
 
     option = st.session_state.my_global_variable
     st.write('You selected:', option.split("AllFilms")[1].split(".csv")[0])
