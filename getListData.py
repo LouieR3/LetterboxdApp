@@ -12,10 +12,10 @@ start_time = time.time()
 # user = "bluegrace11"
 user = "cloakenswagger"
 # firstUrl = "https://letterboxd.com/dave/list/official-top-250-narrative-feature-films/"
-firstUrl = "https://letterboxd.com/crew/list/2023-oscars-all-nominated-films/"
-# firstUrl = "https://letterboxd.com/tobiasandersen2/list/random-movie-roulette/"
+# firstUrl = "https://letterboxd.com/crew/list/2023-oscars-all-nominated-films/"
+firstUrl = "https://letterboxd.com/tobiasandersen2/list/random-movie-roulette/"
 # list = "AllFilmActors"
-list = "oscars"
+list = "random-movie-roulette"
 source = requests.get(firstUrl).text
 soup = BeautifulSoup(source, "lxml")
 listOfPage = []
@@ -54,7 +54,7 @@ for link in listOfPage:
     for movie in soup.find_all("li", class_="poster-container"):
 
         name = movie.find("img")
-        movieName = name.attrs["alt"]
+        movieName = name.attrs["alt"].replace(u'\xa0', u' ')
 
         div = movie.find("div")
         filmLink = div.attrs["data-film-slug"]

@@ -48,7 +48,7 @@ count = 0
 for movie in soup.find_all("li", class_="poster-container"):
     place = movie.find("p").text
     name = movie.find("img")
-    movieName = name.attrs["alt"]
+    movieName = name.attrs["alt"].replace(u'\xa0', u' ')
     rating = movie.find("span", attrs={"class": "rating"})
     format_float = 0
     if not rating:
