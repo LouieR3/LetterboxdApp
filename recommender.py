@@ -45,7 +45,7 @@ def app():
     # fav_actors.columns = ["Actors", "Weighted Average"]
 
     # df250 = pd.read_csv("Top1001Films.csv")
-    df250 = pd.read_csv("TopFilms.csv")
+    df250 = pd.read_csv("TopFilms2.csv")
     df250 = df250[df250['Genre'].notnull()]
     df250 = df250[df250['Actors'].notnull()]
     df = pd.read_csv(file)
@@ -199,6 +199,6 @@ def app():
     
     # st.dataframe(styled_df, use_container_width=True, height=700, width=2000)
 
-    df3 = movies_df.style.background_gradient(subset=['Score', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
+    df3 = movies_df.style.background_gradient(subset=['Score', 'LBRating', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
     # df3.index += 1 
     st.dataframe(df3, height=900, use_container_width=True)

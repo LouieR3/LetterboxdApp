@@ -92,70 +92,77 @@ for link in listOfPage:
         # print(lbRating)
         if finalLen > 60 and finalLen < 500 and lbRating > 0:
             languages = soupFilm.find("div", id="tab-details")
-            lan = languages.find_all("a", href=re.compile("language"))
-            lanList = []
-            languageStr = ""
-            for item in lan:
-                lanList.append(item.text.strip())
-            if len(lanList) > 1:
-                languageStr = ','.join(lanList)
-                languageStr = str(languageStr.split(',',1)[1])
-            else:
-                languageStr = lanList[0]
-
-            director = ""
-            try:
-                director = lttrboxdJSON["director"][0]["name"]
-            except:
+            if languages:
+                lan = languages.find_all("a", href=re.compile("language"))
+                lanList = []
+                languageStr = ""
+                for item in lan:
+                    lanList.append(item.text.strip())
+                if len(lanList) > 1:
+                    languageStr = ','.join(lanList)
+                    languageStr = str(languageStr.split(',',1)[1])
+                elif len(lanList) == 1:
+                    languageStr = lanList[0]
+                else:
+                    break
                 director = ""
+                try:
+                    director = lttrboxdJSON["director"][0]["name"]
+                except:
+                    director = ""
 
-            # GET ONLY CREDITED ACTORS BY A TAG
-            actors = ""
-            try:
-                actors = lttrboxdJSON["actors"]
-            except:
+                # GET ONLY CREDITED ACTORS BY A TAG
                 actors = ""
-            act1 = ""
-            limit = 0
-            if len(actors) >= 20 and len(actors) < 27:
-                limit = len(actors)*0.6
-            elif len(actors) >= 27:
-                limit = len(actors)*0.4
-            else:
-                limit = len(actors)
-            limit = round(limit)
-            for act in range(limit):
-                if act == 0:
-                    act1 = act1 + actors[act]["name"]
+                try:
+                    actors = lttrboxdJSON["actors"]
+                except:
+                    actors = ""
+                act1 = ""
+                limit = 0
+                if len(actors) >= 20 and len(actors) < 27:
+                    limit = len(actors)*0.6
+                elif len(actors) >= 27:
+                    limit = len(actors)*0.4
                 else:
-                    act1 = act1 + "," + actors[act]["name"]
+                    limit = len(actors)
+                limit = round(limit)
+                for act in range(limit):
+                    if act == 0:
+                        act1 = act1 + actors[act]["name"]
+                    else:
+                        act1 = act1 + "," + actors[act]["name"]
 
-            release = lttrboxdJSON["releasedEvent"][0]["startDate"]
+                release = lttrboxdJSON["releasedEvent"][0]["startDate"]
 
-            genreString = ""
-            genre_in_dict = "genre" in lttrboxdJSON
-            if (genre_in_dict):
-                genre = lttrboxdJSON["genre"]
-                if len(genre) > 1:
-                    genreString = ','.join(genre)
+                genreString = ""
+                genre_in_dict = "genre" in lttrboxdJSON
+                if (genre_in_dict):
+                    genre = lttrboxdJSON["genre"]
+                    if len(genre) > 1:
+                        genreString = ','.join(genre)
+                    else:
+                        genreString = genre[0]
                 else:
-                    genreString = genre[0]
-            else:
-                genre = ""
+                    genre = ""
 
-            try:
-                country = lttrboxdJSON["countryOfOrigin"][0]["name"]
-            except:
-                country = "N/A"
+                try:
+                    country = lttrboxdJSON["countryOfOrigin"][0]["name"]
+                except:
+                    country = "N/A"
 
-            if "aggregateRating" in lttrboxdJSON:
-                numReviews = lttrboxdJSON["aggregateRating"]["reviewCount"]
-                numRatings = lttrboxdJSON["aggregateRating"]["ratingCount"]
+                if "aggregateRating" in lttrboxdJSON:
+                    numReviews = lttrboxdJSON["aggregateRating"]["reviewCount"]
+                    numRatings = lttrboxdJSON["aggregateRating"]["ratingCount"]
+                else:
+                    numReviews = 0
+                    numRatings = 0
+                csv_writer.writerow([movieName, lbRating, finalLen, lengthInHour,
+                                    languageStr, director, release, genreString, country, numReviews, numRatings, act1])
             else:
-                numReviews = 0
-                numRatings = 0
-            csv_writer.writerow([movieName, lbRating, finalLen, lengthInHour,
-                                languageStr, director, release, genreString, country, numReviews, numRatings, act1])
+                print(languages)
+                print(movieName)
+                print(filmLink)
+
 # print(bigList)
 print("ALL DONE")
 csv_file.close()
