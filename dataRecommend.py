@@ -1,7 +1,5 @@
 import pandas as pd
 from operator import itemgetter
-from ratings import ratings
-from user import user
 from callLength import lenMovies
 from callGenre import genreMovies
 from callLanguage import langMovies
@@ -30,7 +28,7 @@ actorList = actorMovies()
 actorList = pd.DataFrame(actorList)
 actorList.columns = ["actor", "average"]
 print(actorList)
-file = user()
+file = "cloakenswagger"
 df = pd.read_csv(file)
 
 pd.options.mode.chained_assignment = None
