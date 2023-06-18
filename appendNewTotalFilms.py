@@ -25,13 +25,6 @@ list = "random-movie-roulette"
 source = requests.get(firstUrl).text
 soup = BeautifulSoup(source, "lxml")
 listOfPage = []
-# lastDate = pd.to_datetime(df["ReviewDate"]).max()
-# print(lastDate)
-# today = date.today()
-# d3 = today.strftime("%m/%d/%y")
-# d4 = today.strftime("%Y-%m-%d %H:%M:%S")
-# print(d3)
-# print(d4)
 
 bigList = []
 url = "https://letterboxd.com"
@@ -49,7 +42,6 @@ for movie in soup.find_all("li", class_="poster-container"):
     else:
         rating_class = rating["class"][-1]
         rating_val = int(rating_class.split("-")[-1]) / 2
-    # print(movieName)
     # if the current movie is exactly equal to anything in the Movie column
     movieAlreadyInList = df["Movie"].eq(movieName).any()
     # if true then check if the rating is now different
