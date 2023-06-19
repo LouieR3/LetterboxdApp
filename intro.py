@@ -22,6 +22,7 @@ def app():
 
     file = get_user()
     df = pd.read_csv(file)
+    df = df.dropna(subset=['MyRating'])
     dfAvg = df[(df["MovieLength"] > 60) & (df["MovieLength"] < 275)]
     avg = dfAvg["MyRating"].sum() / dfAvg["Movie"].count()
 
