@@ -11,7 +11,9 @@ start_time = time.time()
 # user = "zacierka"
 # user = "bluegrace11"
 # user = "cloakenswagger"
-user = "carmal"
+# user = "carmal"
+user = "seanfennessey"
+# https://letterboxd.com/seanfennessey/
 firstUrl = "https://letterboxd.com/" + user + "/films/ratings/"
 # list = "AllFilmActors"
 list = "AllFilms" + user
