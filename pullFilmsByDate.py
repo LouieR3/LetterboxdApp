@@ -15,6 +15,7 @@ start_time = time.time()
 # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
 user = "goldfishbrain"
+# user = "seanfennessey"
 # user = "zacierka"
 # user = "bluegrace11"
 # user = "cloakenswagger"
