@@ -61,7 +61,7 @@ def app():
     df250 = df250.reset_index(drop=True)
     
     # df250['LBRating'] = (df250["LBRating"]*3)
-    df250['LBRatingNew'] = (df250["LBRating"]*3)
+    df250['LBRatingNew'] = (df250["LBRating"]*4)
     # df250['Length'] = (df250["MovieLength"]//10)*10
     # df250['LBRating'] = str(round(df250["LBRating"], 2))
     # df250['decade'] = (df250["ReleaseYear"]//10)*10
@@ -74,7 +74,7 @@ def app():
     language_weight = 0.3
     decade_weight = 1
     popularity_weight = 0.4
-    rating_weight = 1.7
+    rating_weight = 1.5
 
     def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
         scores = []
