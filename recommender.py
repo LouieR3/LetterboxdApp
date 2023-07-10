@@ -178,7 +178,8 @@ def app():
     movies_df["Languages"] = movies_df["Languages"].str.split(",")
     movies_df["Actors"] = movies_df["Actors"].str.split(",")
     # movies_df['Score Rating'] = ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2)
-    movies_df.insert(2, 'Score Rating', ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2)).round(1)
+    movies_df.insert(2, 'Rating Prediction', ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2))
+    movies_df['Rating Prediction'] = movies_df['Rating Prediction'].round(1)
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
     #     "Fin Rating",
