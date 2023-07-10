@@ -164,7 +164,7 @@ def app():
         movies_df['scoreList'] = scoreList
         movies_df.insert(1, 'Score', scores)
         movies_df['Score'] = movies_df['Score'].round(2)
-        movies_df['LBRating'] = movies_df['LBRating'].round(1)
+        movies_df['LBRating'] = movies_df['LBRating'].round(2)
         
         return movies_df
 
@@ -179,7 +179,7 @@ def app():
     movies_df["Actors"] = movies_df["Actors"].str.split(",")
     # movies_df['Score Rating'] = ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2)
     movies_df.insert(2, 'Rating Prediction', ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2))
-    movies_df['Rating Prediction'] = movies_df['Rating Prediction'].round(1)
+    # movies_df['Rating Prediction'] = movies_df['Rating Prediction'].round(1)
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
     #     "Fin Rating",
@@ -202,6 +202,6 @@ def app():
     
     # st.dataframe(styled_df, use_container_width=True, height=700, width=2000)
 
-    df3 = movies_df.style.background_gradient(subset=['Score', 'LBRating', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}'})
+    df3 = movies_df.style.background_gradient(subset=['Score', 'LBRating', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}', 'Rating Prediction': '{:.1f}'})
     # df3.index += 1 
     st.dataframe(df3, height=900, use_container_width=True)
