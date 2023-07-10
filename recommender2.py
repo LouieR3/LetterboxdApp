@@ -75,6 +75,7 @@ def app():
     decade_weight = 1
     popularity_weight = 0.4
     rating_weight = 1.5
+    rating_weight = 1
 
     def calculate_score(movies_df, fav_directors, fav_actors, fav_genres, fav_length, fav_decade, fav_language):
         scores = []
