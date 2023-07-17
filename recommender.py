@@ -159,6 +159,7 @@ def app():
             # score = str(round(score, 2))
             scores.append(score)
             # scoreList.append([directorScore, actorsScore, genreScore, lengthScore, decadeScore, languageScore, popularityScore])
+            # scoreList.append([round(directorScore, 2), round(actorsScore, 2), round(genreScore, 2), round(lengthScore, 2), round(decadeScore, 2), round(languageScore, 2), round(popularityScore, 2)])
             scoreList.append([round(directorScore, 2), round(actorsScore, 2), round(genreScore, 2), round(lengthScore, 2), round(decadeScore, 2), round(languageScore, 2), round(popularityScore, 2)])
         # movies_df['Score'] = scores
         movies_df['scoreList'] = scoreList
@@ -210,7 +211,7 @@ def app():
     # # df3.index += 1 
     
     # st.dataframe(styled_df, use_container_width=True, height=700, width=2000)
-
+    movies_df = movies_df.drop(['Genre', 'Languages'], axis=1)
     df3 = movies_df.style.background_gradient(subset=['Score', 'LBRating', 'NumberOfRatings']).format({"Score": "{:.2f}", 'LBRating': '{:.2f}', 'Rating Prediction': '{:.1f}'})
     # df3.index += 1 
     st.dataframe(df3, height=900, use_container_width=True)
