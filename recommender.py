@@ -179,6 +179,8 @@ def app():
     movies_df["Actors"] = movies_df["Actors"].str.split(",")
     # movies_df['Score Rating'] = ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2)
     movies_df.insert(2, 'Rating Prediction', ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2))
+    movies_df.insert(3, 'MyRating', "")
+    movies_df['MyRating'] = movies_df.apply(lambda row: df.loc[(df['Movie'] == row['Movie']) & (df['ReleaseYear'] == row['ReleaseYear']), 'MyRating'].values[0] if not pd.isnull(row['Movie']) and not pd.isnull(row['ReleaseYear']) else 'N/A', axis=1)
     # movies_df['Rating Prediction'] = movies_df['Rating Prediction'].round(1)
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
