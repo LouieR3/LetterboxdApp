@@ -180,14 +180,13 @@ def app():
     # movies_df['Score Rating'] = ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2)
     movies_df.insert(2, 'Rating Prediction', ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2))
 
-    movies_df.insert(3, 'MyRating', "")
     def get_my_rating(row):
         try:
             return df.loc[(df['Movie'] == row['Movie']) & (df['ReleaseYear'] == row['ReleaseYear']), 'MyRating'].values[0]
         except IndexError:
             return 'N/A'
-
-    movies_df['MyRating'] = movies_df.apply(get_my_rating, axis=1)
+    movies_df.insert(3, 'Your Rating', movies_df.apply(get_my_rating, axis=1))
+    # movies_df['MyRating'] = movies_df.apply(get_my_rating, axis=1)
     # movies_df['Rating Prediction'] = movies_df['Rating Prediction'].round(1)
     # df2 = pd.DataFrame(sortList, columns=[
     #     "Movie",
