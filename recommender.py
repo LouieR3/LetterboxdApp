@@ -182,7 +182,8 @@ def app():
 
     def get_my_rating(row):
         try:
-            return df.loc[(df['Movie'] == row['Movie']) & (df['ReleaseYear'] == row['ReleaseYear']), 'MyRating'].values[0]
+            my_rating = df.loc[(df['Movie'] == row['Movie']) & (df['ReleaseYear'] == row['ReleaseYear']), 'MyRating'].values[0]
+            return '{:.1f}'.format(my_rating) if not pd.isnull(my_rating) else 'N/A'
         except IndexError:
             return 'N/A'
     movies_df.insert(3, 'Your Rating', movies_df.apply(get_my_rating, axis=1))
