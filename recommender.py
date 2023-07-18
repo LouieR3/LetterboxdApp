@@ -181,7 +181,8 @@ def app():
     # movies_df['Score Rating'] = ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2)
     # movies_df.insert(2, 'Rating Prediction', ((movies_df['Score'] / 10).apply(lambda x: min(round(x), 10)) / 2))
     movies_df.insert(2, 'Rating Prediction', "")
-    movies_df['Rating Prediction'] = ((movies_df['Score'].fillna(0) / 10).apply(lambda x: min(round(x), 10)) / 2)
+    # movies_df['Rating Prediction'] = ((movies_df['Score'].fillna(0) / 10).apply(lambda x: min(round(x), 10)) / 2)
+    movies_df['Rating Prediction'] = ((movies_df['Score'].fillna(0) / len(df)) * (len(df) / 100)) / 2
     def get_my_rating(row):
         try:
             my_rating = df.loc[(df['Movie'] == row['Movie']) & (df['ReleaseYear'] == row['ReleaseYear']), 'MyRating'].values[0]
