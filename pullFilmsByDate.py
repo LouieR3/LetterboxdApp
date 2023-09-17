@@ -14,11 +14,11 @@ start_time = time.time()
 
 # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
-user = "goldfishbrain"
+# user = "goldfishbrain"
 # user = "seanfennessey"
 # user = "zacierka"
 # user = "bluegrace11"
-# user = "cloakenswagger"
+user = "cloakenswagger"
 # user = "carmal"
 # user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
@@ -71,7 +71,7 @@ for movie in soup.find_all("li", class_="poster-container"):
         # print("My rating is: " + rate)
         div = movie.find("div")
         filmLink = div.attrs["data-film-slug"]
-        filmURL = url + filmLink
+        filmURL = url + "/film/" + filmLink
         # print(filmURL)
         myFilmUrl = myUrl + filmLink
         myReview = requests.get(myFilmUrl).text
