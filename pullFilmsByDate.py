@@ -14,13 +14,13 @@ start_time = time.time()
 
 # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
 # dataPath = "C:\\Users\\louie.rodriguez\\OneDrive - PENNONI\\Documents\\git\\DeltekMapScirpts\\LBCode"
-# user = "goldfishbrain"
+user = "goldfishbrain"
+# user = "carmal"
+# user = "cloakenswagger"
+# user = "gr8escape10"
 # user = "seanfennessey"
 # user = "zacierka"
 # user = "bluegrace11"
-user = "cloakenswagger"
-# user = "carmal"
-# user = "gr8escape10"
 file = "AllFilms" + user + ".csv"
 fullCSV = "AllFilms" + user + ".csv"
 # fullCSV = os.path.join(dataPath, file)
