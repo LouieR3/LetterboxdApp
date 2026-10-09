@@ -1,9 +1,11 @@
-matplotlib
-bs4
-numpy
-# pydeck
+streamlit
 pandas
+numpy
+matplotlib
 unidecode
+streamlit_extras
+
+# Scrapers in scripts/
+bs4
 lxml
 requests
-streamlit_extras

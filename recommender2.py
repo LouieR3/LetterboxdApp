@@ -48,7 +48,13 @@ def app():
     fav_actors = actorMovies(option)
     # fav_actors.columns = ["Actors", "Weighted Average"]
 
-    df250 = pd.read_csv("TopFilms2.csv")
+    # Buckets made up only of unrated films have a NaN weight; drop them so they
+    # fall back to the default score instead of turning the whole score into NaN.
+    fav_length, fav_genres, fav_language, fav_decade, fav_directors, fav_actors = [
+        fav.dropna(subset=['Weighted Average']) for fav in
+        (fav_length, fav_genres, fav_language, fav_decade, fav_directors, fav_actors)]
+
+    df250 = pd.read_csv("data/catalog/TopFilms2.csv")
     df250 = df250[df250['Genre'].notnull()]
     df250 = df250[df250['Actors'].notnull()]
     df250 = df250[df250['LBRating'] > 3.0]

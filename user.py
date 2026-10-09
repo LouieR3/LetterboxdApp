@@ -1,6 +1,6 @@
 import streamlit as st
 
-file = "AllFilmscloakenswagger.csv"
+file = "data/users/AllFilmscloakenswagger.csv"
 
 def user(new_value):
     # dataPath = "C:\\Users\\louie\\Desktop\\repo\\LetterboxdApp"
@@ -14,7 +14,7 @@ def user(new_value):
     # user = "prahladsingh"
     # user = "carmal"
     global file
-    file = "AllFilms" + new_value + ".csv"
+    file = "data/users/AllFilms" + new_value + ".csv"
     st.session_state.my_global_variable = file
     # return file
 

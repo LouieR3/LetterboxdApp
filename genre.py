@@ -49,7 +49,7 @@ def app():
 
     # # drop the original genres column
     # df = df.drop(["Genre"], axis=1)
-    genres_list = df[["genre_1", "genre_2", "genre_3"]].stack().unique()
+    genres_list = df[["genre_1", "genre_2", "genre_3"]].stack().dropna().unique()
 
 
     # MAKE LIST WITH THOSE NUMS PLUS THE WEIGHTED AND THEN MAKE DF OF THAT LIST AFTER
