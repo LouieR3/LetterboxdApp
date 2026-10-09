@@ -1,20 +1,16 @@
 """Refresh the app's Letterboxd data: user rating histories and film metadata.
 
-Run from the repo root:
+Set the COMMAND (and related) variables in the CONFIG section below, then run:
 
-    python scripts/refresh_data.py user cloakenswagger
-    python scripts/refresh_data.py user cloakenswagger --export path/to/letterboxd-export.zip
-    python scripts/refresh_data.py users          # every data/users/AllFilms*.csv
-    python scripts/refresh_data.py catalog        # data/catalog/TopFilms2.csv
-    python scripts/refresh_data.py all            # users, then catalog
+    python scripts/refresh_data.py
 
 Every film page fetched is stored in data/cache/films.jsonl, so a film is fetched once no matter
 how many users have seen it, and an interrupted run picks up where it stopped. Films fetched
-within --max-age-days (default 30) are not fetched again.
+within MAX_AGE_DAYS (default 30) are not fetched again.
 
 Where a user's films come from (later sources win when they disagree):
   1. Their existing data/users/AllFilms<user>.csv (title + year, resolved to a film page).
-  2. A Letterboxd data export (Settings > Data > Export your data), if --export is given.
+  2. A Letterboxd data export (Settings > Data > Export your data), if EXPORT is set.
      This is the only way to get a complete history: Letterboxd blocks automated access to
      page 2+ of a member's film lists, and this script does not try to get around that.
   3. Page 1 of letterboxd.com/<user>/films/ (most recent ~72 films, with ratings).
@@ -25,7 +21,6 @@ Letterboxd starts challenging requests rather than trying to get past the challe
 """
 from __future__ import annotations
 
-import argparse
 import csv
 import io
 import json
@@ -56,6 +51,15 @@ UNRESOLVED_FILE = CACHE_DIR / "unresolved.csv"
 
 BASE = "https://letterboxd.com"
 USER_AGENT = "letterboxd-stats/2.0 (personal stats app; +https://github.com/LouieR3/LetterboxdApp)"
+
+# --------------------------------------------------------------------------- CONFIG
+# Set these instead of passing command-line arguments.
+
+COMMAND = "all"  # "user", "users", "catalog", or "all"
+USERNAMES = ["cloakenswagger"]  # used only when COMMAND == "user"
+EXPORT = None  # Path to a Letterboxd export .zip or extracted folder; goes with "user" + one username
+MAX_AGE_DAYS = 30  # re-fetch film pages older than this (0 refreshes everything)
+DELAY = 1.0  # seconds between requests
 
 USER_COLUMNS = ["Movie", "MyRating", "LBRating", "Difference", "ReviewDate", "MovieLength", "LengthInHour",
                 "Languages", "Director", "ReleaseYear", "Genre", "Country", "NumberOfReviews",
@@ -140,6 +144,12 @@ def _compact_jsonl(path: Path, records: dict) -> None:
         for rec in records.values():
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
     tmp.replace(path)
+
+
+def _name_key(name: str) -> str:
+    """Surname only, so "Alejandro González Iñárritu" matches "Alejandro G. Iñárritu"."""
+    parts = unidecode(name).lower().split()
+    return re.sub(r"[^a-z0-9]", "", parts[-1]) if parts else ""
 
 
 def title_key(title: str, year) -> str:
@@ -248,24 +258,48 @@ class Films:
         return self._store(rec) if rec else None
 
     def get(self, slug: str) -> dict | None:
+        if not slug:
+            return None
         if self.is_fresh(slug):
             return self.films[slug]
         return self.fetch_url(f"{BASE}/film/{slug}/") or self.films.get(slug)
 
-    def resolve(self, title: str, year) -> str | None:
-        """Find the slug for a title + year, by lookup first and then by guessing the URL."""
+    def resolve(self, title: str, year, director=None) -> str | None:
+        """Find the slug for a title + year, by lookup first and then by guessing the URL.
+
+        A guessed page must match the year (within one) and, when we know it, the director:
+        same-title films from neighbouring years are common (e.g. two films called The Fighter).
+        """
         key = title_key(title, year)
         if key in self.slugs:
             return self.slugs[key]["slug"]
         year_int = None if year is None or pd.isna(year) else int(float(year))
+        wanted = _name_key(director) if isinstance(director, str) and director.strip() else None
         base = slugify(title)
+        if not base:  # e.g. "$" (1971): nothing to guess from, and /film// gets challenged
+            self.unresolved.append({"title": title, "year": year_int, "note": "no match"})
+            return None
         candidates = [base] + ([f"{base}-{year_int}"] if year_int else []) + [f"{base}-1"]
+        fallback = None
         for candidate in candidates:
             rec = self.get(candidate)
-            if rec and (year_int is None or rec["year"] is None or abs(rec["year"] - year_int) <= 1):
+            if not rec:
+                continue
+            # Placeholder pages (e.g. "-1" slugs) have no year or director; they never count as a match.
+            if year_int is not None and (rec["year"] is None or abs(rec["year"] - year_int) > 1):
+                continue
+            if wanted is None or wanted in map(_name_key, rec["directors"]):
                 self._remember(key, rec["slug"])
                 return rec["slug"]
-        self.unresolved.append({"title": title, "year": year_int})
+            # Director credits drift (co-directors added or dropped), so an exact-year match with a
+            # different director is kept as a fallback, and flagged for review.
+            if fallback is None and rec["year"] == year_int:
+                fallback = rec
+        if fallback:
+            self.unresolved.append({"title": title, "year": year_int, "note": f"check: matched {fallback['slug']}"})
+            self._remember(key, fallback["slug"])
+            return fallback["slug"]
+        self.unresolved.append({"title": title, "year": year_int, "note": "no match"})
         return None
 
     def _remember(self, key: str, slug: str) -> None:
@@ -325,7 +359,7 @@ def from_existing_csv(username: str, films: Films, entries: dict) -> pd.DataFram
     log.info("[%s] Resolving %d films from the existing CSV", username, len(df))
     unmatched = []
     for i, row in enumerate(df.itertuples(index=False), 1):
-        slug = films.resolve(row.Movie, row.ReleaseYear)
+        slug = films.resolve(row.Movie, row.ReleaseYear, row.Director)
         if slug:
             _merge(entries, slug, row.MyRating, _to_iso(row.ReviewDate))
         else:
@@ -482,7 +516,7 @@ def refresh_catalog(films: Films) -> None:
     slugs: list[str] = []
     log.info("[catalog] Resolving %d existing catalog films", len(current))
     for i, row in enumerate(current.itertuples(index=False), 1):
-        slug = films.resolve(row.Movie, row.ReleaseYear)
+        slug = films.resolve(row.Movie, row.ReleaseYear, row.Director)
         if slug:
             slugs.append(slug)
         _progress("catalog", "resolve", i, len(current), films)
@@ -512,46 +546,39 @@ def refresh_catalog(films: Films) -> None:
 # --------------------------------------------------------------------------- CLI
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["user", "users", "catalog", "all"])
-    parser.add_argument("usernames", nargs="*", help="Letterboxd usernames (for the 'user' command)")
-    parser.add_argument("--export", type=Path, help="Letterboxd export .zip or extracted folder (one user only)")
-    parser.add_argument("--max-age-days", type=float, default=30,
-                        help="Re-fetch film pages older than this (default 30; 0 refreshes everything)")
-    parser.add_argument("--delay", type=float, default=1.0, help="Seconds between requests (default 1.0)")
-    args = parser.parse_args()
-
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%H:%M:%S")
-    if args.command == "user" and not args.usernames:
-        parser.error("give at least one username")
-    if args.export and (args.command != "user" or len(args.usernames) != 1):
-        parser.error("--export goes with 'user' and exactly one username")
+    if COMMAND not in ("user", "users", "catalog", "all"):
+        sys.exit(f"COMMAND must be one of 'user', 'users', 'catalog', 'all' (got {COMMAND!r})")
+    if COMMAND == "user" and not USERNAMES:
+        sys.exit("set USERNAMES to at least one username")
+    if EXPORT and (COMMAND != "user" or len(USERNAMES) != 1):
+        sys.exit("EXPORT goes with COMMAND = 'user' and exactly one username")
 
-    usernames = args.usernames
-    if args.command in ("users", "all"):
+    usernames = USERNAMES
+    if COMMAND in ("users", "all"):
         usernames = sorted(p.stem.removeprefix("AllFilms") for p in USERS_DIR.glob("AllFilms*.csv"))
 
-    client = Client(args.delay)
-    films = Films(client, timedelta(days=args.max_age_days))
+    client = Client(DELAY)
+    films = Films(client, timedelta(days=MAX_AGE_DAYS))
     started = time.monotonic()
     try:
         for username in usernames:
-            refresh_user(username, films, args.export)
-        if args.command in ("catalog", "all"):
+            refresh_user(username, films, EXPORT)
+        if COMMAND in ("catalog", "all"):
             refresh_catalog(films)
     except Blocked as e:
         log.error("Stopped: Letterboxd is challenging requests (%s). Progress is saved in data/cache/; "
-                  "rerun later (optionally with a larger --delay) to continue.", e)
+                  "rerun later (optionally with a larger DELAY) to continue.", e)
         sys.exit(2)
     except KeyboardInterrupt:
         log.warning("Interrupted. Progress is saved in data/cache/; rerun to continue.")
         sys.exit(130)
     finally:
         films.compact()
-        log.info("%d requests, %d film pages fetched, %d titles unresolved, %.0f min",
+        log.info("%d requests, %d film pages fetched, %d titles to review, %.0f min",
                  client.requests, films.fetched, len(films.unresolved), (time.monotonic() - started) / 60)
         if films.unresolved:
-            log.info("Unresolved titles are listed in data/cache/unresolved.csv")
+            log.info("Titles to review are listed in data/cache/unresolved.csv")
 
 
 if __name__ == "__main__":

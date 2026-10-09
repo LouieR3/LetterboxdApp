@@ -73,27 +73,25 @@ Catalog files use the same columns minus the user-specific ones (`MyRating`, `Di
 
 ## Refreshing data
 
-`scripts/refresh_data.py` rebuilds the user CSVs and the catalog from Letterboxd. Run it from the repo root:
+`scripts/refresh_data.py` rebuilds the user CSVs and the catalog from Letterboxd. Set the CONFIG variables near the top of the script, then run it from the repo root:
 
 ```bash
-python scripts/refresh_data.py user cloakenswagger
+python scripts/refresh_data.py
 ```
 
-```bash
-python scripts/refresh_data.py users
-```
-
-```bash
-python scripts/refresh_data.py catalog
-```
-
-`users` refreshes every `data/users/AllFilms*.csv`. `catalog` refreshes `data/catalog/TopFilms2.csv`: every film in it, plus every film any user has seen. `all` runs both.
+| Setting | Meaning |
+|---|---|
+| `COMMAND` | `"user"` refreshes the users listed in `USERNAMES`. `"users"` refreshes every `data/users/AllFilms*.csv`. `"catalog"` refreshes `data/catalog/TopFilms2.csv` (every film in it, plus every film any user has seen). `"all"` does users, then the catalog. |
+| `USERNAMES` | Used with `"user"`, for example `["cloakenswagger"]` |
+| `EXPORT` | Path to a Letterboxd export `.zip` or folder. Use it with `"user"` and a single username. |
+| `MAX_AGE_DAYS` | Film pages older than this are fetched again. Default 30; `0` refetches everything. |
+| `DELAY` | Seconds between requests. Default 1.0. |
 
 **How it works**
 
-- Each film page (`letterboxd.com/film/<slug>/`) is fetched once and cached in `data/cache/films.jsonl`. That includes the rating, number of ratings and reviews, runtime, languages, director, genres, country and billed cast. Films fetched in the last 30 days are skipped (`--max-age-days` changes this; `0` refetches everything).
-- The script runs one request at a time, about 1 per second (`--delay` changes this), and identifies itself honestly in its User-Agent. If Letterboxd starts challenging requests, the script pauses, then stops. Progress is saved, so rerunning continues where it left off.
-- Old CSVs only have titles, so each title is matched to its film page by trying `/film/<title>/` and `/film/<title>-<year>/` and checking the year. Titles it can't match are listed in `data/cache/unresolved.csv` and kept unchanged in the output.
+- Each film page (`letterboxd.com/film/<slug>/`) is fetched once and cached in `data/cache/films.jsonl`. That includes the rating, number of ratings and reviews, runtime, languages, director, genres, country and billed cast. Films fetched within `MAX_AGE_DAYS` are skipped.
+- The script runs one request at a time, about 1 per second (`DELAY`), and identifies itself honestly in its User-Agent. If Letterboxd starts challenging requests, the script pauses, then stops. Progress is saved, so rerunning continues where it left off.
+- Old CSVs only have titles, so each title is matched to its film page by trying `/film/<title>/` and `/film/<title>-<year>/` and checking the year. A match also has to agree on the director (by surname) when it's known. Titles it can't match, or only matched on year with a different director, are listed in `data/cache/unresolved.csv` for review. Unmatched films are kept unchanged in the output.
 
 **Where a user's films come from**
 
@@ -101,9 +99,7 @@ Letterboxd blocks automated access to page 2 and beyond of a member's film lists
 
 1. The user's existing CSV.
 2. **Their Letterboxd data export, if provided.** This is the only way to get a complete, current history. The user downloads it from letterboxd.com → Settings → Data → Export your data, and you run:
-   ```bash
-   python scripts/refresh_data.py user <username> --export path/to/letterboxd-<username>.zip
-   ```
+   Set `COMMAND = "user"`, `USERNAMES = ["<username>"]` and `EXPORT = "path/to/letterboxd-<username>.zip"`, then run the script.
 3. The first page of their films (the 72 most recent) and their RSS feed (recent diary entries with ratings and watch dates).
 
 **Adding a new user:** get their export, run the command above, then add the username to the `options` list in `intro.py`.
