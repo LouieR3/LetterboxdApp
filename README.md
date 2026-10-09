@@ -1,79 +1,85 @@
 # Letterboxd Stats
 
-A Streamlit app that breaks down a Letterboxd user's ratings — favorite actors, directors, genres, decades, languages and runtimes — and ranks movies they haven't seen yet as recommendations.
+A Streamlit app for a group of friends on Letterboxd. It breaks down each person's taste (directors, actors, genres, themes, eras, runtimes, languages), recommends films they haven't seen, and compares everyone's ratings.
 
 **Live app:** https://louier3-letterboxd-stats.streamlit.app/ (Streamlit Community Cloud; it sleeps when idle, so the first load can take a minute)
 
 ## Run it locally
 
-Requires Python 3.9+.
+Requires Python 3.10+.
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate          # macOS/Linux: source .venv/bin/activate
+```
+
+```bash
+.venv\Scripts\activate
+```
+
+```bash
 pip install -r requirements.txt
+```
+
+```bash
 streamlit run streamlit2.py
 ```
 
-Run commands from the repo root: the app and scripts read `data/` with relative paths.
+(On macOS/Linux, activate with `source .venv/bin/activate`.)
 
-## Using the app
+## Pages
 
-1. On **Home**, choose a user and click **Change User**. The other pages use that selection.
-2. Pick a page from the sidebar:
+Pick whose films to look at in the sidebar; the choice carries across pages and is kept in the URL (`?user=`).
 
 | Page | What it shows |
 |---|---|
-| Home | Every rated film for the user, plus their average rating |
-| Your Favorite Actors / Directors | People ranked by a weighted score (your average rating, how many of their films you've seen, how far you rate them above or below Letterboxd, and billing position for actors) |
-| Your Favorite Movies By Length / Genres / Decades / Languages | The same weighted score, grouped by bucket |
-| Recommendations | Films from the catalog you **haven't** seen (Letterboxd rating > 3.0, > 500 ratings), ranked by predicted fit |
-| Recommendations All | The whole catalog, seen and unseen, ranked by the same model, next to your actual rating where you have one |
+| Overview | Headline numbers, your rating distribution next to Letterboxd's, your ratings vs Letterboxd's, watch activity by month, your hottest and coldest takes, recent watches |
+| Directors & actors | Leaderboards by **taste score**, with charts, search and links to your films on Letterboxd |
+| Genres & themes | Taste score by genre, a genre × decade heatmap, and the Letterboxd themes you love or don't |
+| Eras, runtimes & languages | Decades and release years, runtime sweet spot, languages and countries |
+| All films | Searchable, filterable table of everything logged |
+| Recommendations | Unseen films ranked by predicted rating, with filters, "because you like…" reasons, a per-signal breakdown, rewatch suggestions, and the model's measured accuracy |
+| Friends | Leaderboard of everyone, head-to-head taste match, biggest disagreements, and a friend's favourites you haven't seen |
 
-User data is a snapshot that was scraped ahead of time. The app does not call Letterboxd while it runs.
+**Taste score** means how many stars above or below your own average you rate films with that director, genre, theme and so on, pulled toward zero when it's based on only a few films. The recommender predicts a rating from those taste scores plus each film's Letterboxd rating and popularity, using weights learned from everyone's ratings.
 
 ## Repo layout
 
 ```
-streamlit2.py          App entry point (the Streamlit Cloud main file — don't rename without updating the deployment)
-intro.py               Home page
-actors.py director.py genre.py decade.py language.py length.py
-                       Stats pages, each with an app() function
-recommender.py         "Recommendations All" page
-recommender2.py        "Recommendations" page
-call*.py               Score tables (favorite genres, actors, …) that the recommenders use
-user.py                Holds the selected user's CSV path in st.session_state
-ratings.py country.py year.py
-                       Imported but not currently shown in navigation
+streamlit2.py            App entry point (Streamlit Cloud's main file: don't rename without updating the deployment)
+app/
+  data.py                Loads and joins the CSVs below (cached)
+  model.py               Taste scores and the recommendation model
+  ui.py                  Shared styling, user picker, chart helpers
+  views/                 One file per page
+.streamlit/config.toml   Theme
 
 data/
-  users/               AllFilms<username>.csv — one per user, scraped from their Letterboxd ratings
-                       Watchlist<username>.csv — a scraped watchlist (not used by the app yet)
-  catalog/             TopFilms2.csv — the recommendation catalog (~9.3k films)
-                       random-movie-roulette.csv, TopFilms.csv, Top1001Films.csv — source and older catalogs
-  lists/               movies-of-YYYY.csv, my-favorite-movies-of-all-time.csv — scraped Letterboxd lists
+  films.csv              The definitive film table (see below)
+  top_list.csv           The Top 1001 list's films and ranks
+  users/<user>.csv       Each user's logged films: slug, title, year, rating, watch date
+  slug_overrides.csv     Optional hand fixes for titles the matcher gets wrong (title,year,slug)
+  lists/                 Old scraped Letterboxd lists (not used by the app)
+  cache/                 Scraper cache (git-ignored)
 
-  cache/               Scraper cache (git-ignored): films.jsonl, slugs.jsonl, unresolved.csv
-
-scripts/refresh_data.py
-                       Refreshes user histories and film data from Letterboxd (see below)
+scripts/refresh_data.py  Refreshes everything from Letterboxd
 ```
 
-## Data format
+## Data
 
-Each `data/users/AllFilms<username>.csv` has these columns:
+**`data/films.csv`** is the single source of public film data. It has one row per film, covering every film in the [Top 1001 list](https://letterboxd.com/juliodogpit/list/the-1001-greatest-films-ranked-as-objectively/) plus every film any user has logged:
 
-`Movie, MyRating, LBRating, Difference, ReviewDate, MovieLength, LengthInHour, Languages, Director, ReleaseYear, Genre, Country, NumberOfReviews, NumberOfRatings, Actors`
+`Slug, Movie, ReleaseYear, LBRating, NumberOfRatings, NumberOfReviews, MovieLength, Director, Directors, Genre, Themes, Languages, Country, Actors, TopRank, FetchedAt`
 
-- `MyRating` and `LBRating` use a 0.5–5 star scale. `Difference` = `MyRating − LBRating`.
-- `Languages`, `Genre` and `Actors` are comma-separated. Actors are in billing order.
-- A blank `MyRating` means the film was logged but not rated.
+- `LBRating` is the Letterboxd average (0.5–5). `TopRank` is the film's position in the Top 1001 list, or blank if it isn't on it.
+- `Directors`, `Genre`, `Languages` and `Actors` are comma-separated, with actors in billing order. `Themes` is `|`-separated, because theme names contain commas. These are the themes Letterboxd shows on the film page, up to about 7.
 
-Catalog files use the same columns minus the user-specific ones (`MyRating`, `Difference`, `ReviewDate`).
+**`data/users/<user>.csv`** holds only the personal part: `Slug, Movie, ReleaseYear, MyRating, Watched`. A blank `MyRating` means the film was logged but not rated. The app joins this with `films.csv` on `Slug`.
+
+Recommendations are drawn from `films.csv`: feature films (60–275 min) with a Letterboxd rating that the user hasn't logged. That means the Top 1001 plus anything a friend has seen.
 
 ## Refreshing data
 
-`scripts/refresh_data.py` rebuilds the user CSVs and the catalog from Letterboxd. Set the CONFIG variables near the top of the script, then run it from the repo root:
+Set the CONFIG variables at the top of `scripts/refresh_data.py`, then run it from the repo root:
 
 ```bash
 python scripts/refresh_data.py
@@ -81,29 +87,28 @@ python scripts/refresh_data.py
 
 | Setting | Meaning |
 |---|---|
-| `COMMAND` | `"user"` refreshes the users listed in `USERNAMES`. `"users"` refreshes every `data/users/AllFilms*.csv`. `"catalog"` refreshes `data/catalog/TopFilms2.csv` (every film in it, plus every film any user has seen). `"all"` does users, then the catalog. |
-| `USERNAMES` | Used with `"user"`, for example `["cloakenswagger"]` |
-| `EXPORT` | Path to a Letterboxd export `.zip` or folder. Use it with `"user"` and a single username. |
+| `COMMAND` | `"all"`: users, then the Top 1001 list, then film data. `"users"`: only the users (and the film data for their films). `"films"`: only film data. |
+| `USERS` | The friend group. Each gets a `data/users/<user>.csv`, and their films go into `films.csv`. |
+| `REFRESH_USERS` | `None` refreshes everyone, or a subset such as `["cloakenswagger"]` |
+| `EXPORTS` | Letterboxd exports for full histories, e.g. `{"cloakenswagger": "letterboxd-export.zip"}` |
+| `TOP_LIST` | The list that defines the general film pool |
 | `MAX_AGE_DAYS` | Film pages older than this are fetched again. Default 30; `0` refetches everything. |
 | `DELAY` | Seconds between requests. Default 1.0. |
 
-**How it works**
+**The order of a run, cheapest first:**
 
-- Each film page (`letterboxd.com/film/<slug>/`) is fetched once and cached in `data/cache/films.jsonl`. That includes the rating, number of ratings and reviews, runtime, languages, director, genres, country and billed cast. Films fetched within `MAX_AGE_DAYS` are skipped.
-- The script runs one request at a time, about 1 per second (`DELAY`), and identifies itself honestly in its User-Agent. If Letterboxd starts challenging requests, the script pauses, then stops. Progress is saved, so rerunning continues where it left off.
-- Old CSVs only have titles, so each title is matched to its film page by trying `/film/<title>/` and `/film/<title>-<year>/` and checking the year. A match also has to agree on the director (by surname) when it's known. Titles it can't match, or only matched on year with a different director, are listed in `data/cache/unresolved.csv` for review. Unmatched films are kept unchanged in the output.
+1. **Users:** about 2 requests each (RSS feed, plus the first page of their films) to add recent activity to what's already in their file.
+2. **Top list:** 11 requests for the list's 1,001 films.
+3. **Film data:** one request per film in the combined set, skipped if it was fetched within `MAX_AGE_DAYS`. Each film is fetched once however many users logged it, and cached, so an interrupted run resumes where it stopped.
 
-**Where a user's films come from**
+Letterboxd has no bulk source for ratings, counts or themes, so step 3 is the slow one: about 1 film per second, so a full refresh of ~4k films takes a bit over an hour. Later runs within `MAX_AGE_DAYS` only fetch new films.
 
-Letterboxd blocks automated access to page 2 and beyond of a member's film lists, so the script can only see a user's recent activity on its own. The full list comes from:
+**Where a user's history comes from.** Letterboxd blocks automated access to page 2 and beyond of a member's film lists, and this script doesn't try to get around that. On its own it sees the films already in the user's file plus their recent activity: roughly the last 70–120 films. **A Letterboxd data export** (letterboxd.com → Settings → Data → Export your data) fills in the complete history. Add it to `EXPORTS` and run.
 
-1. The user's existing CSV.
-2. **Their Letterboxd data export, if provided.** This is the only way to get a complete, current history. The user downloads it from letterboxd.com → Settings → Data → Export your data, and you run:
-   Set `COMMAND = "user"`, `USERNAMES = ["<username>"]` and `EXPORT = "path/to/letterboxd-<username>.zip"`, then run the script.
-3. The first page of their films (the 72 most recent) and their RSS feed (recent diary entries with ratings and watch dates).
+**Adding a user:** add them to `USERS` (plus `EXPORTS` if they've sent an export) and run. The app picks up every file in `data/users/` automatically.
 
-**Adding a new user:** get their export, run the command above, then add the username to the `options` list in `intro.py`.
+**Fixing a wrong match:** old files only had titles, so the first migration matched each title to a film page by guessing the URL and checking the year and director. Doubtful matches and misses are listed in `data/cache/unresolved.csv`. To fix one, add a `title,year,slug` row to `data/slug_overrides.csv`.
 
-Full runs take a while: about 1 hour per 3,000 films that aren't already cached. The first catalog refresh is roughly 9–10k films, about 3 hours.
+The scraper sends an honest User-Agent and waits between requests. If Letterboxd starts challenging requests, it pauses, then stops. Progress is saved, so you can rerun later.
 
-See [SCOPE.md](SCOPE.md) for project status, known issues and open questions.
+See [SCOPE.md](SCOPE.md) for project status and next steps.

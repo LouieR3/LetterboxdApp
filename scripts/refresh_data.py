@@ -1,23 +1,28 @@
-"""Refresh the app's Letterboxd data: user rating histories and film metadata.
+"""Refresh the app's Letterboxd data.
 
-Set the COMMAND (and related) variables in the CONFIG section below, then run:
+Set the CONFIG variables below, then run from the repo root:
 
     python scripts/refresh_data.py
 
-Every film page fetched is stored in data/cache/films.jsonl, so a film is fetched once no matter
-how many users have seen it, and an interrupted run picks up where it stopped. Films fetched
-within MAX_AGE_DAYS (default 30) are not fetched again.
+Outputs
+  data/films.csv          The definitive film table: one row per film, with the public data (Letterboxd
+                          rating, number of ratings/reviews, runtime, director, cast, genres, themes, ...).
+                          It covers every film in TOP_LIST plus every film any user has logged, and is
+                          what the app draws stats and recommendations from.
+  data/users/<user>.csv   Only what is personal: which films the user logged, their rating and watch date.
 
-Where a user's films come from (later sources win when they disagree):
-  1. Their existing data/users/AllFilms<user>.csv (title + year, resolved to a film page).
-  2. A Letterboxd data export (Settings > Data > Export your data), if EXPORT is set.
-     This is the only way to get a complete history: Letterboxd blocks automated access to
-     page 2+ of a member's film lists, and this script does not try to get around that.
-  3. Page 1 of letterboxd.com/<user>/films/ (most recent ~72 films, with ratings).
-  4. The member's RSS feed (recent diary entries, with ratings and watch dates).
+How a run works (cheapest steps first)
+  1. Users: about 2 requests per user (their RSS feed and the first page of their films) to pick up
+     recent activity, merged with the films already in data/users/<user>.csv. An optional Letterboxd
+     export (EXPORTS) fills in the complete history.
+  2. Top list: the pages of TOP_LIST (about 11 requests for 1,001 films).
+  3. Film data: one request per film in (top list + all users' films), skipping films fetched within
+     MAX_AGE_DAYS. Each film is fetched once no matter how many users logged it, and every page is
+     cached in data/cache/films.jsonl, so an interrupted run picks up where it stopped.
 
-The script fetches one page at a time with a delay, sends an honest User-Agent, and stops if
-Letterboxd starts challenging requests rather than trying to get past the challenge.
+Letterboxd blocks automated access to page 2+ of a member's film lists, so step 1 only sees recent
+activity on its own; the export is the way to backfill. The script sends an honest User-Agent, waits
+between requests, and stops if Letterboxd starts challenging requests rather than trying to get past it.
 """
 from __future__ import annotations
 
@@ -40,10 +45,26 @@ import requests
 from bs4 import BeautifulSoup
 from unidecode import unidecode
 
+# --------------------------------------------------------------------------- CONFIG
+
+COMMAND = "all"  # "all": users + top list + film data | "users": users + their films only | "films": film data only
+# The friend group. Everyone here gets a data/users/<user>.csv, and their films go into data/films.csv.
+USERS = ["cloakenswagger", "bluegrace11", "carmal", "goldfishbrain", "gr8escape10", "prahladsingh", "zacierka",
+         "stephanie216", "rec3", "ganonuptilt"]
+REFRESH_USERS = None  # None = refresh everyone in USERS; or a subset, e.g. ["cloakenswagger"]
+EXPORTS = {}  # Letterboxd exports (.zip or folder) to backfill full histories, e.g. {"cloakenswagger": "export.zip"}
+TOP_LIST = "juliodogpit/list/the-1001-greatest-films-ranked-as-objectively"  # the general films to recommend from
+MAX_AGE_DAYS = 30  # re-fetch film pages older than this (0 refreshes everything)
+DELAY = 1.0  # seconds between requests
+
+# --------------------------------------------------------------------------- paths
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 USERS_DIR = DATA / "users"
-CATALOG_FILE = DATA / "catalog" / "TopFilms2.csv"
+FILMS_FILE = DATA / "films.csv"
+TOP_LIST_FILE = DATA / "top_list.csv"
+OVERRIDES_FILE = DATA / "slug_overrides.csv"  # hand-fixed title -> slug matches (title, year, slug)
 CACHE_DIR = DATA / "cache"
 FILMS_CACHE = CACHE_DIR / "films.jsonl"
 SLUG_CACHE = CACHE_DIR / "slugs.jsonl"
@@ -52,25 +73,11 @@ UNRESOLVED_FILE = CACHE_DIR / "unresolved.csv"
 BASE = "https://letterboxd.com"
 USER_AGENT = "letterboxd-stats/2.0 (personal stats app; +https://github.com/LouieR3/LetterboxdApp)"
 
-# --------------------------------------------------------------------------- CONFIG
-# Set these instead of passing command-line arguments.
-
-COMMAND = "all"  # "user", "users", "catalog", or "all"
-# The friend group: "users" and "all" refresh exactly these accounts.
-USERS = ["cloakenswagger", "bluegrace11", "carmal", "goldfishbrain", "gr8escape10", "prahladsingh", "zacierka",
-         "stephanie216", "rec3", "ganonuptilt"]
-USERNAMES = ["cloakenswagger"]  # used only when COMMAND == "user"
-EXPORT = None  # Path to a Letterboxd export .zip or extracted folder; goes with "user" + one username
-MAX_AGE_DAYS = 30  # re-fetch film pages older than this (0 refreshes everything)
-DELAY = 1.0  # seconds between requests
-
-# Themes contain commas ("Horror, the undead and monster classics"), so they are joined with "|".
-# Every other list column is comma-separated.
-USER_COLUMNS = ["Movie", "MyRating", "LBRating", "Difference", "ReviewDate", "MovieLength", "LengthInHour",
-                "Languages", "Director", "ReleaseYear", "Genre", "Country", "NumberOfReviews",
-                "NumberOfRatings", "Actors", "Themes", "Slug"]
-CATALOG_COLUMNS = ["Movie", "LBRating", "MovieLength", "LengthInHour", "Languages", "Director", "ReleaseYear",
-                   "Genre", "Country", "NumberOfReviews", "NumberOfRatings", "Actors", "Themes", "Slug"]
+USER_COLUMNS = ["Slug", "Movie", "ReleaseYear", "MyRating", "Watched"]
+# Themes contain commas ("Horror, the undead and monster classics"), so they're joined with "|";
+# the other list columns are comma-separated.
+FILM_COLUMNS = ["Slug", "Movie", "ReleaseYear", "LBRating", "NumberOfRatings", "NumberOfReviews", "MovieLength",
+                "Director", "Directors", "Genre", "Themes", "Languages", "Country", "Actors", "TopRank", "FetchedAt"]
 
 log = logging.getLogger("refresh")
 
@@ -151,6 +158,13 @@ def _compact_jsonl(path: Path, records: dict) -> None:
     tmp.replace(path)
 
 
+def _write_csv(df: pd.DataFrame, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    df.to_csv(tmp, index=False, encoding="utf-8")
+    tmp.replace(path)
+
+
 def _name_key(name: str) -> str:
     """Surname only, so "Alejandro González Iñárritu" matches "Alejandro G. Iñárritu"."""
     parts = unidecode(name).lower().split()
@@ -200,8 +214,6 @@ def parse_film(html: str, slug: str) -> dict | None:
 
     rating = ld.get("aggregateRating") or {}
     countries = link_texts("/films/country/") or [c["name"] for c in ld.get("countryOfOrigin", [])]
-    imdb = soup.select_one('a[data-track-action="IMDb"]')
-    tmdb = soup.select_one('a[data-track-action="TMDB"]')
     return {
         "slug": slug,
         "title": ld.get("name"),
@@ -217,9 +229,7 @@ def parse_film(html: str, slug: str) -> dict | None:
         "actors": [a["name"] for a in ld.get("actor", [])][:60],
         # The Genres tab lists up to ~7 themes and mini-themes. The full "Show All" page
         # (/film/<slug>/themes/) is behind Letterboxd's bot check, so it isn't fetched.
-        "themes": link_texts("/films/theme/") + [t for t in link_texts("/films/mini-theme/")],
-        "imdb_url": imdb["href"] if imdb else None,
-        "tmdb_url": tmdb["href"] if tmdb else None,
+        "themes": link_texts("/films/theme/") + link_texts("/films/mini-theme/"),
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
 
@@ -238,6 +248,11 @@ class Films:
     slugs: dict = field(default_factory=lambda: _load_jsonl(SLUG_CACHE, "key"))
     unresolved: list = field(default_factory=list)
     fetched: int = 0
+
+    def __post_init__(self):
+        if OVERRIDES_FILE.exists():
+            for row in pd.read_csv(OVERRIDES_FILE).itertuples(index=False):
+                self.slugs[title_key(row.title, row.year)] = {"key": title_key(row.title, row.year), "slug": row.slug}
 
     def is_fresh(self, slug: str) -> bool:
         rec = self.films.get(slug)
@@ -315,11 +330,6 @@ class Films:
         self.slugs[key] = rec
         _append_jsonl(SLUG_CACHE, rec)
 
-    def remember_title(self, rec: dict) -> None:
-        key = title_key(rec["title"], rec["year"])
-        if key not in self.slugs:
-            self._remember(key, rec["slug"])
-
     def compact(self) -> None:
         if self.films:
             _compact_jsonl(FILMS_CACHE, self.films)
@@ -328,29 +338,39 @@ class Films:
         if self.unresolved:
             existing = pd.read_csv(UNRESOLVED_FILE) if UNRESOLVED_FILE.exists() else pd.DataFrame()
             df = pd.concat([existing, pd.DataFrame(self.unresolved)]).drop_duplicates()
-            df.to_csv(UNRESOLVED_FILE, index=False)
+            _write_csv(df, UNRESOLVED_FILE)
 
 
-# --------------------------------------------------------------------------- user sources
+def _progress(label: str, stage: str, i: int, total: int, films: Films) -> None:
+    if i % 50 == 0 or i == total:
+        log.info("[%s] %s: %d/%d (fetched %d pages so far)", label, stage, i, total, films.fetched)
+
+
+# --------------------------------------------------------------------------- step 1: users
 
 @dataclass
 class Entry:
+    title: str | None = None
+    year: int | None = None
     rating: float | None = None
     watched: str | None = None  # ISO date
 
 
-def _merge(entries: dict, slug: str, rating=None, watched=None) -> None:
+def _merge(entries: dict, slug: str, title=None, year=None, rating=None, watched=None) -> None:
     e = entries.setdefault(slug, Entry())
+    e.title = title or e.title
+    if year is not None and not pd.isna(year):
+        e.year = int(year)
     if rating is not None and not pd.isna(rating):
         e.rating = float(rating)
-    if watched and (e.watched is None or watched > e.watched):
+    if isinstance(watched, str) and watched and (e.watched is None or watched > e.watched):
         e.watched = watched
 
 
 def _to_iso(date_str) -> str | None:
     if not isinstance(date_str, str) or not date_str.strip():
         return None
-    for fmt in ("%m/%d/%Y", "%Y-%m-%d"):
+    for fmt in ("%Y-%m-%d", "%m/%d/%Y"):
         try:
             return datetime.strptime(date_str.strip(), fmt).date().isoformat()
         except ValueError:
@@ -358,25 +378,25 @@ def _to_iso(date_str) -> str | None:
     return None
 
 
-def from_existing_csv(username: str, films: Films, entries: dict) -> pd.DataFrame:
-    """Add the user's existing films; returns the rows that couldn't be matched to a film page."""
-    path = USERS_DIR / f"AllFilms{username}.csv"
-    if not path.exists():
-        return pd.DataFrame(columns=USER_COLUMNS)
-    df = pd.read_csv(path)
-    log.info("[%s] Resolving %d films from the existing CSV", username, len(df))
-    unmatched = []
+def from_saved(username: str, films: Films, entries: dict) -> None:
+    """The user's existing file, or (first run only) their pre-2.0 AllFilms<user>.csv, matched to slugs."""
+    path = USERS_DIR / f"{username}.csv"
+    if path.exists():
+        for row in pd.read_csv(path).itertuples(index=False):
+            _merge(entries, row.Slug, row.Movie, row.ReleaseYear, row.MyRating, _to_iso(row.Watched))
+        return
+    legacy = USERS_DIR / f"AllFilms{username}.csv"
+    if not legacy.exists():
+        return
+    df = pd.read_csv(legacy)
     if "Slug" not in df.columns:
         df["Slug"] = None
+    log.info("[%s] Migrating %d films from %s", username, len(df), legacy.name)
     for i, row in enumerate(df.itertuples(index=False), 1):
-        # CSVs written by this script carry the slug; older ones only have title + year.
         slug = row.Slug if isinstance(row.Slug, str) else films.resolve(row.Movie, row.ReleaseYear, row.Director)
         if slug:
-            _merge(entries, slug, row.MyRating, _to_iso(row.ReviewDate))
-        else:
-            unmatched.append(i - 1)
-        _progress(username, "existing CSV", i, len(df), films)
-    return df.iloc[unmatched]
+            _merge(entries, slug, row.Movie, row.ReleaseYear, row.MyRating, _to_iso(row.ReviewDate))
+        _progress(username, "migrate", i, len(df), films)
 
 
 def from_export(username: str, export: Path, films: Films, entries: dict) -> None:
@@ -411,12 +431,13 @@ def from_export(username: str, export: Path, films: Films, entries: dict) -> Non
                 slug = rec["slug"]
         slug = slug or films.resolve(r["Name"], r["Year"] or None)
         if slug:
-            rating = float(r["Rating"]) if r.get("Rating") else None
-            _merge(entries, slug, rating, dates.get(key))
+            _merge(entries, slug, r["Name"], r["Year"] or None, float(r["Rating"]) if r.get("Rating") else None,
+                   dates.get(key))
         _progress(username, "export", i, len(rows), films)
 
 
 def from_recent(username: str, films: Films, entries: dict) -> None:
+    """Page 1 of the member's films (latest ~72, with ratings) and their RSS feed (diary entries with dates)."""
     r = films.client.get(f"{BASE}/{username}/films/")
     if r is not None:
         soup = BeautifulSoup(r.text, "lxml")
@@ -426,33 +447,79 @@ def from_recent(username: str, films: Films, entries: dict) -> None:
                 continue
             star = item.select_one("span.rating")
             m = re.search(r"rated-(\d+)", " ".join(star["class"])) if star else None
-            _merge(entries, poster["data-item-slug"], int(m.group(1)) / 2 if m else None)
+            name = poster.get("data-item-full-display-name") or poster.get("data-item-name") or ""
+            ym = re.search(r"\((\d{4})\)$", name)
+            _merge(entries, poster["data-item-slug"], re.sub(r"\s*\(\d{4}\)$", "", name) or None,
+                   int(ym.group(1)) if ym else None, int(m.group(1)) / 2 if m else None)
 
     r = films.client.get(f"{BASE}/{username}/rss/")
     if r is None:
         return
     ns = {"letterboxd": "https://letterboxd.com", "tmdb": "https://themoviedb.org"}
     for item in ElementTree.fromstring(r.content).iter("item"):
-        if item.find("letterboxd:filmTitle", ns) is None:
+        title = item.findtext("letterboxd:filmTitle", None, ns)
+        if title is None:
             continue  # list posts, not diary entries
         m = re.search(r"/film/([^/]+)/", item.findtext("link", ""))
         if not m:
             continue
         rating = item.findtext("letterboxd:memberRating", None, ns)
-        _merge(entries, m.group(1), float(rating) if rating else None,
-               item.findtext("letterboxd:watchedDate", None, ns))
+        _merge(entries, m.group(1), title, item.findtext("letterboxd:filmYear", None, ns),
+               float(rating) if rating else None, item.findtext("letterboxd:watchedDate", None, ns))
 
 
-def _progress(username: str, stage: str, i: int, total: int, films: Films) -> None:
-    if i % 50 == 0 or i == total:
-        log.info("[%s] %s: %d/%d (fetched %d pages so far)", username, stage, i, total, films.fetched)
+def refresh_user(username: str, films: Films) -> None:
+    entries: dict[str, Entry] = {}
+    from_saved(username, films, entries)
+    if username in EXPORTS:
+        from_export(username, Path(EXPORTS[username]), films, entries)
+    from_recent(username, films, entries)
+    if not entries:
+        log.error("[%s] No films found (is the profile public?); skipping", username)
+        return
+    df = pd.DataFrame([{"Slug": slug, "Movie": e.title, "ReleaseYear": e.year, "MyRating": e.rating,
+                        "Watched": e.watched} for slug, e in entries.items()])
+    df["ReleaseYear"] = df["ReleaseYear"].astype("Int64")
+    df = df.sort_values("Watched", ascending=False, na_position="last", kind="stable")[USER_COLUMNS]
+    _write_csv(df, USERS_DIR / f"{username}.csv")
+    log.info("[%s] %d films (%d rated) -> data/users/%s.csv", username, len(df), df["MyRating"].notna().sum(), username)
 
 
-# --------------------------------------------------------------------------- output
+def user_slugs(usernames: list[str]) -> list[str]:
+    slugs = []
+    for u in usernames:
+        path = USERS_DIR / f"{u}.csv"
+        if path.exists():
+            slugs += pd.read_csv(path, usecols=["Slug"])["Slug"].dropna().tolist()
+    return slugs
 
-def _length_in_hour(minutes: int) -> str:
-    return f"{minutes // 60}:{minutes % 60:02d}"
 
+# --------------------------------------------------------------------------- step 2: top list
+
+def refresh_top_list(films: Films) -> None:
+    rows, page = [], 1
+    while True:
+        r = films.client.get(f"{BASE}/{TOP_LIST}/page/{page}/" if page > 1 else f"{BASE}/{TOP_LIST}/")
+        if r is None:
+            break
+        soup = BeautifulSoup(r.text, "lxml")
+        found = [p for p in soup.select("[data-item-slug]")]
+        if not found:
+            break
+        for p in found:
+            rows.append({"TopRank": len(rows) + 1, "Slug": p["data-item-slug"],
+                         "Movie": p.get("data-item-full-display-name") or p.get("data-item-name")})
+        if not soup.select_one("a.next"):
+            break
+        page += 1
+    if rows:
+        _write_csv(pd.DataFrame(rows).drop_duplicates("Slug"), TOP_LIST_FILE)
+        log.info("[top list] %d films from %s", len(rows), TOP_LIST)
+    else:
+        log.warning("[top list] Couldn't read %s; keeping the previous data/top_list.csv", TOP_LIST)
+
+
+# --------------------------------------------------------------------------- step 3: film data
 
 def _billed_actors(actors: list[str]) -> str:
     # Same cut-off as the original scraper, so billing scores stay comparable:
@@ -462,137 +529,87 @@ def _billed_actors(actors: list[str]) -> str:
     return ",".join(actors[:limit])
 
 
-def film_row(rec: dict) -> dict | None:
-    """Turn a cached film into the shared catalog columns, or None if the app would skip it."""
-    minutes = rec.get("minutes") or 0
-    if not (60 < minutes < 500) or rec.get("lb_rating") is None:
-        return None
+def film_row(rec: dict, top_rank) -> dict:
     return {
-        "Movie": rec["title"],
-        "LBRating": rec["lb_rating"],
-        "MovieLength": minutes,
-        "LengthInHour": _length_in_hour(minutes),
-        "Languages": ",".join(rec["languages"]),
-        "Director": rec["directors"][0] if rec["directors"] else "",
-        "ReleaseYear": rec["year"],
-        "Genre": ",".join(rec["genres"]),
-        "Country": rec["countries"][0] if rec["countries"] else "N/A",
-        "NumberOfReviews": rec["num_reviews"],
-        "NumberOfRatings": rec["num_ratings"],
-        "Actors": _billed_actors(rec["actors"]),
-        "Themes": "|".join(rec.get("themes", [])),
         "Slug": rec["slug"],
+        "Movie": rec["title"],
+        "ReleaseYear": rec["year"],
+        "LBRating": rec["lb_rating"],
+        "NumberOfRatings": rec["num_ratings"],
+        "NumberOfReviews": rec["num_reviews"],
+        "MovieLength": rec["minutes"],
+        "Director": rec["directors"][0] if rec["directors"] else "",
+        "Directors": ",".join(rec["directors"]),
+        "Genre": ",".join(rec["genres"]),
+        "Themes": "|".join(rec.get("themes", [])),
+        "Languages": ",".join(rec["languages"]),
+        "Country": rec["countries"][0] if rec["countries"] else "",
+        "Actors": _billed_actors(rec["actors"]),
+        "TopRank": top_rank,
+        "FetchedAt": rec["fetched_at"],
     }
 
 
-def _write_csv(df: pd.DataFrame, path: Path) -> None:
-    tmp = path.with_suffix(".tmp")
-    df.to_csv(tmp, index=False, encoding="utf-8")
-    tmp.replace(path)
+def refresh_films(films: Films, fetch: set[str]) -> None:
+    """Write data/films.csv for (top list + every user's films), fetching the stale films in `fetch`."""
+    top = pd.read_csv(TOP_LIST_FILE) if TOP_LIST_FILE.exists() else pd.DataFrame(columns=["TopRank", "Slug"])
+    rank = dict(zip(top["Slug"], top["TopRank"]))
+    members = list(dict.fromkeys(list(top["Slug"]) + user_slugs(USERS)))
+    todo = [s for s in members if s in fetch and not films.is_fresh(s)]
+    log.info("[films] %d films in the catalog; %d need fetching", len(members), len(todo))
+    try:
+        for i, slug in enumerate(todo, 1):
+            films.get(slug)
+            _progress("films", "film pages", i, len(todo), films)
+    finally:  # write whatever we have, even if the run is interrupted
+        rows = [film_row(films.films[s], rank.get(s)) for s in members if s in films.films]
+        df = pd.DataFrame(rows, columns=FILM_COLUMNS)
+        df["TopRank"] = df["TopRank"].astype("Int64")
+        df["ReleaseYear"] = df["ReleaseYear"].astype("Int64")
+        _write_csv(df, FILMS_FILE)
+        missing = len(members) - len(df)
+        log.info("[films] Wrote %d films to data/films.csv%s", len(df),
+                 f" ({missing} not fetched yet)" if missing else "")
 
 
-def refresh_user(username: str, films: Films, export: Path | None) -> None:
-    entries: dict[str, Entry] = {}
-    unmatched = from_existing_csv(username, films, entries)
-    if export:
-        from_export(username, export, films, entries)
-    from_recent(username, films, entries)
-
-    log.info("[%s] Fetching film pages for %d films", username, len(entries))
-    rows = []
-    for i, (slug, e) in enumerate(entries.items(), 1):
-        rec = films.get(slug)
-        _progress(username, "film pages", i, len(entries), films)
-        row = film_row(rec) if rec else None
-        if row is None:
-            continue
-        films.remember_title(rec)
-        diff = f"{e.rating - rec['lb_rating']:.2f}" if e.rating is not None else ""
-        watched = datetime.fromisoformat(e.watched).strftime("%m/%d/%Y") if e.watched else ""
-        rows.append({**row, "MyRating": e.rating, "Difference": diff, "ReviewDate": watched, "_sort": e.watched or ""})
-
-    if not rows:
-        log.error("[%s] No films found; leaving the existing CSV alone", username)
-        return
-    df = pd.DataFrame(rows).sort_values("_sort", ascending=False, kind="stable")[USER_COLUMNS]
-    if len(unmatched):
-        # Keep films we couldn't find a page for (with their old data) rather than dropping them.
-        log.info("[%s] Keeping %d unmatched films from the old CSV as-is", username, len(unmatched))
-        df = pd.concat([df, unmatched.reindex(columns=USER_COLUMNS)], ignore_index=True)
-    _write_csv(df, USERS_DIR / f"AllFilms{username}.csv")
-    log.info("[%s] Wrote %d films (%d rated) to data/users/AllFilms%s.csv",
-             username, len(df), df["MyRating"].notna().sum(), username)
-
-
-def refresh_catalog(films: Films) -> None:
-    current = pd.read_csv(CATALOG_FILE) if CATALOG_FILE.exists() else pd.DataFrame(columns=CATALOG_COLUMNS)
-    slugs: list[str] = []
-    log.info("[catalog] Resolving %d existing catalog films", len(current))
-    if "Slug" not in current.columns:
-        current["Slug"] = None
-    for i, row in enumerate(current.itertuples(index=False), 1):
-        slug = row.Slug if isinstance(row.Slug, str) else films.resolve(row.Movie, row.ReleaseYear, row.Director)
-        if slug:
-            slugs.append(slug)
-        _progress("catalog", "resolve", i, len(current), films)
-
-    # Every film any user has seen also belongs in the catalog.
-    for username in USERS:
-        path = USERS_DIR / f"AllFilms{username}.csv"
-        if path.exists():
-            user_df = pd.read_csv(path)
-            if "Slug" in user_df.columns:
-                slugs += user_df["Slug"].dropna().tolist()
-
-    slugs = list(dict.fromkeys(slugs))
-    log.info("[catalog] Refreshing %d film pages", len(slugs))
-    rows = []
-    for i, slug in enumerate(slugs, 1):
-        rec = films.get(slug)
-        _progress("catalog", "film pages", i, len(slugs), films)
-        row = film_row(rec) if rec else None
-        if row and row["MovieLength"] < 275 and row["Genre"] and row["Actors"]:
-            rows.append(row)
-
-    df = pd.DataFrame(rows, columns=CATALOG_COLUMNS).drop_duplicates(subset=["Movie", "Director"])
-    _write_csv(df, CATALOG_FILE)
-    log.info("[catalog] Wrote %d films to data/catalog/TopFilms2.csv", len(df))
-
-
-# --------------------------------------------------------------------------- CLI
+# --------------------------------------------------------------------------- main
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%H:%M:%S")
-    if COMMAND not in ("user", "users", "catalog", "all"):
-        sys.exit(f"COMMAND must be one of 'user', 'users', 'catalog', 'all' (got {COMMAND!r})")
-    if COMMAND == "user" and not USERNAMES:
-        sys.exit("set USERNAMES to at least one username")
-    if EXPORT and (COMMAND != "user" or len(USERNAMES) != 1):
-        sys.exit("EXPORT goes with COMMAND = 'user' and exactly one username")
-
-    usernames = USERS if COMMAND in ("users", "all") else USERNAMES
+    if COMMAND not in ("all", "users", "films"):
+        sys.exit(f"COMMAND must be 'all', 'users' or 'films' (got {COMMAND!r})")
+    refresh = USERS if REFRESH_USERS is None else REFRESH_USERS
+    unknown = set(refresh) - set(USERS)
+    if unknown:
+        sys.exit(f"REFRESH_USERS has names not in USERS: {sorted(unknown)}")
 
     client = Client(DELAY)
     films = Films(client, timedelta(days=MAX_AGE_DAYS))
     started = time.monotonic()
     try:
-        for username in usernames:
-            refresh_user(username, films, EXPORT)
-        if COMMAND in ("catalog", "all"):
-            refresh_catalog(films)
+        if COMMAND in ("all", "users"):
+            for username in refresh:
+                refresh_user(username, films)
+        if COMMAND == "all":
+            refresh_top_list(films)
+        # "users" only fetches those users' films; the rest of the catalog is rewritten from the cache.
+        fetch = set(user_slugs(refresh)) if COMMAND == "users" else {*user_slugs(USERS), *(
+            pd.read_csv(TOP_LIST_FILE)["Slug"] if TOP_LIST_FILE.exists() else [])}
+        refresh_films(films, fetch)
     except Blocked as e:
-        log.error("Stopped: Letterboxd is challenging requests (%s). Progress is saved in data/cache/; "
+        log.error("Stopped: Letterboxd is challenging requests (%s). Progress is saved; "
                   "rerun later (optionally with a larger DELAY) to continue.", e)
         sys.exit(2)
     except KeyboardInterrupt:
-        log.warning("Interrupted. Progress is saved in data/cache/; rerun to continue.")
+        log.warning("Interrupted. Progress is saved; rerun to continue.")
         sys.exit(130)
     finally:
         films.compact()
         log.info("%d requests, %d film pages fetched, %d titles to review, %.0f min",
                  client.requests, films.fetched, len(films.unresolved), (time.monotonic() - started) / 60)
         if films.unresolved:
-            log.info("Titles to review are listed in data/cache/unresolved.csv")
+            log.info("Titles to review are listed in data/cache/unresolved.csv "
+                     "(fix them in data/slug_overrides.csv: title,year,slug)")
 
 
 if __name__ == "__main__":

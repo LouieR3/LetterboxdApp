@@ -42,11 +42,15 @@ with picks_tab:
         max_len = c[2].slider("Max runtime (min)", 60, 275, 275, step=5)
         min_votes = c[3].select_slider("Min Letterboxd ratings", [0, 1_000, 10_000, 50_000, 100_000, 500_000], 10_000,
                                        format_func=lambda v: f"{v:,}")
-        hide_seen_directors = st.toggle("Only directors I haven't seen yet", False)
+        t1, t2 = st.columns(2)
+        top_only = t1.toggle("Only films from the Top 1001 list", False)
+        hide_seen_directors = t2.toggle("Only directors I haven't seen yet", False)
     view = recs[(recs["ReleaseYear"].between(*years)) & (recs["MovieLength"] <= max_len)
                 & (recs["NumberOfRatings"].fillna(0) >= min_votes)]
     if genres:
         view = view[view["Genre"].map(lambda gs: bool(set(gs) & set(genres)))]
+    if top_only:
+        view = view[view["TopRank"].notna()]
     if hide_seen_directors:
         view = view[~view["Director"].isin(set(df["Director"]))]
     view = view.sort_values("Predicted", ascending=False).head(50).copy()
@@ -61,13 +65,15 @@ with picks_tab:
         st.markdown(f"#### Top pick: **{top['Movie']}** ({top['ReleaseYear']}) · predicted {ui.stars(top['Predicted'])}")
         if top["Why"]:
             st.caption(f"Because you like {top['Why']}")
-        st.dataframe(view[["Movie", "ReleaseYear", "Predicted", "Out of 10", "LBRating", "Director", "Genres", "Why", "Link"]],
+        st.dataframe(view[["Movie", "ReleaseYear", "Predicted", "Out of 10", "LBRating", "TopRank", "Director", "Genres", "Why", "Link"]],
                      hide_index=True, use_container_width=True, height=600, column_config={
                          "Movie": st.column_config.TextColumn("Film", width="medium"),
                          "ReleaseYear": st.column_config.NumberColumn("Year", format="%d"),
                          "Predicted": st.column_config.ProgressColumn("Predicted ★", format="%.2f", min_value=0.5, max_value=5),
                          "Out of 10": st.column_config.NumberColumn("/10", format="%.1f"),
                          "LBRating": st.column_config.NumberColumn("Letterboxd", format="★ %.2f"),
+                         "TopRank": st.column_config.NumberColumn("Top 1001", format="#%d",
+                                                                  help="Rank in the Top 1001 list, if it's on it"),
                          "Why": st.column_config.TextColumn("Because you like", width="large"),
                          "Link": st.column_config.LinkColumn("", display_text="↗"),
                      })
