@@ -56,16 +56,21 @@ USER_AGENT = "letterboxd-stats/2.0 (personal stats app; +https://github.com/Loui
 # Set these instead of passing command-line arguments.
 
 COMMAND = "all"  # "user", "users", "catalog", or "all"
+# The friend group: "users" and "all" refresh exactly these accounts.
+USERS = ["cloakenswagger", "bluegrace11", "carmal", "goldfishbrain", "gr8escape10", "prahladsingh", "zacierka",
+         "stephanie216", "rec3", "ganonuptilt"]
 USERNAMES = ["cloakenswagger"]  # used only when COMMAND == "user"
 EXPORT = None  # Path to a Letterboxd export .zip or extracted folder; goes with "user" + one username
 MAX_AGE_DAYS = 30  # re-fetch film pages older than this (0 refreshes everything)
 DELAY = 1.0  # seconds between requests
 
+# Themes contain commas ("Horror, the undead and monster classics"), so they are joined with "|".
+# Every other list column is comma-separated.
 USER_COLUMNS = ["Movie", "MyRating", "LBRating", "Difference", "ReviewDate", "MovieLength", "LengthInHour",
                 "Languages", "Director", "ReleaseYear", "Genre", "Country", "NumberOfReviews",
-                "NumberOfRatings", "Actors"]
+                "NumberOfRatings", "Actors", "Themes", "Slug"]
 CATALOG_COLUMNS = ["Movie", "LBRating", "MovieLength", "LengthInHour", "Languages", "Director", "ReleaseYear",
-                   "Genre", "Country", "NumberOfReviews", "NumberOfRatings", "Actors"]
+                   "Genre", "Country", "NumberOfReviews", "NumberOfRatings", "Actors", "Themes", "Slug"]
 
 log = logging.getLogger("refresh")
 
@@ -210,6 +215,9 @@ def parse_film(html: str, slug: str) -> dict | None:
         "genres": ld.get("genre", []),
         "countries": countries,
         "actors": [a["name"] for a in ld.get("actor", [])][:60],
+        # The Genres tab lists up to ~7 themes and mini-themes. The full "Show All" page
+        # (/film/<slug>/themes/) is behind Letterboxd's bot check, so it isn't fetched.
+        "themes": link_texts("/films/theme/") + [t for t in link_texts("/films/mini-theme/")],
         "imdb_url": imdb["href"] if imdb else None,
         "tmdb_url": tmdb["href"] if tmdb else None,
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -233,7 +241,7 @@ class Films:
 
     def is_fresh(self, slug: str) -> bool:
         rec = self.films.get(slug)
-        if not rec:
+        if not rec or "themes" not in rec:  # cached before themes were collected
             return False
         return datetime.now(timezone.utc) - datetime.fromisoformat(rec["fetched_at"]) < self.max_age
 
@@ -358,8 +366,11 @@ def from_existing_csv(username: str, films: Films, entries: dict) -> pd.DataFram
     df = pd.read_csv(path)
     log.info("[%s] Resolving %d films from the existing CSV", username, len(df))
     unmatched = []
+    if "Slug" not in df.columns:
+        df["Slug"] = None
     for i, row in enumerate(df.itertuples(index=False), 1):
-        slug = films.resolve(row.Movie, row.ReleaseYear, row.Director)
+        # CSVs written by this script carry the slug; older ones only have title + year.
+        slug = row.Slug if isinstance(row.Slug, str) else films.resolve(row.Movie, row.ReleaseYear, row.Director)
         if slug:
             _merge(entries, slug, row.MyRating, _to_iso(row.ReviewDate))
         else:
@@ -469,6 +480,8 @@ def film_row(rec: dict) -> dict | None:
         "NumberOfReviews": rec["num_reviews"],
         "NumberOfRatings": rec["num_ratings"],
         "Actors": _billed_actors(rec["actors"]),
+        "Themes": "|".join(rec.get("themes", [])),
+        "Slug": rec["slug"],
     }
 
 
@@ -505,7 +518,7 @@ def refresh_user(username: str, films: Films, export: Path | None) -> None:
     if len(unmatched):
         # Keep films we couldn't find a page for (with their old data) rather than dropping them.
         log.info("[%s] Keeping %d unmatched films from the old CSV as-is", username, len(unmatched))
-        df = pd.concat([df, unmatched[USER_COLUMNS]], ignore_index=True)
+        df = pd.concat([df, unmatched.reindex(columns=USER_COLUMNS)], ignore_index=True)
     _write_csv(df, USERS_DIR / f"AllFilms{username}.csv")
     log.info("[%s] Wrote %d films (%d rated) to data/users/AllFilms%s.csv",
              username, len(df), df["MyRating"].notna().sum(), username)
@@ -515,18 +528,21 @@ def refresh_catalog(films: Films) -> None:
     current = pd.read_csv(CATALOG_FILE) if CATALOG_FILE.exists() else pd.DataFrame(columns=CATALOG_COLUMNS)
     slugs: list[str] = []
     log.info("[catalog] Resolving %d existing catalog films", len(current))
+    if "Slug" not in current.columns:
+        current["Slug"] = None
     for i, row in enumerate(current.itertuples(index=False), 1):
-        slug = films.resolve(row.Movie, row.ReleaseYear, row.Director)
+        slug = row.Slug if isinstance(row.Slug, str) else films.resolve(row.Movie, row.ReleaseYear, row.Director)
         if slug:
             slugs.append(slug)
         _progress("catalog", "resolve", i, len(current), films)
 
     # Every film any user has seen also belongs in the catalog.
-    for path in sorted(USERS_DIR.glob("AllFilms*.csv")):
-        for row in pd.read_csv(path, usecols=["Movie", "ReleaseYear"]).itertuples(index=False):
-            key = title_key(row.Movie, row.ReleaseYear)
-            if key in films.slugs:
-                slugs.append(films.slugs[key]["slug"])
+    for username in USERS:
+        path = USERS_DIR / f"AllFilms{username}.csv"
+        if path.exists():
+            user_df = pd.read_csv(path)
+            if "Slug" in user_df.columns:
+                slugs += user_df["Slug"].dropna().tolist()
 
     slugs = list(dict.fromkeys(slugs))
     log.info("[catalog] Refreshing %d film pages", len(slugs))
@@ -554,9 +570,7 @@ def main() -> None:
     if EXPORT and (COMMAND != "user" or len(USERNAMES) != 1):
         sys.exit("EXPORT goes with COMMAND = 'user' and exactly one username")
 
-    usernames = USERNAMES
-    if COMMAND in ("users", "all"):
-        usernames = sorted(p.stem.removeprefix("AllFilms") for p in USERS_DIR.glob("AllFilms*.csv"))
+    usernames = USERS if COMMAND in ("users", "all") else USERNAMES
 
     client = Client(DELAY)
     films = Films(client, timedelta(days=MAX_AGE_DAYS))

@@ -1,52 +1,24 @@
+"""Letterboxd Stats: entry point (Streamlit Community Cloud runs this file)."""
 import streamlit as st
-import pandas as pd
-# import pydeck as pdk
-from bs4 import BeautifulSoup
-import requests
-import csv
-import json
-import re
-import asyncio
-# from operator import itemgetter
-# from urllib.error import URLError
-# from streamlit_observable import observable
-# import pandas_profiling
-# from streamlit_pandas_profiling import st_profile_report
-import numpy as np
-from ratings import ratings
-import director
-import actors
-import intro
-import length
-import genre
-import country
-import decade
-import year
-import language
-import unidecode
-import recommender
-import recommender2
 
-st.set_page_config(page_title="Letterboxd Stats", layout="wide")
+from app import ui
 
-PAGES = {
-    "Home": intro,
-    "Your Favorite Actors": actors,
-    "Your Favorite Directors": director,
-    "Your Favorite Movies By Length": length,
-    "Your Favorite Genres": genre,
-    "Your Favorite Decades": decade,
-    "Your Favorite Languages": language,
-    # "Your Favorite Country": country,
-    # "Your Favorite Year": year,
-    "Recommendations All": recommender,
-    "Recommendations": recommender2
+st.set_page_config(page_title="Letterboxd Stats", page_icon="🎬", layout="wide")
+
+pages = {
+    "Your taste": [
+        st.Page("app/views/overview.py", title="Overview", icon=":material/insights:", default=True),
+        st.Page("app/views/people.py", title="Directors & actors", icon=":material/groups:"),
+        st.Page("app/views/genres.py", title="Genres & themes", icon=":material/category:"),
+        st.Page("app/views/eras.py", title="Eras, runtimes & languages", icon=":material/schedule:"),
+        st.Page("app/views/films.py", title="All films", icon=":material/movie:"),
+    ],
+    "Discover": [
+        st.Page("app/views/recommend.py", title="Recommendations", icon=":material/auto_awesome:"),
+        st.Page("app/views/friends.py", title="Friends", icon=":material/diversity_3:"),
+    ],
 }
 
-st.sidebar.title('Navigation')
-selection = st.sidebar.radio("Go to", list(PAGES.keys()))
-page = PAGES[selection]
-page.app()
-
-# pr = df.profile_report()
-# st_profile_report(pr)
+nav = st.navigation(pages)
+ui.sidebar()
+nav.run()

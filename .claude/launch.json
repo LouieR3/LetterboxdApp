@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "letterboxd-stats",
+      "runtimeExecutable": "C:\\Users\\louie.rodriguez\\AppData\\Local\\Temp\\claude\\C--Users-louie-rodriguez-OneDrive---Pennoni-Desktop-repo-LetterboxdApp\\620cddc2-4491-49d6-b027-f5ad5074ccc8\\scratchpad\\venv\\Scripts\\streamlit.exe",
+      "runtimeArgs": ["run", "streamlit2.py", "--server.headless", "true", "--server.port", "8501"],
+      "port": 8501
+    }
+  ]
+}
