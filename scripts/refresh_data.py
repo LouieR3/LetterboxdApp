@@ -564,8 +564,8 @@ def refresh_films(films: Films, fetch: set[str]) -> None:
     finally:  # write whatever we have, even if the run is interrupted
         rows = [film_row(films.films[s], rank.get(s)) for s in members if s in films.films]
         df = pd.DataFrame(rows, columns=FILM_COLUMNS)
-        df["TopRank"] = df["TopRank"].astype("Int64")
-        df["ReleaseYear"] = df["ReleaseYear"].astype("Int64")
+        for col in ("TopRank", "ReleaseYear", "NumberOfRatings", "NumberOfReviews", "MovieLength"):
+            df[col] = df[col].astype("Int64")  # whole numbers, even when some films have none
         _write_csv(df, FILMS_FILE)
         missing = len(members) - len(df)
         log.info("[films] Wrote %d films to data/films.csv%s", len(df),
