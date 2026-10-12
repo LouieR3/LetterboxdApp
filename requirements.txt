@@ -1,11 +1,10 @@
-streamlit
-pandas
+streamlit>=1.40
+pandas>=2.1
 numpy
-matplotlib
+altair>=5
 unidecode
-streamlit_extras
 
-# Scrapers in scripts/
-bs4
+# scripts/refresh_data.py
+beautifulsoup4
 lxml
 requests

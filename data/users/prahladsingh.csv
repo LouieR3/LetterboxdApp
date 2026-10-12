@@ -1,0 +1,635 @@
+Slug,Movie,ReleaseYear,MyRating,Watched
+morbius,Morbius,2022,3.0,2022-11-02
+minions-the-rise-of-gru,Minions: The Rise of Gru,2022,3.5,2022-08-12
+top-gun-maverick,Top Gun: Maverick,2022,4.5,2022-08-12
+the-adam-project,The Adam Project,2022,3.5,2022-05-13
+spider-man-no-way-home,Spider-Man: No Way Home,2021,4.0,2022-05-13
+hamilton-2020,Hamilton,2020,4.0,2022-05-13
+avengers-endgame,Avengers: Endgame,2019,4.0,2022-05-13
+harry-potter-and-the-deathly-hallows-part-2,Harry Potter and the Deathly Hallows: Part 2,2011,4.0,2022-05-13
+blood-diamond,Blood Diamond,2006,5.0,2022-05-13
+oldboy,Oldboy,2003,4.0,2022-05-13
+back-to-the-future,Back to the Future,1985,4.0,2022-05-13
+return-of-the-jedi,Return of the Jedi,1983,4.0,2022-05-13
+the-empire-strikes-back,The Empire Strikes Back,1980,4.0,2022-05-13
+star-wars,Star Wars,1977,4.0,2022-05-13
+citizen-kane,Citizen Kane,1941,4.0,2022-05-13
+the-batman,The Batman,2022,4.0,2022-05-08
+death-on-the-nile-2022,Death on the Nile,2022,3.5,2022-05-08
+the-kings-man,The King's Man,2021,3.5,2022-05-08
+eternals,Eternals,2021,3.5,2022-05-08
+black-widow-2021,Black Widow,2021,3.5,2022-05-08
+snake-eyes-gi-joe-origins,Snake Eyes: G.I. Joe Origins,2021,3.0,2022-05-08
+chinatown,Chinatown,1974,4.0,2022-05-08
+shang-chi-and-the-legend-of-the-ten-rings,Shang-Chi and the Legend of the Ten Rings,2021,3.5,2021-11-24
+no-time-to-die-2021,No Time to Die,2021,4.0,2021-10-13
+what-if-2008,What If...?,2008,3.5,2021-10-13
+campus-swingers,Campus Swingers,1972,4.0,2021-09-18
+toofaan,Toofaan,2021,2.5,2021-07-17
+tom-clancys-without-remorse,Tom Clancy's Without Remorse,2021,3.5,2021-07-15
+mortal-kombat-2021,Mortal Kombat,2021,3.0,2021-07-15
+august-rush,August Rush,2007,4.0,2021-06-06
+dirty-harry,Dirty Harry,1971,3.5,2021-05-08
+the-two-popes,The Two Popes,2019,4.0,2021-05-02
+soul-2020,Soul,2020,4.0,2021-04-24
+tenet,Tenet,2020,3.5,2021-04-24
+the-graduate,The Graduate,1967,4.0,2021-03-28
+zack-snyders-justice-league,Zack Snyder's Justice League,2021,4.0,2021-03-21
+the-english-patient,The English Patient,1996,4.0,2021-03-08
+ip-man-4-the-finale,Ip Man 4: The Finale,2019,3.5,2021-03-07
+frozen-2,Frozen II,2019,3.5,2021-02-23
+my-name-is-khan,My Name Is Khan,2010,4.0,2021-02-01
+don-2006,Don,2006,3.5,2021-02-01
+main-hoon-na,Main Hoon Na,2004,3.5,2021-02-01
+kal-ho-naa-ho,Kal Ho Naa Ho,2003,4.0,2021-02-01
+kabhi-khushi-kabhie-gham,Kabhi Khushi Kabhie Gham,2001,4.0,2021-02-01
+a-perfect-murder,A Perfect Murder,1998,3.5,2021-02-01
+dilwale-dulhania-le-jayenge,Dilwale Dulhania Le Jayenge,1995,3.5,2021-02-01
+casablanca,Casablanca,1942,4.5,2021-01-23
+the-maltese-falcon-1941,The Maltese Falcon,1941,4.0,2021-01-23
+wonder-woman-1984,Wonder Woman 1984,2020,4.0,2020-12-25
+wonder-woman-2017,Wonder Woman,2017,4.0,2020-12-25
+superman-man-of-tomorrow,Superman: Man of Tomorrow,2020,3.0,2020-11-15
+the-good-liar,The Good Liar,2019,3.5,2020-11-15
+once-upon-a-time-in-hollywood,Once Upon a Time... in Hollywood,2019,3.5,2020-11-15
+bombshell-2019,Bombshell,2019,3.5,2020-08-26
+the-current-war,The Current War,2017,3.5,2020-08-26
+superman-red-son-2020,Superman: Red Son,2020,3.5,2020-07-26
+star-wars-the-rise-of-skywalker,Star Wars: The Rise of Skywalker,2019,3.5,2020-07-24
+yesterday-2019,Yesterday,2019,3.5,2020-07-24
+the-old-guard-2020,The Old Guard,2020,3.5,2020-07-12
+rocketman-2019,Rocketman,2019,4.0,2020-07-12
+fast-furious-presents-hobbs-shaw,Fast & Furious Presents: Hobbs & Shaw,2019,3.0,2020-07-11
+dark-phoenix,Dark Phoenix,2019,3.0,2020-07-04
+the-man-in-the-iron-mask-1998,The Man in the Iron Mask,1998,3.0,2020-06-22
+knives-out-2019,Knives Out,2019,3.5,2020-06-20
+justice-league-dark-apokolips-war,Justice League Dark: Apokolips War,2020,3.5,2020-06-14
+ford-v-ferrari,Ford v Ferrari,2019,4.0,2020-05-31
+code-geass-lelouch-of-the-re-surrection,Code Geass: Lelouch of the Re;Surrection,2019,3.5,2020-05-31
+la-la-land,La La Land,2016,4.0,2020-05-31
+parasite-2019,Parasite,2019,4.0,2020-02-29
+nightcrawler,Nightcrawler,2014,4.0,2020-01-14
+klaus,Klaus,2019,4.0,2019-12-21
+long-shot-2019,Long Shot,2019,3.5,2019-12-08
+wonder-woman-bloodlines,Wonder Woman: Bloodlines,2019,3.0,2019-12-03
+cold-pursuit,Cold Pursuit,2019,3.0,2019-12-03
+joker-2019,Joker,2019,4.5,2019-10-12
+teen-titans-the-judas-contract,Teen Titans: The Judas Contract,2017,3.5,2019-10-12
+les-miserables-2012,Les Misérables,2012,4.0,2019-10-12
+rocknrolla,RocknRolla,2008,3.5,2019-10-12
+justice-league-the-new-frontier,Justice League: The New Frontier,2008,3.0,2019-10-12
+superbad,Superbad,2007,3.5,2019-10-12
+scent-of-a-woman,Scent of a Woman,1992,4.0,2019-10-12
+batman-under-the-red-hood,Batman: Under the Red Hood,2010,5.0,2019-09-13
+man-of-steel,Man of Steel,2013,4.5,2019-09-12
+batman-hush,Batman: Hush,2019,3.5,2019-07-29
+alita-battle-angel,Alita: Battle Angel,2019,3.5,2019-07-29
+spider-man-far-from-home,Spider-Man: Far From Home,2019,4.0,2019-07-04
+ralph-breaks-the-internet,Ralph Breaks the Internet,2018,3.5,2019-06-15
+shes-out-of-my-league,She's Out of My League,2010,3.0,2019-06-07
+pokemon-detective-pikachu,Pokémon Detective Pikachu,2019,3.0,2019-05-28
+john-wick-chapter-2,John Wick: Chapter 2,2017,3.5,2019-05-26
+batman-the-killing-joke-2016,Batman: The Killing Joke,2016,4.0,2019-05-26
+superman-doomsday,Superman: Doomsday,2007,3.5,2019-05-26
+the-death-of-superman,The Death of Superman,2018,4.0,2019-05-20
+john-wick,John Wick,2014,3.5,2019-05-20
+300,300,2006,3.5,2019-05-20
+about-time,About Time,2013,4.5,2019-05-18
+mary-poppins-returns,Mary Poppins Returns,2018,3.5,2019-05-14
+blackkklansman,BlacKkKlansman,2018,3.5,2019-05-12
+night-at-the-museum-secret-of-the-tomb,Night at the Museum: Secret of the Tomb,2014,3.0,2019-04-21
+justice-league-vs-the-fatal-five,Justice League vs. the Fatal Five,2019,3.5,2019-04-20
+glass-2019,Glass,2019,3.0,2019-04-18
+shazam,Shazam!,2019,4.0,2019-04-14
+teen-titans-go-to-the-movies,Teen Titans Go! To the Movies,2018,3.5,2019-04-14
+spider-man-into-the-spider-verse,Spider-Man: Into the Spider-Verse,2018,4.5,2019-04-07
+venom-2018,Venom,2018,3.5,2019-04-07
+life-itself-2018,Life Itself,2018,3.5,2019-04-07
+law-abiding-citizen,Law Abiding Citizen,2009,4.5,2019-03-23
+baywatch,Baywatch,2017,2.5,2019-03-18
+blood-and-bone,Blood and Bone,2009,3.5,2019-03-18
+captain-marvel,Captain Marvel,2019,3.5,2019-03-13
+the-big-sick,The Big Sick,2017,3.5,2019-03-10
+hotel-transylvania-3-summer-vacation,Hotel Transylvania 3: Summer Vacation,2018,3.0,2019-02-13
+polar-2019,Polar,2019,3.5,2019-02-11
+the-incredible-burt-wonderstone,The Incredible Burt Wonderstone,2013,2.5,2019-02-11
+solo-a-star-wars-story,Solo: A Star Wars Story,2018,3.5,2019-02-10
+tag-2018,Tag,2018,3.0,2019-02-09
+the-foreigner-2017,The Foreigner,2017,3.5,2019-02-09
+bohemian-rhapsody,Bohemian Rhapsody,2018,4.0,2019-01-30
+reign-of-the-supermen,Reign of the Supermen,2019,3.5,2019-01-20
+black-mirror-bandersnatch,Black Mirror: Bandersnatch,2018,3.5,2019-01-02
+bumblebee,Bumblebee,2018,3.5,2018-12-31
+aquaman-2018,Aquaman,2018,4.0,2018-12-29
+soorma,Soorma,2018,4.0,2018-12-29
+ready-player-one,Ready Player One,2018,4.0,2018-12-26
+kingsman-the-golden-circle,Kingsman: The Golden Circle,2017,3.5,2018-12-26
+the-mummy-2017,The Mummy,2017,3.0,2018-12-22
+the-mummy-tomb-of-the-dragon-emperor,The Mummy: Tomb of the Dragon Emperor,2008,3.0,2018-12-22
+the-mummy-1999,The Mummy,1999,3.5,2018-12-22
+fantastic-beasts-the-crimes-of-grindelwald,Fantastic Beasts: The Crimes of Grindelwald,2018,3.5,2018-12-09
+thor-ragnarok,Thor: Ragnarok,2017,4.0,2018-10-09
+guardians-of-the-galaxy-vol-2,Guardians of the Galaxy Vol. 2,2017,3.5,2018-10-09
+entourage,Entourage,2015,4.0,2018-10-09
+sicario-2015,Sicario,2015,4.0,2018-10-09
+star-wars-episode-iii-revenge-of-the-sith,Star Wars: Episode III – Revenge of the Sith,2005,4.0,2018-10-09
+the-punisher-2004,The Punisher,2004,4.5,2018-10-09
+a-star-is-born-2018,A Star Is Born,2018,4.0,2018-10-08
+batman-and-harley-quinn,Batman and Harley Quinn,2017,3.0,2018-09-11
+murder-on-the-orient-express-2017,Murder on the Orient Express,2017,3.5,2018-08-25
+mission-impossible-fallout,Mission: Impossible – Fallout,2018,4.0,2018-08-21
+the-equalizer-2,The Equalizer 2,2018,3.0,2018-07-21
+yellow-submarine,Yellow Submarine,1968,3.5,2018-07-14
+a-hard-days-night,A Hard Day's Night,1964,4.0,2018-07-14
+ant-man-and-the-wasp,Ant-Man and the Wasp,2018,3.5,2018-07-08
+oceans-eight,Ocean's Eight,2018,3.0,2018-07-08
+sicario-day-of-the-soldado,Sicario: Day of the Soldado,2018,3.5,2018-07-04
+set-it-up,Set It Up,2018,3.0,2018-07-04
+coco-2017,Coco,2017,4.0,2018-06-29
+incredibles-2,Incredibles 2,2018,4.0,2018-06-28
+ant-man,Ant-Man,2015,3.5,2018-06-24
+deadpool-2,Deadpool 2,2018,3.5,2018-06-06
+power-rangers,Power Rangers,2017,3.0,2018-06-06
+the-hitmans-bodyguard,The Hitman's Bodyguard,2017,3.5,2018-06-01
+batman-gotham-by-gaslight,Batman: Gotham by Gaslight,2018,3.5,2018-05-13
+mulan,Mulan,1998,3.5,2018-05-12
+avengers-infinity-war,Avengers: Infinity War,2018,4.0,2018-05-04
+war-for-the-planet-of-the-apes,War for the Planet of the Apes,2017,3.5,2018-04-28
+inferno-2016,Inferno,2016,3.0,2018-03-31
+spotlight,Spotlight,2015,4.0,2018-03-31
+a-lot-like-love,A Lot Like Love,2005,3.5,2018-03-24
+black-panther,Black Panther,2018,4.5,2018-02-23
+mission-impossible-iii,Mission: Impossible III,2006,3.5,2018-02-23
+mission-impossible-ii,Mission: Impossible II,2000,3.0,2018-02-23
+the-greatest-showman,The Greatest Showman,2017,4.0,2018-02-11
+house-of-cards-1990,House of Cards,1990,4.0,2018-02-04
+luther,Luther,2003,4.0,2018-01-28
+star-wars-the-last-jedi,Star Wars: The Last Jedi,2017,3.5,2018-01-10
+pirates-of-the-caribbean-dead-men-tell-no-tales,Pirates of the Caribbean: Dead Men Tell No Tales,2017,3.5,2018-01-10
+fear-no-evil,Fear No Evil,1981,4.0,2017-12-23
+justice-league,Justice League,2017,4.0,2017-11-30
+assassins-creed,Assassin's Creed,2016,3.0,2017-11-30
+zootopia,Zootopia,2016,4.0,2017-10-10
+marvels-the-defenders,Marvel's The Defenders,2017,4.0,2017-08-23
+21,21,2008,3.5,2017-08-23
+under-the-gun-1995,Under the Gun,1995,3.0,2017-08-23
+batman-v-superman-dawn-of-justice,Batman v Superman: Dawn of Justice,2016,4.0,2017-07-23
+spider-man-homecoming,Spider-Man: Homecoming,2017,4.0,2017-07-19
+despicable-me-3,Despicable Me 3,2017,3.5,2017-07-19
+mechanic-resurrection,Mechanic: Resurrection,2016,3.0,2017-07-19
+x-men-days-of-future-past,X-Men: Days of Future Past,2014,4.0,2017-07-15
+zero-dark-thirty,Zero Dark Thirty,2012,3.5,2017-07-15
+django-unchained,Django Unchained,2012,4.0,2017-07-15
+sherlock-holmes-a-game-of-shadows,Sherlock Holmes: A Game of Shadows,2011,4.0,2017-07-15
+tinker-tailor-soldier-spy,Tinker Tailor Soldier Spy,2011,3.5,2017-07-15
+the-fighter-2010,The Fighter,2010,4.0,2017-07-15
+the-accountant-2016,The Accountant,2016,3.5,2017-07-03
+jack-reacher-never-go-back,Jack Reacher: Never Go Back,2016,3.0,2017-03-14
+logan-2017,Logan,2017,4.0,2017-03-06
+underworld-blood-wars,Underworld: Blood Wars,2016,3.5,2017-02-21
+jason-bourne,Jason Bourne,2016,3.5,2017-02-21
+the-lego-batman-movie,The Lego Batman Movie,2017,4.0,2017-02-17
+fantastic-beasts-and-where-to-find-them,Fantastic Beasts and Where to Find Them,2016,3.5,2017-02-17
+suicide-squad-2016,Suicide Squad,2016,3.5,2017-02-17
+the-hobbit-an-unexpected-journey,The Hobbit: An Unexpected Journey,2012,4.0,2017-02-11
+the-adventures-of-tintin,The Adventures of Tintin,2011,4.0,2017-02-11
+blindspot,Blindspot,2008,4.0,2017-02-11
+pirates-of-the-caribbean-the-curse-of-the-black-pearl,Pirates of the Caribbean: The Curse of the Black Pearl,2003,4.0,2017-02-11
+swordfish,Swordfish,2001,3.5,2017-02-11
+rogue-one-a-star-wars-story,Rogue One: A Star Wars Story,2016,4.0,2017-02-01
+hidden-figures,Hidden Figures,2016,4.0,2017-02-01
+sherlock-case-of-evil,Sherlock: Case of Evil,2002,4.5,2017-02-01
+westworld,Westworld,1973,4.5,2016-12-17
+underworld-rise-of-the-lycans,Underworld: Rise of the Lycans,2009,3.5,2016-11-17
+underworld-2003,Underworld,2003,4.0,2016-11-17
+doctor-strange-2016,Doctor Strange,2016,4.0,2016-11-12
+star-trek-beyond,Star Trek Beyond,2016,4.0,2016-08-06
+now-you-see-me-2,Now You See Me 2,2016,3.0,2016-07-24
+captain-america-civil-war,Captain America: Civil War,2016,4.0,2016-07-24
+x-men-apocalypse,X-Men: Apocalypse,2016,4.0,2016-06-19
+crouching-tiger-hidden-dragon,"Crouching Tiger, Hidden Dragon",2000,4.0,2016-05-23
+the-jungle-book-2016,The Jungle Book,2016,4.0,2016-04-28
+the-hateful-eight,The Hateful Eight,2015,3.5,2016-04-28
+leap-year,Leap Year,2010,3.5,2016-04-24
+crouching-tiger-hidden-dragon-sword-of-destiny,"Crouching Tiger, Hidden Dragon: Sword of Destiny",2016,3.5,2016-04-16
+star-wars-the-force-awakens,Star Wars: The Force Awakens,2015,4.0,2016-04-14
+seven-samurai,Seven Samurai,1954,4.0,2016-04-14
+justice-league-vs-teen-titans,Justice League vs. Teen Titans,2016,3.5,2016-04-13
+kung-fu-panda-3,Kung Fu Panda 3,2016,3.5,2016-03-10
+deadpool,Deadpool,2016,4.0,2016-02-13
+the-revenant-2015,The Revenant,2015,4.0,2016-02-05
+batman-bad-blood,Batman: Bad Blood,2016,4.0,2016-01-28
+the-intern-2015,The Intern,2015,3.5,2015-12-21
+now-you-see-me,Now You See Me,2013,4.0,2015-12-21
+once-upon-a-time-in-mumbaai,Once Upon a Time in Mumbaai,2010,4.0,2015-12-21
+erased,Erased,2012,3.0,2015-12-02
+begin-again,Begin Again,2013,4.0,2015-11-26
+american-sniper,American Sniper,2014,3.5,2015-11-12
+v-for-vendetta,V for Vendetta,2005,4.5,2015-11-08
+spectre-2015,Spectre,2015,4.0,2015-11-06
+hotel-transylvania-2,Hotel Transylvania 2,2015,3.5,2015-10-26
+justice-league-throne-of-atlantis,Justice League: Throne of Atlantis,2015,3.5,2015-09-10
+justice-league-the-flashpoint-paradox,Justice League: The Flashpoint Paradox,2013,4.0,2015-09-10
+bhaag-milkha-bhaag,Bhaag Milkha Bhaag,2013,4.0,2015-09-10
+batman-the-dark-knight-returns-part-2,"Batman: The Dark Knight Returns, Part 2",2013,4.0,2015-09-10
+justice-league-doom,Justice League: Doom,2012,4.0,2015-09-10
+kung-fu-panda-2,Kung Fu Panda 2,2011,3.5,2015-09-10
+black-swan,Black Swan,2010,4.0,2015-09-10
+justice-league-crisis-on-two-earths,Justice League: Crisis on Two Earths,2010,3.5,2015-09-10
+gotham,Gotham,1988,4.0,2015-09-10
+a-fistful-of-dollars,A Fistful of Dollars,1964,4.0,2015-09-10
+tut,Tut,2015,3.5,2015-08-31
+minions,Minions,2015,3.5,2015-08-31
+southpaw-2015,Southpaw,2015,4.0,2015-08-31
+inside-out-2015,Inside Out,2015,4.0,2015-08-26
+ferris-buellers-day-off,Ferris Bueller's Day Off,1986,3.5,2015-08-24
+manjhi-the-mountain-man,Manjhi: The Mountain Man,2015,4.0,2015-08-23
+avengers-age-of-ultron,Avengers: Age of Ultron,2015,4.0,2015-08-21
+charlies-angels,Charlie's Angels,2000,3.0,2015-08-21
+lord-of-war,Lord of War,2005,4.0,2015-08-20
+cinderella-2015,Cinderella,2015,3.5,2015-08-19
+grease,Grease,1978,3.5,2015-08-19
+mission-impossible-rogue-nation,Mission: Impossible – Rogue Nation,2015,4.0,2015-08-16
+justice-league-gods-and-monsters,Justice League: Gods and Monsters,2015,4.0,2015-08-16
+big-hero-6,Big Hero 6,2014,4.0,2015-08-16
+batman-vs-robin,Batman vs. Robin,2015,3.5,2015-07-25
+the-iron-lady,The Iron Lady,2011,3.5,2015-07-25
+hugo,Hugo,2011,4.0,2015-07-25
+the-help,The Help,2011,4.0,2015-07-25
+the-artist,The Artist,2011,4.0,2015-07-25
+up,Up,2009,4.0,2015-07-10
+shrek,Shrek,2001,3.5,2015-07-10
+toy-story-2,Toy Story 2,1999,4.0,2015-07-10
+the-lion-king-ii-simbas-pride,The Lion King II: Simba's Pride,1998,3.5,2015-07-10
+black-beauty-1994,Black Beauty,1994,3.5,2015-07-10
+the-boy-next-door-2015,The Boy Next Door,2015,1.5,2015-07-09
+the-legend-of-hercules,The Legend of Hercules,2014,1.0,2015-07-09
+the-hangover-part-iii,The Hangover Part III,2013,2.0,2015-07-09
+spring-breakers,Spring Breakers,2012,0.5,2015-07-09
+the-hangover-part-ii,The Hangover Part II,2011,2.5,2015-07-09
+kangaroo-jack,Kangaroo Jack,2003,3.0,2015-07-09
+bend-it-like-beckham,Bend It Like Beckham,2002,3.5,2015-06-13
+the-age-of-adaline,The Age of Adaline,2015,4.0,2015-05-31
+outcast-2014,Outcast,2014,2.5,2015-05-29
+last-knights,Last Knights,2015,3.5,2015-05-02
+mortdecai,Mortdecai,2015,3.0,2015-05-02
+kingsman-the-secret-service,Kingsman: The Secret Service,2014,4.0,2015-05-02
+exodus-gods-and-kings,Exodus: Gods and Kings,2014,3.0,2015-05-02
+daredevil,Daredevil,2003,4.5,2015-05-02
+furious-7,Furious 7,2015,3.5,2015-04-03
+gone-girl,Gone Girl,2014,4.5,2015-03-28
+whiplash-2014,Whiplash,2014,4.0,2015-02-23
+the-hobbit-the-battle-of-the-five-armies,The Hobbit: The Battle of the Five Armies,2014,4.0,2015-01-12
+penguins-of-madagascar-2014,Penguins of Madagascar,2014,3.5,2015-01-12
+third-person,Third Person,2013,3.0,2015-01-12
+horrible-bosses-2,Horrible Bosses 2,2014,3.0,2014-12-29
+the-judge-2014,The Judge,2014,3.5,2014-12-29
+the-amazing-spider-man-2,The Amazing Spider-Man 2,2014,3.5,2014-12-29
+saheb-biwi-aur-gangster-returns,Saheb Biwi Aur Gangster Returns,2013,3.0,2014-12-29
+batman-the-dark-knight-returns-part-1,"Batman: The Dark Knight Returns, Part 1",2012,4.0,2014-12-29
+argo,Argo,2012,4.0,2014-12-29
+batman-year-one,Batman: Year One,2011,3.5,2014-12-29
+warrior,Warrior,2011,5.0,2014-12-29
+drive-2011,Drive,2011,4.0,2014-12-29
+i-am-number-four,I Am Number Four,2011,3.0,2014-12-29
+the-tourist,The Tourist,2010,3.5,2014-12-29
+megamind,Megamind,2010,3.5,2014-12-29
+superman-batman-apocalypse,Superman/Batman: Apocalypse,2010,3.5,2014-12-29
+the-legend-is-born-ip-man,The Legend Is Born: Ip Man,2010,4.0,2014-12-29
+raajneeti,Raajneeti,2010,4.0,2014-12-29
+shutter-island,Shutter Island,2010,4.5,2014-12-29
+the-blind-side,The Blind Side,2009,4.5,2014-12-29
+the-hangover,The Hangover,2009,4.0,2014-12-29
+night-at-the-museum-battle-of-the-smithsonian,Night at the Museum: Battle of the Smithsonian,2009,3.5,2014-12-29
+ghajini-2008,Ghajini,2008,4.0,2014-12-29
+the-curious-case-of-benjamin-button,The Curious Case of Benjamin Button,2008,4.0,2014-12-29
+the-wrestler,The Wrestler,2008,3.5,2014-12-29
+hancock,Hancock,2008,3.5,2014-12-29
+kung-fu-panda,Kung Fu Panda,2008,4.0,2014-12-29
+i-am-legend,I Am Legend,2007,4.0,2014-12-29
+jazz-icons-dexter-gordon-live-in-63-and-64,Jazz Icons: Dexter Gordon Live in '63 and '64,2007,4.0,2014-12-29
+night-at-the-museum,Night at the Museum,2006,3.5,2014-12-29
+pirates-of-the-caribbean-dead-mans-chest,Pirates of the Caribbean: Dead Man's Chest,2006,3.5,2014-12-29
+cars,Cars,2006,3.5,2014-12-29
+batman-begins,Batman Begins,2005,4.5,2014-12-29
+madagascar,Madagascar,2005,3.5,2014-12-29
+batman-mystery-of-the-batwoman,Batman: Mystery of the Batwoman,2003,3.5,2014-12-29
+hitler-the-rise-of-evil,Hitler: The Rise of Evil,2003,4.0,2014-12-29
+catch-me-if-you-can-2002,Catch Me If You Can,2002,4.0,2014-12-29
+spider-man,Spider-Man,2002,3.5,2014-12-29
+oceans-eleven-2001,Ocean's Eleven,2001,4.0,2014-12-29
+lagaan-once-upon-a-time-in-india,Lagaan: Once Upon a Time in India,2001,4.0,2014-12-29
+batman-beyond-return-of-the-joker,Batman Beyond: Return of the Joker,2000,4.0,2014-12-29
+suits,Suits,1999,4.0,2014-12-29
+amistad,Amistad,1997,4.0,2014-12-29
+the-hunt-for-red-october,The Hunt for Red October,1990,4.0,2014-12-29
+a-clockwork-orange,A Clockwork Orange,1971,4.0,2014-12-29
+the-sound-of-music,The Sound of Music,1965,4.0,2014-12-29
+mary-poppins,Mary Poppins,1964,4.0,2014-12-29
+psycho,Psycho,1960,4.5,2014-12-29
+the-november-man,The November Man,2014,3.5,2014-12-27
+dracula-untold,Dracula Untold,2014,4.0,2014-12-26
+the-equalizer,The Equalizer,2014,3.5,2014-12-26
+the-giver,The Giver,2014,3.0,2014-12-26
+rise-of-the-guardians,Rise of the Guardians,2012,4.0,2014-12-26
+me-myself-irene,"Me, Myself & Irene",2000,3.0,2014-12-19
+green-lantern,Green Lantern,2011,3.0,2014-11-20
+dawn-of-the-planet-of-the-apes,Dawn of the Planet of the Apes,2014,3.5,2014-11-12
+never-back-down-2-the-beatdown,Never Back Down 2: The Beatdown,2011,3.0,2014-11-10
+ip-man-2,Ip Man 2,2010,3.5,2014-11-10
+ratatouille,Ratatouille,2007,4.0,2014-11-10
+sin-city,Sin City,2005,4.0,2014-11-10
+captain-america-the-first-avenger,Captain America: The First Avenger,2011,3.5,2014-10-31
+hercules-2014,Hercules,2014,2.5,2014-10-29
+million-dollar-arm,Million Dollar Arm,2014,3.5,2014-10-29
+toy-story-3,Toy Story 3,2010,4.0,2014-10-29
+inglourious-basterds,Inglourious Basterds,2009,4.5,2014-10-29
+dil-chahta-hai,Dil Chahta Hai,2001,4.0,2014-10-29
+memento,Memento,2000,4.0,2014-10-29
+toy-story,Toy Story,1995,4.0,2014-10-29
+the-lion-king,The Lion King,1994,4.0,2014-10-29
+scarface-1983,Scarface,1983,4.0,2014-10-29
+raiders-of-the-lost-ark,Raiders of the Lost Ark,1981,4.0,2014-10-29
+for-a-few-dollars-more,For a Few Dollars More,1965,4.0,2014-10-29
+iron-man-2,Iron Man 2,2010,3.5,2014-08-29
+the-matrix,The Matrix,1999,4.5,2014-08-29
+batman-assault-on-arkham,Batman: Assault on Arkham,2014,3.5,2014-08-23
+the-double,The Double,2011,3.5,2014-08-07
+guardians-of-the-galaxy,Guardians of the Galaxy,2014,4.0,2014-08-06
+the-immigrant-2013,The Immigrant,2013,3.0,2014-08-06
+captain-america-the-winter-soldier,Captain America: The Winter Soldier,2014,4.0,2014-08-03
+better-living-through-chemistry,Better Living Through Chemistry,2014,3.0,2014-07-20
+the-bourne-identity-2002,The Bourne Identity,2002,4.0,2014-07-20
+black-hawk-down,Black Hawk Down,2001,4.0,2014-07-20
+need-for-speed,Need for Speed,2014,2.0,2014-07-14
+transcendence,Transcendence,2014,3.5,2014-07-11
+the-grandmaster,The Grandmaster,2013,3.0,2014-07-04
+turbo,Turbo,2013,3.5,2014-07-02
+22-jump-street,22 Jump Street,2014,3.5,2014-06-23
+edge-of-tomorrow,Edge of Tomorrow,2014,4.0,2014-06-19
+the-grand-budapest-hotel,The Grand Budapest Hotel,2014,4.5,2014-06-19
+the-hurt-locker,The Hurt Locker,2008,3.5,2014-05-29
+slumdog-millionaire,Slumdog Millionaire,2008,4.0,2014-05-29
+a-beautiful-mind,A Beautiful Mind,2001,4.0,2014-05-29
+titanic-1997,Titanic,1997,4.0,2014-05-29
+braveheart,Braveheart,1995,4.0,2014-05-29
+the-silence-of-the-lambs,The Silence of the Lambs,1991,4.0,2014-05-29
+my-fair-lady,My Fair Lady,1964,4.0,2014-05-29
+the-lego-movie,The Lego Movie,2014,4.0,2014-05-28
+mr-peabody-sherman,Mr. Peabody & Sherman,2014,3.5,2014-05-21
+son-of-batman,Son of Batman,2014,4.0,2014-05-14
+jack-ryan-shadow-recruit,Jack Ryan: Shadow Recruit,2014,4.0,2014-05-14
+the-other-woman-2014,The Other Woman,2014,3.0,2014-05-10
+300-rise-of-an-empire,300: Rise of an Empire,2014,3.5,2014-05-03
+the-shawshank-redemption,The Shawshank Redemption,1994,4.5,2014-04-27
+i-frankenstein,"I, Frankenstein",2014,3.0,2014-04-24
+saving-mr-banks,Saving Mr. Banks,2013,4.0,2014-04-24
+noah,Noah,2014,3.0,2014-04-20
+the-hobbit-the-desolation-of-smaug,The Hobbit: The Desolation of Smaug,2013,4.0,2014-04-12
+the-wolf-of-wall-street,The Wolf of Wall Street,2013,4.0,2014-04-12
+were-the-millers,We're the Millers,2013,3.5,2014-04-12
+brave-2012,Brave,2012,4.0,2014-04-12
+the-girl-with-the-dragon-tattoo-2011,The Girl with the Dragon Tattoo,2011,4.0,2014-04-12
+x-men-first-class,X-Men: First Class,2011,4.0,2014-04-12
+easy-a,Easy A,2010,4.0,2014-04-12
+sherlock-holmes-2009,Sherlock Holmes,2009,4.0,2014-04-12
+angels-demons,Angels & Demons,2009,3.5,2014-04-12
+quantum-of-solace,Quantum of Solace,2008,3.0,2014-04-12
+batman-gotham-knight,Batman: Gotham Knight,2008,3.5,2014-04-12
+pirates-of-the-caribbean-at-worlds-end,Pirates of the Caribbean: At World's End,2007,3.5,2014-04-12
+the-pink-panther,The Pink Panther,2006,2.5,2014-04-12
+monsters-inc,"Monsters, Inc.",2001,4.0,2014-04-12
+the-mummy-returns,The Mummy Returns,2001,3.0,2014-04-12
+unbreakable,Unbreakable,2000,3.5,2014-04-12
+the-rock,The Rock,1996,4.0,2014-04-12
+non-stop-2014,Non-Stop,2014,3.5,2014-04-04
+47-ronin-2013,47 Ronin,2013,3.0,2014-03-02
+frozen-2013,Frozen,2013,4.0,2014-03-02
+monsters-university,Monsters University,2013,4.0,2014-02-12
+the-avengers-2012,The Avengers,2012,4.0,2014-02-12
+vicky-donor,Vicky Donor,2012,4.0,2014-02-12
+crazy-stupid-love,"Crazy, Stupid, Love.",2011,4.0,2014-02-12
+transformers-dark-of-the-moon,Transformers: Dark of the Moon,2011,3.5,2014-02-12
+pirates-of-the-caribbean-on-stranger-tides,Pirates of the Caribbean: On Stranger Tides,2011,3.5,2014-02-12
+limitless,Limitless,2011,4.0,2014-02-12
+rango,Rango,2011,3.5,2014-02-12
+red-2010,RED,2010,3.5,2014-02-12
+despicable-me,Despicable Me,2010,4.0,2014-02-12
+star-trek,Star Trek,2009,4.0,2014-02-12
+ip-man,Ip Man,2008,4.0,2014-02-12
+beowulf-2007,Beowulf,2007,3.5,2014-02-12
+oceans-thirteen,Ocean's Thirteen,2007,4.0,2014-02-12
+the-prestige,The Prestige,2006,5.0,2014-02-12
+the-da-vinci-code,The Da Vinci Code,2006,3.5,2014-02-12
+the-incredibles,The Incredibles,2004,4.0,2014-02-12
+the-lord-of-the-rings-the-return-of-the-king,The Lord of the Rings: The Return of the King,2003,4.5,2014-02-12
+lara-croft-tomb-raider-the-cradle-of-life,Lara Croft: Tomb Raider – The Cradle of Life,2003,3.0,2014-02-12
+the-lord-of-the-rings-the-two-towers,The Lord of the Rings: The Two Towers,2002,4.0,2014-02-12
+red-dragon,Red Dragon,2002,3.5,2014-02-12
+star-wars-episode-ii-attack-of-the-clones,Star Wars: Episode II – Attack of the Clones,2002,3.5,2014-02-12
+lara-croft-tomb-raider,Lara Croft: Tomb Raider,2001,3.0,2014-02-12
+the-ghost-and-the-darkness,The Ghost and the Darkness,1996,4.0,2014-02-12
+mission-impossible,Mission: Impossible,1996,3.5,2014-02-12
+home-alone-2-lost-in-new-york,Home Alone 2: Lost in New York,1992,3.5,2014-02-12
+total-recall,Total Recall,1990,3.5,2014-02-12
+indiana-jones-and-the-last-crusade,Indiana Jones and the Last Crusade,1989,4.0,2014-02-12
+justice-league-war,Justice League: War,2014,3.5,2014-02-11
+thor-the-dark-world,Thor: The Dark World,2013,3.5,2014-02-11
+wanted-2008,Wanted,2008,4.0,2014-01-24
+tora-tora-tora,Tora! Tora! Tora!,1970,4.0,2014-01-24
+where-eagles-dare,Where Eagles Dare,1968,3.5,2014-01-24
+khartoum,Khartoum,1966,4.0,2014-01-24
+the-great-escape,The Great Escape,1963,4.5,2014-01-24
+man-of-tai-chi,Man of Tai Chi,2013,3.0,2014-01-22
+superman-unbound,Superman: Unbound,2013,3.5,2014-01-22
+21-over,21 & Over,2013,3.5,2014-01-22
+jack-reacher,Jack Reacher,2012,4.0,2014-01-22
+hotel-transylvania,Hotel Transylvania,2012,4.0,2014-01-22
+dark-shadows,Dark Shadows,2012,3.5,2014-01-22
+wrath-of-the-titans,Wrath of the Titans,2012,3.5,2014-01-22
+the-hunger-games,The Hunger Games,2012,3.0,2014-01-22
+chronicle,Chronicle,2012,3.5,2014-01-22
+underworld-awakening,Underworld: Awakening,2012,3.5,2014-01-22
+contraband-2012,Contraband,2012,3.5,2014-01-22
+immortals,Immortals,2011,3.0,2014-01-22
+puss-in-boots,Puss in Boots,2011,3.5,2014-01-22
+in-time,In Time,2011,4.0,2014-01-22
+a-dangerous-method,A Dangerous Method,2011,3.5,2014-01-22
+the-ides-of-march,The Ides of March,2011,3.5,2014-01-22
+the-descendants,The Descendants,2011,4.0,2014-01-22
+the-three-musketeers-2011,The Three Musketeers,2011,4.0,2014-01-22
+the-fifth-estate,The Fifth Estate,2013,3.0,2014-01-20
+american-hustle,American Hustle,2013,4.0,2014-01-18
+her,Her,2013,4.5,2014-01-18
+runner-runner,Runner Runner,2013,3.0,2014-01-18
+rush-2013,Rush,2013,5.0,2014-01-05
+2-guns,2 Guns,2013,3.5,2014-01-05
+red-2,RED 2,2013,3.5,2014-01-05
+the-worlds-end,The World's End,2013,2.5,2014-01-05
+elysium-2013,Elysium,2013,3.5,2013-12-06
+the-mortal-instruments-city-of-bones,The Mortal Instruments: City of Bones,2013,3.5,2013-12-04
+despicable-me-2,Despicable Me 2,2013,4.0,2013-10-29
+wreck-it-ralph,Wreck-It Ralph,2012,4.0,2013-10-29
+anonymous-2011,Anonymous,2011,4.5,2013-10-29
+snatch,Snatch,2000,4.0,2013-10-29
+emperor-2012,Emperor,2012,3.5,2013-10-15
+the-lone-ranger,The Lone Ranger,2013,4.0,2013-10-13
+the-wolverine,The Wolverine,2013,3.0,2013-09-12
+the-great-gatsby-2013,The Great Gatsby,2013,4.0,2013-09-12
+star-trek-into-darkness,Star Trek Into Darkness,2013,4.0,2013-09-12
+oblivion-2013,Oblivion,2013,4.0,2013-09-12
+dead-man-down,Dead Man Down,2013,3.0,2013-09-12
+fast-furious-6,Fast & Furious 6,2013,3.5,2013-07-01
+iron-man-3,Iron Man 3,2013,4.0,2013-05-02
+lincoln,Lincoln,2012,4.0,2013-05-02
+the-intouchables,The Intouchables,2011,4.5,2013-05-02
+colombiana,Colombiana,2011,3.5,2013-05-02
+iron-man-2008,Iron Man,2008,4.0,2013-04-21
+serenity,Serenity,2005,4.0,2013-04-21
+gi-joe-retaliation,G.I. Joe: Retaliation,2013,3.5,2013-04-03
+transformers-revenge-of-the-fallen,Transformers: Revenge of the Fallen,2009,3.5,2013-04-03
+jumper,Jumper,2008,3.5,2013-04-03
+the-social-network,The Social Network,2010,4.0,2013-04-02
+gandhi,Gandhi,1982,4.0,2013-04-02
+olympus-has-fallen,Olympus Has Fallen,2013,3.5,2013-03-22
+the-last-samurai,The Last Samurai,2003,4.5,2013-03-22
+avatar,Avatar,2009,4.0,2013-03-06
+superman-returns,Superman Returns,2006,3.5,2013-03-06
+oceans-twelve,Ocean's Twelve,2004,3.5,2013-03-06
+silver-linings-playbook,Silver Linings Playbook,2012,4.0,2013-03-05
+the-campaign,The Campaign,2012,3.5,2013-03-05
+ted,Ted,2012,3.5,2013-03-05
+project-x-2012,Project X,2012,3.5,2013-03-05
+friends-with-benefits,Friends with Benefits,2011,3.5,2013-03-05
+the-perks-of-being-a-wallflower,The Perks of Being a Wallflower,2012,4.0,2013-02-28
+grown-ups,Grown Ups,2010,3.5,2013-02-28
+the-transporter,The Transporter,2002,3.5,2013-02-28
+blade-ii,Blade II,2002,3.5,2013-02-28
+gone-in-sixty-seconds,Gone in Sixty Seconds,2000,3.5,2013-02-28
+salt-2010,Salt,2010,3.5,2013-02-23
+rocky-balboa,Rocky Balboa,2006,3.5,2013-02-23
+deja-vu,Déjà Vu,2006,3.5,2013-02-23
+goal-2005,Goal!,2005,3.5,2013-02-23
+million-dollar-baby,Million Dollar Baby,2004,4.5,2013-02-23
+romeo-must-die,Romeo Must Die,2000,3.5,2013-02-23
+indiana-jones-and-the-temple-of-doom,Indiana Jones and the Temple of Doom,1984,3.5,2013-02-23
+never-back-down,Never Back Down,2008,4.5,2013-02-20
+rocky-iv,Rocky IV,1985,4.0,2013-02-20
+rocky-iii,Rocky III,1982,4.0,2013-02-20
+body-of-lies,Body of Lies,2008,4.0,2013-02-17
+casino-royale-2006,Casino Royale,2006,4.5,2013-02-17
+the-illusionist,The Illusionist,2006,4.0,2013-02-17
+the-girl-next-door-2004,The Girl Next Door,2004,3.5,2013-02-17
+lock-stock-and-two-smoking-barrels,"Lock, Stock and Two Smoking Barrels",1998,4.5,2013-02-17
+pulp-fiction,Pulp Fiction,1994,4.5,2013-02-17
+flight,Flight,2012,4.0,2013-02-10
+moneyball,Moneyball,2011,4.0,2013-02-10
+the-departed,The Departed,2006,4.0,2013-02-04
+annapolis,Annapolis,2006,4.0,2013-02-04
+transporter-2,Transporter 2,2005,3.5,2013-02-04
+the-passion-of-the-christ,The Passion of the Christ,2004,4.0,2013-02-04
+jerry-maguire,Jerry Maguire,1996,4.0,2013-02-04
+tron-legacy,TRON: Legacy,2010,4.5,2013-02-03
+invictus,Invictus,2009,4.0,2013-02-03
+yes-man,Yes Man,2008,4.0,2013-02-03
+the-greatest-game-ever-played,The Greatest Game Ever Played,2005,4.0,2013-02-03
+hitch-2005,Hitch,2005,3.5,2013-02-03
+veer-zaara,Veer-Zaara,2004,4.0,2013-02-03
+kill-bill-vol-2,Kill Bill: Vol. 2,2004,4.0,2013-02-03
+kill-bill-vol-1,Kill Bill: Vol. 1,2003,4.0,2013-02-03
+the-recruit,The Recruit,2003,4.0,2013-02-03
+star-wars-episode-i-the-phantom-menace,Star Wars: Episode I – The Phantom Menace,1999,4.0,2013-02-03
+rocky,Rocky,1976,4.0,2013-02-03
+miracle,Miracle,2004,4.0,2013-02-01
+saheb-biwi-aur-gangster,Saheb Biwi Aur Gangster,2011,4.5,2013-01-24
+zindagi-na-milegi-dobara,Zindagi Na Milegi Dobara,2011,4.5,2013-01-24
+a-wednesday,A Wednesday!,2008,4.5,2013-01-24
+jab-we-met,Jab We Met,2007,4.5,2013-01-24
+real-steel,Real Steel,2011,4.0,2013-01-21
+x-men-origins-wolverine,X-Men Origins: Wolverine,2009,4.0,2013-01-21
+x-men-the-last-stand,X-Men: The Last Stand,2006,3.5,2013-01-21
+van-helsing,Van Helsing,2004,3.5,2013-01-21
+x2,X2,2003,3.5,2013-01-21
+x-men,X-Men,2000,3.5,2013-01-21
+3-idiots,3 Idiots,2009,4.5,2013-01-16
+gangster-squad,Gangster Squad,2013,4.0,2013-01-14
+the-bourne-legacy,The Bourne Legacy,2012,3.5,2012-12-31
+the-dark-knight-rises,The Dark Knight Rises,2012,4.5,2012-12-31
+madagascar-3-europes-most-wanted,Madagascar 3: Europe's Most Wanted,2012,4.0,2012-12-31
+men-in-black-3,Men in Black 3,2012,3.5,2012-12-31
+21-jump-street,21 Jump Street,2012,3.5,2012-12-31
+taken,Taken,2008,4.0,2012-12-28
+life-of-pi,Life of Pi,2012,3.5,2012-12-15
+looper,Looper,2012,3.5,2012-12-15
+blade-trinity,Blade: Trinity,2004,4.0,2012-11-27
+midnight-in-paris,Midnight in Paris,2011,4.5,2012-11-17
+skyfall,Skyfall,2012,4.0,2012-11-16
+mamma-mia,Mamma Mia!,2008,3.5,2012-11-08
+the-phantom-of-the-opera-2004,The Phantom of the Opera,2004,4.0,2012-11-08
+the-thomas-crown-affair-1999,The Thomas Crown Affair,1999,4.0,2012-11-08
+constantine,Constantine,2005,4.0,2012-11-04
+die-another-day,Die Another Day,2002,3.5,2012-11-04
+blade,Blade,1998,4.0,2012-11-04
+goldeneye,GoldenEye,1995,4.0,2012-11-04
+octopussy,Octopussy,1983,4.0,2012-11-04
+goldfinger,Goldfinger,1964,4.0,2012-11-04
+death-note-2006,Death Note,2006,4.5,2012-10-12
+rang-de-basanti,Rang De Basanti,2006,5.0,2012-10-08
+schindlers-list,Schindler's List,1993,4.5,2012-08-17
+prince-of-persia-the-sands-of-time,Prince of Persia: The Sands of Time,2010,4.0,2012-07-27
+eagle-eye,Eagle Eye,2008,3.5,2012-07-27
+national-treasure,National Treasure,2004,4.0,2012-07-27
+american-psycho,American Psycho,2000,4.0,2012-07-27
+dead-poets-society,Dead Poets Society,1989,4.0,2012-07-27
+fight-club,Fight Club,1999,4.5,2012-07-01
+the-amazing-spider-man,The Amazing Spider-Man,2012,4.0,2012-06-30
+underworld-evolution,Underworld: Evolution,2006,4.0,2012-06-17
+the-league-of-extraordinary-gentlemen,The League of Extraordinary Gentlemen,2003,3.5,2012-06-17
+watchmen,Watchmen,2009,4.5,2012-05-09
+shooter,Shooter,2007,4.0,2012-05-09
+the-mask-of-zorro,The Mask of Zorro,1998,4.0,2012-03-25
+source-code,Source Code,2011,4.0,2012-02-28
+from-paris-with-love,From Paris with Love,2010,3.5,2012-02-28
+gi-joe-the-rise-of-cobra,G.I. Joe: The Rise of Cobra,2009,3.5,2012-02-28
+the-bourne-supremacy,The Bourne Supremacy,2004,4.0,2012-02-28
+unknown-2011,Unknown,2011,4.0,2012-01-24
+the-a-team,The A-Team,2010,4.5,2012-01-24
+surrogates,Surrogates,2009,3.5,2012-01-24
+a-perfect-getaway,A Perfect Getaway,2009,4.0,2012-01-24
+the-taking-of-pelham-1-2-3,The Taking of Pelham 1 2 3,2009,4.0,2012-01-24
+indiana-jones-and-the-kingdom-of-the-crystal-skull,Indiana Jones and the Kingdom of the Crystal Skull,2008,3.5,2012-01-24
+the-forbidden-kingdom,The Forbidden Kingdom,2008,3.5,2012-01-24
+national-treasure-book-of-secrets,National Treasure: Book of Secrets,2007,4.0,2012-01-24
+the-bourne-ultimatum,The Bourne Ultimatum,2007,4.0,2012-01-24
+the-italian-job-2003,The Italian Job,2003,4.0,2012-01-24
+the-one,The One,2001,3.5,2012-01-24
+tomorrow-never-dies,Tomorrow Never Dies,1997,3.5,2012-01-24
+mission-impossible-ghost-protocol,Mission: Impossible – Ghost Protocol,2011,3.5,2012-01-18
+thor,Thor,2011,4.0,2011-09-05
+public-enemies-2009,Public Enemies,2009,4.0,2011-09-05
+valkyrie,Valkyrie,2008,4.5,2011-09-05
+atonement,Atonement,2007,4.0,2011-09-05
+kingdom-of-heaven,Kingdom of Heaven,2005,4.0,2011-09-05
+troy,Troy,2004,4.0,2011-09-05
+phone-booth,Phone Booth,2002,4.5,2011-09-05
+minority-report,Minority Report,2002,4.5,2011-09-05
+code-geass-lelouch-of-the-rebellion-i-initiation,Code Geass: Lelouch of the Rebellion I - Initiation,2017,5.0,2011-09-05
+the-kings-speech,The King's Speech,2010,4.5,2011-08-15
+gladiator-2000,Gladiator,2000,5.0,2011-08-15
+inception,Inception,2010,4.5,2011-07-23
+the-dark-knight,The Dark Knight,2008,4.5,2011-07-23
+the-lord-of-the-rings-the-fellowship-of-the-ring,The Lord of the Rings: The Fellowship of the Ring,2001,4.5,2011-07-23
+american-beauty,American Beauty,1999,4.5,2011-07-23
+the-godfather,The Godfather,1972,4.5,2011-07-23
+the-good-the-bad-and-the-ugly,"The Good, the Bad and the Ugly",1966,4.5,2011-07-23
+john-wick-chapter-3-parabellum,John Wick: Chapter 3 – Parabellum,2019,3.5,
+drishyam-2015,Drishyam,2015,4.0,
+the-hexer,The Hexer,2001,,
+the-mandalorian-and-grogu,The Mandalorian and Grogu,2026,4.5,
+film:1302251,டெக்ஸ்டர்,2025,4.0,
+the-flash,The Flash,2023,4.0,
+altered-carbon-resleeved,Altered Carbon: Resleeved,2020,4.0,
+game-of-thrones-the-last-watch,Game of Thrones: The Last Watch,2019,4.5,
+lucifer-2019,Lucifer,2019,4.0,
+romario-in-spain-ungovernable,Romario in Spain. Ungovernable,2023,4.0,
+watchmen-2019,Watchmen,2019,4.0,
