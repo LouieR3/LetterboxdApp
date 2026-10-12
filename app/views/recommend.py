@@ -18,7 +18,11 @@ weights, accuracy = model.fit(data.data_signature())
 def scored(username: str, _sig: tuple) -> pd.DataFrame:
     user_df = data.load_user(username)
     cand = model.unseen(data.load_catalog(), user_df)
-    return model.predict(model.rated(user_df), cand, weights)
+    out = model.predict(model.rated(user_df), cand, weights)
+    watch = data.load_watchlist(username).set_index("Slug")["Added"]
+    out["OnWatchlist"] = out["Slug"].isin(watch.index)
+    out["Added"] = out["Slug"].map(watch)
+    return out
 
 
 @st.cache_data(show_spinner=False)
@@ -29,7 +33,8 @@ def rewatch(username: str, _sig: tuple) -> pd.DataFrame:
     return out
 
 
-picks_tab, rewatch_tab, how_tab = st.tabs(["✨ For you", "🔁 Worth a rewatch", "🧪 How it works"])
+picks_tab, watchlist_tab, rewatch_tab, how_tab = st.tabs(
+    ["✨ For you", "📋 Your watchlist, ranked", "🔁 Worth a rewatch", "🧪 How it works"])
 
 with picks_tab:
     recs = scored(user, data.data_signature())
@@ -42,13 +47,16 @@ with picks_tab:
         max_len = c[2].slider("Max runtime (min)", 60, 275, 275, step=5)
         min_votes = c[3].select_slider("Min Letterboxd ratings", [0, 1_000, 10_000, 50_000, 100_000, 500_000], 10_000,
                                        format_func=lambda v: f"{v:,}")
-        t1, t2 = st.columns(2)
-        top_only = t1.toggle("Only films from the Top 1001 list", False)
-        hide_seen_directors = t2.toggle("Only directors I haven't seen yet", False)
+        t1, t2, t3 = st.columns(3)
+        watch_only = t1.toggle("Only films on my watchlist", False)
+        top_only = t2.toggle("Only films from the Top 1001 list", False)
+        hide_seen_directors = t3.toggle("Only directors I haven't seen yet", False)
     view = recs[(recs["ReleaseYear"].between(*years)) & (recs["MovieLength"] <= max_len)
                 & (recs["NumberOfRatings"].fillna(0) >= min_votes)]
     if genres:
         view = view[view["Genre"].map(lambda gs: bool(set(gs) & set(genres)))]
+    if watch_only:
+        view = view[view["OnWatchlist"]]
     if top_only:
         view = view[view["TopRank"].notna()]
     if hide_seen_directors:
@@ -65,13 +73,15 @@ with picks_tab:
         st.markdown(f"#### Top pick: **{top['Movie']}** ({top['ReleaseYear']}) · predicted {ui.stars(top['Predicted'])}")
         if top["Why"]:
             st.caption(f"Because you like {top['Why']}")
-        st.dataframe(view[["Movie", "ReleaseYear", "Predicted", "Out of 10", "LBRating", "TopRank", "Director", "Genres", "Why", "Link"]],
+        st.dataframe(view[["Movie", "ReleaseYear", "Predicted", "Out of 10", "LBRating", "OnWatchlist", "TopRank", "Director", "Genres",
+                           "Why", "Link"]],
                      hide_index=True, use_container_width=True, height=600, column_config={
                          "Movie": st.column_config.TextColumn("Film", width="medium"),
                          "ReleaseYear": st.column_config.NumberColumn("Year", format="%d"),
                          "Predicted": st.column_config.ProgressColumn("Predicted ★", format="%.2f", min_value=0.5, max_value=5),
                          "Out of 10": st.column_config.NumberColumn("/10", format="%.1f"),
                          "LBRating": st.column_config.NumberColumn("Letterboxd", format="★ %.2f"),
+                         "OnWatchlist": st.column_config.CheckboxColumn("📋", help="On your watchlist"),
                          "TopRank": st.column_config.NumberColumn("Top 1001", format="#%d",
                                                                   help="Rank in the Top 1001 list, if it's on it"),
                          "Why": st.column_config.TextColumn("Because you like", width="large"),
@@ -87,6 +97,38 @@ with picks_tab:
             color=alt.Color("Signal:N", scale=alt.Scale(scheme="tableau10")),
             tooltip=["Movie", "Signal", alt.Tooltip("Stars:Q", format="+.2f")],
         ).properties(height=420), use_container_width=True)
+
+with watchlist_tab:
+    wl = scored(user, data.data_signature())
+    wl = wl[wl["OnWatchlist"]].sort_values("Predicted", ascending=False).copy()
+    if wl.empty:
+        st.info("No watchlist for this user yet. It comes from their Letterboxd export "
+                "(plus the first page of their live watchlist) via `scripts/refresh_data.py`.")
+    else:
+        st.markdown("Everything on your watchlist that you haven't logged, best bets first.")
+        c = st.columns(3)
+        c[0].metric("On your watchlist", f"{len(wl):,}")
+        c[1].metric("Predicted ★4 or higher", f"{(wl['Predicted'] >= 4).sum():,}")
+        c[2].metric("Hours to clear it", f"{wl['MovieLength'].sum() / 60:,.0f}")
+        wl["Why"] = model.reasons(r, wl.head(60)) + [""] * max(0, len(wl) - 60)
+        wl["Link"] = wl.apply(data.film_url, axis=1)
+        st.dataframe(wl[["Movie", "ReleaseYear", "Predicted", "LBRating", "MovieLength", "Added", "Director", "Why", "Link"]],
+                     hide_index=True, use_container_width=True, height=560, column_config={
+                         "Movie": st.column_config.TextColumn("Film", width="medium"),
+                         "ReleaseYear": st.column_config.NumberColumn("Year", format="%d"),
+                         "Predicted": st.column_config.ProgressColumn("Predicted ★", format="%.2f", min_value=0.5, max_value=5),
+                         "LBRating": st.column_config.NumberColumn("Letterboxd", format="★ %.2f"),
+                         "MovieLength": st.column_config.NumberColumn("Runtime", format="%d min"),
+                         "Added": st.column_config.DateColumn("Added", format="MMM D, YYYY"),
+                         "Why": st.column_config.TextColumn("Because you like", width="large"),
+                         "Link": st.column_config.LinkColumn("", display_text="↗"),
+                     })
+        st.altair_chart(alt.Chart(wl).mark_circle(size=70, opacity=0.75).encode(
+            x=alt.X("LBRating:Q", title="Letterboxd average", scale=alt.Scale(zero=False)),
+            y=alt.Y("Predicted:Q", title="Predicted for you", scale=alt.Scale(zero=False)),
+            color=alt.Color("MovieLength:Q", scale=alt.Scale(scheme="blues"), title="Runtime"),
+            tooltip=["Movie", "ReleaseYear", alt.Tooltip("Predicted:Q", format=".2f"), "LBRating", "MovieLength"],
+        ).properties(height=320, title="Your watchlist: crowd favourite vs your fit").interactive(), use_container_width=True)
 
 with rewatch_tab:
     st.markdown("Films you rated well below what the model expects, given everything else you like. "

@@ -16,3 +16,7 @@ Thumbs.db
 
 # Scraper cache (large; rebuilt by scripts/refresh_data.py)
 data/cache/
+
+# Personal Letterboxd exports
+letterboxd-*.zip
+exports/

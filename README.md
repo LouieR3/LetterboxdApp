@@ -57,6 +57,7 @@ data/
   films.csv              The definitive film table (see below)
   top_list.csv           The Top 1001 list's films and ranks
   users/<user>.csv       Each user's logged films: slug, title, year, rating, watch date
+  watchlists/<user>.csv  Each user's watchlist: slug, title, year, date added
   slug_overrides.csv     Optional hand fixes for titles the matcher gets wrong (title,year,slug)
   lists/                 Old scraped Letterboxd lists (not used by the app)
   cache/                 Scraper cache (git-ignored)
@@ -66,7 +67,7 @@ scripts/refresh_data.py  Refreshes everything from Letterboxd
 
 ## Data
 
-**`data/films.csv`** is the single source of public film data. It has one row per film, covering every film in the [Top 1001 list](https://letterboxd.com/juliodogpit/list/the-1001-greatest-films-ranked-as-objectively/) plus every film any user has logged:
+**`data/films.csv`** is the single source of public film data. It has one row per film, covering every film in the [Top 1001 list](https://letterboxd.com/juliodogpit/list/the-1001-greatest-films-ranked-as-objectively/) plus every film any user has logged or has on their watchlist:
 
 `Slug, Movie, ReleaseYear, LBRating, NumberOfRatings, NumberOfReviews, MovieLength, Director, Directors, Genre, Themes, Languages, Country, Actors, TopRank, FetchedAt`
 
@@ -75,7 +76,7 @@ scripts/refresh_data.py  Refreshes everything from Letterboxd
 
 **`data/users/<user>.csv`** holds only the personal part: `Slug, Movie, ReleaseYear, MyRating, Watched`. A blank `MyRating` means the film was logged but not rated. The app joins this with `films.csv` on `Slug`.
 
-Recommendations are drawn from `films.csv`: feature films (60–275 min) with a Letterboxd rating that the user hasn't logged. That means the Top 1001 plus anything a friend has seen.
+Recommendations are drawn from `films.csv`: feature films (60–275 min) with a Letterboxd rating that the user hasn't logged. That means the Top 1001, anything a friend has seen, and everyone's watchlists. The Recommendations page also ranks your watchlist and can filter to it.
 
 ## Refreshing data
 
@@ -90,7 +91,7 @@ python scripts/refresh_data.py
 | `COMMAND` | `"all"`: users, then the Top 1001 list, then film data. `"users"`: only the users (and the film data for their films). `"films"`: only film data. |
 | `USERS` | The friend group. Each gets a `data/users/<user>.csv`, and their films go into `films.csv`. |
 | `REFRESH_USERS` | `None` refreshes everyone, or a subset such as `["cloakenswagger"]` |
-| `EXPORTS` | Letterboxd exports for full histories, e.g. `{"cloakenswagger": "letterboxd-export.zip"}` |
+| `EXPORTS` | Only needed for an export that isn't in the repo folder. Any `letterboxd-<user>-*.zip` there (or in `exports/`) is picked up automatically, newest first. |
 | `TOP_LIST` | The list that defines the general film pool |
 | `MAX_AGE_DAYS` | Film pages older than this are fetched again. Default 30; `0` refetches everything. |
 | `DELAY` | Seconds between requests. Default 1.0. |
@@ -103,9 +104,9 @@ python scripts/refresh_data.py
 
 Letterboxd has no bulk source for ratings, counts or themes, so step 3 is the slow one: about 1 film per second, so a full refresh of ~4k films takes a bit over an hour. Later runs within `MAX_AGE_DAYS` only fetch new films.
 
-**Where a user's history comes from.** Letterboxd blocks automated access to page 2 and beyond of a member's film lists, and this script doesn't try to get around that. On its own it sees the films already in the user's file plus their recent activity: roughly the last 70–120 films. **A Letterboxd data export** (letterboxd.com → Settings → Data → Export your data) fills in the complete history. Add it to `EXPORTS` and run.
+**Where a user's history comes from.** Letterboxd blocks automated access to page 2 and beyond of a member's film lists, and this script doesn't try to get around that. On its own it sees the films already in the user's file plus their recent activity: roughly the last 70–120 films. **A Letterboxd data export** (letterboxd.com → Settings → Data → Export your data) fills in the complete history and watchlist. Drop the zip, named as Letterboxd names it (`letterboxd-<user>-<date>.zip`), in the repo folder and run. The export is treated as the truth up to its date: its ratings replace older ones (so re-ratings show up), and older entries it doesn't contain are dropped. Anything logged after the export still comes in through RSS. Exports contain personal data (email, profile), so `letterboxd-*.zip` is gitignored. Without an export, watchlists only cover the first page (28 films).
 
-**Adding a user:** add them to `USERS` (plus `EXPORTS` if they've sent an export) and run. The app picks up every file in `data/users/` automatically.
+**Adding a user:** add them to `USERS` (and drop their export zip in the repo folder if they've sent one) and run. The app picks up every file in `data/users/` automatically.
 
 **Fixing a wrong match:** old files only had titles, so the first migration matched each title to a film page by guessing the URL and checking the year and director. Doubtful matches and misses are listed in `data/cache/unresolved.csv`. To fix one, add a `title,year,slug` row to `data/slug_overrides.csv`.
 

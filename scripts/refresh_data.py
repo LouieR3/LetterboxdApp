@@ -52,7 +52,10 @@ COMMAND = "all"  # "all": users + top list + film data | "users": users + their 
 USERS = ["cloakenswagger", "bluegrace11", "carmal", "goldfishbrain", "gr8escape10", "prahladsingh", "zacierka",
          "stephanie216", "rec3", "ganonuptilt"]
 REFRESH_USERS = None  # None = refresh everyone in USERS; or a subset, e.g. ["cloakenswagger"]
-EXPORTS = {}  # Letterboxd exports (.zip or folder) to backfill full histories, e.g. {"cloakenswagger": "export.zip"}
+# Letterboxd exports (Settings > Data > Export your data) give a user's complete history and watchlist.
+# Any letterboxd-<user>-*.zip in the repo folder (or exports/) is picked up automatically, newest first;
+# list one here only to point at a different file, e.g. {"cloakenswagger": "C:/Downloads/export.zip"}.
+EXPORTS = {}
 TOP_LIST = "juliodogpit/list/the-1001-greatest-films-ranked-as-objectively"  # the general films to recommend from
 MAX_AGE_DAYS = 30  # re-fetch film pages older than this (0 refreshes everything)
 DELAY = 1.0  # seconds between requests
@@ -63,6 +66,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 USERS_DIR = DATA / "users"
 FILMS_FILE = DATA / "films.csv"
+WATCHLISTS_DIR = DATA / "watchlists"
 TOP_LIST_FILE = DATA / "top_list.csv"
 OVERRIDES_FILE = DATA / "slug_overrides.csv"  # hand-fixed title -> slug matches (title, year, slug)
 CACHE_DIR = DATA / "cache"
@@ -74,6 +78,7 @@ BASE = "https://letterboxd.com"
 USER_AGENT = "letterboxd-stats/2.0 (personal stats app; +https://github.com/LouieR3/LetterboxdApp)"
 
 USER_COLUMNS = ["Slug", "Movie", "ReleaseYear", "MyRating", "Watched"]
+WATCHLIST_COLUMNS = ["Slug", "Movie", "ReleaseYear", "Added"]
 # Themes contain commas ("Horror, the undead and monster classics"), so they're joined with "|";
 # the other list columns are comma-separated.
 FILM_COLUMNS = ["Slug", "Movie", "ReleaseYear", "LBRating", "NumberOfRatings", "NumberOfReviews", "MovieLength",
@@ -248,6 +253,7 @@ class Films:
     slugs: dict = field(default_factory=lambda: _load_jsonl(SLUG_CACHE, "key"))
     unresolved: list = field(default_factory=list)
     fetched: int = 0
+    _titles: dict | None = None
 
     def __post_init__(self):
         if OVERRIDES_FILE.exists():
@@ -325,6 +331,23 @@ class Films:
         self.unresolved.append({"title": title, "year": year_int, "note": "no match"})
         return None
 
+    def lookup(self, title: str, year, uri: str | None = None) -> str | None:
+        """Slug for a title that came from Letterboxd itself (an export): exact title match against the
+        cache first, then the export's boxd.it link (one request), then URL guessing."""
+        key = title_key(title, year)
+        if key in self.slugs:
+            return self.slugs[key]["slug"]
+        if self._titles is None:
+            self._titles = {title_key(r["title"], r["year"]): s for s, r in self.films.items() if r.get("title")}
+        slug = self._titles.get(key)
+        if not slug and uri:
+            rec = self.fetch_url(uri)
+            slug = rec["slug"] if rec else None
+        if slug:
+            self._remember(key, slug)
+            return slug
+        return self.resolve(title, year)
+
     def _remember(self, key: str, slug: str) -> None:
         rec = {"key": key, "slug": slug}
         self.slugs[key] = rec
@@ -399,17 +422,32 @@ def from_saved(username: str, films: Films, entries: dict) -> None:
         _progress(username, "migrate", i, len(df), films)
 
 
-def from_export(username: str, export: Path, films: Films, entries: dict) -> None:
-    def read(name: str) -> list[dict]:
-        if export.is_dir():
-            p = export / name
-            return list(csv.DictReader(p.open(encoding="utf-8"))) if p.exists() else []
-        with zipfile.ZipFile(export) as z:
-            if name not in z.namelist():
-                return []
-            return list(csv.DictReader(io.TextIOWrapper(z.open(name), encoding="utf-8")))
+def find_export(username: str) -> Path | None:
+    if username in EXPORTS:
+        return ROOT / EXPORTS[username]
+    found = [*ROOT.glob(f"letterboxd-{username}-*.zip"), *(ROOT / "exports").glob(f"letterboxd-{username}-*.zip")]
+    return max(found, key=lambda p: p.name) if found else None
 
-    watched, ratings, diary = read("watched.csv"), read("ratings.csv"), read("diary.csv")
+
+def read_export(export: Path, name: str) -> list[dict]:
+    if export.is_dir():
+        p = export / name
+        return list(csv.DictReader(p.open(encoding="utf-8"))) if p.exists() else []
+    with zipfile.ZipFile(export) as z:
+        if name not in z.namelist():
+            return []
+        return list(csv.DictReader(io.TextIOWrapper(z.open(name), encoding="utf-8")))
+
+
+def export_date(export: Path, watched: list[dict]) -> str:
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", export.name)
+    return m.group(1) if m else max((r["Date"] for r in watched), default="")
+
+
+def from_export(username: str, export: Path, films: Films, entries: dict) -> None:
+    """The export is the source of truth for everything logged up to its date: its ratings replace older
+    ones, and older entries it doesn't contain (deleted logs, bad title matches) are dropped."""
+    watched, ratings, diary = (read_export(export, n) for n in ("watched.csv", "ratings.csv", "diary.csv"))
     if not (watched or ratings):
         sys.exit(f"{export} doesn't look like a Letterboxd export (no watched.csv or ratings.csv)")
     dates: dict[str, str] = {}
@@ -418,22 +456,30 @@ def from_export(username: str, export: Path, films: Films, entries: dict) -> Non
         when = d.get("Watched Date") or d.get("Date")
         if when and when > dates.get(key, ""):
             dates[key] = when
+    rated = {title_key(r["Name"], r["Year"] or None): float(r["Rating"]) for r in ratings if r.get("Rating")}
+    rows = {title_key(r["Name"], r["Year"] or None): r for r in [*watched, *ratings]}
+    log.info("[%s] Export %s: %d films (%d rated)", username, export.name, len(rows), len(rated))
 
-    rows = {title_key(r["Name"], r["Year"] or None): r for r in watched}
-    rows.update({title_key(r["Name"], r["Year"] or None): r for r in ratings})  # rated rows carry Rating
-    log.info("[%s] Export: %d films (%d rated)", username, len(rows), len(ratings))
+    in_export = set()
     for i, (key, r) in enumerate(rows.items(), 1):
-        slug = films.slugs[key]["slug"] if key in films.slugs else None
-        if not slug and r.get("Letterboxd URI"):
-            rec = films.fetch_url(r["Letterboxd URI"])
-            if rec:
-                films._remember(key, rec["slug"])
-                slug = rec["slug"]
-        slug = slug or films.resolve(r["Name"], r["Year"] or None)
-        if slug:
-            _merge(entries, slug, r["Name"], r["Year"] or None, float(r["Rating"]) if r.get("Rating") else None,
-                   dates.get(key))
+        slug = films.lookup(r["Name"], r["Year"] or None, r.get("Letterboxd URI"))
         _progress(username, "export", i, len(rows), films)
+        if not slug:
+            continue
+        in_export.add(slug)
+        e = entries.setdefault(slug, Entry())
+        e.title, e.rating = r["Name"], rated.get(key)
+        e.year = int(r["Year"]) if r["Year"] else e.year
+        when = dates.get(key)
+        if when and (e.watched is None or when > e.watched):
+            e.watched = when
+
+    cutoff = export_date(export, watched)
+    stale = [s for s, e in entries.items() if s not in in_export and not (e.watched and e.watched > cutoff)]
+    for slug in stale:
+        del entries[slug]
+    if stale:
+        log.info("[%s] Dropped %d older entries the export doesn't contain", username, len(stale))
 
 
 def from_recent(username: str, films: Films, entries: dict) -> None:
@@ -471,8 +517,9 @@ def from_recent(username: str, films: Films, entries: dict) -> None:
 def refresh_user(username: str, films: Films) -> None:
     entries: dict[str, Entry] = {}
     from_saved(username, films, entries)
-    if username in EXPORTS:
-        from_export(username, Path(EXPORTS[username]), films, entries)
+    export = find_export(username)
+    if export:
+        from_export(username, export, films, entries)
     from_recent(username, films, entries)
     if not entries:
         log.error("[%s] No films found (is the profile public?); skipping", username)
@@ -483,12 +530,55 @@ def refresh_user(username: str, films: Films) -> None:
     df = df.sort_values("Watched", ascending=False, na_position="last", kind="stable")[USER_COLUMNS]
     _write_csv(df, USERS_DIR / f"{username}.csv")
     log.info("[%s] %d films (%d rated) -> data/users/%s.csv", username, len(df), df["MyRating"].notna().sum(), username)
+    refresh_watchlist(username, films, export, set(entries))
+
+
+def refresh_watchlist(username: str, films: Films, export: Path | None, logged: set[str]) -> None:
+    """The export's watchlist (complete) or the saved one, plus page 1 of the live watchlist for recent adds."""
+    path = WATCHLISTS_DIR / f"{username}.csv"
+    items: dict[str, dict] = {}
+    rows = read_export(export, "watchlist.csv") if export else []
+    if rows:
+        for r in rows:
+            slug = films.lookup(r["Name"], r["Year"] or None, r.get("Letterboxd URI"))
+            if slug:
+                items[slug] = {"Slug": slug, "Movie": r["Name"], "ReleaseYear": r["Year"] or None, "Added": r["Date"]}
+    elif path.exists():
+        items = {r["Slug"]: r for r in pd.read_csv(path).to_dict("records")}
+
+    r = films.client.get(f"{BASE}/{username}/watchlist/")
+    if r is not None:
+        for poster in BeautifulSoup(r.text, "lxml").select("li.griditem [data-item-slug]"):
+            slug = poster["data-item-slug"]
+            if slug not in items:
+                name = poster.get("data-item-full-display-name") or poster.get("data-item-name") or ""
+                ym = re.search(r"\((\d{4})\)$", name)
+                items[slug] = {"Slug": slug, "Movie": re.sub(r"\s*\(\d{4}\)$", "", name) or None,
+                               "ReleaseYear": ym.group(1) if ym else None,
+                               "Added": datetime.now(timezone.utc).date().isoformat()}
+
+    items = {s: v for s, v in items.items() if s not in logged}  # watched since adding it
+    if not items:
+        return
+    df = pd.DataFrame(items.values(), columns=WATCHLIST_COLUMNS)
+    df["ReleaseYear"] = pd.to_numeric(df["ReleaseYear"], errors="coerce").astype("Int64")
+    _write_csv(df.sort_values("Added", ascending=False, kind="stable"), path)
+    log.info("[%s] %d films -> data/watchlists/%s.csv", username, len(df), username)
 
 
 def user_slugs(usernames: list[str]) -> list[str]:
     slugs = []
     for u in usernames:
         path = USERS_DIR / f"{u}.csv"
+        if path.exists():
+            slugs += pd.read_csv(path, usecols=["Slug"])["Slug"].dropna().tolist()
+    return slugs
+
+
+def watchlist_slugs(usernames: list[str]) -> list[str]:
+    slugs = []
+    for u in usernames:
+        path = WATCHLISTS_DIR / f"{u}.csv"
         if path.exists():
             slugs += pd.read_csv(path, usecols=["Slug"])["Slug"].dropna().tolist()
     return slugs
@@ -551,10 +641,11 @@ def film_row(rec: dict, top_rank) -> dict:
 
 
 def refresh_films(films: Films, fetch: set[str]) -> None:
-    """Write data/films.csv for (top list + every user's films), fetching the stale films in `fetch`."""
+    """Write data/films.csv for (top list + every user's logged and watchlisted films), fetching the stale
+    films in `fetch`."""
     top = pd.read_csv(TOP_LIST_FILE) if TOP_LIST_FILE.exists() else pd.DataFrame(columns=["TopRank", "Slug"])
     rank = dict(zip(top["Slug"], top["TopRank"]))
-    members = list(dict.fromkeys(list(top["Slug"]) + user_slugs(USERS)))
+    members = list(dict.fromkeys(list(top["Slug"]) + user_slugs(USERS) + watchlist_slugs(USERS)))
     todo = [s for s in members if s in fetch and not films.is_fresh(s)]
     log.info("[films] %d films in the catalog; %d need fetching", len(members), len(todo))
     try:
@@ -593,8 +684,9 @@ def main() -> None:
         if COMMAND == "all":
             refresh_top_list(films)
         # "users" only fetches those users' films; the rest of the catalog is rewritten from the cache.
-        fetch = set(user_slugs(refresh)) if COMMAND == "users" else {*user_slugs(USERS), *(
-            pd.read_csv(TOP_LIST_FILE)["Slug"] if TOP_LIST_FILE.exists() else [])}
+        fetch = {*user_slugs(refresh), *watchlist_slugs(refresh)} if COMMAND == "users" else {
+            *user_slugs(USERS), *watchlist_slugs(USERS),
+            *(pd.read_csv(TOP_LIST_FILE)["Slug"] if TOP_LIST_FILE.exists() else [])}
         refresh_films(films, fetch)
     except Blocked as e:
         log.error("Stopped: Letterboxd is challenging requests (%s). Progress is saved; "

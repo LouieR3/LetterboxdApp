@@ -11,6 +11,7 @@ from unidecode import unidecode
 ROOT = Path(__file__).resolve().parent.parent
 USERS_DIR = ROOT / "data" / "users"
 FILMS_FILE = ROOT / "data" / "films.csv"
+WATCHLISTS_DIR = ROOT / "data" / "watchlists"
 DEFAULT_USER = "cloakenswagger"
 MIN_RUNTIME = 60  # shorts are left out of stats and recommendations
 
@@ -37,7 +38,8 @@ def _mtime(path: Path) -> float:
 
 def data_signature() -> tuple:
     """Changes whenever any data file changes; passed to cached functions as their cache key."""
-    return tuple((p.name, _mtime(p)) for p in [*_user_files(), FILMS_FILE])
+    files = [*_user_files(), *sorted(WATCHLISTS_DIR.glob("*.csv")), FILMS_FILE]
+    return tuple((f"{p.parent.name}/{p.name}", _mtime(p)) for p in files)
 
 
 @st.cache_data(show_spinner=False)
@@ -75,6 +77,21 @@ def _user(username: str, _sig: tuple) -> pd.DataFrame:
 def load_user(username: str) -> pd.DataFrame:
     """A user's logged films joined with the film data."""
     return _user(username, data_signature())
+
+
+@st.cache_data(show_spinner=False)
+def _watchlist(username: str, _sig: tuple) -> pd.DataFrame:
+    path = WATCHLISTS_DIR / f"{username}.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=["Slug", "Added"])
+    df = pd.read_csv(path, usecols=["Slug", "Added"])
+    df["Added"] = pd.to_datetime(df["Added"], errors="coerce")
+    return df
+
+
+def load_watchlist(username: str) -> pd.DataFrame:
+    """Slugs on the user's watchlist and when they were added (empty if we don't have it)."""
+    return _watchlist(username, data_signature())
 
 
 def load_catalog() -> pd.DataFrame:
